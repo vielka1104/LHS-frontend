@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<app-first-navbar></app-first-navbar>
+<mat-divider class="bg-cyan-400"></mat-divider>    
+<div class="bg-blue-100">
+    <div class="h-4/5 bg-left bg-no-repeat" style="background-image: url('../../assets/images/Image-hospital1.png');">
+    <div class="pt-10"></div>
+    <table class="w-full">
+          <mat-card class="w-2/6 ml-auto mr-5">
+            <mat-card-title class="text-left">Regístrate Paciente</mat-card-title>
+            <form class="form text-left" [formGroup]="userregisterform">
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Nombres</mat-label>
+              <input matInput placeholder="Ingrese sus nombres" formControlName="name" required>
+              <mat-error *ngIf="userregisterform.controls['name'].dirty && userregisterform.hasError('required') || userregisterform.controls['name'].invalid">Complete este campo es requerido!</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Apellidos</mat-label>
+              <input matInput placeholder="Ingrese sus apellidos" formControlName="lastname" required>
+              <mat-error *ngIf="userregisterform.controls['lastname'].dirty && userregisterform.hasError('required') || userregisterform.controls['lastname'].invalid">Complete este campo es requerido!</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Documento</mat-label> <!--Combo Box-->
+              <mat-select formControlName="document">
+                <mat-option value="uno">DNI</mat-option>
+                <mat-option value="dos">Carnet de Extranjeria</mat-option>
+              </mat-select>
+              <mat-error *ngIf="userregisterform.controls['document'].dirty && userregisterform.hasError('required') || userregisterform.controls['document'].invalid">Complete este campo es requerido!</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Numero de Documento</mat-label>
+              <input matInput placeholder="Ingrese Numero de documento" formControlName="numberdocument" required>
+              <mat-error *ngIf="userregisterform.controls['numberdocument'].dirty && userregisterform.hasError('required') || userregisterform.controls['numberdocument'].invalid">Complete este campo es requerido!</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Cumpleaños</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName = "birthday" required>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="userregisterform.controls['birthday'].dirty && userregisterform.hasError('required') || userregisterform.controls['birthday'].invalid">Complete este campo es requerido!</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Sexo</mat-label> <!--Combo Box-->
+              <mat-select formControlName="gender">
+                <mat-option value="uno">Masculino</mat-option>
+                <mat-option value="dos">Femenino</mat-option>
+              </mat-select>
+              <mat-error *ngIf="userregisterform.controls['gender'].dirty && userregisterform.hasError('required') || userregisterform.controls['gender'].invalid">Complete este campo es requerido!</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Ingrese email" formControlName="email" required>
+              <mat-error *ngIf="userregisterform.controls['email'].touched && userregisterform.controls['email'].hasError('required')">Complete este campo es requerido!</mat-error>
+              <mat-error *ngIf="userregisterform.controls['email'].dirty && userregisterform.controls['email'].hasError('email')">Email invalido complete con un email!</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Telefono</mat-label>
+              <input matInput placeholder="Ingrese telefono" formControlName="phone" required>
+              <mat-error *ngIf="userregisterform.controls['phone'].dirty && userregisterform.hasError('required') || userregisterform.controls['phone'].invalid">Complete este campo es requerido!</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Usuario</mat-label>
+              <input matInput placeholder="Ingrese nombre de usuario" formControlName="username" required>
+              <mat-error *ngIf="userregisterform.controls['username'].dirty && userregisterform.hasError('required') || userregisterform.controls['username'].invalid">Complete este campo es requerido!</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Contraseña</mat-label>
+              <input matInput placeholder="Ingrese contraseña" formControlName="password" required>
+              <mat-error *ngIf="userregisterform.controls['password'].dirty && userregisterform.hasError('required') || userregisterform.controls['password'].invalid">Complete este campo es requerido!</mat-error>
+            </mat-form-field>
+            
+            <div class="text-center">
+              <button color = "primary" mat-raised-button (click)="RegisterMethod()" [disabled]="userregisterform.invalid">Registrarse</button>
+            </div>  
+          </form>
+          </mat-card>
+    </table>
+    <div class="pb-10"></div>
+  </div>
+</div>

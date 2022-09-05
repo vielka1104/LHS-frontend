@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<header>
+  <mat-toolbar class="bg-white">
+    <button routerLink="/home-staff">
+      <img src="../../assets/images/back-arrow-2.png" class="w-10 h-10">
+    </button>
+    <span class="pr-5"></span>
+    <h1 class="text-slate-800">Clinica de salud</h1>
+    <span class="flex-auto"></span>
+    <h1 class="text-slate-800">USUARIOS</h1>
+    <span class="flex-auto"></span>
+    <img src="../../assets/images/profile.png" class="w-10 h-10">
+    <button>
+      <img src="../../assets/images/options-arrow.png" class="w-20 h-12">
+    </button>
+    <div class="pr-5"></div>
+</mat-toolbar>
+</header>
+<mat-divider class="bg-cyan-400"></mat-divider>
+<body class="bg-white">
+  <div class="pt-10"></div>
+  <div class="inline-flex w-full">
+    <div class="pl-20 pt-60">
+      <mat-button-toggle-group vertical #usergroup="matButtonToggleGroup" value="pacientes">
+        <mat-button-toggle value="pacientes">Pacientes</mat-button-toggle>
+        <mat-button-toggle value="medicos">Medicos</mat-button-toggle>
+        <mat-button-toggle value="personal">Personal</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <div class="pr-10"></div>
+    <table>
+      <tr>
+          <th class="font-normal">
+            <div *ngIf="usergroup.value == 'pacientes'">
+              <div class="inline-flex pb-5">
+                <h1 class="font-bold pt-2">Pacientes</h1>
+                <div class="pr-20"></div>
+                <button mat-raised-button color="primary" routerLink="/register-user">Crear paciente</button>
+              </div>
+              <br>
+              <mat-card class="ml-auto mr-auto" *ngFor="let medical of medicals">
+                <table>
+                  <div class="inline-flex">
+                    <th>
+                    <img src="../../assets/images/medical-profile.png">
+                    </th>
+                    <div class="pr-10"></div>
+                    <th class="font-normal w-80">
+                    <h1 class="pt-2 max-w-fit text-left">{{medical}}</h1>
+                    </th>
+                    <div class="pr-96"></div>
+                    <div class="pr-96"></div>
+                    <div class="pr-40"></div>
+                    <th>
+                      <div class="inline-flex">
+                        <div class="pt-16">
+                          <button mat-button class="h-12" (click)="UpdatePatient(medical)">
+                            <img src="../../../assets/images/edit-record.png" class="w-12 h-10">
+                          </button>
+                        </div>
+                        <div class="pr-10"></div>
+                        <div class="pt-16">
+                          <button mat-button class="h-12" (click)="DeleteDoctor(medical)">
+                            <img src="../../../assets/images/delete_button.png" class="w-12 h-10">
+                          </button>
+                        </div>
+                      </div>
+                    </th>
+                    <div class="pr-5"></div>
+                  </div>
+                </table>
+              </mat-card>
+            </div>
+            <div *ngIf="usergroup.value == 'medicos'">
+              <div class="inline-flex pb-5">
+                <h1 class="font-bold pt-2">Medicos</h1>
+                <div class="pr-20"></div>
+                <button mat-raised-button color="primary" routerLink="/register-medical">Crear médico</button>
+              </div>
+              <br>
+              <mat-card class="ml-auto mr-auto" *ngFor="let medical of medicals">
+                <table>
+                  <div class="inline-flex">
+                    <th>
+                    <img src="../../assets/images/medical-profile.png">
+                    </th>
+                    <div class="pr-10"></div>
+                    <th class="font-normal w-80">
+                    <h1 class="pt-2 max-w-fit text-left">{{medical}}</h1>
+                    </th>
+                    <div class="pr-96"></div>
+                    <div class="pr-96"></div>
+                    <div class="pr-40"></div>
+                    <th>
+                      <div class="inline-flex">
+                        <div class="pt-16">
+                          <button mat-button class="h-12" (click)="UpdateDoctor(medical)">
+                            <img src="../../../assets/images/edit-record.png" class="w-12 h-10">
+                          </button>
+                        </div>
+                        <div class="pr-10"></div>
+                        <div class="pt-16">
+                          <button mat-button class="h-12" (click)="DeleteDoctor(medical)">
+                            <img src="../../../assets/images/delete_button.png" class="w-12 h-10">
+                          </button>
+                        </div>
+                      </div>
+                    </th>
+                    <div class="pr-5"></div>
+                  </div>
+                </table>
+              </mat-card>
+            </div>
+            <div *ngIf="usergroup.value == 'personal'">
+              <div class="inline-flex pb-5">
+                <h1 class="font-bold pt-2">Personal</h1>
+                <div class="pr-20"></div>
+                <button mat-raised-button color="primary" routerLink="/register-staff">Crear personal</button>
+              </div>
+              <br>
+              <mat-card class="ml-auto mr-auto" *ngFor="let medical of medicals">
+                <table>
+                  <div class="inline-flex">
+                    <th>
+                    <img src="../../assets/images/medical-profile.png">
+                    </th>
+                    <div class="pr-10"></div>
+                    <th class="font-normal w-80">
+                    <h1 class="pt-2 max-w-fit text-left">{{medical}}</h1>
+                    </th>
+                    <div class="pr-96"></div>
+                    <div class="pr-96"></div>
+                    <div class="pr-40"></div>
+                    <th>
+                      <div class="inline-flex">
+                        <div class="pt-16">
+                          <button mat-button class="h-12" (click)="UpdateStaff(medical)">
+                            <img src="../../../assets/images/edit-record.png" class="w-12 h-10">
+                          </button>
+                        </div>
+                        <div class="pr-10"></div>
+                        <div class="pt-16">
+                          <button mat-button class="h-12" (click)="DeleteDoctor(medical)">
+                            <img src="../../../assets/images/delete_button.png" class="w-12 h-10">
+                          </button>
+                        </div>
+                      </div>
+                    </th>
+                    <div class="pr-5"></div>
+                  </div>
+                </table>
+              </mat-card>
+            </div>
+          </th>
+          <div class="pr-10"></div>
+        </tr>
+      </table>
+  </div>
+</body>

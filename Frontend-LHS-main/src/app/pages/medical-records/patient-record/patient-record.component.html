@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<header>
+  <mat-toolbar class="bg-white">
+    <button routerLink="/medical-records">
+      <img src="../../assets/images/back-arrow-2.png" class="w-10 h-10">
+    </button>
+    <span class="pr-5"></span>
+    <h1 class="text-slate-800">Clinica de salud</h1>
+    <span class="flex-auto"></span>
+    <h1 class="text-slate-800">ALESSANDRO ALAYO</h1>
+    <span class="flex-auto"></span>
+    <img src="../../assets/images/profile.png" class="w-10 h-10">
+    <button>
+      <img src="../../assets/images/options-arrow.png" class="w-20 h-12">
+    </button>
+    <div class="pr-5"></div>
+</mat-toolbar>
+</header>
+<mat-divider class="bg-cyan-400"></mat-divider>
+<body>
+  <div class="inline-flex w-full h-full pl-20">
+   <table class="ml-auto mr-auto w-4/5 h-3/4">
+      <tr>
+        <th>
+          <div class="pt-10"></div>
+          <button class="w-96" (click)="DisplayInfo()">
+              <mat-toolbar color="primary">
+                <h1>Datos personales</h1>
+                <div class="flex-auto"></div>
+                <img src="../../../assets/images/arrrow-down.png" class="w-10 h-5">
+                <div class="pr-10"></div>
+              </mat-toolbar>
+          </button>
+          <div *ngIf="displayinfo == true">
+            <div class="pb-10"></div>
+            <h1>Hola</h1>
+          </div>
+          <div class="pt-10"></div>
+          <button class="w-96" (click)="DisplayDiagnostic()">
+            <mat-toolbar color="primary">
+              <h1>Diagnóstico</h1>
+              <div class="flex-auto"></div>
+              <img src="../../../assets/images/arrrow-down.png" class="w-10 h-5">
+              <div class="pr-10"></div>
+            </mat-toolbar>
+          </button>
+          <div *ngIf="displaydiagnostic == true">
+            <div class="pb-10"></div>
+            <h1>Hola</h1>
+          </div>
+          <div class="pt-10"></div>
+          <button class="w-96" (click)="DisplayTreatment()">
+            <mat-toolbar color="primary">
+              <h1>Tratamiento</h1>
+              <div class="flex-auto"></div>
+              <img src="../../../assets/images/arrrow-down.png" class="w-10 h-5">
+              <div class="pr-10"></div>
+            </mat-toolbar>
+          </button>
+          <div *ngIf="displaytreatment == true">
+            <div class="pb-10"></div>
+            <h1>Hola</h1>
+          </div>
+          <div class="pt-10"></div>
+          <button class="w-96" (click)="DisplayData()">
+            <mat-toolbar color="primary">
+              <h1>Datos nefrológicos</h1>
+              <div class="flex-auto"></div>
+              <img src="../../../assets/images/arrrow-down.png" class="w-10 h-5">
+              <div class="pr-10"></div>
+            </mat-toolbar>
+          </button>
+          <div *ngIf="displaydata == true">
+            <div class="pb-10"></div>
+            <h1>Hola</h1>
+          </div>
+        </th>
+      </tr>
+    </table>
+    <div class="pt-60 pr-20 w-2/4 pl-20">
+      <div class="inline-flex">
+        <div class="pl-40"></div>
+        <h1 class="text-center">EN RIESGO:
+          <span class="pr-5"></span>
+          <mat-slide-toggle color="primary"></mat-slide-toggle>
+        </h1>
+      </div>
+      <br>
+      <img src="../../assets/images/profile.png" class="w-56 h-52">
+    </div>
+  </div>
+</body>

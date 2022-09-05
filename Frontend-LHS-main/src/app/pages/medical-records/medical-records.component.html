@@ -1,0 +1,94 @@
+<header>
+  <mat-toolbar class="bg-white">
+    <button routerLink="/home">
+      <img src="../../assets/images/back-arrow-2.png" class="w-10 h-10">
+    </button>
+    <span class="pr-5"></span>
+    <h1 class="text-slate-800">Clinica de salud</h1>
+    <span class="flex-auto"></span>
+    <h1 class="text-slate-800">HISTORIAS CLÍNICAS</h1>
+    <div class="pr-10"></div>
+    <button mat-raised-button color="primary" class="w-40" routerLink="/record-form">Nuevo</button>
+    <span class="flex-auto"></span>
+    <img src="../../assets/images/profile.png" class="w-10 h-10">
+    <button>
+      <img src="../../assets/images/options-arrow.png" class="w-20 h-12">
+    </button>
+    <div class="pr-5"></div>
+</mat-toolbar>
+</header>
+<mat-divider class="bg-cyan-400"></mat-divider>
+<body class="bg-white">
+  <div class="pt-10"></div>
+  <table>
+    <tr>
+        <th class="font-normal pb-80 pl-10">
+          <div class="inline-flex pl-10">
+            <form>
+              <mat-form-field appearance="outline">
+                <mat-label>Código de historia</mat-label>
+                <input matInput placeholder="Ingrese su código">
+              </mat-form-field>
+            </form>
+            <div class="pr-5"></div>
+            <span class="pt-4">
+              <button mat-raised-button color="primary" class="h-10">Buscar</button>
+            </span>
+          </div>
+          <br>
+          <form>
+            <mat-form-field>
+              <mat-label>Apellido</mat-label>
+              <mat-select>
+                <mat-option value="uno" *ngFor="let apellido of apellidos" >{{apellido}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <mat-label>Fecha de Ingreso</mat-label>
+              <mat-select>
+                <mat-option value="uno" *ngFor="let fecha of fechas" >{{fecha}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </form>
+        </th>
+        <div class="pr-20"></div>
+        <th class="font-normal pr-10">
+          <mat-card class="w-full" *ngFor="let patient of patients">
+            <table>
+              <div class="inline-flex">
+                <th>
+                <img src="../../assets/images/medical-profile.png" class="w-60 h-40">
+                </th>
+                <div class="pr-10"></div>
+                <th class="font-normal w-80">
+                <h1 class="pt-2 max-w-fit text-left">{{patient}}
+                  <div class="pt-5"></div>
+                  <div class="text-left">
+                    <h1>COD.:000012</h1>
+                  </div>
+                </h1>
+                </th>
+                <div class="pr-96"></div>
+                <div class="pr-96"></div>
+                <th class="font-normal">
+                  <div class="pt-5"></div>
+                  <button routerLink="/update-record">
+                    <img src="../../assets/images/edit-record.png" class="w-14 h-10">
+                  </button>
+                </th>
+                <div class="pr-5"></div>
+                <th>
+                  <div class="pt-5">
+                    <button mat-raised-button color="primary" class="h-10 w-40" routerLink="/patient-record">Ver Historia</button>
+                  </div>
+                </th>
+                <div class="pr-5"></div>
+              </div>
+            </table>
+            <br>
+          </mat-card>
+        </th>
+    </tr>
+  </table>
+</body>

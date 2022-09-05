@@ -1,0 +1,71 @@
+<h1 mat-dialog-title class="text-center">Actualizar Personal</h1>
+ <div mat-dialog-content> 
+  <div class="pb-5"></div>
+  <form [formGroup]="staffeditform">
+    <mat-form-field appearance="outline" class="w-96">
+      <mat-label>Nombres</mat-label>
+      <input matInput placeholder="Ingrese sus nombres" formControlName="name" required>
+      <mat-error>Complete este campo es requerido!</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline" class="w-96">
+      <mat-label>Apellidos</mat-label>
+      <input matInput placeholder="Ingrese sus apellidos" formControlName="lastname" required>
+      <mat-error>Complete este campo es requerido!</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline" class="w-96">
+      <mat-label>DNI</mat-label>
+      <input matInput placeholder="Ingrese sun DNI" formControlName="dni" required>
+      <mat-error>Complete este campo es requerido!</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline" class="w-96">
+      <mat-label>Sexo</mat-label> <!--Combo Box-->
+      <mat-select formControlName="gender">
+        <mat-option value="uno">Masculino</mat-option>
+        <mat-option value="dos">Femenino</mat-option>
+      </mat-select>
+      <mat-error>Complete este campo es requerido!</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline" class="w-96">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Ingrese email" formControlName="email" required>
+      <mat-error *ngIf="staffeditform.controls['email'].touched && staffeditform.controls['email'].hasError('required')">Complete este campo es requerido!</mat-error>
+      <mat-error *ngIf="staffeditform.controls['email'].dirty && staffeditform.controls['email'].hasError('email')">Email invalido complete con un email!</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline" class="w-96">
+      <mat-label>Telefono</mat-label>
+      <input matInput placeholder="Ingrese telefono" formControlName="phone" required>
+      <mat-error>Complete este campo es requerido!</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline" class="w-96">
+      <mat-label>Rol</mat-label>
+      <mat-select formControlName="role">
+        <div *ngFor="let role of rolelist">
+          <mat-option value="uno">{{role}}</mat-option>
+        </div>
+      </mat-select>
+      <mat-error>Complete este campo es requerido!</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline" class="w-96">
+      <mat-label>Usuario</mat-label>
+      <input matInput placeholder="Ingrese nombre de usuario" formControlName="username" required>
+      <mat-error>Complete este campo es requerido!</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline" class="w-96">
+      <mat-label>Contraseña</mat-label>
+      <input matInput placeholder="Ingrese contraseña" formControlName="password" required>
+      <mat-error>Complete este campo es requerido!</mat-error>
+    </mat-form-field>
+    
+    <div class="text-center">
+      <button matDialogClose color = "primary" mat-raised-button [disabled]="staffeditform.invalid">Actualizar</button>
+    </div>  
+  </form>
+</div>

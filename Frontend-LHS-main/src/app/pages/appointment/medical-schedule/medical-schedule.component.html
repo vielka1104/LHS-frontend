@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<header>
+  <mat-toolbar class="bg-white">
+    <button routerLink="/appointment">
+      <img src="../../assets/images/back-arrow-2.png" class="w-10 h-10">
+    </button>
+    <span class="pr-5"></span>
+    <h1 class="text-slate-800">Clinica de salud</h1>
+    <span class="flex-auto"></span>
+    <h1 class="text-slate-800">HORARIOS</h1>
+    <span class="flex-auto"></span>
+    <img src="../../assets/images/profile.png" class="w-10 h-10">
+    <button>
+      <img src="../../assets/images/options-arrow.png" class="w-20 h-12">
+    </button>
+    <div class="pr-5"></div>
+</mat-toolbar>
+</header>
+<mat-divider class="bg-cyan-400"></mat-divider>
+<body class="bg-white">
+  <table>
+    <tr>
+      <th class="font-normal pl-80 pt-10">
+        <mat-card class="text-left w-auto">
+          <div class="inline-flex">
+            <img src="../../assets/images/medical-profile.png">
+            <div class="pr-10"></div>
+            <h1 class="pt-2">Dr. Concepción Zavaleta, Marcio Jose</h1>
+          </div>
+        </mat-card>
+        <br>
+        <div class="inline-flex">
+          <h1 class="font-bold pt-3">23 de mayo de 2022
+            <h2 class="font-normal">Lunes</h2>
+          </h1>
+          <div class="pr-40"></div>
+          <h1 class="font-bold pt-3">Paciente:</h1>
+          <div class="pr-10"></div>
+          <form [formGroup]="scheduleform">
+            <mat-form-field appearance="outline">
+              <mat-label>Agregar paciente</mat-label>
+              <mat-select formControlName = "addpatient" required>
+                <mat-option value= "uno" *ngFor="let patient of patients">{{patient}}</mat-option>
+              </mat-select>
+              <mat-error>Es requerido este campo!</mat-error>
+          </mat-form-field>
+        </form>
+        <div class="pr-96"></div>
+        <form [formGroup]="scheduleform">
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName = "date" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error>Es requerido este campo!</mat-error>
+          </mat-form-field>
+        </form>
+        </div>
+        <br>
+        <mat-card>
+          <table>
+            <tr>
+              <div class="pr-10"></div>
+              <th>
+                <h1>LUNES</h1>
+                <h2 class="font-normal">06 JUL 2022</h2>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <h1>MARTES</h1>
+                <h2 class="font-normal">08 JUL 2022</h2>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <h1>MIERCOLES</h1>
+                <h2 class="font-normal">12 JUL 2022</h2>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <h1>JUEVES</h1>
+                <h2 class="font-normal">13 JUL 2022</h2>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <h1>VIERNES</h1>
+                <h2 class="font-normal">15 JUL 2022</h2>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <h1>SABADO</h1>
+                <h2 class="font-normal">19 JUL 2022</h2>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <h1>DOMINGO</h1>
+                <h2 class="font-normal">20 JUL 2022</h2>
+              </th>
+              <div class="pr-10"></div>
+            </tr> 
+            <br>
+            <tr>
+              <div class="pr-10"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-10"></div>
+            </tr>
+            <br>
+            <tr>
+              <div class="pr-10"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-10"></div>
+            </tr>
+            <br>
+            <tr>
+              <div class="pr-10"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-10"></div>
+            </tr>
+            <br>
+            <tr>
+              <div class="pr-10"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-10"></div>
+            </tr>
+            <br>
+            <tr>
+              <div class="pr-10"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-10"></div>
+            </tr>
+            <br>
+            <tr>
+              <div class="pr-10"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-10"></div>
+            </tr>
+            <br>
+            <tr>
+              <div class="pr-10"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-10"></div>
+            </tr>
+            <br>
+            <tr>
+              <div class="pr-10"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-10"></div>
+            </tr>
+            <br>
+            <tr>
+              <div class="pr-10"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-10"></div>
+            </tr>
+            <br>
+            <tr>
+              <div class="pr-10"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-24"></div>
+              <th>
+                <button mat-stroked-button color="basic">15:30 PM</button>
+              </th>
+              <div class="pr-10"></div>
+            </tr>
+          </table>
+        </mat-card>
+        <br>
+        <br>
+        <div class="text-center">
+          <button mat-raised-button color="primary" (click)="RegisterMethod()" [disabled]= "scheduleform.invalid">Reservar Cita</button>
+        </div>
+      </th>
+    </tr>
+  </table>
+  <div class="pb-10"></div>
+</body>

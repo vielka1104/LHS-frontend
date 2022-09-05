@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<app-first-navbar></app-first-navbar>
+<mat-divider class="bg-cyan-400"></mat-divider>    
+<body class="bg-blue-100">
+    <div class="h-4/5 bg-left bg-no-repeat" style="background-image: url('../../assets/images/Image-hospital1.png');">
+    <div class="pt-40"></div>
+    <table class="w-full">
+          <mat-card class="w-1/4 ml-auto mr-10">
+            <mat-card-title class="text-left">Bienvenido</mat-card-title>
+            <form class="text-left" [formGroup]="loginform">
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Usuario</mat-label>
+              <input matInput formControlName="username" placeholder="Ingrese usuario" required>
+              <mat-error *ngIf="loginform.controls['username'].dirty && loginform.hasError('required') || loginform.controls['username'].invalid">Complete este campo es requerido!</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Contraseña</mat-label>
+              <input matInput formControlName="password" placeholder="Ingrese contraseña" [type]="hide ? 'password' : 'text'" required>
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="loginform.controls['password'].dirty && loginform.hasError('required') || loginform.controls['password'].invalid">Complete este campo es requerido!</mat-error>
+            </mat-form-field>
+
+            <p class="text-blue-600 text-right">¿Olvidaste tu contraseña? <a href="https://www.google.com">Click Aquí</a></p>
+            <br>
+            <div class="text-center">
+              <button class = "w-full" color = "primary" mat-raised-button [disabled]="loginform.invalid" routerLink="/home-doctor">Ingresar</button>
+            </div>
+            <br>
+            <p class="text-black text-center">¿Si no tienes una cuenta? 
+              <a class="text-blue-600" routerLink="/register-user">Regístrate aquí</a>
+            </p>
+            </form>
+          </mat-card>
+    </table>
+  </div>
+</body>

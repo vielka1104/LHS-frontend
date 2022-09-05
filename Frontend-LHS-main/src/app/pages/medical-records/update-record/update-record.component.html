@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<header>
+  <mat-toolbar class="bg-white">
+    <button routerLink="/medical-records">
+      <img src="../../assets/images/back-arrow-2.png" class="w-10 h-10">
+    </button>
+    <span class="pr-5"></span>
+    <h1 class="text-slate-800">Clinica de salud</h1>
+    <span class="flex-auto"></span>
+    <h1 class="text-slate-800">ALESSANDRO ALAYO</h1>
+    <span class="flex-auto"></span>
+    <img src="../../assets/images/profile.png" class="w-10 h-10">
+    <button>
+      <img src="../../assets/images/options-arrow.png" class="w-20 h-12">
+    </button>
+    <div class="pr-5"></div>
+</mat-toolbar>
+</header>
+<mat-divider class="bg-cyan-400"></mat-divider>
+<body>
+  <div class="pb-40"></div>
+  <div class="text-center">
+      <div class="inline-flex w-4/5">
+        <div class="pt-20">
+          <img src="../../assets/images/medical-profile.png" class="h-56">
+        </div>
+        <div class="pr-40"></div>
+        <table class="w-full">
+            <tr>
+              <th class="w-full">
+                <!--Datos personales-->
+                <button class="w-full" (click)="DisplayInfo()">
+                    <mat-toolbar color="primary">
+                      <h1>Datos personales</h1>
+                      <div class="flex-auto"></div>
+                      <img src="../../../assets/images/arrrow-down.png" class="w-10 h-5">
+                      <div class="pr-10"></div>
+                    </mat-toolbar>
+                </button>
+                <div *ngIf="displayinfo == true">
+                  <div class="pb-10"></div>
+                  <table class="ml-auto mr-auto w-11/12">
+                    <tr>
+                      <th>
+                        <div class="inline-flex">
+                          <h1 class="pt-5">Nombre</h1>
+                          <span class="pr-10"></span>
+                          <form [formGroup]="updatepersonaldata">
+                            <mat-form-field appearance="outline" class="w-96">
+                              <mat-label>Tu nombre</mat-label>
+                              <input matInput formControlName="name" placeholder="Ingrese su nombre" required>
+                              <mat-error>Es requerido este campo!</mat-error>
+                            </mat-form-field>
+                          </form>
+                        </div>
+                        <br>
+                        <div class="inline-flex">
+                          <h1 class="pt-5">Apellido</h1>
+                          <span class="pr-10"></span>
+                          <form [formGroup]="updatepersonaldata">
+                            <mat-form-field appearance="outline" class="w-96">
+                              <mat-label>Tu apellido</mat-label>
+                              <input matInput formControlName="lastname" placeholder="Ingrese su apellido" required>
+                              <mat-error>Es requerido este campo!</mat-error>
+                            </mat-form-field>
+                          </form>
+                        </div>
+                        <br>
+                        <div class="inline-flex">
+                          <h1 class="pt-5">Correo</h1>
+                          <span class="pr-12"></span>
+                          <form [formGroup]="updatepersonaldata">
+                            <mat-form-field appearance="outline" class="w-96">
+                              <mat-label>Tu correo</mat-label>
+                              <input matInput formControlName="email" placeholder="Ingrese su correo" required>
+                              <mat-error>Es requerido este campo!</mat-error>
+                            </mat-form-field>
+                          </form>
+                        </div>
+                      </th>
+                      <div class="pr-10"></div>
+                      <th class="align-top">
+                        <div class="inline-flex">
+                          <h1 class="pt-5">Documento Nacional de Identidad</h1>
+                          <span class="pr-10"></span>
+                          <form [formGroup]="updatepersonaldata">
+                            <mat-form-field appearance="outline" class="w-96">
+                              <mat-label>Tu DNI</mat-label>
+                              <input matInput formControlName="dni" placeholder="Ingrese su DNI" required>
+                              <mat-error>Es requerido este campo!</mat-error>
+                            </mat-form-field>
+                          </form>
+                        </div>
+                        <br>
+                        <div class="inline-flex">
+                          <h1 class="pt-5">Teléfono de contacto</h1>
+                          <span class="pr-32"></span>
+                          <form [formGroup]="updatepersonaldata">
+                            <mat-form-field appearance="outline" class="w-96">
+                              <mat-label>Tu teléfono</mat-label>
+                              <input matInput formControlName="phone" placeholder="Ingrese su teléfono" required>
+                              <mat-error>Es requerido este campo!</mat-error>
+                            </mat-form-field>
+                          </form>
+                        </div>
+                      </th>
+                    </tr>
+                  </table>
+                  <br>
+                  <div class="text-center">
+                    <button mat-raised-button color="primary" class="w-40" (click)="UpdateDataMethod()" [disabled]="updatepersonaldata.invalid">Actualizar datos</button>
+                  </div>
+                </div>
+                <!--Diagnostico-->
+                <div class="pt-10"></div>
+                <button class="w-full" (click)="DisplayDiagnostic()">
+                  <mat-toolbar color="primary">
+                    <h1>Diagnóstico</h1>
+                    <div class="flex-auto"></div>
+                    <img src="../../../assets/images/arrrow-down.png" class="w-10 h-5">
+                    <div class="pr-10"></div>
+                  </mat-toolbar>
+                </button>
+                <div *ngIf="displaydiagnostic == true">
+                  <div class="pb-10"></div>
+                  <div class="inline-flex w-full">
+                  <table class="w-full">
+                    <tr>
+                      <th class="border-2 w-40">
+                          <div class="pb-3"></div>
+                          <h1>Código</h1>
+                          <div class="pb-3"></div>
+                          <mat-divider></mat-divider>
+                          <div class="pb-3"></div>
+                            <div *ngIf="updatediagnostic == true">
+                              <mat-form-field appearance="outline" class="w-28">
+                                <input matInput placeholder="Código">
+                              </mat-form-field>
+                            </div>
+                            <div *ngIf="updatediagnostic == false">
+                              <h2 class="font-normal">B12</h2>
+                            </div>
+                          <div class="pb-3"></div>
+                      </th>
+                      <th class="border-2">
+                          <div class="pb-3"></div>  
+                          <h1>Descripción</h1>
+                          <div class="pb-3"></div>
+                          <mat-divider></mat-divider>
+                          <div class="pb-3"></div>
+                            <div *ngIf="updatediagnostic == true">
+                              <mat-form-field appearance="outline" class="w-28">
+                                <input matInput placeholder="Descripción">
+                              </mat-form-field>
+                            </div>
+                            <div *ngIf="updatediagnostic == false">
+                              <h2 class="font-normal">Hipertensión Arterial</h2>
+                            </div>
+                          <div class="pb-3"></div>
+                      </th>
+                      <th class="border-2">
+                          <div class="pb-3"></div>
+                          <h1>Tipo enfermedad</h1>
+                          <div class="pb-3"></div>
+                          <mat-divider></mat-divider>
+                          <div class="pb-3"></div>
+                          <div *ngIf="updatediagnostic == true">
+                            <mat-form-field appearance="outline" class="w-28">
+                              <input matInput placeholder="Tipo">
+                            </mat-form-field>
+                          </div>
+                          <div *ngIf="updatediagnostic == false">
+                            <h2 class="font-normal">Accord</h2>
+                          </div>
+                          <div class="pb-3"></div>
+                        </th>
+                        <th class="border-2">
+                          <div class="pb-3"></div>
+                          <h1>Fecha Dx</h1>
+                          <div class="pb-3"></div>
+                          <mat-divider></mat-divider>
+                          <div class="pb-3"></div>
+                          <div *ngIf="updatediagnostic == true">
+                            <mat-form-field appearance="outline" class="w-28">
+                              <input matInput placeholder="Fecha">
+                            </mat-form-field>
+                          </div>
+                          <div *ngIf="updatediagnostic == false">
+                            <h2 class="font-normal">13/02/2016</h2>
+                          </div>
+                          <div class="pb-3"></div>
+                        </th>
+                        <th class="align-top border-2">
+                          <div class="pb-3"></div>
+                          <h1>Observación</h1>
+                          <div class="pb-3"></div>
+                          <mat-divider></mat-divider>
+                          <div class="pb-3"></div>
+                          <div *ngIf="updatediagnostic == true">
+                            <mat-form-field appearance="outline" class="w-28">
+                              <input matInput placeholder="Observación">
+                            </mat-form-field>
+                          </div>
+                          <div *ngIf="updatediagnostic == false">
+                            <h2 class="font-normal">-</h2>
+                          </div>
+                        </th>
+                    </tr>
+                  </table>
+                  <div class="pr-10"></div>
+                    <div class="pt-10">
+                      <button>
+                          <img src="../../../../assets/images/edit-record.png" class="w-10 h-10" (click)="UpdateDiagnostic()">
+                      </button>
+                    </div>
+                    <div class="pr-10"></div>
+                    <div class="pt-10">
+                      <button mat-raised-button color="primary" (click)="FinishUpdateDiagnostic()">Actualizar</button>
+                    </div>
+                  </div>
+                </div>
+                <!--Tratamiento-->
+                <div class="pt-10"></div>
+                <button class="w-full" (click)="DisplayTreatment()">
+                  <mat-toolbar color="primary">
+                    <h1>Tratamiento</h1>
+                    <div class="flex-auto"></div>
+                    <img src="../../../assets/images/arrrow-down.png" class="w-10 h-5">
+                    <div class="pr-10"></div>
+                  </mat-toolbar>
+                </button>
+                <div *ngIf="displaytreatment == true">
+                  <div class="pb-10"></div>
+                  <div class="inline-flex w-full">
+                  <table class="w-full">
+                    <tr>
+                      <th class="border-2 w-40">
+                          <div class="pb-3"></div>
+                          <h1>#</h1>
+                          <div class="pb-3"></div>
+                          <mat-divider></mat-divider>
+                          <div class="pb-3"></div>
+                            <h2 class="font-normal">1</h2>
+                          <div class="pb-3"></div>
+                      </th>
+                      <th class="border-2">
+                          <div class="pb-3"></div>  
+                          <h1>Medicamento</h1>
+                          <div class="pb-3"></div>
+                          <mat-divider></mat-divider>
+                          <div class="pb-3"></div>
+                            <div *ngIf="updatetreatment == true">
+                              <mat-form-field appearance="outline" class="w-28">
+                                <input matInput placeholder="Medicamento">
+                              </mat-form-field>
+                            </div>
+                            <div *ngIf="updatetreatment == false">
+                              <h2 class="font-normal">Captopril</h2>
+                            </div>
+                          <div class="pb-3"></div>
+                      </th>
+                      <th class="border-2">
+                          <div class="pb-3"></div>
+                          <h1>Cantidad diaria</h1>
+                          <div class="pb-3"></div>
+                          <mat-divider></mat-divider>
+                          <div class="pb-3"></div>
+                          <div *ngIf="updatetreatment == true">
+                            <mat-form-field appearance="outline" class="w-28">
+                              <input matInput placeholder="Cantidad">
+                            </mat-form-field>
+                          </div>
+                          <div *ngIf="updatetreatment == false">
+                            <h2 class="font-normal">1</h2>
+                          </div>
+                          <div class="pb-3"></div>
+                        </th>
+                        <th class="border-2">
+                          <div class="pb-3"></div>
+                          <h1>Días</h1>
+                          <div class="pb-3"></div>
+                          <mat-divider></mat-divider>
+                          <div class="pb-3"></div>
+                          <div *ngIf="updatetreatment == true">
+                            <mat-form-field appearance="outline" class="w-28">
+                              <input matInput placeholder="Días">
+                            </mat-form-field>
+                          </div>
+                          <div *ngIf="updatetreatment == false">
+                            <h2 class="font-normal">365</h2>
+                          </div>
+                          <div class="pb-3"></div>
+                        </th>
+                        <th class="align-top border-2">
+                          <div class="pb-3"></div>
+                          <h1>Indicación</h1>
+                          <div class="pb-3"></div>
+                          <mat-divider></mat-divider>
+                          <div class="pb-3"></div>
+                          <div *ngIf="updatetreatment == true">
+                            <mat-form-field appearance="outline" class="w-28">
+                              <input matInput placeholder="Indicación">
+                            </mat-form-field>
+                          </div>
+                          <div *ngIf="updatetreatment == false">
+                            <h2 class="font-normal">Cada 12 horas</h2>
+                          </div>
+                        </th>
+                    </tr>
+                  </table>
+                  <div class="pr-10"></div>
+                    <div class="pt-10">
+                      <button>
+                          <img src="../../../../assets/images/edit-record.png" class="w-10 h-10" (click)="UpdateTreatment()">
+                      </button>
+                    </div>
+                    <div class="pr-10"></div>
+                    <div class="pt-10">
+                      <button mat-raised-button color="primary" (click)="FinishUpdateTreatment()">Actualizar</button>
+                    </div>
+                  </div>
+                </div>
+                <!--Datos nefrologicos-->
+                <div class="pt-10"></div>
+                <button class="w-full" (click)="DisplayData()">
+                  <mat-toolbar color="primary">
+                    <h1>Datos nefrológicos</h1>
+                    <div class="flex-auto"></div>
+                    <img src="../../../assets/images/arrrow-down.png" class="w-10 h-5">
+                    <div class="pr-10"></div>
+                  </mat-toolbar>
+                </button>
+                <div *ngIf="displaydata == true">
+                  <div class="pb-10"></div>
+                  <h1>Hola</h1>
+                </div>
+              </th>
+            </tr>
+        </table>
+    </div>
+  </div>
+</body>

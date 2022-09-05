@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<header>
+  <mat-toolbar class="bg-white">
+    <h1 class="text-slate-800">Clinica de salud</h1>
+    <span class="flex-auto"></span>
+    <h1 class="text-slate-800">BIENVENIDO</h1>
+    <span class="flex-auto"></span>
+    <img src="../../assets/images/profile.png" class="w-10 h-10">
+    <button>
+      <img src="../../assets/images/options-arrow.png" class="w-20 h-12">
+    </button>
+    <div class="pr-5"></div>
+</mat-toolbar>
+</header>
+<mat-divider class="bg-cyan-400"></mat-divider>
+<body class="bg-white">
+  <div class="h-4/5 bg-right bg-no-repeat" style="background-image: url('../../assets/images/Image-hospital1.png');">
+  <div class="pt-44"></div>
+  <table class="ml-28 mt-5">
+    <div class="pt-20"></div>
+    <tr>
+      <h1 class="text-left font-normal ml-10">Citas
+          <span class="pr-10"></span>
+          <button class="ml-72" routerLink="/appointment">
+            <img src="../../assets/images/continue-arrow.png" class="w-10 h-10">
+          </button>
+      </h1>  
+    </tr>
+    <br>
+    <div class="pt-40"></div>
+    <div class="text-center">
+        <button mat-raised-button color= "primary" class="w-52" routerLink="/login">
+          <span class="inline-flex">
+            <div class="pr-14"></div>
+            <div class="pr-5"></div>
+            <h1>Salir</h1>
+            <div class="pr-12"></div>
+            <img src="../../assets/images/back-arrow.png" class="w-10 h-9">
+          </span>
+        </button>
+    </div>
+  </table>
+  </div>
+</body>
