@@ -31,6 +31,7 @@ import { UpdateDoctorComponent } from './pages/users-page/update-dialogs/update-
 import { UpdateStaffComponent } from './pages/users-page/update-dialogs/update-staff/update-staff.component';
 import { UpdatePatientComponent } from './pages/users-page/update-dialogs/update-patient/update-patient.component';
 import { AppointmentDoctorComponent } from './pages/appointments/appointment-doctor/appointment-doctor.component';
+import { AppointmentStaffComponent } from './pages/appointments/appointment-staff/appointment-staff.component';
 
 @NgModule({
   declarations: [									
@@ -60,7 +61,8 @@ import { AppointmentDoctorComponent } from './pages/appointments/appointment-doc
       UpdateDoctorComponent,
       UpdateStaffComponent,
       UpdatePatientComponent,
-      AppointmentDoctorComponent
+      AppointmentDoctorComponent,
+      AppointmentStaffComponent
    ],
   imports: [
     BrowserModule,

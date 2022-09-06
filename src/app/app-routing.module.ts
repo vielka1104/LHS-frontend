@@ -15,6 +15,7 @@ import { RegisterMedicalComponent } from './pages/registers/register-medical/reg
 import { RegisterStaffComponent } from './pages/registers/register-staff/register-staff.component';
 import { RegisterUserComponent } from './pages/registers/register-user/register-user.component';
 import { UsersPageComponent } from './pages/users-page/users-page.component';
+import { AppointmentStaffComponent } from './pages/appointments/appointment-staff/appointment-staff.component';
 
 const routes: Routes = [
   {path: "register-user",component: RegisterUserComponent},
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path: "register-staff",component: RegisterStaffComponent},
   {path: "home-doctor",component: HomeComponent},
   {path: "appointment-patient",component: AppointmentComponent},
-  {path: "appointment",component: AppointmentDoctorComponent},
+  {path: "appointment-doctor",component: AppointmentDoctorComponent},
+  {path: "appointment-staff",component: AppointmentStaffComponent},
   {path: "medical-schedule",component: MedicalScheduleComponent},
   {path: "medical-records",component: MedicalRecordsComponent},
   {path: "patient-record",component: PatientRecordComponent},
