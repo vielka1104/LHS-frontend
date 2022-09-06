@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<header>
+  <mat-toolbar class="bg-white">
+    <button routerLink="/home-patient">
+      <img src="../../assets/images/back-arrow-2.png" class="w-10 h-10">
+    </button>
+    <span class="pr-5"></span>
+    <h1 class="text-slate-800">Clinica de salud</h1>
+    <span class="flex-auto"></span>
+    <h1 class="text-slate-800">CITAS</h1>
+    <span class="flex-auto"></span>
+    <img src="../../assets/images/profile.png" class="w-10 h-10">
+    <button>
+      <img src="../../assets/images/options-arrow.png" class="w-20 h-12">
+    </button>
+    <div class="pr-5"></div>
+</mat-toolbar>
+</header>
+<mat-divider class="bg-cyan-400"></mat-divider>
+<body class="bg-white">
+  <div class="pt-10"></div>
+  <table>
+    <tr>
+        <th class="font-normal pb-80">
+          <mat-card class="demo-inline-calendar-card w-72 h-80 ml-10">
+            <mat-calendar class="w-60 h-20" [(selected)]="selecteddate"></mat-calendar>
+            </mat-card>
+        </th>
+        <div class="pr-20"></div>
+        <th class="font-normal pr-10">
+          <mat-card class="w-full" *ngFor="let medical of medicals">
+            <table>
+              <div class="inline-flex">
+                <th>
+                <img src="../../assets/images/medical-profile.png">
+                </th>
+                <div class="pr-10"></div>
+                <th class="font-normal w-80">
+                <h1 class="pt-2 max-w-fit text-left">{{medical}}
+                  <div class="pt-5"></div>
+                  <div class="text-left">
+                    <button mat-stroked-button>Nefrología</button>
+                  </div>
+                </h1>
+                </th>
+                <div class="pr-96"></div>
+                <div class="pr-96"></div>
+                <th>
+                  <div class="pt-5">
+                    <button mat-raised-button color="primary" class="h-10 w-40" routerLink="/medical-schedule">Ver Horario</button>
+                  </div>
+                </th>
+                <div class="pr-5"></div>
+              </div>
+            </table>
+            <br>
+          </mat-card>
+        </th>
+    </tr>
+  </table>
+</body>

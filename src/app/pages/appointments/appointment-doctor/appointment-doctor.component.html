@@ -19,16 +19,11 @@
 <mat-divider class="bg-cyan-400"></mat-divider>
 <body class="bg-white">
   <div class="pt-10"></div>
-  <table>
+  <table class="w-full">
     <tr>
-        <th class="font-normal pb-80">
-          <mat-card class="demo-inline-calendar-card w-72 h-80 ml-10">
-            <mat-calendar class="w-60 h-20" [(selected)]="selecteddate"></mat-calendar>
-            </mat-card>
-        </th>
         <div class="pr-20"></div>
-        <th class="font-normal pr-10">
-          <mat-card class="w-full" *ngFor="let medical of medicals">
+        <th class="font-normal pr-20">
+          <mat-card class="w-5/6 mr-auto ml-auto" *ngFor="let patient of patients">
             <table>
               <div class="inline-flex">
                 <th>
@@ -36,10 +31,13 @@
                 </th>
                 <div class="pr-10"></div>
                 <th class="font-normal w-80">
-                <h1 class="pt-2 max-w-fit text-left">{{medical}}
-                  <div class="pt-5"></div>
-                  <div class="text-left">
-                    <button mat-stroked-button>Nefrología</button>
+                <h1 class="pt-2 max-w-fit text-left">{{patient}}
+                  <br>
+                  <br>
+                  <div class="inline-flex">
+                    <button mat-stroked-button>07/09/2022</button>
+                    <div class="pr-10"></div>
+                    <button mat-stroked-button>9:30 am</button>
                   </div>
                 </h1>
                 </th>
@@ -47,7 +45,7 @@
                 <div class="pr-96"></div>
                 <th>
                   <div class="pt-5">
-                    <button mat-raised-button color="primary" class="h-10 w-40" routerLink="/medical-schedule">Ver Horario</button>
+                    <button mat-raised-button color="primary" class="h-10 w-40" routerLink="/appointment-form">Ingresar</button>
                   </div>
                 </th>
                 <div class="pr-5"></div>

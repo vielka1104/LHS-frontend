@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppointmentComponent } from './pages/appointment/appointment.component';
-import { MedicalScheduleComponent } from './pages/appointment/medical-schedule/medical-schedule.component';
+import { AppointmentDoctorComponent } from './pages/appointments/appointment-doctor/appointment-doctor.component';
+import { AppointmentComponent } from './pages/appointments/appointment-patient/appointment.component';
+import { MedicalScheduleComponent } from './pages/appointments/appointment-patient/medical-schedule/medical-schedule.component';
 import { HomeComponent } from './pages/homes/home-doctor/home.component';
 import { HomePatientComponent } from './pages/homes/home-patient/home-patient.component';
 import { HomeStaffComponent } from './pages/homes/home-staff/home-staff.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MedicalRecordsComponent } from './pages/medical-records/medical-records.component';
 import { PatientRecordComponent } from './pages/medical-records/patient-record/patient-record.component';
-import { RecordFormComponent } from './pages/medical-records/record-form/record-form.component';
+import { RecordFormComponent } from './pages/appointments/appointment-doctor/appointment-form/record-form.component';
 import { UpdateRecordComponent } from './pages/medical-records/update-record/update-record.component';
 import { RegisterMedicalComponent } from './pages/registers/register-medical/register-medical.component';
 import { RegisterStaffComponent } from './pages/registers/register-staff/register-staff.component';
@@ -21,11 +22,12 @@ const routes: Routes = [
   {path: "register-medical",component: RegisterMedicalComponent},
   {path: "register-staff",component: RegisterStaffComponent},
   {path: "home-doctor",component: HomeComponent},
-  {path: "appointment",component: AppointmentComponent},
+  {path: "appointment-patient",component: AppointmentComponent},
+  {path: "appointment",component: AppointmentDoctorComponent},
   {path: "medical-schedule",component: MedicalScheduleComponent},
   {path: "medical-records",component: MedicalRecordsComponent},
   {path: "patient-record",component: PatientRecordComponent},
-  {path: "record-form",component: RecordFormComponent},
+  {path: "appointment-form",component: RecordFormComponent},
   {path: "update-record",component: UpdateRecordComponent},
   {path: "home-patient",component: HomePatientComponent},
   {path: "home-staff",component: HomeStaffComponent},

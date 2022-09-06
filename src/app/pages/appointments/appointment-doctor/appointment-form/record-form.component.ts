@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ResultDialogRecordComponent } from '../../dialogs/result-dialog-record/result-dialog-record.component';
+import { ResultDialogRecordComponent } from '../../../dialogs/result-dialog-record/result-dialog-record.component';
 import {FormBuilder, ReactiveFormsModule, FormGroup, Validators} from '@angular/forms';
 import { ResultDialogAncientComponent } from 'src/app/pages/dialogs/result-dialog-ancient/result-dialog-ancient.component';
 import { ResultDialogClinicComponent } from 'src/app/pages/dialogs/result-dialog-clinic/result-dialog-clinic.component';
@@ -13,43 +13,39 @@ import { ResultDialogTreatmentComponent } from 'src/app/pages/dialogs/result-dia
 })
 export class RecordFormComponent implements OnInit {
   patientrecordform!:FormGroup
-  displayinfo!:boolean
-  displayback!:boolean
-  displayclinic!:boolean
-  displaytreatment!:boolean
+  displayvigilancy!:boolean
   backrecordform!:FormGroup
-  clinicform!:FormGroup
+  diagnosticform!:FormGroup
   treatmentform!:FormGroup
+  treatmenttype!:String;
+  treatmenttypes:String[] = ["Treatment 1","Treatment 2","Treatment 3"]
 
   constructor(public dialog:MatDialog, private formBuilder:FormBuilder) { }
 
   ngOnInit() {
     this.patientrecordform=this.formBuilder.group({
-      name:['',Validators.required],
-      lastname:['',Validators.required],
-      email:['',Validators.required],
-      dni:['',Validators.required],
-      phone:['',Validators.required],
+      height:['',Validators.required],
      })
      this.backrecordform = this.formBuilder.group({
-      diagnostic:['',Validators.required]
+      disease:['',Validators.required],
+      description:['',Validators.required],
+      date:['',Validators.required],
      })
-     this.clinicform = this.formBuilder.group({
-      weight:['',Validators.required],
-      height:['',Validators.required],
-      imc:['',Validators.required],
+     this.diagnosticform = this.formBuilder.group({
+      initdate:['',Validators.required],
+      finishdate:['',Validators.required],
       indicationtext:['',Validators.required],
-      erc:['',Validators.required],
      })
      this.treatmentform = this.formBuilder.group({
-      medication:['',Validators.required],
+      initdate:['',Validators.required],
+      finishdate:['',Validators.required],
       doses:['',Validators.required],
-      indication:['',Validators.required]
+      type:['',Validators.required],
+      description:['',Validators.required],
+      medicine:['',Validators.required],
      })
-     this.displayinfo = false;
-     this.displayback = false;
-     this.displayclinic = false;
-     this.displaytreatment = false;
+     
+     this.displayvigilancy = false;
   }
 
   RegisterMethod(){
@@ -68,35 +64,11 @@ export class RecordFormComponent implements OnInit {
     const dialogRef = this.dialog.open(ResultDialogTreatmentComponent)
   }
 
-  DisplayInfoPatient(){
-    if(this.displayinfo == true){
-      this.displayinfo = false;
+  DisplayVigilancy(){
+    if(this.displayvigilancy == true){
+      this.displayvigilancy = false;
     }else{
-      this.displayinfo = true;
-    }
-  }
-
-  DisplayBackrecords(){
-    if(this.displayback == true){
-      this.displayback = false;
-    }else{
-      this.displayback = true;
-    }
-  }
-
-  DisplayClinicMethod(){
-    if(this.displayclinic == true){
-      this.displayclinic = false;
-    }else{
-      this.displayclinic = true;
-    }
-  }
-
-  DisplayTreatmentMethod(){
-    if(this.displaytreatment == true){
-      this.displaytreatment = false;
-    }else{
-      this.displaytreatment = true;
+      this.displayvigilancy = true;
     }
   }
 
