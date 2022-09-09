@@ -9,15 +9,14 @@ import { DatePipe } from '@angular/common';
 import { MatTableDataSource } from '@angular/material/table';
 
 export interface Ancient{
-  code: string
+  code: number
   description: string
   diseasetype:string
   date:string
-  observation:string
 }
 
 export interface Diagnostic{
-  code: string
+  code: number
   description: string
   diagnostic:string
   initdate:string
@@ -25,7 +24,7 @@ export interface Diagnostic{
 }
 
 export interface Treatment{
-  code: string
+  code: number
   doses:number
   medicine:string
   description: string
@@ -47,6 +46,7 @@ export class RecordFormComponent implements OnInit {
   treatmentform!:FormGroup
   treatmenttype!:String;
   treatmenttypes:String[] = ["Treatment 1","Treatment 2","Treatment 3"]
+  diagnostictypes:String[] = ["Diabetes 1","Diabetes 2","Calculos renales"]
   fechaactual:Date = new Date()
   pipedate:DatePipe = new DatePipe("en-US")
   todaydate:any
@@ -54,24 +54,24 @@ export class RecordFormComponent implements OnInit {
   dataSourcediagnostic = new MatTableDataSource<any>()
   dataSourcetreatment = new MatTableDataSource<any>()
 
-  displayedColumns: string[] = ['code', 'description', 'diseasetype', 'date','observation'];
+  displayedColumns: string[] = ['code', 'description', 'diseasetype', 'date'];
   displayedColumnsdiagnostic: string[] = ['code', 'description', 'diagnostic', 'initdate','finishdate'];
   displayedColumnstreatment: string[] = ['code', 'typetreatment', 'medicine', 'doses','description','initdate','finishdate'];
   
 
-  ancienttest:Ancient = {code: "B12", description:"Hipertensión arterial", diseasetype:"Accord", date:"12/02/2022", observation:""};
-  ancienttest2:Ancient = {code: "B13", description:"Diabetes Mellitus", diseasetype:"Camry", date:"12/02/2021", observation:"Cada 12 horas"};
-  ancienttest3:Ancient = {code: "A34", description:"Obesidad mórbida", diseasetype:"Elantra", date:"15/02/2021", observation:"Cada 10 horas"};
+  ancienttest:Ancient = {code: 1, description:"Hipertensión arterial", diseasetype:"Accord", date:"12/02/2022"};
+  ancienttest2:Ancient = {code: 2, description:"Diabetes Mellitus", diseasetype:"Camry", date:"12/02/2021"};
+  ancienttest3:Ancient = {code: 3, description:"Obesidad mórbida", diseasetype:"Elantra", date:"15/02/2021"};
   ancientlist:Ancient[] = []
   
-  diagnostictest:Diagnostic = {code: "B12", description:"diagnostic 1", diagnostic:"diagnostic 1", initdate:"12/02/2022", finishdate:"12/03/2022"};
-  diagnostictest2:Diagnostic = {code: "B13", description:"diagnostic 2", diagnostic:"diagnostic 2", initdate:"12/02/2021", finishdate:"12/03/2021"};
-  diagnostictest3:Diagnostic = {code: "A34", description:"diagnostic 3", diagnostic:"diagnostic 3", initdate:"15/02/2021", finishdate:"15/03/2021"};
+  diagnostictest:Diagnostic = {code: 1, description:"diagnostic 1", diagnostic:"diagnostic 1", initdate:"12/02/2022", finishdate:"12/03/2022"};
+  diagnostictest2:Diagnostic = {code: 2, description:"diagnostic 2", diagnostic:"diagnostic 2", initdate:"12/02/2021", finishdate:"12/03/2021"};
+  diagnostictest3:Diagnostic = {code: 3, description:"diagnostic 3", diagnostic:"diagnostic 3", initdate:"15/02/2021", finishdate:"15/03/2021"};
   diagnosticlist:Diagnostic[] = []
   
-  treatmenttest:Treatment = {code: "B12", typetreatment:"treatment 1", medicine:"medicine 1", doses: 1, description:"a description 1", initdate: "20/02/2022", finishdate: "20/03/2022"};
-  treatmenttest2:Treatment = {code: "B13", typetreatment:"treatment 2", medicine:"medicine 2", doses: 2, description:"a description 2",initdate: "20/02/2022", finishdate: "20/03/2022"};
-  treatmenttest3:Treatment = {code: "A34", typetreatment:"treatment 3", medicine:"medicine 3", doses: 3, description:"a description 3",initdate: "20/02/2022", finishdate: "20/03/2022"};
+  treatmenttest:Treatment = {code: 1, typetreatment:"treatment 1", medicine:"medicine 1", doses: 1, description:"a description 1", initdate: "20/02/2022", finishdate: "20/03/2022"};
+  treatmenttest2:Treatment = {code: 2, typetreatment:"treatment 2", medicine:"medicine 2", doses: 2, description:"a description 2",initdate: "20/02/2022", finishdate: "20/03/2022"};
+  treatmenttest3:Treatment = {code: 3, typetreatment:"treatment 3", medicine:"medicine 3", doses: 3, description:"a description 3",initdate: "20/02/2022", finishdate: "20/03/2022"};
   treatmentlist:Treatment[] = []
 
   constructor(public dialog:MatDialog, private formBuilder:FormBuilder) { }
@@ -88,6 +88,7 @@ export class RecordFormComponent implements OnInit {
      this.diagnosticform = this.formBuilder.group({
       initdate:['',Validators.required],
       finishdate:['',Validators.required],
+      typediagnostic:['',Validators.required],
       indicationtext:['',Validators.required],
      })
      this.treatmentform = this.formBuilder.group({

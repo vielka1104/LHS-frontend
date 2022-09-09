@@ -6,7 +6,7 @@
     <span class="pr-5"></span>
     <h1 class="text-slate-800">Clinica de salud</h1>
     <span class="flex-auto"></span>
-    <h1 class="text-slate-800">CITA</h1>
+    <h1 class="text-slate-800">Patient</h1>
     <span class="flex-auto"></span>
     <img src="../../assets/images/profile.png" class="w-10 h-10">
     <button>
@@ -30,19 +30,21 @@
     <table class="ml-auto mr-auto">
     <tr>
       <th>
-        <div class="inline-flex">
+        <div class="inline-flex w-full">
           <h1 class="pt-5">Nombres:</h1>
-          <span class="pr-10"></span>
+          <span class="pr-16"></span>
+          <span class="pr-0.5"></span>
           <h1 class="pt-5 font-normal">Dato</h1>
         </div>
         <br>
-        <div class="inline-flex">
+        <div class="inline-flex w-full">
           <h1 class="pt-5">Apellidos:</h1>
-          <span class="pr-10"></span>
+          <span class="pr-16"></span>
+          <span class="pr-0.5"></span>
           <h1 class="pt-5 font-normal">Dato</h1>
         </div>
         <br>
-        <div class="inline-flex">
+        <div class="inline-flex w-full">
           <h1 class="pt-5">Tipo de Doc:</h1>
           <span class="pr-12"></span>
           <h1 class="pt-5 font-normal">Dato</h1>
@@ -50,7 +52,7 @@
       </th>
       <div class="pr-40"></div>
       <th>
-          <div class="inline-flex">
+          <div class="inline-flex text-left">
             <div class="max-w-fit">
               <h1 class="pt-5">Número de Documento:</h1>
             </div>
@@ -58,31 +60,22 @@
             <h1 class="pt-8 font-normal">Dato</h1>
           </div>
           <br>
-          <div class="inline-flex">
-            <div class="max-w-fit">
-              <h1 class="pt-5">Sexo:</h1>
-            </div>
-            <span class="pr-10"></span>
-            <h1 class="pt-5 font-normal">Dato</h1>
-          </div>
-          <br>
-          <div class="inline-flex">
-            <div class="max-w-fit">
-              <h1 class="pt-5">Altura:</h1>
-            </div>
-            <span class="pr-10"></span>
+          <div class="inline-flex w-full"> 
+            <h1 class="pt-5">Sexo:</h1>
+            <span class="pr-20"></span>
+            <span class="pr-2"></span>
             <h1 class="pt-5 font-normal">Dato</h1>
           </div>
       </th>
       <div class="pr-40"></div>
       <th>
         <div class="inline-flex">
-          <h1 class="pt-5">Agregar altura:</h1>
+          <h1 class="pt-5">Altura:</h1>
           <span class="pr-5"></span>
           <form [formGroup]="patientrecordform">
             <mat-form-field appearance="outline">
               <mat-label>Su altura</mat-label>
-              <input matInput formControlName="height" placeholder="Ingrese su altura" required>
+              <input matInput type="number" formControlName="height" placeholder="Ingrese su altura" required>
               <mat-error>Es requerido este campo!</mat-error>
             </mat-form-field>
           </form>
@@ -104,64 +97,235 @@
       </mat-toolbar>
     </div>
     <div class="pb-10"></div>
-    <table class="ml-auto mr-auto w-11/12">
+    <table class="ml-auto mr-auto">
     <tr>
       <th>
-        <div class="inline-flex">
+        <h1>Nutrición</h1>
+        <div class="pb-2"></div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">Plan de calorías:</h1>
+            <span class="pr-24"></span>
+            <span class="pr-1"></span>
+            <span class="pr-0.5"></span>
+            <h1 class="pt-5 font-normal">Dato</h1>
+          </div>
+          <br>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">Consumo de calorías:</h1>
+            <span class="pr-16"></span>
+            <h1 class="pt-5 font-normal">Dato</h1>
+          </div>
+          <br>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">Apetito:</h1>
+            <span class="pr-40"></span>
+            <span class="pr-1"></span>
+            <h1 class="pt-5 font-normal">Dato</h1>
+          </div>
+          <br>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">IMC:</h1>
+            <span class="pr-40"></span>
+            <span class="pr-6"></span>
+            <span class="pr-0.5"></span>
+            <h1 class="pt-5 font-normal">Dato</h1>
+          </div>
+          <br>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">Peso:</h1>
+            <span class="pr-40"></span>
+            <span class="pr-4"></span>
+            <span class="pr-0.5"></span>
+            <h1 class="pt-5 font-normal">Dato</h1>
+          </div>
+        <div class="pb-32"></div>
+        <h1>Otros</h1>
+        <div class="pb-2"></div>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Dolores:</h1>
+          <span class="pr-16"></span>
+          <span class="pr-3"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Síntomas:</h1>
+          <span class="pr-16"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+      </th>
+      <div class="pr-60"></div>
+      <th>
+        <h1>Análisis de sangre</h1>
+        <div class="pb-2"></div>
+        <div class="inline-flex w-full">
           <h1 class="pt-5">Hemoglobina:</h1>
-          <span class="pr-10"></span>
+          <span class="pr-16"></span>
+          <span class="pr-1"></span>
           <h1 class="pt-5 font-normal">Dato</h1>
         </div>
         <br>
-        <div class="inline-flex">
+        <div class="inline-flex w-full">
           <h1 class="pt-5">Linfocitos:</h1>
-          <span class="pr-10"></span>
+          <span class="pr-20"></span>
+          <span class="pr-3"></span>
           <h1 class="pt-5 font-normal">Dato</h1>
         </div>
         <br>
-        <div class="inline-flex">
-          <h1 class="pt-5">Leucocito:</h1>
-          <span class="pr-10"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
-        </div>
-      </th>
-      <th>
-        <div class="inline-flex">
-          <h1 class="pt-5">Hematíes:</h1>
-          <span class="pr-10"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
-        </div>
-        <br>
-        <div class="inline-flex">
+        <div class="inline-flex w-full">
           <h1 class="pt-5">Segmentados:</h1>
+          <span class="pr-16"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Monocitos:</h1>
+          <span class="pr-20"></span>
+          <span class="pr-2"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">VCM:</h1>
+          <span class="pr-32"></span>
+          <span class="pr-0.5"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">HCM:</h1>
+          <span class="pr-32"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Leucocitos:</h1>
+          <span class="pr-20"></span>
+          <span class="pr-1"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Hematies:</h1>
+          <span class="pr-20"></span>
+          <span class="pr-3"></span>
+          <span class="pr-0.5"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Glucosa:</h1>
+          <span class="pr-24"></span>
+          <span class="pr-2"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Colesterol:</h1>
+          <span class="pr-20"></span>
+          <span class="pr-2"></span>
+          <span class="pr-0.5"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Triglicéridos:</h1>
+          <span class="pr-16"></span>
+          <span class="pr-2"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Urea:</h1>
+          <span class="pr-32"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Creatinina:</h1>
+          <span class="pr-20"></span>
+          <span class="pr-2"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+      </th>
+      <div class="pr-60"></div>
+      <th>
+        <h1>Análisis de orina</h1>
+        <div class="pb-2"></div>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Densidad de orina:</h1>
           <span class="pr-10"></span>
           <h1 class="pt-5 font-normal">Dato</h1>
         </div>
         <br>
-        <div class="inline-flex">
-          <h1 class="pt-5">Monocitos:</h1>
-          <span class="pr-10"></span>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">PH:</h1>
+          <span class="pr-36"></span>
+          <span class="pr-1"></span>
           <h1 class="pt-5 font-normal">Dato</h1>
         </div>
-      </th>
-      <th>
-          <div class="inline-flex">
-            <h1 class="pt-5">Glucosa:</h1>
-            <span class="pr-10"></span>
-            <h1 class="pt-5 font-normal">Dato</h1>
-          </div>
-          <br>
-          <div class="inline-flex">
-            <h1 class="pt-5">Triglicérido:</h1>
-            <span class="pr-10"></span>
-            <h1 class="pt-5 font-normal">Dato</h1>
-          </div>
-          <br>
-          <div class="inline-flex">
-            <h1 class="pt-5">VCM:</h1>
-            <span class="pr-10"></span>
-            <h1 class="pt-5 font-normal">Dato</h1>
-          </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Proteínas:</h1>
+          <span class="pr-24"></span>
+          <span class="pr-1"></span>
+          <span class="pr-0.5"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Cetonas:</h1>
+          <span class="pr-28"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Urobilinogeno:</h1>
+          <span class="pr-16"></span>
+          <span class="pr-2"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Bilirrubina:</h1>
+          <span class="pr-24"></span>
+          <span class="pr-0.5"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Nitrito:</h1>
+          <span class="pr-32"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Cristales:</h1>
+          <span class="pr-24"></span>
+          <span class="pr-3"></span>
+          <span class="pr-0.5"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Azucar:</h1>
+          <span class="pr-28"></span>
+          <span class="pr-3"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Aspecto de la orina:</h1>
+          <span class="pr-9"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Color de la orina:</h1>
+          <span class="pr-14"></span>
+          <span class="pr-0.5"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
       </th>
     </tr>
     </table>
@@ -197,7 +361,7 @@
             <form [formGroup]="backrecordform">
               <mat-form-field appearance="outline" class="w-96">
                 <mat-label>Ingrese descripción</mat-label>
-                <input matInput formControlName="description" placeholder="Ingrese su descripción" required>
+                <textarea matInput formControlName="description" placeholder="Ingrese su descripción" required></textarea>
                 <mat-error>Es requerido este campo!</mat-error>
               </mat-form-field>
             </form>
@@ -243,11 +407,6 @@
         <ng-container matColumnDef="date">
           <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Fecha Dx</h1> </th>
           <td mat-cell *matCellDef="let element"> {{element.date}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="observation">
-          <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Observación</h1> </th>
-          <td mat-cell *matCellDef="let element"> {{element.observation}}</td>
         </ng-container>
       
         <tr mat-header-row *matHeaderRowDef="displayedColumns" class="bg-blue-100"></tr>
@@ -305,15 +464,21 @@
     <table class="ml-auto mr-auto w-11/12">
       <tr>
         <th>
-            <h1>Tipo de Diagnóstico</h1>
-            <div class="pb-5"></div>
-            <div class="inline-flex">
-              <mat-checkbox class="font-normal">Presuntivo</mat-checkbox>
-              <div class="pr-10"></div>
-              <mat-checkbox class="font-normal">Repetitivo</mat-checkbox>  
-            </div>
-            <br>
-            <mat-checkbox class="font-normal">Dirruptivo</mat-checkbox>
+          <div class="inline-flex">
+            <h1 class="pt-5">Tipo de Diagnóstico:</h1>
+            <span class="pr-10"></span>
+            <form [formGroup]="diagnosticform">
+              <mat-form-field appearance="outline" class="w-96">
+                <mat-label>Su tipo</mat-label>
+                <mat-select formControlName="typediagnostic" required>
+                  <div *ngFor="let diagnostictype of diagnostictypes">
+                    <mat-option value="uno">{{diagnostictype}}</mat-option>
+                  </div>
+                </mat-select>
+                <mat-error>Es requerido este campo!</mat-error>
+              </mat-form-field>
+            </form>
+          </div>
         </th>
       </tr>
     </table>
