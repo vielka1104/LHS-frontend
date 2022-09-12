@@ -1,0 +1,630 @@
+
+
+
+
+<mat-toolbar>
+
+  <button routerLink="/home-doctor">
+    <img src="../../assets/images/back-arrow-bluewhite.png" class="w-5 md:w-10 h-5 md:h-10">
+  </button>
+  <span class="pr-5"></span>
+  <p class="text-sm md:text-[26px] text-[#15558D] ">Clinica de salud</p>
+
+  <span class="flex-auto"></span>
+  <p class="text-xl md:text-[53px] flex justify-center">Vigilancia</p>
+
+
+  <span class="example-spacer"></span>
+  <button>
+  <mat-icon class="text-lg md:text-[26px]">search</mat-icon>  
+</button>
+  <div class="pr-5"></div> 
+  <input type="text" class="form-control 
+  block   w-20 md:w-40 md:px-3
+  py-1.5
+  text-base
+  font-normal
+  text-gray-700
+  bg-white bg-clip-padding
+  border border-solid border-gray-900
+  rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Ingrese su DNI"
+  maxlength="8"> 
+ 
+  <img src="../../assets/images/profile.png" class="w-5 md:w-10 h-8 md:h-10">
+  <button>
+    <img src="../../assets/images/options-arrow.png" class="w-6 md:w-12 h-8 md:h-10">
+  </button>
+
+</mat-toolbar>
+
+
+
+
+<hr size="10" width="100%" color="#009EFB">
+<span class="pr-5"></span>
+<div class="flex justify-end">
+   <p class="text-[26px]">Fecha: {{getfecha()}}</p>
+</div>
+
+     <form [formGroup]="vigilantform" (submit)="onSubmit()">
+      <mat-card class="text-[26px] text-white italic bg-[#15558D]">Datos</mat-card>
+      <mat-card>
+      
+        
+
+        <div class="flex flex-col space-y-8">
+        <div class="columns-3 md:columns-6">
+      
+           
+         
+           
+          <b class="text-[20px]">Nombre:</b>
+          <p class="text-[20px]">Jose</p>
+             
+           
+            
+              <b class="text-[20px]">Num.doc:</b>
+              <p class="text-[20px]">Jose</p>
+           
+            
+              <b class="text-[20px]">Peso:</b>
+              <div>
+              <input type="number" class="form-control
+              block w-full   px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-900
+              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su peso"
+              [(ngModel)]="vigilant.peso"   formControlName="peso" min="0">
+              
+            </div>
+
+
+          
+        </div>
+
+
+        <div class="columns-3 md:columns-6">
+      
+          
+           <b class="text-[20px]">Apellido:</b>
+           <p class="text-[20px]">Jose</p>
+          
+
+          
+            <b class="text-[20px]">Sexo:</b>
+            <p class="text-[20px]">73008346</p>
+      
+
+         
+          
+
+
+       </div>  
+
+
+
+       <div class="columns-3 md:columns-6">
+      
+        
+         <b class="text-[20px]">Tipo de doc:</b>
+         <p class="text-[20px]">Jose</p>
+       
+
+       
+          <b class="text-[20px]">Altura:</b>
+          <p class="text-[20px]">73008346</p>
+      
+
+       
+        
+
+
+       </div> 
+        </div>
+
+
+
+    
+
+
+      </mat-card>
+      <mat-card  class="text-[26px] text-white italic bg-[#15558D]">Datos Hematologicos</mat-card>
+      <mat-card>
+        <div class="flex flex-col space-y-8">
+
+          <div class="columns-3 md:columns-6">
+           
+              <b class="text-[20px]">Hemoglobina:</b>
+              <div>
+              <input type="number" class="form-control
+              block w-full   px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-900
+              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Hemoglobina"
+              [(ngModel)]="vigilant.hemoglobina"   formControlName="hemoglobina" min="0" required>
+              
+              
+              </div>
+              <b class="text-[20px]">Segmentados:</b>
+              <input type="number" class="form-control
+              block w-full   px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-900
+              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Segmentados"
+              [(ngModel)]="vigilant.segmentados"   formControlName="segmentados" min="0" required>
+           
+            
+              <b class="text-[20px]">VCM:</b>
+              <input type="number" class="form-control
+              block w-full   px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-900
+              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su VCM"
+              [(ngModel)]="vigilant.vcm"   formControlName="vcm" min="0" required>
+         
+          </div>
+          <div class="flex space-x-4">
+            <mat-error *ngIf="vigilantform.controls['hemoglobina'].dirty && vigilantform.hasError('required','hemoglobina')">Es requerido la Hemoglobina</mat-error>
+            <mat-error *ngIf="vigilantform.controls['segmentados'].dirty && vigilantform.hasError('required','segmentados')">Es requerido los segmentados</mat-error>
+            <mat-error *ngIf="vigilantform.controls['vcm'].dirty && vigilantform.hasError('required','vcm')">Es requerido el vcm</mat-error>
+          </div>
+
+          <div class="columns-3 md:columns-6">
+            
+              <b class="text-[20px]">Linfocitos:</b>
+              <input type="number" class="form-control
+              block w-full   px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-900
+              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Sus Linfocitos"
+              [(ngModel)]="vigilant.linfocitos"   formControlName="linfocitos" min="0" required>
+           
+            
+              <b class="text-[20px]">Monocitos:</b>
+              <input type="number" class="form-control
+              block w-full   px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-900
+              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Sus Monocitos"
+              [(ngModel)]="vigilant.monocitos"   formControlName="monocitos" min="0" required>
+         
+           
+              <b class="text-[20px]">HCM:</b>
+              <input type="number" class="form-control
+              block w-full   px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-900
+              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su HCM"
+              [(ngModel)]="vigilant.hcm"   formControlName="hcm" min="0" required>
+        
+
+          </div>
+          <div class="flex space-x-4">
+            <mat-error *ngIf="vigilantform.controls['linfocitos'].dirty && vigilantform.hasError('required','linfocitos')">Es requerido los linfocitos</mat-error>
+            <mat-error *ngIf="vigilantform.controls['monocitos'].dirty && vigilantform.hasError('required','monocitos')">Es requerido los monocitos</mat-error>
+            <mat-error *ngIf="vigilantform.controls['hcm'].dirty && vigilantform.hasError('required','hcm')">Es requerido el hcm</mat-error>
+          </div>
+          <div class="columns-3 md:columns-6">
+            <b class="text-[20px]">Leucocitos:</b>
+            <input type="number" class="form-control
+            block w-full   px-3
+            py-1.5
+            text-base
+            font-normal
+            text-gray-700
+            bg-white bg-clip-padding
+            border border-solid border-gray-900
+            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Sus Leucocitos"
+            [(ngModel)]="vigilant.leucocitos"   formControlName="leucocitos" min="0" required>
+            <b class="text-[20px]">Glucosa:</b>
+            <input type="number" class="form-control
+            block w-full   px-3
+            py-1.5
+            text-base
+            font-normal
+            text-gray-700
+            bg-white bg-clip-padding
+            border border-solid border-gray-900
+            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Glucosa"
+            [(ngModel)]="vigilant.glucosa"   formControlName="glucosa" min="0" required>
+            <b class="text-[20px]">Colesterol:</b>
+            <input type="number" class="form-control
+            block w-full   px-3
+            py-1.5
+            text-base
+            font-normal
+            text-gray-700
+            bg-white bg-clip-padding
+            border border-solid border-gray-900
+            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Colesterol"
+            [(ngModel)]="vigilant.colesterol"   formControlName="colesterol" min="0" required>
+
+          </div>
+          <div class="flex space-x-4">
+            <mat-error *ngIf="vigilantform.controls['leucocitos'].dirty && vigilantform.hasError('required','leucocitos')">Es requerido los leucocitos</mat-error>
+            <mat-error *ngIf="vigilantform.controls['glucosa'].dirty && vigilantform.hasError('required','glucosa')">Es requerido la glucosa</mat-error>
+            <mat-error *ngIf="vigilantform.controls['colesterol'].dirty && vigilantform.hasError('required','colesterol')">Es requerido el colesterol</mat-error>
+          </div>
+          <div class="columns-3 md:columns-6">
+            <b class="text-[20px]">Hematies:</b>
+            <input type="number" class="form-control
+            block w-full   px-3
+            py-1.5
+            text-base
+            font-normal
+            text-gray-700
+            bg-white bg-clip-padding
+            border border-solid border-gray-900
+            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Hematies"
+            [(ngModel)]="vigilant.hematies"   formControlName="hematies" min="0" required>
+            <b class="text-[20px]">Trigliceridos:</b>
+            <input type="number" class="form-control
+            block w-full   px-3
+            py-1.5
+            text-base
+            font-normal
+            text-gray-700
+            bg-white bg-clip-padding
+            border border-solid border-gray-900
+            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Sus Trigliceridos"
+            [(ngModel)]="vigilant.trigliceridos"   formControlName="trigliceridos" min="0" required>
+           
+
+          </div>
+          <div class="flex space-x-4">
+            <mat-error *ngIf="vigilantform.controls['hematies'].dirty && vigilantform.hasError('required','hematies')">Es requerido los hematies</mat-error>
+            <mat-error *ngIf="vigilantform.controls['trigliceridos'].dirty && vigilantform.hasError('required','trigliceridos')">Es requerido los trigliceridos</mat-error>
+          </div>
+        </div>
+
+
+
+
+
+
+
+      </mat-card>
+      <mat-card  class="text-[26px] text-white italic bg-[#15558D]">Datos urologicos</mat-card>
+      <mat-card>
+        <div class="flex flex-col space-y-8">
+          <div class="columns-3 md:columns-6">
+           
+              <b class="text-[20px]">Urea:</b>
+              <input type="number" class="form-control
+              block w-full   px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-900
+              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Urea"
+              [(ngModel)]="vigilant.urea"   formControlName="urea" min="0" required>
+           
+            
+              <b class="text-[20px]">Proteinas:</b>
+              <input type="number" class="form-control
+              block w-full   px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-900
+              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Sus Proteinas"
+              [(ngModel)]="vigilant.proteinas"   formControlName="proteinas" min="0" required>
+           
+            
+              <b class="text-[20px]">Nitrito:</b>
+              <input type="number" class="form-control
+              block w-full   px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-900
+              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Nitrito"
+              [(ngModel)]="vigilant.nitrito"   formControlName="nitrito" min="0" required>
+         
+          </div>
+          <div class="flex space-x-4">
+            <mat-error *ngIf="vigilantform.controls['urea'].dirty && vigilantform.hasError('required','urea')">Es requerido la urea</mat-error>
+            <mat-error *ngIf="vigilantform.controls['proteinas'].dirty && vigilantform.hasError('required','proteinas')">Es requerido las proteinas</mat-error>
+            <mat-error *ngIf="vigilantform.controls['nitrito'].dirty && vigilantform.hasError('required','nitrito')">Es requerido el nitrito</mat-error>
+          </div>
+          <div class="columns-3 md:columns-6">
+            
+              <b class="text-[20px]">Creatinina:</b>
+              <input type="number" class="form-control
+              block w-full   px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-900
+              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Cretinina"
+              [(ngModel)]="vigilant.creatinina"   formControlName="creatinina" min="0" required>
+           
+            
+              <b class="text-[20px]">Cetonas:</b>
+              <input type="number" class="form-control
+              block w-full   px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-900
+              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Cetonas"
+              [(ngModel)]="vigilant.cetonas"   formControlName="cetonas" min="0" required>
+         
+           
+              <b class="text-[20px]">Cristales:</b>
+              <input type="number" class="form-control
+              block w-full   px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-900
+              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Sus Cristales"
+              [(ngModel)]="vigilant.cristales"   formControlName="cristales" min="0" required>
+        
+
+          </div>
+          <div class="flex space-x-4">
+            <mat-error *ngIf="vigilantform.controls['creatinina'].dirty && vigilantform.hasError('required','creatinina')">Es requerido la creatinina</mat-error>
+            <mat-error *ngIf="vigilantform.controls['cetonas'].dirty && vigilantform.hasError('required','cetonas')">Es requerido las cetonas</mat-error>
+            <mat-error *ngIf="vigilantform.controls['cristales'].dirty && vigilantform.hasError('required','cristales')">Es requerido los cristales</mat-error>
+          </div>
+          <div class="columns-3 md:columns-6">
+            <b class="text-[20px]">Densidad de Orina:</b>
+            <input type="number" class="form-control
+            block w-full   px-3
+            py-1.5
+            text-base
+            font-normal
+            text-gray-700
+            bg-white bg-clip-padding
+            border border-solid border-gray-900
+            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Densidad"
+            [(ngModel)]="vigilant.densidadOrina"   formControlName="densidadOrina" min="0" required>
+            <b class="text-[20px]">Urobilinogeno:</b>
+            <input type="number" class="form-control
+            block w-full   px-3
+            py-1.5
+            text-base
+            font-normal
+            text-gray-700
+            bg-white bg-clip-padding
+            border border-solid border-gray-900
+            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Urobilinogeno"
+            [(ngModel)]="vigilant.urobilinogeno"   formControlName="urobilinogeno" min="0" required>
+            <b class="text-[20px]">Azucar:</b>
+            <input type="number" class="form-control
+            block w-full   px-3
+            py-1.5
+            text-base
+            font-normal
+            text-gray-700
+            bg-white bg-clip-padding
+            border border-solid border-gray-900
+            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Azucar"
+            [(ngModel)]="vigilant.azucar"   formControlName="azucar" min="0" required>
+
+          </div>
+          <div class="flex space-x-4">
+            <mat-error *ngIf="vigilantform.controls['densidadOrina'].dirty && vigilantform.hasError('required','densidadOrina')">Es requerido la densidadOrina</mat-error>
+            <mat-error *ngIf="vigilantform.controls['urobilinogeno'].dirty && vigilantform.hasError('required','urobilinogeno')">Es requerido el urobilinogeno</mat-error>
+            <mat-error *ngIf="vigilantform.controls['azucar'].dirty && vigilantform.hasError('required','azucar')">Es requerido la azucar</mat-error>
+          </div>
+
+          <div class="columns-3 md:columns-6">
+            <b class="text-[20px]">PH:</b>
+            <input type="number" class="form-control
+            block w-full   px-3
+            py-1.5
+            text-base
+            font-normal
+            text-gray-700
+            bg-white bg-clip-padding
+            border border-solid border-gray-900
+            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su PH"
+            [(ngModel)]="vigilant.pH"   formControlName="pH" min="0" required>
+            <b class="text-[20px]">Billirubina:</b>
+            <input type="number" class="form-control
+            block w-full   px-3
+            py-1.5
+            text-base
+            font-normal
+            text-gray-700
+            bg-white bg-clip-padding
+            border border-solid border-gray-900
+            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Billirubina"
+            [(ngModel)]="vigilant.bilirrubina"   formControlName="bilirrubina" min="0" required
+            >
+            <b class="text-[20px]">Aspecto de Orina:</b>
+            <input type="text" class="form-control
+            block w-full   px-3
+            py-1.5
+            text-base
+            font-normal
+            text-gray-700
+            bg-white bg-clip-padding
+            border border-solid border-gray-900
+            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Aspecto"
+            [(ngModel)]="vigilant.aspectoOrina"   formControlName="aspectoOrina" min="0" required>
+
+          </div>
+          <div class="flex space-x-4">
+            <mat-error *ngIf="vigilantform.controls['pH'].dirty && vigilantform.hasError('required','pH')">Es requerido el pH</mat-error>
+            <mat-error *ngIf="vigilantform.controls['bilirrubina'].dirty && vigilantform.hasError('required','bilirrubina')">Es requerido el bilirrubina</mat-error>
+            <mat-error *ngIf="vigilantform.controls['aspectoOrina'].dirty && vigilantform.hasError('required','aspectoOrina')">Es requerido el aspectoOrina</mat-error>
+          </div>
+          <div class="columns-3 md:columns-6">
+            <b class="text-[20px]">Color de Orina:</b>
+            <input type="text" class="form-control
+            block w-full   px-3
+            py-1.5
+            text-base
+            font-normal
+            text-gray-700
+            bg-white bg-clip-padding
+            border border-solid border-gray-900
+            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Color"
+            [(ngModel)]="vigilant.colorOrina"   formControlName="colorOrina" min="0" required>
+            
+
+          </div>
+          <div class="flex space-x-4">
+            <mat-error *ngIf="vigilantform.controls['colorOrina'].dirty && vigilantform.hasError('required','colorOrina')">Es requerido el colorOrina</mat-error>
+          </div>
+        </div>
+
+      </mat-card>
+      <mat-card  class="text-[26px] text-white italic bg-[#15558D]">Nutrición</mat-card>
+
+
+<mat-card>
+<div class="flex flex-col space-y-8">
+      <div class="columns-2 md:columns-6">
+
+        <b class="text-[20px]">Cant. Calorias:</b>
+        <input type="number" class="form-control
+        block w-full   px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-900
+        rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Calorias"
+        [(ngModel)]="vigilant.caloriasPlan"   formControlName="caloriasPlan" min="0" required>
+
+        <b class="text-[20px]">IMC:</b>
+        
+        <input type="number" class="form-control
+        block w-full   px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-900
+        rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su IMC"
+        [(ngModel)]="vigilant.imc"   formControlName="imc" min="0" required>
+      </div>
+      <div class="flex space-x-4">
+        <mat-error *ngIf="vigilantform.controls['caloriasPlan'].dirty && vigilantform.hasError('required','caloriasPlan')">Es requerido las calorias</mat-error>
+        <mat-error *ngIf="vigilantform.controls['imc'].dirty && vigilantform.hasError('required','imc')">Es requerido el imc</mat-error>
+      </div>
+      <div class="columns-2 md:columns-6">
+        <b class="text-[20px]">Calorias consumidas:</b>
+       <input type="number" class="form-control
+        block w-full   px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-900
+        rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Calorias Consumidas"
+        [(ngModel)]="vigilant.caloriasConsum"   formControlName="caloriasConsum" min="0" required>
+        <b class="text-[20px]">Dolores:</b>
+        <input type="text" class="form-control
+        block w-full   px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-900
+        rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Dolores"
+        [(ngModel)]="vigilant.dolores"   formControlName="dolores" min="0" required>
+       
+
+      </div>
+      <div class="flex space-x-4">
+        <mat-error *ngIf="vigilantform.controls['caloriasConsum'].dirty && vigilantform.hasError('required','caloriasConsum')">Es requerido las calorias Consumidas</mat-error>
+        <mat-error *ngIf="vigilantform.controls['dolores'].dirty && vigilantform.hasError('required','dolores')">Es requerido los dolores</mat-error>
+      </div>
+      <div class="columns-2 md:columns-6">
+        <b class="text-[20px]">Apetito:</b>
+        <input type="text" class="form-control
+        block w-full   px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-900
+        rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Apetito"
+        [(ngModel)]="vigilant.apetito"   formControlName="apetito" min="0" required>
+        <b class="text-[20px]">Otros sintomas:</b>
+        <input type="text" class="form-control
+        block w-full   px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-900
+        rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Otros sintomas"
+        [(ngModel)]="vigilant.otroSintoma"   formControlName="otroSintoma" min="0" required>
+       
+
+      </div>
+      <div class="flex space-x-4">
+        <mat-error *ngIf="vigilantform.controls['apetito'].dirty && vigilantform.hasError('required','apetito')">Es requerido eñ apetito</mat-error>
+        <mat-error *ngIf="vigilantform.controls['otroSintoma'].dirty && vigilantform.hasError('required','otroSintoma')">Es requerido los otro Sintomas</mat-error>
+      </div>
+    </div>
+    </mat-card>
+
+
+
+    <mat-card >
+      <div class="flex  justify-center ">
+        <button mat-flat-button color="primary"  type="submit"  [disabled]="!vigilantform.valid">Guardar</button>
+      </div>
+
+    
+    </mat-card>
+      
+     
+
+
+
+     </form>
+     

@@ -1,3 +1,14 @@
+import { DiagnosticComponent } from './pages/report/diagnostic/diagnostic.component';
+import { HealthIndicatorComponent } from './pages/report/health-indicator/health-indicator.component';
+import { MonitorTreatmentComponent } from './pages/report/monitor-treatment/monitor-treatment.component';
+import { MonitPatientRiskComponent } from './pages/report/monit-patient-risk/monit-patient-risk.component';
+import { EfficiencyComponent } from './pages/report/efficiency/efficiency.component';
+import { GeneralDiagnosticComponent } from './pages/report/general-diagnostic/general-diagnostic.component';
+import { GeneralHealthIndicatorComponent } from './pages/report/general-health-indicator/general-health-indicator.component';
+import { TreatmentComponent } from './pages/report/treatment/treatment.component';
+import { PatientRiskComponent } from './pages/report/patient-risk/patient-risk.component';
+import { ClinicalHistoriesComponent } from './pages/clinical-histories/clinical-histories.component';
+import { VigilantComponent } from './pages/vigilant/vigilant.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppointmentComponent } from './pages/appointment/appointment.component';
@@ -30,6 +41,17 @@ const routes: Routes = [
   {path: "home-patient",component: HomePatientComponent},
   {path: "home-staff",component: HomeStaffComponent},
   {path: "staff-users",component: UsersPageComponent},
+  {path:"vigilant",component:VigilantComponent},
+  {path:"clinical-histories",component:ClinicalHistoriesComponent},
+  {path:"reporter-general-patient-risk",component:PatientRiskComponent},
+  {path:"reporter-patient-risk",component:MonitPatientRiskComponent},
+  {path:"reporter-general-treatment",component:TreatmentComponent},
+  {path:"reporter-treatment",component:MonitorTreatmentComponent},
+  {path:"reporter-general-health-indicator",component:GeneralHealthIndicatorComponent},
+  {path:"reporter-health-indicator",component:HealthIndicatorComponent},
+  {path:"reporter-general-diagnostic",component:GeneralDiagnosticComponent},
+  {path:"reporter-diagnostic",component:DiagnosticComponent},
+  {path:"reporter-efficiency",component:EfficiencyComponent},
 ];
 
 @NgModule({
