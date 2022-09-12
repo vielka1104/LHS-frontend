@@ -1,14 +1,28 @@
+import { DiagnosticComponent } from './pages/report/diagnostic/diagnostic.component';
+import { HealthIndicatorComponent } from './pages/report/health-indicator/health-indicator.component';
+import { MonitorTreatmentComponent } from './pages/report/monitor-treatment/monitor-treatment.component';
+import { MonitPatientRiskComponent } from './pages/report/monit-patient-risk/monit-patient-risk.component';
+import { HeaderReporter2Component } from './pages/report/header-reporter2/header-reporter2.component';
+import { EfficiencyComponent } from './pages/report/efficiency/efficiency.component';
+import { GeneralDiagnosticComponent } from './pages/report/general-diagnostic/general-diagnostic.component';
+import { GeneralHealthIndicatorComponent } from './pages/report/general-health-indicator/general-health-indicator.component';
+import { TreatmentComponent } from './pages/report/treatment/treatment.component';
+import { PatientRiskComponent } from './pages/report/patient-risk/patient-risk.component';
+import { HeaderReporterComponent } from './pages/HeaderReporter/HeaderReporter.component';
+import { ClinicalHistoriesComponent } from './pages/clinical-histories/clinical-histories.component';
+import { VigilantComponent } from './pages/vigilant/vigilant.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterUserComponent } from './pages/registers/register-user/register-user.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './pages/login/login.component';
 import { FirstNavbarComponent } from './pages/first-navbar/first-navbar.component';
 import { ResultDialogComponent } from './pages/dialogs/result-dialog/result-dialog.component';
-import { ReactiveFormsModule } from '@angular/forms';
+
 import { RegisterMedicalComponent } from './pages/registers/register-medical/register-medical.component';
 import { RegisterStaffComponent } from './pages/registers/register-staff/register-staff.component';
 import { HomeComponent } from './pages/homes/home-doctor/home.component';
@@ -58,7 +72,19 @@ import { UpdatePatientComponent } from './pages/users-page/update-dialogs/update
       UsersPageComponent,
       UpdateDoctorComponent,
       UpdateStaffComponent,
-      UpdatePatientComponent
+      UpdatePatientComponent,
+      VigilantComponent,
+      ClinicalHistoriesComponent,
+      HeaderReporterComponent,
+      PatientRiskComponent,
+      TreatmentComponent,
+      GeneralHealthIndicatorComponent,
+      GeneralDiagnosticComponent,
+      EfficiencyComponent,
+      HeaderReporter2Component,
+      MonitPatientRiskComponent,MonitorTreatmentComponent,
+      HealthIndicatorComponent,
+      DiagnosticComponent
    ],
   imports: [
     BrowserModule,
@@ -66,6 +92,7 @@ import { UpdatePatientComponent } from './pages/users-page/update-dialogs/update
     MaterialModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
