@@ -17,7 +17,6 @@ export class MedicalScheduleComponent implements OnInit {
 
   ngOnInit() {
     this.scheduleform=this.formBuilder.group({
-      addpatient:['',Validators.required],
       date:['',Validators.required]
      })
   }

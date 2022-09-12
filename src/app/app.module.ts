@@ -32,6 +32,7 @@ import { UpdateStaffComponent } from './pages/users-page/update-dialogs/update-s
 import { UpdatePatientComponent } from './pages/users-page/update-dialogs/update-patient/update-patient.component';
 import { AppointmentDoctorComponent } from './pages/appointments/appointment-doctor/appointment-doctor.component';
 import { AppointmentStaffComponent } from './pages/appointments/appointment-staff/appointment-staff.component';
+import { DialogReportsComponent } from './pages/dialogs/dialog-reports/dialog-reports.component';
 
 @NgModule({
   declarations: [									
@@ -62,7 +63,8 @@ import { AppointmentStaffComponent } from './pages/appointments/appointment-staf
       UpdateStaffComponent,
       UpdatePatientComponent,
       AppointmentDoctorComponent,
-      AppointmentStaffComponent
+      AppointmentStaffComponent,
+      DialogReportsComponent
    ],
   imports: [
     BrowserModule,
