@@ -26,12 +26,12 @@ import { ResultDialogComponent } from './pages/dialogs/result-dialog/result-dial
 import { RegisterMedicalComponent } from './pages/registers/register-medical/register-medical.component';
 import { RegisterStaffComponent } from './pages/registers/register-staff/register-staff.component';
 import { HomeComponent } from './pages/homes/home-doctor/home.component';
-import { AppointmentComponent } from './pages/appointment/appointment.component';
-import { MedicalScheduleComponent } from './pages/appointment/medical-schedule/medical-schedule.component';
+import { AppointmentComponent } from './pages/appointments/appointment-patient/appointment.component';
+import { MedicalScheduleComponent } from './pages/appointments/appointment-patient/medical-schedule/medical-schedule.component';
 import { ResultDialogAppointmentComponent } from './pages/dialogs/result-dialog-appointment/result-dialog-appointment.component';
 import { MedicalRecordsComponent } from './pages/medical-records/medical-records.component';
 import { PatientRecordComponent } from './pages/medical-records/patient-record/patient-record.component';
-import { RecordFormComponent } from './pages/medical-records/record-form/record-form.component';
+import { RecordFormComponent } from './pages/appointments/appointment-doctor/appointment-form/record-form.component';
 import { ResultDialogRecordComponent } from './pages/dialogs/result-dialog-record/result-dialog-record.component';
 import { ResultDialogAncientComponent } from './pages/dialogs/result-dialog-ancient/result-dialog-ancient.component';
 import { ResultDialogClinicComponent } from './pages/dialogs/result-dialog-clinic/result-dialog-clinic.component';
@@ -44,6 +44,9 @@ import { UsersPageComponent } from './pages/users-page/users-page.component';
 import { UpdateDoctorComponent } from './pages/users-page/update-dialogs/update-doctor/update-doctor.component';
 import { UpdateStaffComponent } from './pages/users-page/update-dialogs/update-staff/update-staff.component';
 import { UpdatePatientComponent } from './pages/users-page/update-dialogs/update-patient/update-patient.component';
+import { AppointmentDoctorComponent } from './pages/appointments/appointment-doctor/appointment-doctor.component';
+import { AppointmentStaffComponent } from './pages/appointments/appointment-staff/appointment-staff.component';
+import { DialogReportsComponent } from './pages/dialogs/dialog-reports/dialog-reports.component';
 
 @NgModule({
   declarations: [									
@@ -73,6 +76,7 @@ import { UpdatePatientComponent } from './pages/users-page/update-dialogs/update
       UpdateDoctorComponent,
       UpdateStaffComponent,
       UpdatePatientComponent,
+<<<<<<< HEAD
       VigilantComponent,
       ClinicalHistoriesComponent,
       HeaderReporterComponent,
@@ -85,6 +89,11 @@ import { UpdatePatientComponent } from './pages/users-page/update-dialogs/update
       MonitPatientRiskComponent,MonitorTreatmentComponent,
       HealthIndicatorComponent,
       DiagnosticComponent
+=======
+      AppointmentDoctorComponent,
+      AppointmentStaffComponent,
+      DialogReportsComponent
+>>>>>>> cfb89dfb7c3a6201726c6e6683b4baa1ceb30d7c
    ],
   imports: [
     BrowserModule,

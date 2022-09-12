@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, FormGroup, Validators} from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ResultDialogAppointmentComponent } from '../../dialogs/result-dialog-appointment/result-dialog-appointment.component';
+import { ResultDialogAppointmentComponent } from '../../../dialogs/result-dialog-appointment/result-dialog-appointment.component';
 
 @Component({
   selector: 'app-medical-schedule',
@@ -17,7 +17,6 @@ export class MedicalScheduleComponent implements OnInit {
 
   ngOnInit() {
     this.scheduleform=this.formBuilder.group({
-      addpatient:['',Validators.required],
       date:['',Validators.required]
      })
   }

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<header>
+  <mat-toolbar class="bg-white">
+    <button routerLink="/home-staff">
+      <img src="../../assets/images/back-arrow-2.png" class="w-10 h-10">
+    </button>
+    <span class="pr-5"></span>
+    <h1 class="text-slate-800">Clinica de salud</h1>
+    <span class="flex-auto"></span>
+    <h1 class="text-slate-800">CITAS</h1>
+    <span class="flex-auto"></span>
+    <img src="../../assets/images/profile.png" class="w-10 h-10">
+    <button>
+      <img src="../../assets/images/options-arrow.png" class="w-20 h-12">
+    </button>
+    <div class="pr-5"></div>
+</mat-toolbar>
+</header>
+<mat-divider class="bg-cyan-400"></mat-divider>
+<body class="bg-white">
+  <div class="pt-10"></div>
+  <table class="w-full">
+    <tr>
+        <div class="pr-20"></div>
+        <th class="font-normal pr-20">
+          <mat-card class="w-5/6 mr-auto ml-auto" *ngFor="let patient of patients">
+            <table>
+              <div class="inline-flex">
+                <th>
+                <img src="../../assets/images/medical-profile.png">
+                </th>
+                <div class="pr-10"></div>
+                <th class="font-normal w-80">
+                <h1 class="pt-2 max-w-fit text-left">{{patient}}
+                  <br>
+                  <br>
+                  <div class="inline-flex">
+                    <button mat-stroked-button>07/09/2022</button>
+                    <div class="pr-10"></div>
+                    <button mat-stroked-button>9:30 am</button>
+                  </div>
+                </h1>
+                </th>
+                <div class="pr-96"></div>
+                <div class="pr-96"></div>
+                <th>
+                  <div class="pt-5">
+                    <button mat-raised-button color="primary" class="h-10 w-40" routerLink="/appointment-form">Ingresar</button>
+                  </div>
+                </th>
+                <div class="pr-5"></div>
+              </div>
+            </table>
+            <br>
+          </mat-card>
+        </th>
+    </tr>
+  </table>
+</body>

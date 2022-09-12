@@ -1,0 +1,694 @@
+<header>
+  <mat-toolbar class="bg-white">
+    <button routerLink="/appointment-doctor">
+      <img src="../../assets/images/back-arrow-2.png" class="w-10 h-10">
+    </button>
+    <span class="pr-5"></span>
+    <h1 class="text-slate-800">Clinica de salud</h1>
+    <span class="flex-auto"></span>
+    <h1 class="text-slate-800">Patient</h1>
+    <span class="flex-auto"></span>
+    <img src="../../assets/images/profile.png" class="w-10 h-10">
+    <button>
+      <img src="../../assets/images/options-arrow.png" class="w-20 h-12">
+    </button>
+    <div class="pr-5"></div>
+</mat-toolbar>
+</header>
+<mat-divider class="bg-cyan-400"></mat-divider>
+<body>
+  <!--Datos del Paciente-->
+  <div class="pt-10"></div>
+      <div class="pl-10 pr-10">
+        <mat-toolbar class="bg-[#15558D]  text-white">
+          <div class="text-[26px] italic">
+            Datos personales
+          </div>
+          <div class="flex-auto"></div>
+          <div class="text-[26px] italic opacity-60">
+            Ultima actualización: {{todaydate}}
+          </div>
+        </mat-toolbar>
+      </div>
+    <div class="pb-10"></div>
+    <table class="ml-auto mr-auto">
+    <tr>
+      <th>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Nombres:</h1>
+          <span class="pr-16"></span>
+          <span class="pr-0.5"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Apellidos:</h1>
+          <span class="pr-16"></span>
+          <span class="pr-0.5"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Tipo de Doc:</h1>
+          <span class="pr-12"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+      </th>
+      <div class="pr-40"></div>
+      <th>
+          <div class="inline-flex text-left">
+            <div class="max-w-fit">
+              <h1 class="pt-5">Número de Documento:</h1>
+            </div>
+            <span class="pr-10"></span>
+            <h1 class="pt-8 font-normal">Dato</h1>
+          </div>
+          <br>
+          <div class="inline-flex w-full"> 
+            <h1 class="pt-5">Sexo:</h1>
+            <span class="pr-20"></span>
+            <span class="pr-2"></span>
+            <h1 class="pt-5 font-normal">Dato</h1>
+          </div>
+      </th>
+      <div class="pr-40"></div>
+      <th>
+        <div class="inline-flex">
+          <h1 class="pt-5">Altura:</h1>
+          <span class="pr-5"></span>
+          <form [formGroup]="patientrecordform">
+            <mat-form-field appearance="outline">
+              <mat-label>Su altura</mat-label>
+              <input matInput type="number" formControlName="height" placeholder="Ingrese su altura" required>
+              <mat-error>Es requerido este campo!</mat-error>
+            </mat-form-field>
+          </form>
+        </div>
+        <div>
+          <button mat-raised-button color="primary" class="w-40" (click)="RegisterMethod()" [disabled]="patientrecordform.invalid">Agregar</button>
+        </div>
+      </th>
+    </tr>
+    </table>
+    <br>
+    <!--Vigilancia-->
+    <div class="pt-10"></div>
+    <div class="pl-10 pr-10">
+        <mat-toolbar class="bg-[#15558D] text-white">
+          <div class="text-[26px] italic">
+            Vigilancia
+          </div>
+          <div class="flex-auto"></div>
+          <div class="text-[26px] italic opacity-60">
+            Ultima actualización: {{todaydate}}
+          </div>
+      </mat-toolbar>
+    </div>
+    <div class="pb-10"></div>
+    <table class="ml-auto mr-auto">
+    <tr>
+      <th>
+        <h1>Nutrición</h1>
+        <div class="pb-2"></div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">Plan de calorías:</h1>
+            <span class="pr-24"></span>
+            <span class="pr-1"></span>
+            <span class="pr-0.5"></span>
+            <h1 class="pt-5 font-normal">Dato</h1>
+          </div>
+          <br>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">Consumo de calorías:</h1>
+            <span class="pr-16"></span>
+            <h1 class="pt-5 font-normal">Dato</h1>
+          </div>
+          <br>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">Apetito:</h1>
+            <span class="pr-40"></span>
+            <span class="pr-1"></span>
+            <h1 class="pt-5 font-normal">Dato</h1>
+          </div>
+          <br>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">IMC:</h1>
+            <span class="pr-40"></span>
+            <span class="pr-6"></span>
+            <span class="pr-0.5"></span>
+            <h1 class="pt-5 font-normal">Dato</h1>
+          </div>
+          <br>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">Peso:</h1>
+            <span class="pr-40"></span>
+            <span class="pr-4"></span>
+            <span class="pr-0.5"></span>
+            <h1 class="pt-5 font-normal">Dato</h1>
+          </div>
+        <div class="pb-32"></div>
+        <h1>Otros</h1>
+        <div class="pb-2"></div>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Dolores:</h1>
+          <span class="pr-16"></span>
+          <span class="pr-3"></span>
+          <div class="max-w-fit">
+          <h1 class="pt-5 font-normal">Dato</h1>
+          </div>  
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Síntomas:</h1>
+          <span class="pr-16"></span>
+          <div class="max-w-fit">
+          <h1 class="pt-5 font-normal">Dato</h1>
+          </div>
+        </div>
+      </th>
+      <div class="pr-60"></div>
+      <th>
+        <h1>Análisis de sangre</h1>
+        <div class="pb-2"></div>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Hemoglobina:</h1>
+          <span class="pr-16"></span>
+          <span class="pr-1"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Linfocitos:</h1>
+          <span class="pr-20"></span>
+          <span class="pr-3"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Segmentados:</h1>
+          <span class="pr-16"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Monocitos:</h1>
+          <span class="pr-20"></span>
+          <span class="pr-2"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">VCM:</h1>
+          <span class="pr-32"></span>
+          <span class="pr-0.5"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">HCM:</h1>
+          <span class="pr-32"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Leucocitos:</h1>
+          <span class="pr-20"></span>
+          <span class="pr-1"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Hematies:</h1>
+          <span class="pr-20"></span>
+          <span class="pr-3"></span>
+          <span class="pr-0.5"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Glucosa:</h1>
+          <span class="pr-24"></span>
+          <span class="pr-2"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Colesterol:</h1>
+          <span class="pr-20"></span>
+          <span class="pr-2"></span>
+          <span class="pr-0.5"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Triglicéridos:</h1>
+          <span class="pr-16"></span>
+          <span class="pr-2"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+      </th>
+      <div class="pr-60"></div>
+      <th>
+        <h1>Análisis de orina</h1>
+        <div class="pb-2"></div>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Densidad de orina:</h1>
+          <span class="pr-10"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">PH:</h1>
+          <span class="pr-36"></span>
+          <span class="pr-1"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Proteínas:</h1>
+          <span class="pr-24"></span>
+          <span class="pr-1"></span>
+          <span class="pr-0.5"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Cetonas:</h1>
+          <span class="pr-28"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Urobilinogeno:</h1>
+          <span class="pr-16"></span>
+          <span class="pr-2"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Bilirrubina:</h1>
+          <span class="pr-24"></span>
+          <span class="pr-0.5"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Nitrito:</h1>
+          <span class="pr-32"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Cristales:</h1>
+          <span class="pr-24"></span>
+          <span class="pr-3"></span>
+          <span class="pr-0.5"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Azucar:</h1>
+          <span class="pr-28"></span>
+          <span class="pr-3"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Aspecto de la orina:</h1>
+          <span class="pr-9"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Color de la orina:</h1>
+          <span class="pr-14"></span>
+          <span class="pr-0.5"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Urea:</h1>
+          <span class="pr-32"></span>
+          <span class="pr-3"></span>
+          <span class="pr-0.5"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+        <br>
+        <div class="inline-flex w-full">
+          <h1 class="pt-5">Creatinina:</h1>
+          <span class="pr-24"></span>
+          <span class="pr-2"></span>
+          <h1 class="pt-5 font-normal">Dato</h1>
+        </div>
+      </th>
+    </tr>
+    </table>
+    <br>
+    <!--Antecedentes-->
+    <div class="pt-10"></div>
+      <div class="pl-10 pr-10">
+        <mat-toolbar class="bg-[#15558D] italic text-[26px] text-white">
+          Antecedentes
+        </mat-toolbar>
+      </div>
+    <div class="pb-10"></div>
+    <table class="ml-auto mr-auto w-11/12">
+      <tr>
+        <th>
+          <div class="inline-flex">
+            <h1 class="pt-5 font-bold">Enfermedad:</h1>
+            <span class="pr-10"></span>
+            <form [formGroup]="backrecordform">
+              <mat-form-field appearance="outline" class="w-96">
+                <mat-label>Ingrese enfermedad</mat-label>
+                <input matInput formControlName="disease" placeholder="Ingrese su enfermedad" required>
+                <mat-error>Es requerido este campo!</mat-error>
+              </mat-form-field>
+            </form>
+          </div>
+        </th>
+        <div class="pr-5"></div>
+        <th>
+          <div class="inline-flex">
+            <h1 class="pt-5 font-bold">Descripción:</h1>
+            <span class="pr-10"></span>
+            <form [formGroup]="backrecordform">
+              <mat-form-field appearance="outline" class="w-96">
+                <mat-label>Ingrese descripción</mat-label>
+                <textarea matInput formControlName="description" placeholder="Ingrese su descripción" required></textarea>
+                <mat-error>Es requerido este campo!</mat-error>
+              </mat-form-field>
+            </form>
+          </div>
+        </th>
+        <div class="pr-5"></div>
+        <th>
+          <div class="inline-flex">
+            <h1 class="pt-5 font-bold">Fecha:</h1>
+            <span class="pr-10"></span>
+            <form [formGroup]="backrecordform">
+              <mat-form-field appearance="outline" class="w-96">
+                <mat-label>Ingrese fecha</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Ingrese su fecha" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error>Es requerido este campo!</mat-error>
+              </mat-form-field>
+            </form>
+          </div>
+        </th>
+      </tr>  
+    </table>
+    <div class="pb-10"></div>
+      <table mat-table [dataSource]="dataSource" class="w-11/12 ml-auto mr-auto border-2">
+
+        <ng-container matColumnDef="code">
+          
+          <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Código</h1> </th>
+          <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef><h1 class="text-center font-bold">Descripción</h1> </th>
+          <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="diseasetype">
+          <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Tipo de Enfermedad</h1> </th>
+          <td mat-cell *matCellDef="let element"> {{element.diseasetype}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Fecha Dx</h1> </th>
+          <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" class="bg-blue-100"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns" class="text-center"></tr>
+      
+      </table>
+    <br>
+    <div class="text-right pr-20">
+      <button mat-raised-button color="primary" class="w-40" [disabled]="backrecordform.invalid" (click)="SaveAncient()">Guardar</button>
+    </div>
+    <!--Diagnostico-->
+    <div class="pt-10"></div>
+      <div class="pl-10 pr-10">
+        <mat-toolbar class="bg-[#15558D] italic text-[26px] text-white">
+          Diagnóstico
+        </mat-toolbar>
+      </div>
+    <div class="pb-10"></div>
+    <table class="ml-auto mr-auto w-11/12">
+    <tr>
+      <th>
+        <div class="inline-flex">
+          <h1 class="pt-5">Fecha inicio:</h1>
+          <span class="pr-10"></span>
+          <form [formGroup]="diagnosticform">
+            <mat-form-field appearance="outline" class="w-96">
+              <mat-label>fecha de inicio</mat-label>
+              <input matInput [matDatepicker]="picker2" formControlName="initdate" placeholder="Ingrese su fecha de inicio" required>
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+              <mat-error>Es requerido este campo!</mat-error>
+            </mat-form-field>
+          </form>
+        </div>
+      </th>
+      <th>
+        <div class="inline-flex">
+          <h1 class="pt-5">Fecha fin:</h1>
+          <span class="pr-10"></span>
+          <form [formGroup]="diagnosticform">
+            <mat-form-field appearance="outline" class="w-96">
+              <mat-label>fecha de fin</mat-label>
+              <input matInput [matDatepicker]="picker3" formControlName="finishdate" placeholder="Ingrese su fecha de fin" required>
+              <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+              <mat-datepicker #picker3></mat-datepicker>
+              <mat-error>Es requerido este campo!</mat-error>
+            </mat-form-field>
+          </form>
+        </div>
+      </th>
+    </tr>
+    </table>
+    <br>
+    <br>
+    <table class="ml-auto mr-auto w-11/12">
+      <tr>
+        <th>
+          <div class="inline-flex">
+            <h1 class="pt-5">Tipo de Diagnóstico:</h1>
+            <span class="pr-10"></span>
+            <form [formGroup]="diagnosticform">
+              <mat-form-field appearance="outline" class="w-96">
+                <mat-label>Su tipo</mat-label>
+                <mat-select formControlName="typediagnostic" required>
+                  <div *ngFor="let diagnostictype of diagnostictypes">
+                    <mat-option value="uno">{{diagnostictype}}</mat-option>
+                  </div>
+                </mat-select>
+                <mat-error>Es requerido este campo!</mat-error>
+              </mat-form-field>
+            </form>
+          </div>
+        </th>
+      </tr>
+    </table>
+    <table class="ml-auto mr-auto w-11/12">
+      <tr>
+        <th class="text-left w-full">
+          <h1>Descripción</h1>
+          <br>
+          <form [formGroup]="diagnosticform">
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Ingrese aqui su mensaje</mat-label>
+              <textarea matInput formControlName="indicationtext" required></textarea>
+              <mat-error>Este campo es requerido!</mat-error>
+            </mat-form-field>
+          </form>
+        </th>
+      </tr>
+    </table>
+    <div class="pb-10"></div>
+      <table mat-table [dataSource]="dataSourcediagnostic" class="w-11/12 ml-auto mr-auto border-2">
+
+        <ng-container matColumnDef="code">
+          
+          <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Código</h1> </th>
+          <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef><h1 class="text-center font-bold">Descripción</h1> </th>
+          <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="diagnostic">
+          <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Tipo de Diagnóstico</h1> </th>
+          <td mat-cell *matCellDef="let element"> {{element.diagnostic}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="initdate">
+          <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Fecha inicio</h1> </th>
+          <td mat-cell *matCellDef="let element"> {{element.initdate}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="finishdate">
+          <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Fecha fin</h1> </th>
+          <td mat-cell *matCellDef="let element"> {{element.finishdate}}</td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsdiagnostic" class="bg-blue-100"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsdiagnostic" class="text-center"></tr>
+      
+      </table>
+    <br>
+      <div class="text-right pr-20">
+        <button mat-raised-button color="primary" class="w-40" [disabled]="diagnosticform.invalid" (click)="SaveClinicManagement()">Guardar</button>
+      </div>
+    <!--Tratamiento-->
+    <div class="pt-10"></div>
+      <div class="pl-10 pr-10">
+        <mat-toolbar class="bg-[#15558D] italic text-[26px] text-white">
+          Tratamiento
+        </mat-toolbar>
+      </div>
+    <div class="pt-10"></div>
+    <table class="ml-auto mr-auto w-full">
+    <tr>
+      <th class=" pl-14">
+        <div class="inline-flex align-top">
+          <h1 class="pt-5">Fecha inicio:</h1>
+          <span class="pr-14"></span>
+          <form [formGroup]="treatmentform">
+            <mat-form-field appearance="outline" class="w-96">
+              <mat-label>La fecha de inicio</mat-label>
+              <input matInput [matDatepicker]="picker5" formControlName="initdate" placeholder="Ingrese su fecha de inicio" required>
+              <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+              <mat-datepicker #picker5></mat-datepicker>
+              <mat-error>Es requerido este campo!</mat-error>
+            </mat-form-field>
+          </form>
+        </div>
+        <br>
+        <div class="inline-flex">
+          <h1 class="pt-5">Fecha fin:</h1>
+          <span class="pr-14"></span>
+          <span class="pr-5"></span>
+          <form [formGroup]="treatmentform">
+            <mat-form-field appearance="outline" class="w-96">
+              <mat-label>La fecha de fin</mat-label>
+              <input matInput [matDatepicker]="picker6" formControlName="finishdate" placeholder="Ingrese su fecha de fin" required>
+              <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+              <mat-datepicker #picker6></mat-datepicker>
+              <mat-error>Es requerido este campo!</mat-error>
+            </mat-form-field>
+          </form>
+        </div>
+        <div class="pb-1"></div>
+        <div class="inline-flex">
+          <h1 class="pt-5"># de dosis:</h1>
+          <span class="pr-16"></span>
+          <form [formGroup]="treatmentform">
+            <mat-form-field appearance="outline" class="w-96">
+              <mat-label>Su cantidad de dosis</mat-label>
+              <input matInput type="number" formControlName="doses" placeholder="Ingrese su número de dosis" required>
+              <mat-error>Es requerido este campo!</mat-error>
+            </mat-form-field>
+          </form>
+        </div>
+      </th>
+      <th>
+        <div class="inline-flex">
+          <h1 class="pt-5">Tipo:</h1>
+          <span class="pr-28"></span>
+          <form [formGroup]="treatmentform">
+            <mat-form-field appearance="outline" class="w-96">
+              <mat-label>Su tipo</mat-label>
+              <mat-select formControlName="type" required>
+                <div *ngFor="let treatmenttype of treatmenttypes">
+                  <mat-option value="uno">{{treatmenttype}}</mat-option>
+                </div>
+              </mat-select>
+              <mat-error>Es requerido este campo!</mat-error>
+            </mat-form-field>
+          </form>
+        </div>
+        <br>
+        <div class="inline-flex">
+          <h1 class="pt-5">Descripción:</h1>
+          <span class="pr-16"></span>
+          <form [formGroup]="treatmentform">
+            <mat-form-field appearance="outline" class="w-96">
+              <mat-label>Su descripción</mat-label>
+              <textarea matInput formControlName="description" required></textarea>
+              <mat-error>Es requerido este campo!</mat-error>
+            </mat-form-field>
+          </form>
+        </div>
+        <div class="pb-1"></div>
+        <div class="inline-flex">
+          <h1 class="pt-5">Medicamento:</h1>
+          <span class="pr-16"></span>
+          <form [formGroup]="treatmentform">
+            <mat-form-field appearance="outline" class="w-96">
+              <mat-label>Su medicamento</mat-label>
+              <input matInput formControlName="medicine" placeholder="Ingrese su medicamento" required>
+              <mat-error>Es requerido este campo!</mat-error>
+            </mat-form-field>
+          </form>
+        </div>
+      </th>
+    </tr>
+    </table>
+    <div class="pb-10"></div>
+      <table mat-table [dataSource]="dataSourcetreatment" class="w-11/12 ml-auto mr-auto border-2">
+
+        <ng-container matColumnDef="code">
+          
+          <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Código</h1> </th>
+          <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="typetreatment">
+          <th mat-header-cell *matHeaderCellDef><h1 class="text-center font-bold">Tipo de tratamiento</h1> </th>
+          <td mat-cell *matCellDef="let element"> {{element.typetreatment}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="medicine">
+          <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Medicamento</h1> </th>
+          <td mat-cell *matCellDef="let element"> {{element.medicine}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="doses">
+          <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold"># de dosis</h1> </th>
+          <td mat-cell *matCellDef="let element"> {{element.doses}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Descripción</h1></th>
+          <td mat-cell *matCellDef="let element"> {{element.description}}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="initdate">
+          <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Fecha inicio</h1> </th>
+          <td mat-cell *matCellDef="let element"> {{element.initdate}}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="finishdate">
+          <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Fecha fin</h1> </th>
+          <td mat-cell *matCellDef="let element"> {{element.finishdate}}</td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumnstreatment" class="bg-blue-100"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnstreatment" class="text-center"></tr>
+      
+      </table>
+    <br>
+      <div class="text-right pr-20">
+        <button mat-raised-button color="primary" class="w-40" [disabled]="treatmentform.invalid" (click)="SaveTreatment()">Guardar</button>
+      </div>
+    <br>
+</body>
