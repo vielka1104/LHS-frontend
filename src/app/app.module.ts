@@ -76,7 +76,6 @@ import { DialogReportsComponent } from './pages/dialogs/dialog-reports/dialog-re
       UpdateDoctorComponent,
       UpdateStaffComponent,
       UpdatePatientComponent,
-<<<<<<< HEAD
       VigilantComponent,
       ClinicalHistoriesComponent,
       HeaderReporterComponent,
@@ -88,12 +87,10 @@ import { DialogReportsComponent } from './pages/dialogs/dialog-reports/dialog-re
       HeaderReporter2Component,
       MonitPatientRiskComponent,MonitorTreatmentComponent,
       HealthIndicatorComponent,
-      DiagnosticComponent
-=======
+      DiagnosticComponent,
       AppointmentDoctorComponent,
       AppointmentStaffComponent,
       DialogReportsComponent
->>>>>>> cfb89dfb7c3a6201726c6e6683b4baa1ceb30d7c
    ],
   imports: [
     BrowserModule,
