@@ -1,3 +1,4 @@
+import { CreateDiagnosisResource } from './../../models/diagnostic/CreateDiagnosisResource';
 import { DiagnosisResource } from './../../models/diagnostic/DiagnosisResource';
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
@@ -35,55 +36,34 @@ getAllDiagnosis(): Observable<DiagnosisResource>{
     catchError(this.handleError));
 
 }
-getDoctorById(doctorId:number): Observable<DiagnosisResource>{
+getDoctorById(diagnosisId:number): Observable<DiagnosisResource>{
 
-  return this.http.get<DiagnosisResource>(`${this.basePath}/doctors/${doctorId}`, this.httpOptions)
+  return this.http.get<DiagnosisResource>(`${this.basePath}/${diagnosisId}`, this.httpOptions)
   .pipe(
     retry(2),
     catchError(this.handleError));
 
 }
 
-getDoctorByUserName(username:string): Observable<DiagnosisResource>{
+getDiagnosisByName(name:string): Observable<DiagnosisResource>{
 
-  return this.http.get<DiagnosisResource>(`${this.basePath}/doctors/username/${username}`, this.httpOptions)
-  .pipe(
-    retry(2),
-    catchError(this.handleError));
-
-}
-getDoctorByEmail(email:string): Observable<DiagnosisResource>{
-
-  return this.http.get<DiagnosisResource>(`${this.basePath}/doctors/email/${email}`, this.httpOptions)
+  return this.http.get<DiagnosisResource>(`${this.basePath}/name/${name}`, this.httpOptions)
   .pipe(
     retry(2),
     catchError(this.handleError));
 
 }
 
-getDoctorByFirstNameAndLastName(name:string,lastName:string): Observable<DiagnosisResource>{
+createDiagnosis(item:CreateDiagnosisResource){
 
-
-  return this.http.get<DiagnosisResource>(`${this.basePath}/doctors/name/${name}/lastName/${lastName}`, this.httpOptions)
-  .pipe(
-    retry(2),
-    catchError(this.handleError));
-
-
-
-
-}
-
-createDoctor(item:any,specialtyId:number,shiftId:number){
-
-  return this.http.post<DiagnosisResource>(`${this.basePath}/specialties/${specialtyId}/shifts/${shiftId}/doctors`, JSON.stringify(item), this.httpOptions)
+  return this.http.post<DiagnosisResource>(`${this.basePath}`, JSON.stringify(item), this.httpOptions)
   .pipe(
     retry(2),
     catchError(this.handleError));
 }
-updateDoctor(doctorId:number,item:any){
+updateDiagnosis(diagnosisId:number,item:any){
 
-  return this.http.put<DiagnosisResource>(`${this.basePath}/doctors/${doctorId}`, JSON.stringify(item), this.httpOptions)
+  return this.http.put<DiagnosisResource>(`${this.basePath}/${diagnosisId}`, JSON.stringify(item), this.httpOptions)
   .pipe(
     retry(2),
     catchError(this.handleError));
@@ -91,8 +71,8 @@ updateDoctor(doctorId:number,item:any){
 
 }
 
-deleteDoctor(doctorId:number){
-  return this.http.delete(`${this.basePath}/doctors/${doctorId}`, this.httpOptions)
+deleteDiagnosis(diagnosisId:number){
+  return this.http.delete(`${this.basePath}/${diagnosisId}`, this.httpOptions)
   .pipe(
     retry(2),
     catchError(this.handleError));
