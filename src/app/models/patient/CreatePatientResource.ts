@@ -1,3 +1,4 @@
+import { DocumentType } from "./DocumentType.enum";
 export interface CreatePatientResource {
 
       name:string;
