@@ -1,4 +1,5 @@
 import { RenalDiseaseResource } from './../renal-disease/RenalDiseaseResource';
+import { DocumentType } from "./DocumentType.enum";
 export interface PatientResource {
     id:number;
     name:string;
