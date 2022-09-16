@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { AppointmentService } from 'src/app/services/appoinment/Appointment.service';
 
 export interface Appointment {
   dni: string;
@@ -22,21 +23,16 @@ export class AppointmentDoctorComponent implements OnInit {
   patient!:number;
   patients:string[] = ["Alayo Zavaleta, Alessandro Fabián","Almonacid Garrido, Viviana", "Benavides Castillo, Daniela"] 
   
-  displayedColumns: string[] = ['dni', 'patient', 'date', 'status','button'];
+  displayedColumns: string[] = ['id', 'patient', 'date', 'status','button'];
   dataSource = new MatTableDataSource<any>();
   
   @ViewChild(MatPaginator) paginator!:MatPaginator;
 
-  constructor() {}
+  constructor(private appointmentservice:AppointmentService) {}
   
   ngOnInit() {
-    console.log(this.appointmenttest)
-    console.log(this.listappointment)
-    this.listappointment.push(this.appointmenttest);
-    this.listappointment.push(this.appointmenttest2);  
     this.dataSource.paginator = this.paginator;
-    this.dataSource.data = this.listappointment;
-      
+    this.getAllAppointments(); 
   }
 
   SearchAppointmentDoctor(event:Event){
@@ -48,5 +44,14 @@ export class AppointmentDoctorComponent implements OnInit {
     }
 
   }
+
+  getAllAppointments(){
+    this.appointmentservice.getAll().subscribe((response:any) =>{
+        this.dataSource.data = response.content;
+        console.log(this.dataSource.data)
+      }
+    )
+  }
+
 
 }

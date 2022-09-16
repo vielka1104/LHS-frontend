@@ -35,10 +35,10 @@
           <div>
               <table mat-table [dataSource]="dataSource" class="w-full border-2">
 
-                <ng-container matColumnDef="dni">
+                <ng-container matColumnDef="id">
                   
-                  <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">DNI</h1> </th>
-                  <td mat-cell *matCellDef="let element"> {{element.dni}} </td>
+                  <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Id</h1> </th>
+                  <td mat-cell *matCellDef="let element"> {{element.id}} </td>
                 </ng-container>
               
                 <ng-container matColumnDef="patient">

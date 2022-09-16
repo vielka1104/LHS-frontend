@@ -7,6 +7,7 @@ import { ResultDialogClinicComponent } from 'src/app/pages/dialogs/result-dialog
 import { ResultDialogTreatmentComponent } from 'src/app/pages/dialogs/result-dialog-treatment/result-dialog-treatment.component';
 import { DatePipe } from '@angular/common';
 import { MatTableDataSource } from '@angular/material/table';
+import { PatientService } from 'src/app/services/patient/patient.service';
 
 export interface Ancient{
   code: number
@@ -74,7 +75,7 @@ export class RecordFormComponent implements OnInit {
   treatmenttest3:Treatment = {code: 3, typetreatment:"treatment 3", medicine:"medicine 3", doses: 3, description:"a description 3",initdate: "20/02/2022", finishdate: "20/03/2022"};
   treatmentlist:Treatment[] = []
 
-  constructor(public dialog:MatDialog, private formBuilder:FormBuilder) { }
+  constructor(public dialog:MatDialog, private formBuilder:FormBuilder, private patientservice:PatientService) { }
 
   ngOnInit() {
     this.patientrecordform=this.formBuilder.group({
@@ -143,6 +144,14 @@ export class RecordFormComponent implements OnInit {
     }else{
       this.displayvigilancy = true;
     }
+  }
+
+  GetbyIdPatient(id:number){
+    
+  }
+
+  UpdatePatient(id:number){
+
   }
 
 }

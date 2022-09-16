@@ -47,6 +47,7 @@ import { UpdatePatientComponent } from './pages/users-page/update-dialogs/update
 import { AppointmentDoctorComponent } from './pages/appointments/appointment-doctor/appointment-doctor.component';
 import { AppointmentStaffComponent } from './pages/appointments/appointment-staff/appointment-staff.component';
 import { DialogReportsComponent } from './pages/dialogs/dialog-reports/dialog-reports.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [									
@@ -101,6 +102,7 @@ import { DialogReportsComponent } from './pages/dialogs/dialog-reports/dialog-re
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
