@@ -15,10 +15,15 @@ import { SurveillanceResource } from 'src/app/models/surveillance/SurveillanceRe
 import { IllnessRecordService } from 'src/app/services/ehr/illness-record.service';
 import { IllnessRecordResource } from 'src/app/models/illness-record/IllnessRecordResource';
 import { PatientDiagnosticService } from 'src/app/services/ehr/patient-diagnostic.service';
-import { PatientDiagnosisResource } from 'src/app/models/patient-diagnostic/PatientDiagnosisResource';
 import { DiagnosisResource } from 'src/app/models/diagnostic/DiagnosisResource';
 import { DiagnosticService } from 'src/app/services/ehr/diagnostic.service';
 import { CreatePatientDiagnosisResource } from 'src/app/models/patient-diagnostic/CreatePatientDiagnosisResource';
+import { PatientTreatmentResource } from 'src/app/models/patient-treatment/PatientTreatmentResource';
+import { TreatmentResource } from 'src/app/models/treatment/TreatmentResource';
+import { MedicineResource } from 'src/app/models/medicine/MedicineResource';
+import { PatientTreatmentService } from 'src/app/services/ehr/patient-treatment.service';
+import { TreatmentService } from 'src/app/services/ehr/treatment.service';
+import { MedicineService } from 'src/app/services/ehr/medicine.service';
 
 @Component({
   selector: 'app-record-form',
@@ -34,7 +39,9 @@ export class RecordFormComponent implements OnInit {
   ancientpatient!:IllnessRecordResource
   patientdiagnostic!:CreatePatientDiagnosisResource
   diagnosis!:DiagnosisResource
-  diagnosissaved!:DiagnosisResource
+  patienttreatment!:PatientTreatmentResource
+  treatment!:TreatmentResource
+  patientmedicine!:MedicineResource
   patientrecordform!:FormGroup
   displayvigilancy!:boolean
   backrecordform!:FormGroup
@@ -50,7 +57,10 @@ export class RecordFormComponent implements OnInit {
   dataSourceSurveillance = new MatTableDataSource<any>();
   dataSourcepatientdiagnostic = new MatTableDataSource<any>()
   dataSourcediagnostic = new MatTableDataSource<any>()
+  dataSourcepatienttreatment = new MatTableDataSource<any>()
   dataSourcetreatment = new MatTableDataSource<any>()
+  dataSourcemedicine = new MatTableDataSource<any>()
+
   dataSourceancient = new MatTableDataSource<any>()
   displayedColumnsancient: string[] = ['id', 'description', 'diseasetype', 'date'];
   displayedColumnsdiagnostic: string[] = ['code', 'description', 'diagnostic', 'initdate','finishdate'];
@@ -61,11 +71,17 @@ export class RecordFormComponent implements OnInit {
     private patientservice:PatientService,private route:ActivatedRoute, private surveillanceservice:SurveillanceService,
     private illnesservice:IllnessRecordService,
     private patientdiagnosticservice:PatientDiagnosticService,
-    private diagnosisservice:DiagnosticService
+    private diagnosisservice:DiagnosticService,
+    private patienttreatmentservice:PatientTreatmentService,
+    private treatmentservice:TreatmentService,
+    private medicineservice:MedicineService,
     ) { 
       this.ancientpatient = {} as IllnessRecordResource,
       this.patientdiagnostic = {} as CreatePatientDiagnosisResource,
       this.diagnosis = {} as DiagnosisResource
+      this.patienttreatment = {} as PatientTreatmentResource
+      this.treatment = {} as TreatmentResource
+      this.patientmedicine = {} as MedicineResource
     }
 
   ngOnInit() {
@@ -102,7 +118,7 @@ export class RecordFormComponent implements OnInit {
      this.getSurveillanceByPatientId(this.idurl);
      this.getPatientAncients(this.idurl)
      this.getPatientDiagnostic(this.idurl)
-
+     this.getPatientTreatments(this.idurl)
   }
 
   RegisterMethod(){
@@ -138,17 +154,29 @@ export class RecordFormComponent implements OnInit {
     const dialogRef = this.dialog.open(ResultDialogClinicComponent)
   }
 
-  SaveDiagnosis(){
-    this.diagnosisservice.createDiagnosis(this.diagnosis).subscribe( (response:any) =>{
-      this.dataSourcediagnostic.data.push( {...response});
-      console.log(response)
-      this.dataSourcediagnostic.data = this.dataSourcediagnostic.data.map((o: any) => { return o;});
-      }
-    )
+  SaveTreatment(id:number){
+    console.log(this.patientmedicine);
+    console.log(this.treatment);
+    console.log(this.patienttreatment);
 
-  }
+    this.medicineservice.createMedicine(this.patientmedicine).subscribe( (responsemedicine:any) =>{
+      this.dataSourcemedicine.data.push( {...responsemedicine});
+      console.log(responsemedicine)
+      this.dataSourcemedicine.data = this.dataSourcemedicine.data.map((o: any) => { return o;});
 
-  SaveTreatment(){
+      this.treatmentservice.createTreatment(this.treatment).subscribe( (responsetreatment:any) =>{
+            this.dataSourcetreatment.data.push( {...responsetreatment});
+            console.log(responsetreatment)
+            this.dataSourcetreatment.data = this.dataSourcetreatment.data.map((o: any) => { return o; });
+
+            this.patienttreatmentservice.createPatientTreatment(id,responsetreatment.id,responsemedicine.id,this.patienttreatment).subscribe( (responsepatienttreatment:any) =>{
+                this.dataSourcepatienttreatment.data.push( {...responsepatienttreatment});
+                console.log(responsepatienttreatment)
+                this.dataSourcepatienttreatment.data = this.dataSourcepatienttreatment.data.map((o: any) => { return o; });
+            })
+          })
+      });
+
     const dialogRef = this.dialog.open(ResultDialogTreatmentComponent)
   }
 
@@ -212,6 +240,14 @@ export class RecordFormComponent implements OnInit {
         console.log(this.dataSourcepatientdiagnostic.data)
       }
 
+    )
+  }
+
+  getPatientTreatments(id:number){
+    this.patienttreatmentservice.getPatientTreatmentByPatientId(id).subscribe( (response:any) =>{
+        this.dataSourcepatienttreatment.data = response
+        console.log(this.dataSourcepatienttreatment.data)
+      }
     )
   }
 }

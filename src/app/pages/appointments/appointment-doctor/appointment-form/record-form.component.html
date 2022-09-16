@@ -566,7 +566,7 @@
           <form [formGroup]="treatmentform">
             <mat-form-field appearance="outline" class="w-96">
               <mat-label>La fecha de inicio</mat-label>
-              <input matInput [matDatepicker]="picker5" formControlName="initdate" placeholder="Ingrese su fecha de inicio" required>
+              <input matInput [matDatepicker]="picker5" formControlName="initdate" placeholder="Ingrese su fecha de inicio" required [(ngModel)]="patienttreatment.startDate">
               <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
               <mat-datepicker #picker5></mat-datepicker>
               <mat-error>Es requerido este campo!</mat-error>
@@ -581,7 +581,7 @@
           <form [formGroup]="treatmentform">
             <mat-form-field appearance="outline" class="w-96">
               <mat-label>La fecha de fin</mat-label>
-              <input matInput [matDatepicker]="picker6" formControlName="finishdate" placeholder="Ingrese su fecha de fin" required>
+              <input matInput [matDatepicker]="picker6" formControlName="finishdate" placeholder="Ingrese su fecha de fin" required [(ngModel)]="patienttreatment.endDate">
               <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
               <mat-datepicker #picker6></mat-datepicker>
               <mat-error>Es requerido este campo!</mat-error>
@@ -595,7 +595,7 @@
           <form [formGroup]="treatmentform">
             <mat-form-field appearance="outline" class="w-96">
               <mat-label>Su cantidad de dosis</mat-label>
-              <input matInput type="number" formControlName="doses" placeholder="Ingrese su número de dosis" required>
+              <input matInput type="number" formControlName="doses" placeholder="Ingrese su número de dosis" required [(ngModel)]="patienttreatment.dose">
               <mat-error>Es requerido este campo!</mat-error>
             </mat-form-field>
           </form>
@@ -608,11 +608,12 @@
           <form [formGroup]="treatmentform">
             <mat-form-field appearance="outline" class="w-96">
               <mat-label>Su tipo</mat-label>
-              <mat-select formControlName="type" required>
+              <input matInput formControlName="type" required [(ngModel)]="treatment.name">
+              <!--<mat-select formControlName="type" required>
                 <div *ngFor="let treatmenttype of treatmenttypes">
                   <mat-option value="uno">{{treatmenttype}}</mat-option>
                 </div>
-              </mat-select>
+              </mat-select>-->
               <mat-error>Es requerido este campo!</mat-error>
             </mat-form-field>
           </form>
@@ -624,7 +625,7 @@
           <form [formGroup]="treatmentform">
             <mat-form-field appearance="outline" class="w-96">
               <mat-label>Su descripción</mat-label>
-              <textarea matInput formControlName="description" required></textarea>
+              <textarea matInput formControlName="description" required [(ngModel)]="treatment.description"></textarea>
               <mat-error>Es requerido este campo!</mat-error>
             </mat-form-field>
           </form>
@@ -636,7 +637,7 @@
           <form [formGroup]="treatmentform">
             <mat-form-field appearance="outline" class="w-96">
               <mat-label>Su medicamento</mat-label>
-              <input matInput formControlName="medicine" placeholder="Ingrese su medicamento" required>
+              <input matInput formControlName="medicine" placeholder="Ingrese su medicamento" required [(ngModel)]="patientmedicine.name">
               <mat-error>Es requerido este campo!</mat-error>
             </mat-form-field>
           </form>
@@ -645,42 +646,42 @@
     </tr>
     </table>
     <div class="pb-10"></div>
-      <table mat-table [dataSource]="dataSourcetreatment" class="w-11/12 ml-auto mr-auto border-2">
+      <table mat-table [dataSource]="dataSourcepatienttreatment" class="w-11/12 ml-auto mr-auto border-2">
 
         <ng-container matColumnDef="code">
           
           <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Código</h1> </th>
-          <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
         </ng-container>
       
         <ng-container matColumnDef="typetreatment">
           <th mat-header-cell *matHeaderCellDef><h1 class="text-center font-bold">Tipo de tratamiento</h1> </th>
-          <td mat-cell *matCellDef="let element"> {{element.typetreatment}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.treatment.name}} </td>
         </ng-container>
       
         <ng-container matColumnDef="medicine">
           <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Medicamento</h1> </th>
-          <td mat-cell *matCellDef="let element"> {{element.medicine}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.medicine.name}} </td>
         </ng-container>
       
         <ng-container matColumnDef="doses">
           <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold"># de dosis</h1> </th>
-          <td mat-cell *matCellDef="let element"> {{element.doses}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.dose}} </td>
         </ng-container>
 
         <ng-container matColumnDef="description">
           <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Descripción</h1></th>
-          <td mat-cell *matCellDef="let element"> {{element.description}}</td>
+          <td mat-cell *matCellDef="let element"> {{element.treatment.description}}</td>
         </ng-container>
         
         <ng-container matColumnDef="initdate">
           <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Fecha inicio</h1> </th>
-          <td mat-cell *matCellDef="let element"> {{element.initdate}}</td>
+          <td mat-cell *matCellDef="let element"> {{element.startDate}}</td>
         </ng-container>
         
         <ng-container matColumnDef="finishdate">
           <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Fecha fin</h1> </th>
-          <td mat-cell *matCellDef="let element"> {{element.finishdate}}</td>
+          <td mat-cell *matCellDef="let element"> {{element.endDate}}</td>
         </ng-container>
       
         <tr mat-header-row *matHeaderRowDef="displayedColumnstreatment" class="bg-blue-100"></tr>
@@ -689,7 +690,7 @@
       </table>
     <br>
       <div class="text-right pr-20">
-        <button mat-raised-button color="primary" class="w-40" [disabled]="treatmentform.invalid" (click)="SaveTreatment()">Guardar</button>
+        <button mat-raised-button color="primary" class="w-40" [disabled]="treatmentform.invalid" (click)="SaveTreatment(patientobject.id)">Guardar</button>
       </div>
     <br>
 </body>
