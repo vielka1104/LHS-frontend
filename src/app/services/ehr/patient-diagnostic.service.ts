@@ -68,7 +68,7 @@ getPatientDiagnosisByDiagnosisId(diagnosisId:number): Observable<PatientDiagnosi
 
 createPatientDiagnosis(item:CreatePatientDiagnosisResource,patientId:number,diagnosisId:number){
 
-  return this.http.post<CreatePatientDiagnosisResource>(`${this.basePath}/patients/${patientId}/diagnosis/${diagnosisId}/illnessRecords`, JSON.stringify(item), this.httpOptions)
+  return this.http.post<CreatePatientDiagnosisResource>(`${this.basePath}/patients/${patientId}/diagnosis/${diagnosisId}/patient-diagnosis`, JSON.stringify(item), this.httpOptions)
   .pipe(
     retry(2),
     catchError(this.handleError));

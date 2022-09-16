@@ -34,7 +34,6 @@ export class RecordFormComponent implements OnInit {
   ancientpatient!:IllnessRecordResource
   patientdiagnostic!:CreatePatientDiagnosisResource
   diagnosis!:DiagnosisResource
-  newdiagnosissaved!:DiagnosisResource
   diagnosissaved!:DiagnosisResource
   patientrecordform!:FormGroup
   displayvigilancy!:boolean
@@ -123,22 +122,30 @@ export class RecordFormComponent implements OnInit {
     console.log(this.diagnosis);
     console.log(this.patientdiagnostic);
 
-    this.SaveDiagnosis()
+    this.diagnosisservice.createDiagnosis(this.diagnosis).subscribe( (response:any) =>{
+        this.dataSourcediagnostic.data.push( {...response});
+        console.log(response)
+        this.dataSourcediagnostic.data = this.dataSourcediagnostic.data.map((o: any) => { return o;});
 
-    this.patientdiagnosticservice.createPatientDiagnosis(this.patientdiagnostic,id,this.newdiagnosissaved.id).subscribe( (response:any) =>{
-      this.dataSourcepatientdiagnostic.data.push( {...response});
-      this.dataSourcepatientdiagnostic.data = this.dataSourcepatientdiagnostic.data.map((o: any) => { return o; });
+        this.patientdiagnosticservice.createPatientDiagnosis(this.patientdiagnostic,id,response.id).subscribe( (response:any) =>{
+            this.dataSourcepatientdiagnostic.data.push( {...response});
+            this.dataSourcepatientdiagnostic.data = this.dataSourcepatientdiagnostic.data.map((o: any) => { return o; });
+          }
+        )
       }
     )
+    
     const dialogRef = this.dialog.open(ResultDialogClinicComponent)
   }
 
   SaveDiagnosis(){
     this.diagnosisservice.createDiagnosis(this.diagnosis).subscribe( (response:any) =>{
       this.dataSourcediagnostic.data.push( {...response});
+      console.log(response)
       this.dataSourcediagnostic.data = this.dataSourcediagnostic.data.map((o: any) => { return o;});
       }
     )
+
   }
 
   SaveTreatment(){

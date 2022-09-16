@@ -484,11 +484,12 @@
             <form [formGroup]="diagnosticform">
               <mat-form-field appearance="outline" class="w-96">
                 <mat-label>Su tipo</mat-label>
-                <mat-select formControlName="typediagnostic" required [(ngModel)]="diagnosis.name">
+                <input matInput formControlName="typediagnostic" required [(ngModel)]="diagnosis.name">
+                <!-- <mat-select formControlName="typediagnostic" required [(ngModel)]="diagnosis.name">
                   <div *ngFor="let diagnostictype of diagnostictypes">
                     <mat-option value="v3">{{diagnostictype}}</mat-option>
                   </div>
-                </mat-select>
+                </mat-select>-->
                 <mat-error>Es requerido este campo!</mat-error>
               </mat-form-field>
             </form>
