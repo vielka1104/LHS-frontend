@@ -9,7 +9,7 @@ import {catchError, retry} from "rxjs/operators";
 })
 export class DiagnosticService {
 
-  basePath =""
+  basePath ="http://localhost:8080/api/v1/diagnosis"
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ getAllDiagnosis(): Observable<DiagnosisResource>{
     catchError(this.handleError));
 
 }
-getDoctorById(diagnosisId:number): Observable<DiagnosisResource>{
+getDiagnosisById(diagnosisId:number): Observable<DiagnosisResource>{
 
   return this.http.get<DiagnosisResource>(`${this.basePath}/${diagnosisId}`, this.httpOptions)
   .pipe(
@@ -56,7 +56,7 @@ getDiagnosisByName(name:string): Observable<DiagnosisResource>{
 
 createDiagnosis(item:CreateDiagnosisResource){
 
-  return this.http.post<DiagnosisResource>(`${this.basePath}`, JSON.stringify(item), this.httpOptions)
+  return this.http.post<CreateDiagnosisResource>(`${this.basePath}`, JSON.stringify(item), this.httpOptions)
   .pipe(
     retry(2),
     catchError(this.handleError));

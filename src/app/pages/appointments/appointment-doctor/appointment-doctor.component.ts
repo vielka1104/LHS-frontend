@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { AppointmentResource } from 'src/app/models/appointment/AppointmentResource';
 import { AppointmentService } from 'src/app/services/appoinment/Appointment.service';
 
 export interface Appointment {
@@ -16,9 +18,6 @@ export interface Appointment {
   styleUrls: ['./appointment-doctor.component.css']
 })
 export class AppointmentDoctorComponent implements OnInit {
-  listappointment:Appointment[] = [];
-  appointmenttest:Appointment = {dni: "123456789",patient:"paciente 1",date:"12/02/2022",status: "en curso"};
-  appointmenttest2:Appointment = {dni: "987456123",patient:"paciente 2",date:"12/02/2021",status: "cancelada"};  
   selecteddate !: Date;
   patient!:number;
   patients:string[] = ["Alayo Zavaleta, Alessandro Fabián","Almonacid Garrido, Viviana", "Benavides Castillo, Daniela"] 
@@ -28,11 +27,12 @@ export class AppointmentDoctorComponent implements OnInit {
   
   @ViewChild(MatPaginator) paginator!:MatPaginator;
 
-  constructor(private appointmentservice:AppointmentService) {}
+  constructor(private appointmentservice:AppointmentService, private route:Router) {}
   
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
-    this.getAllAppointments(); 
+    this.getAllAppointments();
+
   }
 
   SearchAppointmentDoctor(event:Event){
@@ -47,11 +47,17 @@ export class AppointmentDoctorComponent implements OnInit {
 
   getAllAppointments(){
     this.appointmentservice.getAll().subscribe((response:any) =>{
-        this.dataSource.data = response.content;
+        this.dataSource.data = response;
         console.log(this.dataSource.data)
+        console.log(this.dataSource.data.length)
       }
     )
   }
 
+  AppointmentForm(id:number){
+    console.log(id)
+
+    this.route.navigate([`/appointment-form/${id}`]);
+  }
 
 }

@@ -43,12 +43,12 @@
               
                 <ng-container matColumnDef="patient">
                   <th mat-header-cell *matHeaderCellDef><h1 class="text-center font-bold">Paciente</h1> </th>
-                  <td mat-cell *matCellDef="let element"> {{element.patient}} </td>
+                  <td mat-cell *matCellDef="let element"> {{element.patient.name}} </td>
                 </ng-container>
               
                 <ng-container matColumnDef="date">
                   <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Fecha cita</h1> </th>
-                  <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+                  <td mat-cell *matCellDef="let element"> {{element.scheduledAt}} </td>
                 </ng-container>
               
                 <ng-container matColumnDef="status">
@@ -58,8 +58,8 @@
 
                 <ng-container matColumnDef="button">
                   <th mat-header-cell *matHeaderCellDef></th>
-                  <td mat-cell *matCellDef> 
-                    <button mat-raised-button color="primary" routerLink="/appointment-form">Ver</button> 
+                  <td mat-cell *matCellDef="let element"> 
+                    <button mat-raised-button color="primary" (click)="AppointmentForm(element.id)">Ver</button> 
                   </td>
                 </ng-container>
               

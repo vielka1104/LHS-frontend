@@ -10,8 +10,8 @@ import { UpdatePatientResource } from 'src/app/models/patient/UpdatePatientResou
 })
 export class PatientService {
 
-  basePath = "localhost:8080/api/v1/patients";
-  basePath2 = "localhost:8080/api/v1/renal-diseases";
+  basePath = "http://localhost:8080/api/v1/patients";
+  basePath2 = "http://localhost:8080/api/v1/renal-diseases";
 
   httpOptions = {
     headers: new HttpHeaders({

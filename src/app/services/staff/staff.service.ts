@@ -10,7 +10,7 @@ import { UpdateStaffResource } from 'src/app/models/staff/UpdateStaffResource';
 })
 export class StaffService {
 
-  basePath = "localhost:8080/api/v1/admins";
+  basePath = "http://localhost:8080/api/v1/admins";
 
   httpOptions = {
     headers: new HttpHeaders({

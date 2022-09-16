@@ -40,7 +40,7 @@ const routes: Routes = [
   {path: "medical-schedule",component: MedicalScheduleComponent},
   {path: "medical-records",component: MedicalRecordsComponent},
   {path: "patient-record",component: PatientRecordComponent},
-  {path: "appointment-form",component: RecordFormComponent},
+  {path: "appointment-form/:id",component: RecordFormComponent},
   {path: "update-record",component: UpdateRecordComponent},
   {path: "home-patient",component: HomePatientComponent},
   {path: "home-staff",component: HomeStaffComponent},
