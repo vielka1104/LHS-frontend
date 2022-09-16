@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { DialogReportsComponent } from '../../dialogs/dialog-reports/dialog-reports.component';
 
 @Component({
@@ -9,13 +10,17 @@ import { DialogReportsComponent } from '../../dialogs/dialog-reports/dialog-repo
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public dialog:MatDialog) { }
+  constructor(public dialog:MatDialog,private route:Router) { }
 
   ngOnInit() {
   }
 
   OpenReports(){
     const dialogRef = this.dialog.open(DialogReportsComponent)
+  }
+
+  GoToAppointmentDoctor(){
+    this.route.navigate([`/appointment-doctor/${1}`]);
   }
 
 }

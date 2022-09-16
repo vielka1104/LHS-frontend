@@ -9,7 +9,7 @@ import { DatePipe } from '@angular/common';
 import { MatTableDataSource } from '@angular/material/table';
 import { PatientService } from 'src/app/services/patient/patient.service';
 import { PatientResource } from 'src/app/models/patient/PatientResource';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SurveillanceService } from 'src/app/services/surveillance/surveillance.service';
 import { SurveillanceResource } from 'src/app/models/surveillance/SurveillanceResource';
 import { IllnessRecordService } from 'src/app/services/ehr/illness-record.service';
@@ -24,6 +24,8 @@ import { MedicineResource } from 'src/app/models/medicine/MedicineResource';
 import { PatientTreatmentService } from 'src/app/services/ehr/patient-treatment.service';
 import { TreatmentService } from 'src/app/services/ehr/treatment.service';
 import { MedicineService } from 'src/app/services/ehr/medicine.service';
+import { DoctorService } from 'src/app/services/doctor/doctor.service';
+import { DoctorResource } from 'src/app/models/doctor/DoctorResource';
 
 @Component({
   selector: 'app-record-form',
@@ -33,7 +35,9 @@ import { MedicineService } from 'src/app/services/ehr/medicine.service';
 export class RecordFormComponent implements OnInit {
   patientheight!:any
   patientobject!:PatientResource
-  idurl!:number
+  doctorobject!:DoctorResource
+  idpatienturl!:number
+  iddoctorurl!:number
   patientupdate!:PatientResource
   surveillancepatient!:SurveillanceResource
   ancientpatient!:IllnessRecordResource
@@ -68,13 +72,15 @@ export class RecordFormComponent implements OnInit {
   
 
   constructor(public dialog:MatDialog, private formBuilder:FormBuilder, 
-    private patientservice:PatientService,private route:ActivatedRoute, private surveillanceservice:SurveillanceService,
+    private patientservice:PatientService,private activeroute:ActivatedRoute, private route:Router, 
+    private surveillanceservice:SurveillanceService,
     private illnesservice:IllnessRecordService,
     private patientdiagnosticservice:PatientDiagnosticService,
     private diagnosisservice:DiagnosticService,
     private patienttreatmentservice:PatientTreatmentService,
     private treatmentservice:TreatmentService,
     private medicineservice:MedicineService,
+    private doctorservice:DoctorService
     ) { 
       this.ancientpatient = {} as IllnessRecordResource,
       this.patientdiagnostic = {} as CreatePatientDiagnosisResource,
@@ -111,14 +117,18 @@ export class RecordFormComponent implements OnInit {
      this.displayvigilancy = false;
      this.todaydate = this.pipedate.transform(this.fechaactual, 'dd/MM/yyyy');
 
-     let urlvariable = parseInt(this.route.snapshot.paramMap.get('id')!);
-     this.idurl = urlvariable
-     console.log(this.idurl)
-     this.GetPatientbyId(this.idurl);
-     this.getSurveillanceByPatientId(this.idurl);
-     this.getPatientAncients(this.idurl)
-     this.getPatientDiagnostic(this.idurl)
-     this.getPatientTreatments(this.idurl)
+     let urlpatientvariable = parseInt(this.activeroute.snapshot.paramMap.get('patientid')!);
+     let urldoctorvariable = parseInt(this.activeroute.snapshot.paramMap.get('doctorid')!);
+     this.idpatienturl = urlpatientvariable
+     this.iddoctorurl = urldoctorvariable
+     console.log(this.idpatienturl)
+     console.log(this.iddoctorurl)
+     this.GetPatientbyId(this.idpatienturl);
+     this.GetDoctorbyId(this.iddoctorurl)
+     this.getSurveillanceByPatientId(this.idpatienturl);
+     this.getPatientAncients(this.idpatienturl)
+     this.getPatientDiagnostic(this.idpatienturl)
+     this.getPatientTreatments(this.idpatienturl)
   }
 
   RegisterMethod(){
@@ -196,6 +206,14 @@ export class RecordFormComponent implements OnInit {
     )
   }
 
+  GetDoctorbyId(id:number){
+    this.doctorservice.getDoctorById(id).subscribe( (response:any) =>{
+        this.doctorobject = response
+        console.log(this.doctorobject)
+      }
+    )
+  }
+
   UpdatePatient(id:number){
     console.log(this.patientheight)
     
@@ -249,5 +267,9 @@ export class RecordFormComponent implements OnInit {
         console.log(this.dataSourcepatienttreatment.data)
       }
     )
+  }
+
+  GoToAppointmentDoctor(id:number){
+      this.route.navigate([`/appointment-doctor/${id}`]);
   }
 }
