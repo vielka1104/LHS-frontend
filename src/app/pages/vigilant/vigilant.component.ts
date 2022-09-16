@@ -1,7 +1,9 @@
+import { PatientResource } from 'src/app/models/patient/PatientResource';
+import { PatientService } from './../../services/patient/patient.service';
 import { Vigilancia } from './../../models/Vigilancia';
 import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators,FormControl } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import {formatDate} from '@angular/common';
 export interface DialogData {
@@ -19,9 +21,13 @@ export class VigilantComponent implements OnInit {
   public vigilantform!:FormGroup;
   vigilant!:Vigilancia
   date!:Date;
-  constructor(public dialog: MatDialog,private formBuilder:FormBuilder,private datePipe: DatePipe,) { 
+  Patient!:PatientResource;
+
+  documentnumber = new FormControl(16, Validators.max(8))
+  constructor(public dialog: MatDialog,private formBuilder:FormBuilder,private datePipe: DatePipe,private PATIENTSERVICE:PatientService) { 
     this.vigilant={}as Vigilancia
     this.date=new Date()
+    this.Patient={}as PatientResource
   }
 
   ngOnInit() {
@@ -66,6 +72,13 @@ export class VigilantComponent implements OnInit {
     this.openDialog()
     this.vigilant.fecha=this.date
     console.log(this.vigilant)
+  }
+  findbyDNI(){
+         
+        this.PATIENTSERVICE.getPatientByDocumentNumber(this.documentnumber.value).subscribe((response:any)=>{
+                     this.Patient=response;
+                     console.log(this.Patient) 
+        })
   }
   getfecha(){
 
