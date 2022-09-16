@@ -1,3 +1,9 @@
+import { ActivatedRoute, Router } from '@angular/router';
+import { DoctorService } from './../../services/doctor/doctor.service';
+import { DoctorResource } from './../../models/doctor/DoctorResource';
+import { SurveillanceService } from './../../services/surveillance/surveillance.service';
+import { CreateSurveillanceResource } from './../../models/surveillance/CreateSurveillanceResource';
+import { DocumentType } from './../../models/patient/DocumentType.enum';
 import { PatientResource } from 'src/app/models/patient/PatientResource';
 import { PatientService } from './../../services/patient/patient.service';
 import { Vigilancia } from './../../models/Vigilancia';
@@ -19,18 +25,30 @@ export interface DialogData {
 })
 export class VigilantComponent implements OnInit {
   public vigilantform!:FormGroup;
-  vigilant!:Vigilancia
+  CreateSurveillanceResource!:CreateSurveillanceResource
   date!:Date;
   Patient!:PatientResource;
+  DoctorResource!:DoctorResource;
 
-  documentnumber = new FormControl(16, Validators.max(8))
-  constructor(public dialog: MatDialog,private formBuilder:FormBuilder,private datePipe: DatePipe,private PATIENTSERVICE:PatientService) { 
-    this.vigilant={}as Vigilancia
+  documentnumber = new FormControl("", Validators.min(7))
+  
+  constructor(public dialog: MatDialog,private formBuilder:FormBuilder,private datePipe: DatePipe,private PATIENTSERVICE:PatientService,private surveillance:SurveillanceService,
+    private DoctorService:DoctorService,private ActivatedRoute:ActivatedRoute,private router:Router) { 
+    this.CreateSurveillanceResource={}as CreateSurveillanceResource
     this.date=new Date()
     this.Patient={}as PatientResource
   }
+  
+
 
   ngOnInit() {
+    let doctorid=parseInt(this.ActivatedRoute.snapshot.paramMap.get('id')!)
+    this.Patient.name="nombre"
+    this.Patient.lastname="apellido"
+    this.Patient.documentType=DocumentType.DNI
+    this.Patient.documentNumber="numero"
+    this.Patient.gender="genero"
+    this.Patient.height="altura"
     this.vigilantform=this.formBuilder.group({
      peso:[''],
      hemoglobina:['',Validators.required],
@@ -65,14 +83,35 @@ export class VigilantComponent implements OnInit {
      imc:['',Validators.required],
 
      })
+    this.findDoctor(doctorid)
+    
 
+
+  }
+  validateDni(){
+        
+        if(this.documentnumber.value?.length === 8){
+            return true
+        }else{
+          return false
+        }
 
   }
   onSubmit(){
     this.openDialog()
-    this.vigilant.fecha=this.date
-    console.log(this.vigilant)
+    this.surveillance.createSurveillance(this.Patient.id,this.DoctorResource.id,this.CreateSurveillanceResource).subscribe((response:any)=>{
+           
+    })
+    //this.CreateSurveillanceResource.=this.date
+    //console.log(this.vigilant)
   }
+  findDoctor(id:number){
+         this.DoctorService.getDoctorById(id).subscribe((response:any)=>{
+                    this.DoctorResource=response           
+         })
+  }
+
+
   findbyDNI(){
          
         this.PATIENTSERVICE.getPatientByDocumentNumber(this.documentnumber.value).subscribe((response:any)=>{
@@ -101,6 +140,8 @@ export class VigilantComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this.router.navigate(['/doctor',this.DoctorResource.id,'home-doctor'])
+
     });
   }
 

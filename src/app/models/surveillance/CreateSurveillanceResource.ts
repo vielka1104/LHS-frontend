@@ -19,7 +19,7 @@ export interface CreateSurveillanceResource {
 
       glucose:number;
       cholesterol:number;
-
+      hematies:number;
       urea:number;
 
       creatinine:number;

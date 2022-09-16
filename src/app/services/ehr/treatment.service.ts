@@ -9,7 +9,7 @@ import {catchError, retry} from "rxjs/operators";
 })
 export class TreatmentService {
 
-  basePath =""
+  basePath ="http://localhost:8080/api/v1"
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',

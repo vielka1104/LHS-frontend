@@ -17,6 +17,7 @@ export interface SurveillanceResource {
       cholesterol:number;
       urea:number;
       creatinine:number;
+       hematies:number;
       density:number;
       ph:number;
       protein:number;

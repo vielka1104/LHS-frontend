@@ -15,7 +15,7 @@
 
 
   <span class="example-spacer"></span>
-  <button (click)="findbyDNI()">
+  <button (click)="findbyDNI()"   [disabled]="!validateDni()">
   <mat-icon class="text-lg md:text-[26px]">search</mat-icon>  
 </button>
   <div class="pr-5"></div> 
@@ -59,12 +59,12 @@
          
            
           <b class="text-[20px]">Nombre:</b>
-          <p class="text-[20px]">Jose</p>
+          <p class="text-[20px]">{{Patient.name}}</p>
              
            
             
               <b class="text-[20px]">Num.doc:</b>
-              <p class="text-[20px]">Jose</p>
+              <p class="text-[20px]">{{Patient.documentNumber}}</p>
            
             
               <b class="text-[20px]">Peso:</b>
@@ -78,7 +78,7 @@
               bg-white bg-clip-padding
               border border-solid border-gray-900
               rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su peso"
-              [(ngModel)]="vigilant.peso"   formControlName="peso" min="0">
+              [(ngModel)]="CreateSurveillanceResource.weight"   formControlName="peso" min="0">
               
             </div>
 
@@ -91,12 +91,12 @@
       
           
            <b class="text-[20px]">Apellido:</b>
-           <p class="text-[20px]">Jose</p>
+           <p class="text-[20px]">{{Patient.lastname}}</p>
           
 
           
             <b class="text-[20px]">Sexo:</b>
-            <p class="text-[20px]">73008346</p>
+            <p class="text-[20px]">{{Patient.gender}}</p>
       
 
          
@@ -111,12 +111,12 @@
       
         
          <b class="text-[20px]">Tipo de doc:</b>
-         <p class="text-[20px]">Jose</p>
+         <p class="text-[20px]">{{Patient.documentType}}</p>
        
 
        
           <b class="text-[20px]">Altura:</b>
-          <p class="text-[20px]">73008346</p>
+          <p class="text-[20px]">{{Patient.height}}</p>
       
 
        
@@ -149,7 +149,7 @@
               bg-white bg-clip-padding
               border border-solid border-gray-900
               rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Hemoglobina"
-              [(ngModel)]="vigilant.hemoglobina"   formControlName="hemoglobina" min="0" required>
+              [(ngModel)]="CreateSurveillanceResource.hemoglobin"   formControlName="hemoglobina" min="0" required>
               
               
               </div>
@@ -163,7 +163,7 @@
               bg-white bg-clip-padding
               border border-solid border-gray-900
               rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Segmentados"
-              [(ngModel)]="vigilant.segmentados"   formControlName="segmentados" min="0" required>
+              [(ngModel)]="CreateSurveillanceResource.segmented"   formControlName="segmentados" min="0" required>
            
             
               <b class="text-[20px]">VCM:</b>
@@ -176,7 +176,7 @@
               bg-white bg-clip-padding
               border border-solid border-gray-900
               rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su VCM"
-              [(ngModel)]="vigilant.vcm"   formControlName="vcm" min="0" required>
+              [(ngModel)]="CreateSurveillanceResource.mvc"   formControlName="vcm" min="0" required>
          
           </div>
           <div class="flex space-x-4">
@@ -197,7 +197,7 @@
               bg-white bg-clip-padding
               border border-solid border-gray-900
               rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Sus Linfocitos"
-              [(ngModel)]="vigilant.linfocitos"   formControlName="linfocitos" min="0" required>
+              [(ngModel)]="CreateSurveillanceResource.lymphocytes"   formControlName="linfocitos" min="0" required>
            
             
               <b class="text-[20px]">Monocitos:</b>
@@ -210,7 +210,7 @@
               bg-white bg-clip-padding
               border border-solid border-gray-900
               rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Sus Monocitos"
-              [(ngModel)]="vigilant.monocitos"   formControlName="monocitos" min="0" required>
+              [(ngModel)]="CreateSurveillanceResource.monocytes"   formControlName="monocitos" min="0" required>
          
            
               <b class="text-[20px]">HCM:</b>
@@ -223,7 +223,7 @@
               bg-white bg-clip-padding
               border border-solid border-gray-900
               rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su HCM"
-              [(ngModel)]="vigilant.hcm"   formControlName="hcm" min="0" required>
+              [(ngModel)]="CreateSurveillanceResource.mch"   formControlName="hcm" min="0" required>
         
 
           </div>
@@ -243,7 +243,7 @@
             bg-white bg-clip-padding
             border border-solid border-gray-900
             rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Sus Leucocitos"
-            [(ngModel)]="vigilant.leucocitos"   formControlName="leucocitos" min="0" required>
+            [(ngModel)]="CreateSurveillanceResource.leukocytes"   formControlName="leucocitos" min="0" required>
             <b class="text-[20px]">Glucosa:</b>
             <input type="number" class="form-control
             block w-full   px-3
@@ -254,7 +254,7 @@
             bg-white bg-clip-padding
             border border-solid border-gray-900
             rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Glucosa"
-            [(ngModel)]="vigilant.glucosa"   formControlName="glucosa" min="0" required>
+            [(ngModel)]="CreateSurveillanceResource.glucose"   formControlName="glucosa" min="0" required>
             <b class="text-[20px]">Colesterol:</b>
             <input type="number" class="form-control
             block w-full   px-3
@@ -265,7 +265,7 @@
             bg-white bg-clip-padding
             border border-solid border-gray-900
             rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Colesterol"
-            [(ngModel)]="vigilant.colesterol"   formControlName="colesterol" min="0" required>
+            [(ngModel)]="CreateSurveillanceResource.cholesterol"   formControlName="colesterol" min="0" required>
 
           </div>
           <div class="flex space-x-4">
@@ -284,7 +284,7 @@
             bg-white bg-clip-padding
             border border-solid border-gray-900
             rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Hematies"
-            [(ngModel)]="vigilant.hematies"   formControlName="hematies" min="0" required>
+            [(ngModel)]="CreateSurveillanceResource.hematies"   formControlName="hematies" min="0" required>
             <b class="text-[20px]">Trigliceridos:</b>
             <input type="number" class="form-control
             block w-full   px-3
@@ -295,7 +295,7 @@
             bg-white bg-clip-padding
             border border-solid border-gray-900
             rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Sus Trigliceridos"
-            [(ngModel)]="vigilant.trigliceridos"   formControlName="trigliceridos" min="0" required>
+            [(ngModel)]="CreateSurveillanceResource.erythrocytes"   formControlName="trigliceridos" min="0" required>
            
 
           </div>
@@ -327,7 +327,7 @@
               bg-white bg-clip-padding
               border border-solid border-gray-900
               rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Urea"
-              [(ngModel)]="vigilant.urea"   formControlName="urea" min="0" required>
+              [(ngModel)]="CreateSurveillanceResource.urea"   formControlName="urea" min="0" required>
            
             
               <b class="text-[20px]">Proteinas:</b>
@@ -340,7 +340,7 @@
               bg-white bg-clip-padding
               border border-solid border-gray-900
               rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Sus Proteinas"
-              [(ngModel)]="vigilant.proteinas"   formControlName="proteinas" min="0" required>
+              [(ngModel)]="CreateSurveillanceResource.protein"   formControlName="proteinas" min="0" required>
            
             
               <b class="text-[20px]">Nitrito:</b>
@@ -353,7 +353,7 @@
               bg-white bg-clip-padding
               border border-solid border-gray-900
               rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Nitrito"
-              [(ngModel)]="vigilant.nitrito"   formControlName="nitrito" min="0" required>
+              [(ngModel)]="CreateSurveillanceResource.nitrite"   formControlName="nitrito" min="0" required>
          
           </div>
           <div class="flex space-x-4">
@@ -373,7 +373,7 @@
               bg-white bg-clip-padding
               border border-solid border-gray-900
               rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Cretinina"
-              [(ngModel)]="vigilant.creatinina"   formControlName="creatinina" min="0" required>
+              [(ngModel)]="CreateSurveillanceResource.creatinine"   formControlName="creatinina" min="0" required>
            
             
               <b class="text-[20px]">Cetonas:</b>
@@ -386,7 +386,7 @@
               bg-white bg-clip-padding
               border border-solid border-gray-900
               rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Cetonas"
-              [(ngModel)]="vigilant.cetonas"   formControlName="cetonas" min="0" required>
+              [(ngModel)]="CreateSurveillanceResource.ketone"   formControlName="cetonas" min="0" required>
          
            
               <b class="text-[20px]">Cristales:</b>
@@ -399,7 +399,7 @@
               bg-white bg-clip-padding
               border border-solid border-gray-900
               rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Sus Cristales"
-              [(ngModel)]="vigilant.cristales"   formControlName="cristales" min="0" required>
+              [(ngModel)]="CreateSurveillanceResource.crystals"   formControlName="cristales" min="0" required>
         
 
           </div>
@@ -419,7 +419,7 @@
             bg-white bg-clip-padding
             border border-solid border-gray-900
             rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Densidad"
-            [(ngModel)]="vigilant.densidadOrina"   formControlName="densidadOrina" min="0" required>
+            [(ngModel)]="CreateSurveillanceResource.density"   formControlName="densidadOrina" min="0" required>
             <b class="text-[20px]">Urobilinogeno:</b>
             <input type="number" class="form-control
             block w-full   px-3
@@ -430,7 +430,7 @@
             bg-white bg-clip-padding
             border border-solid border-gray-900
             rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Urobilinogeno"
-            [(ngModel)]="vigilant.urobilinogeno"   formControlName="urobilinogeno" min="0" required>
+            [(ngModel)]="CreateSurveillanceResource.urobilinogen"   formControlName="urobilinogeno" min="0" required>
             <b class="text-[20px]">Azucar:</b>
             <input type="number" class="form-control
             block w-full   px-3
@@ -441,7 +441,7 @@
             bg-white bg-clip-padding
             border border-solid border-gray-900
             rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Azucar"
-            [(ngModel)]="vigilant.azucar"   formControlName="azucar" min="0" required>
+            [(ngModel)]="CreateSurveillanceResource.sugar"   formControlName="azucar" min="0" required>
 
           </div>
           <div class="flex space-x-4">
@@ -461,7 +461,7 @@
             bg-white bg-clip-padding
             border border-solid border-gray-900
             rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su PH"
-            [(ngModel)]="vigilant.pH"   formControlName="pH" min="0" required>
+            [(ngModel)]="CreateSurveillanceResource.ph"   formControlName="pH" min="0" required>
             <b class="text-[20px]">Billirubina:</b>
             <input type="number" class="form-control
             block w-full   px-3
@@ -472,7 +472,7 @@
             bg-white bg-clip-padding
             border border-solid border-gray-900
             rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Billirubina"
-            [(ngModel)]="vigilant.bilirrubina"   formControlName="bilirrubina" min="0" required
+            [(ngModel)]="CreateSurveillanceResource.bilirubin"   formControlName="bilirrubina" min="0" required
             >
             <b class="text-[20px]">Aspecto de Orina:</b>
             <input type="text" class="form-control
@@ -484,7 +484,7 @@
             bg-white bg-clip-padding
             border border-solid border-gray-900
             rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Aspecto"
-            [(ngModel)]="vigilant.aspectoOrina"   formControlName="aspectoOrina" min="0" required>
+            [(ngModel)]="CreateSurveillanceResource.urineAppearance"   formControlName="aspectoOrina" min="0" required>
 
           </div>
           <div class="flex space-x-4">
@@ -503,7 +503,7 @@
             bg-white bg-clip-padding
             border border-solid border-gray-900
             rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Color"
-            [(ngModel)]="vigilant.colorOrina"   formControlName="colorOrina" min="0" required>
+            [(ngModel)]="CreateSurveillanceResource.urineColor"   formControlName="colorOrina" min="0" required>
             
 
           </div>
@@ -530,7 +530,7 @@
         bg-white bg-clip-padding
         border border-solid border-gray-900
         rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Calorias"
-        [(ngModel)]="vigilant.caloriasPlan"   formControlName="caloriasPlan" min="0" required>
+        [(ngModel)]="CreateSurveillanceResource.planCalories"   formControlName="caloriasPlan" min="0" required>
 
         <b class="text-[20px]">IMC:</b>
         
@@ -543,7 +543,7 @@
         bg-white bg-clip-padding
         border border-solid border-gray-900
         rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su IMC"
-        [(ngModel)]="vigilant.imc"   formControlName="imc" min="0" required>
+        [(ngModel)]="CreateSurveillanceResource.imc"   formControlName="imc" min="0" required>
       </div>
       <div class="flex space-x-4">
         <mat-error *ngIf="vigilantform.controls['caloriasPlan'].dirty && vigilantform.hasError('required','caloriasPlan')">Es requerido las calorias</mat-error>
@@ -560,7 +560,7 @@
         bg-white bg-clip-padding
         border border-solid border-gray-900
         rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Calorias Consumidas"
-        [(ngModel)]="vigilant.caloriasConsum"   formControlName="caloriasConsum" min="0" required>
+        [(ngModel)]="CreateSurveillanceResource.consumedCalories"   formControlName="caloriasConsum" min="0" required>
         <b class="text-[20px]">Dolores:</b>
         <input type="text" class="form-control
         block w-full   px-3
@@ -571,7 +571,7 @@
         bg-white bg-clip-padding
         border border-solid border-gray-900
         rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Dolores"
-        [(ngModel)]="vigilant.dolores"   formControlName="dolores" min="0" required>
+        [(ngModel)]="CreateSurveillanceResource.pain"   formControlName="dolores" min="0" required>
        
 
       </div>
@@ -590,7 +590,7 @@
         bg-white bg-clip-padding
         border border-solid border-gray-900
         rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Apetito"
-        [(ngModel)]="vigilant.apetito"   formControlName="apetito" min="0" required>
+        [(ngModel)]="CreateSurveillanceResource.appetite"   formControlName="apetito" min="0" required>
         <b class="text-[20px]">Otros sintomas:</b>
         <input type="text" class="form-control
         block w-full   px-3
@@ -601,7 +601,7 @@
         bg-white bg-clip-padding
         border border-solid border-gray-900
         rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Otros sintomas"
-        [(ngModel)]="vigilant.otroSintoma"   formControlName="otroSintoma" min="0" required>
+        [(ngModel)]="CreateSurveillanceResource.otherSymptoms"   formControlName="otroSintoma" min="0" required>
        
 
       </div>

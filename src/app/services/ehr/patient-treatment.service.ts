@@ -9,7 +9,7 @@ import { CreatePatientTreatmentResource } from 'src/app/models/patient-treatment
 })
 export class PatientTreatmentService {
 
-  basePath =""
+  basePath ="http://localhost:8080/api/v1"
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',

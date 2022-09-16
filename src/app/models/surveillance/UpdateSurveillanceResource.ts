@@ -28,6 +28,7 @@ export interface updateSurveillanceResource{
     consumedCalories:number;
     appetite:string;
     pain:string;
+    hematies:number;
     otherSymptoms:string;
     imc:number;
 }
