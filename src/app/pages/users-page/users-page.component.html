@@ -38,7 +38,8 @@
                 <button mat-raised-button color="primary" routerLink="/register-user">Crear paciente</button>
               </div>
               <br>
-              <mat-card class="ml-auto mr-auto" *ngFor="let medical of medicals">
+
+              <mat-card class="ml-auto mr-auto" *ngFor="let medical of patients">
                 <table>
                   <div class="inline-flex">
                     <th>
@@ -46,7 +47,7 @@
                     </th>
                     <div class="pr-10"></div>
                     <th class="font-normal w-80">
-                    <h1 class="pt-2 max-w-fit text-left">{{medical}}</h1>
+                    <h1 class="pt-2 max-w-fit text-left">Paciente:   {{medical.name}}   {{medical.lastname}}</h1>
                     </th>
                     <div class="pr-96"></div>
                     <div class="pr-96"></div>
@@ -60,7 +61,7 @@
                         </div>
                         <div class="pr-10"></div>
                         <div class="pt-16">
-                          <button mat-button class="h-12" (click)="DeleteDoctor(medical)">
+                          <button mat-button class="h-12" (click)="DeletePatient(medical)">
                             <img src="../../../assets/images/delete_button.png" class="w-12 h-10">
                           </button>
                         </div>
@@ -70,6 +71,8 @@
                   </div>
                 </table>
               </mat-card>
+
+
             </div>
             <div *ngIf="usergroup.value == 'medicos'">
               <div class="inline-flex pb-5">
@@ -78,7 +81,7 @@
                 <button mat-raised-button color="primary" routerLink="/register-medical">Crear médico</button>
               </div>
               <br>
-              <mat-card class="ml-auto mr-auto" *ngFor="let medical of medicals">
+              <mat-card class="ml-auto mr-auto" *ngFor="let medical of doctors">
                 <table>
                   <div class="inline-flex">
                     <th>
@@ -86,7 +89,7 @@
                     </th>
                     <div class="pr-10"></div>
                     <th class="font-normal w-80">
-                    <h1 class="pt-2 max-w-fit text-left">{{medical}}</h1>
+                    <h1 class="pt-2 max-w-fit text-left">Dr. {{medical.name}}   {{medical.lastname}}</h1>
                     </th>
                     <div class="pr-96"></div>
                     <div class="pr-96"></div>
@@ -118,7 +121,7 @@
                 <button mat-raised-button color="primary" routerLink="/register-staff">Crear personal</button>
               </div>
               <br>
-              <mat-card class="ml-auto mr-auto" *ngFor="let medical of medicals">
+              <mat-card class="ml-auto mr-auto" *ngFor="let medical of staffs">
                 <table>
                   <div class="inline-flex">
                     <th>
@@ -126,7 +129,7 @@
                     </th>
                     <div class="pr-10"></div>
                     <th class="font-normal w-80">
-                    <h1 class="pt-2 max-w-fit text-left">{{medical}}</h1>
+                    <h1 class="pt-2 max-w-fit text-left">{{medical.name}}</h1>
                     </th>
                     <div class="pr-96"></div>
                     <div class="pr-96"></div>
@@ -140,7 +143,7 @@
                         </div>
                         <div class="pr-10"></div>
                         <div class="pt-16">
-                          <button mat-button class="h-12" (click)="DeleteDoctor(medical)">
+                          <button mat-button class="h-12" (click)="DeleteStaff(medical)">
                             <img src="../../../assets/images/delete_button.png" class="w-12 h-10">
                           </button>
                         </div>

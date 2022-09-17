@@ -1,3 +1,5 @@
+import { CreatePatientResource } from './../../../models/patient/CreatePatientResource';
+import { PatientService } from './../../../services/patient/patient.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ResultDialogComponent } from '../../dialogs/result-dialog/result-dialog.component';
@@ -11,8 +13,12 @@ import {FormBuilder, ReactiveFormsModule, FormGroup, Validators} from '@angular/
 export class RegisterUserComponent implements OnInit {
   
   userregisterform!:FormGroup;
+  CreatePatientResource!:CreatePatientResource
+  doctype!:any
+  constructor(public dialog:MatDialog, private formBuilder: FormBuilder,private PatientService:PatientService) {
 
-  constructor(public dialog:MatDialog, private formBuilder: FormBuilder) { }
+    this.CreatePatientResource={}as CreatePatientResource
+   }
 
   ngOnInit() {
     this.userregisterform=this.formBuilder.group({
@@ -30,7 +36,12 @@ export class RegisterUserComponent implements OnInit {
   }
 
   RegisterMethod(){
-    const dialogRef = this.dialog.open(ResultDialogComponent)
+
+    this.PatientService.createPatient(1,this.CreatePatientResource).subscribe((response:any)=>{
+      const dialogRef = this.dialog.open(ResultDialogComponent)
+    })
+
+    
   }
   
 }

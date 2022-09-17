@@ -1,12 +1,12 @@
 <h1 mat-dialog-title class="text-center">Reportes</h1>
 <div mat-dialog-content class="text-center">
-    <button matDialogClose mat-raised-button color="primary" class="w-full" routerLink="/reporter-general-patient-risk">MONITOREO PACIENTE EN RIESGO</button>
+    <button matDialogClose mat-raised-button color="primary" class="w-full" (click)="gopatientrisk()">MONITOREO PACIENTE EN RIESGO</button>
     <div class="pb-5"></div>
-    <button matDialogClose mat-raised-button color="primary" class="w-full" routerLink="/reporter-general-treatment">TRATAMIENTO</button>
+    <button matDialogClose mat-raised-button color="primary" class="w-full" (click)="gotreatment()">TRATAMIENTO</button>
     <div class="pb-5"></div>
-    <button matDialogClose mat-raised-button color="primary" class="w-full" routerLink="/reporter-general-diagnostic">DIAGNÓSTICO</button>
+    <button matDialogClose mat-raised-button color="primary" class="w-full" (click)="godiagnosis()">DIAGNÓSTICO</button>
     <div class="pb-5"></div>
-    <button matDialogClose mat-raised-button color="primary" class="w-full" routerLink="/reporter-general-health-indicator">INDICADORES DE SALUD</button>
+    <button matDialogClose mat-raised-button color="primary" class="w-full" (click)=" gohealthindicator()">INDICADORES DE SALUD</button>
     <div class="pb-5"></div>
-    <button matDialogClose mat-raised-button color="primary" class="w-full" routerLink="/reporter-efficiency">EFICIENCIA</button>
+    <button matDialogClose mat-raised-button color="primary" class="w-full" (click)=" gotoeffciency()">EFICIENCIA</button>
 </div>

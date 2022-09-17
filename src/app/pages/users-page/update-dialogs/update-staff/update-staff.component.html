@@ -10,21 +10,21 @@
     <br>
     <mat-form-field appearance="outline" class="w-96">
       <mat-label>Apellidos</mat-label>
-      <input matInput placeholder="Ingrese sus apellidos" formControlName="lastname" required>
+      <input matInput placeholder="Ingrese sus apellidos" formControlName="lastname" required >
       <mat-error>Complete este campo es requerido!</mat-error>
     </mat-form-field>
     <br>
     <mat-form-field appearance="outline" class="w-96">
       <mat-label>DNI</mat-label>
-      <input matInput placeholder="Ingrese sun DNI" formControlName="dni" required>
+      <input matInput placeholder="Ingrese sun DNI" formControlName="dni" required >
       <mat-error>Complete este campo es requerido!</mat-error>
     </mat-form-field>
     <br>
     <mat-form-field appearance="outline" class="w-96">
       <mat-label>Sexo</mat-label> <!--Combo Box-->
       <mat-select formControlName="gender">
-        <mat-option value="uno">Masculino</mat-option>
-        <mat-option value="dos">Femenino</mat-option>
+        <mat-option value="M">M</mat-option>
+        <mat-option value="F">F</mat-option>
       </mat-select>
       <mat-error>Complete este campo es requerido!</mat-error>
     </mat-form-field>
@@ -46,7 +46,7 @@
       <mat-label>Rol</mat-label>
       <mat-select formControlName="role">
         <div *ngFor="let role of rolelist">
-          <mat-option value="uno">{{role}}</mat-option>
+          <mat-option [value]="role">{{role}}</mat-option>
         </div>
       </mat-select>
       <mat-error>Complete este campo es requerido!</mat-error>
@@ -65,7 +65,7 @@
     </mat-form-field>
     
     <div class="text-center">
-      <button matDialogClose color = "primary" mat-raised-button [disabled]="staffeditform.invalid">Actualizar</button>
+      <button [matDialogClose]="editstaffdata" color = "primary" mat-raised-button [disabled]="staffeditform.invalid"  (click)="Update()">Actualizar</button>
     </div>  
   </form>
 </div>

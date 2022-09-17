@@ -1,3 +1,6 @@
+import { Role } from './../../../models/staff/Role.enum';
+import { CreateStaffResource } from './../../../models/staff/CreateStaffResource';
+import { StaffService } from './../../../services/staff/staff.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ResultDialogComponent } from '../../dialogs/result-dialog/result-dialog.component';
@@ -12,9 +15,12 @@ export class RegisterStaffComponent implements OnInit {
   
   staffregisterform!:FormGroup;
   role!:string;
-  rolelist:string[] = ["Admin","Nurse"]
-
-  constructor(public dialog:MatDialog, private formBuilder:FormBuilder) { }
+  rolany!:any
+  rolelist:string[] = ["ADMIN","NURSE"]
+  CreateStaffResource!:CreateStaffResource
+  constructor(public dialog:MatDialog, private formBuilder:FormBuilder,private StaffService:StaffService) { 
+    this.CreateStaffResource={}as CreateStaffResource
+  }
 
   ngOnInit() {
     this.staffregisterform=this.formBuilder.group({
@@ -28,10 +34,21 @@ export class RegisterStaffComponent implements OnInit {
       username:['',Validators.required],
       password:['',Validators.required],
      })
+     console.log(this.GetRole("ADMIN"))
   }
 
   RegisterMethod(){
-    const dialogRef = this.dialog.open(ResultDialogComponent)
+
+   console.log(this.rolany)
+   this.CreateStaffResource.role=this.rolany
+    console.log(this.CreateStaffResource)
+    this.StaffService.createStaff(this.CreateStaffResource).subscribe((response:any)=>{
+      const dialogRef = this.dialog.open(ResultDialogComponent)
+    })
+    
+  }
+  GetRole(role:any){
+      return Object.keys(Role).indexOf(role)
   }
 
 }

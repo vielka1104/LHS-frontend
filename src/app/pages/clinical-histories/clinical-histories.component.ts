@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SurveillanceResource } from 'src/app/models/surveillance/SurveillanceResource';
 import { DoctorResource } from './../../models/doctor/DoctorResource';
 import { SurveillanceService } from './../../services/surveillance/surveillance.service';
@@ -113,7 +113,7 @@ export class ClinicalHistoriesComponent implements OnInit {
   displayedColumns4: string[] = ['Fecha','Notas'];
   constructor(public dialog: MatDialog,private formBuilder:FormBuilder,private PATIENTSERVICE:PatientService,private IllnessRecordService:IllnessRecordService
     ,private PatientTreatmentService:PatientTreatmentService,private PatientDiagnosticService:PatientDiagnosticService,private AppointmentService:AppointmentService,private SurveillanceService:SurveillanceService
-    ,private DoctorService:DoctorService,private ActivatedRoute:ActivatedRoute) { 
+    ,private DoctorService:DoctorService,private ActivatedRoute:ActivatedRoute,private Router:Router) { 
     this.dataSource1 = new MatTableDataSource<any>();
     this.dataSource2 = new MatTableDataSource<any>();
     this.dataSource3 = new MatTableDataSource<any>();
@@ -142,7 +142,9 @@ export class ClinicalHistoriesComponent implements OnInit {
     })
 }
 
-
+ReturnHome(){
+  this.Router.navigate(['/doctor',this.DoctorResource.id,'home-doctor'])
+}
 
 
 

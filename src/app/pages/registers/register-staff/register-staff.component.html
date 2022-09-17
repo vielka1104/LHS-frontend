@@ -10,49 +10,49 @@
             <form class="form text-left" [formGroup]="staffregisterform">
             <mat-form-field appearance="outline" class="w-full">
               <mat-label>Nombres</mat-label>
-              <input matInput placeholder="Ingrese sus nombres" formControlName="name" required>
+              <input matInput placeholder="Ingrese sus nombres" formControlName="name" required [(ngModel)]="CreateStaffResource.name">
               <mat-error *ngIf="staffregisterform.controls['name'].dirty && staffregisterform.hasError('required') || staffregisterform.controls['name'].invalid">Complete este campo es requerido!</mat-error>
             </mat-form-field>
             <br>
             <mat-form-field appearance="outline" class="w-full">
               <mat-label>Apellidos</mat-label>
-              <input matInput placeholder="Ingrese sus apellidos" formControlName="lastname" required>
+              <input matInput placeholder="Ingrese sus apellidos" formControlName="lastname" required [(ngModel)]="CreateStaffResource.lastname">
               <mat-error *ngIf="staffregisterform.controls['lastname'].dirty && staffregisterform.hasError('required') || staffregisterform.controls['lastname'].invalid">Complete este campo es requerido!</mat-error>
             </mat-form-field>
             <br>
             <mat-form-field appearance="outline" class="w-full">
               <mat-label>DNI</mat-label>
-              <input matInput placeholder="Ingrese sun DNI" formControlName="dni" required>
+              <input matInput placeholder="Ingrese sun DNI" formControlName="dni" required [(ngModel)]="CreateStaffResource.dni">
               <mat-error *ngIf="staffregisterform.controls['dni'].dirty && staffregisterform.hasError('required') || staffregisterform.controls['dni'].invalid">Complete este campo es requerido!</mat-error>
             </mat-form-field>
             <br>
             <mat-form-field appearance="outline" class="w-full">
               <mat-label>Sexo</mat-label> <!--Combo Box-->
-              <mat-select formControlName="gender">
-                <mat-option value="uno">Masculino</mat-option>
-                <mat-option value="dos">Femenino</mat-option>
+              <mat-select formControlName="gender" [(ngModel)]="CreateStaffResource.gender">
+                <mat-option value="M">Masculino</mat-option>
+                <mat-option value="F">Femenino</mat-option>
               </mat-select>
               <mat-error *ngIf="staffregisterform.controls['gender'].dirty && staffregisterform.hasError('required') || staffregisterform.controls['gender'].invalid">Complete este campo es requerido!</mat-error>
             </mat-form-field>
             <br>
             <mat-form-field appearance="outline" class="w-full">
               <mat-label>Email</mat-label>
-              <input matInput placeholder="Ingrese email" formControlName="email" required>
+              <input matInput placeholder="Ingrese email" formControlName="email" required [(ngModel)]="CreateStaffResource.email">
               <mat-error *ngIf="staffregisterform.controls['email'].touched && staffregisterform.controls['email'].hasError('required')">Complete este campo es requerido!</mat-error>
               <mat-error *ngIf="staffregisterform.controls['email'].dirty && staffregisterform.controls['email'].hasError('email')">Email invalido complete con un email!</mat-error>
             </mat-form-field>
             <br>
             <mat-form-field appearance="outline" class="w-full">
               <mat-label>Telefono</mat-label>
-              <input matInput placeholder="Ingrese telefono" formControlName="phone" required>
+              <input matInput placeholder="Ingrese telefono" formControlName="phone" required [(ngModel)]="CreateStaffResource.phone">
               <mat-error *ngIf="staffregisterform.controls['phone'].dirty && staffregisterform.hasError('required') || staffregisterform.controls['phone'].invalid">Complete este campo es requerido!</mat-error>
             </mat-form-field>
             <br>
             <mat-form-field appearance="outline" class="w-full">
               <mat-label>Rol</mat-label>
-              <mat-select formControlName="role">
+              <mat-select formControlName="role" [(ngModel)]="rolany">
                 <div *ngFor="let role of rolelist">
-                  <mat-option value="uno">{{role}}</mat-option>
+                  <mat-option [value]="GetRole(role)">{{role}}</mat-option>
                 </div>
               </mat-select>
               <mat-error *ngIf="staffregisterform.controls['role'].dirty && staffregisterform.hasError('required') || staffregisterform.controls['role'].invalid">Complete este campo es requerido!</mat-error>
@@ -60,13 +60,13 @@
             <br>
             <mat-form-field appearance="outline" class="w-full">
               <mat-label>Usuario</mat-label>
-              <input matInput placeholder="Ingrese nombre de usuario" formControlName="username" required>
+              <input matInput placeholder="Ingrese nombre de usuario" formControlName="username" required [(ngModel)]="CreateStaffResource.username">
               <mat-error *ngIf="staffregisterform.controls['username'].dirty && staffregisterform.hasError('required') || staffregisterform.controls['username'].invalid">Complete este campo es requerido!</mat-error>
             </mat-form-field>
             <br>
             <mat-form-field appearance="outline" class="w-full">
               <mat-label>Contraseña</mat-label>
-              <input matInput placeholder="Ingrese contraseña" formControlName="password" required>
+              <input matInput placeholder="Ingrese contraseña" formControlName="password" required [(ngModel)]="CreateStaffResource.password">
               <mat-error *ngIf="staffregisterform.controls['password'].dirty && staffregisterform.hasError('required') || staffregisterform.controls['password'].invalid">Complete este campo es requerido!</mat-error>
             </mat-form-field>
             

@@ -1,3 +1,6 @@
+import { DoctorService } from 'src/app/services/doctor/doctor.service';
+import { DoctorResource } from './../../models/doctor/DoctorResource';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit,Input } from '@angular/core';
 
 @Component({
@@ -7,9 +10,40 @@ import { Component, OnInit,Input } from '@angular/core';
 })
 export class HeaderReporterComponent implements OnInit {
    @Input() title !: string;
-  constructor() { }
+   doctor=""
+   staff=""
+   whois=""
+   id!:number
+   DoctorResource!:DoctorResource
+  constructor(private ActivatedRoute:ActivatedRoute,private Router:Router,private DoctorService:DoctorService) { 
+    this.DoctorResource={}as DoctorResource
+  }
 
   ngOnInit() {
+    
+     this.id=parseInt(this.ActivatedRoute.snapshot.paramMap.get('id')!)
+     this.whois=(this.ActivatedRoute.snapshot.url[0].path)
+    
+   
+    console.log(this.whois)
   }
+  ReturnHome(){ 
+
+    if(this.whois=="doctor"){
+      this.findDoctor(this.id)
+    }
+
+
+
+
+
+  }
+  findDoctor(id:number){
+    this.DoctorService.getDoctorById(id).subscribe((response:any)=>{
+               this.DoctorResource=response    
+               this.Router.navigate(['/doctor',this.DoctorResource.id,'home-doctor'])       
+    })
+  }
+
 
 }
