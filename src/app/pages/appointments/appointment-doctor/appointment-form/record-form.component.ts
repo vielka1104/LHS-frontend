@@ -270,6 +270,6 @@ export class RecordFormComponent implements OnInit {
   }
 
   GoToAppointmentDoctor(id:number){
-      this.route.navigate([`/appointment-doctor/${id}`]);
+      this.route.navigate([`appointment-doctor/doctor/${id}`]);
   }
 }

@@ -28,7 +28,7 @@
         </th>
         <div class="pr-20"></div>
         <th class="font-normal pr-10">
-          <mat-card class="w-full" *ngFor="let medical of medicals">
+          <mat-card class="w-full" *ngFor="let medical of dataSource.data">
             <table>
               <div class="inline-flex">
                 <th>
@@ -36,10 +36,10 @@
                 </th>
                 <div class="pr-10"></div>
                 <th class="font-normal w-80">
-                <h1 class="pt-2 max-w-fit text-left">{{medical}}
+                <h1 class="pt-2 max-w-fit text-left">{{medical.name}} {{medical.lastname}}
                   <div class="pt-5"></div>
                   <div class="text-left">
-                    <button mat-stroked-button>Nefrología</button>
+                    <button mat-stroked-button>{{medical.specialty.name}}</button>
                   </div>
                 </h1>
                 </th>
@@ -47,7 +47,7 @@
                 <div class="pr-96"></div>
                 <th>
                   <div class="pt-5">
-                    <button mat-raised-button color="primary" class="h-10 w-40" routerLink="/medical-schedule">Ver Horario</button>
+                    <button mat-raised-button color="primary" class="h-10 w-40" (click)="GoToMedicalSchedule(patientobject.id,medical.id)">Ver Horario</button>
                   </div>
                 </th>
                 <div class="pr-5"></div>

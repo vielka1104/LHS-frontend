@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   }
 
   GoToAppointmentDoctor(){
-    this.route.navigate([`/appointment-doctor/${1}`]);
+    this.route.navigate([`appointment-doctor/doctor/${1}`]);
   }
 
 }
