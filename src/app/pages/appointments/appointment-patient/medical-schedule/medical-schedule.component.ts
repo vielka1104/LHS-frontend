@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, FormGroup, Validators} from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -33,16 +33,19 @@ export class MedicalScheduleComponent implements OnInit {
   pipedate:DatePipe = new DatePipe("en-US")
   appointmentobject!:AppointmentResource
   hourformatchange!:Date
-  newdate:Date =new Date()
+  newdate!:Date
   testdate:Date =new Date()
-  appointmenthour!:any
+  appointmentdateselected!:Date
+  appointmentdateformated!:any
   dataSourceappointment = new MatTableDataSource<any>()
   
   constructor(public dialog:MatDialog, private formBuilder:FormBuilder,private route:Router,private activeroute:ActivatedRoute, 
               private patientservice:PatientService,
               private doctorservice:DoctorService,
               private appointmentservice:AppointmentService,
-              ) { }
+              ) { 
+                this.appointmentobject = {} as AppointmentResource
+              }
 
   ngOnInit() {
     this.scheduleform=this.formBuilder.group({
@@ -59,10 +62,6 @@ export class MedicalScheduleComponent implements OnInit {
     this.getDoctorbyId(this.urldoctorid)
     this.getTimeBlocks(this.urldoctorid)
     
-  }
-
-  RegisterMethod(){
-    const dialogRef = this.dialog.open(ResultDialogAppointmentComponent)
   }
 
   getPatientbyId(id:number){
@@ -119,26 +118,38 @@ export class MedicalScheduleComponent implements OnInit {
   SelectedDate(date:any,patientid:number,doctorid:number){
       console.log(date)
       console.log(typeof date)
+      console.log(this.appointmentdateselected)
       let hourstring = String(date)
       
       const [hour, minute, seconds] = hourstring.split(':');
-     
-      const dateformat = new Date(12,2,25,+hour, +minute, +seconds);
+      
+      let dateformatselected = formatDate(this.appointmentdateselected,'yyyy-MM-dd','en_US')
+      
+      console.log(dateformatselected)
+
+      const [year, month, day] = dateformatselected.split('-');
+
+      const dateformat = new Date(+year,+month-1,+day,+hour, +minute, +seconds);
 
       console.log(dateformat)
 
-      this.appointmenthour = this.pipedate.transform(dateformat, 'YYYY-MM-dd HH:mm:ss');
-      this.newdate = new Date(this.appointmenthour)
+
+      this.appointmentdateformated = dateformat
+      let format = formatDate(this.appointmentdateformated,'yyyy-MM-dd hh:mm:ss', 'en_US') 
+      this.newdate = new Date(format)
+      
       console.log(this.newdate)
       
-      this.appointmentobject.scheduledAt = this.newdate
-      console.log(this.appointmentobject.scheduledAt)
+      this.appointmentobject.scheduledAt = this.newdate 
       this.appointmentobject.notes = "note test"
       this.appointmentservice.createAppointment(this.appointmentobject,patientid,doctorid).subscribe( (response:any) =>{
-        this.dataSourceappointment.data.push( {...response});
-        this.dataSourceappointment.data = this.dataSourceappointment.data.map((o: any) => { return o; });
+          this.dataSourceappointment.data.push( {...response});
+          this.dataSourceappointment.data = this.dataSourceappointment.data.map((o: any) => { return o; });
+          console.log(response)
         }
       )
+
+      const dialogRef = this.dialog.open(ResultDialogAppointmentComponent)
   }
 
 

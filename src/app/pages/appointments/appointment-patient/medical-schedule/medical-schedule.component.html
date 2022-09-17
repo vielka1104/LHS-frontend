@@ -41,7 +41,7 @@
         <form [formGroup]="scheduleform">
           <mat-form-field appearance="outline">
             <mat-label>Fecha</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName = "date" required>
+            <input matInput [matDatepicker]="picker" formControlName = "date" required [(ngModel)]="appointmentdateselected">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
             <mat-error>Es requerido este campo!</mat-error>
@@ -55,37 +55,30 @@
               <div class="pr-10"></div>
               <th>
                 <h1>LUNES</h1>
-                <h2 class="font-normal">06 JUL 2022</h2>
               </th>
               <div class="pr-24"></div>
               <th>
                 <h1>MARTES</h1>
-                <h2 class="font-normal">07 JUL 2022</h2>
               </th>
               <div class="pr-24"></div>
               <th>
                 <h1>MIERCOLES</h1>
-                <h2 class="font-normal">08 JUL 2022</h2>
               </th>
               <div class="pr-24"></div>
               <th>
                 <h1>JUEVES</h1>
-                <h2 class="font-normal">09 JUL 2022</h2>
               </th>
               <div class="pr-24"></div>
               <th>
                 <h1>VIERNES</h1>
-                <h2 class="font-normal">10 JUL 2022</h2>
               </th>
               <div class="pr-24"></div>
               <th>
                 <h1>SABADO</h1>
-                <h2 class="font-normal">11 JUL 2022</h2>
               </th>
               <div class="pr-24"></div>
               <th>
                 <h1>DOMINGO</h1>
-                <h2 class="font-normal">12 JUL 2022</h2>
               </th>
               <div class="pr-10"></div>
             </tr> 
@@ -188,11 +181,6 @@
             </tr>
           </table>
         </mat-card>
-        <br>
-        <br>
-        <div class="text-center">
-          <button mat-raised-button color="primary" (click)="RegisterMethod()" [disabled]= "scheduleform.invalid">Reservar Cita</button>
-        </div>
       </th>
     </tr>
   </table>
