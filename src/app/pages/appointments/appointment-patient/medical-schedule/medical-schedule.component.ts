@@ -37,6 +37,9 @@ export class MedicalScheduleComponent implements OnInit {
   testdate:Date =new Date()
   appointmentdateselected!:Date
   appointmentdateformated!:any
+  appyear!:any
+  appmonth!:any
+  appday!:any
   dataSourceappointment = new MatTableDataSource<any>()
   
   constructor(public dialog:MatDialog, private formBuilder:FormBuilder,private route:Router,private activeroute:ActivatedRoute, 
@@ -61,7 +64,14 @@ export class MedicalScheduleComponent implements OnInit {
     this.getPatientbyId(this.urlpatientid)
     this.getDoctorbyId(this.urldoctorid)
     this.getTimeBlocks(this.urldoctorid)
+
+    let showdateformat = formatDate(this.appointmentdateselected,'yyyy-MM-dd','en_US')
     
+    const [year, month, day] = showdateformat.split('-')
+
+    this.appyear = year
+    this.appmonth = month
+    this.appday = day
   }
 
   getPatientbyId(id:number){
@@ -132,24 +142,19 @@ export class MedicalScheduleComponent implements OnInit {
       const dateformat = new Date(+year,+month-1,+day,+hour, +minute, +seconds);
 
       console.log(dateformat)
-
-
-      this.appointmentdateformated = dateformat
-      let format = formatDate(this.appointmentdateformated,'yyyy-MM-dd hh:mm:ss', 'en_US') 
-      this.newdate = new Date(format)
       
-      console.log(this.newdate)
-      
-      this.appointmentobject.scheduledAt = this.newdate 
+      this.appointmentobject.scheduledAt = dateformat 
       this.appointmentobject.notes = "note test"
       this.appointmentservice.createAppointment(this.appointmentobject,patientid,doctorid).subscribe( (response:any) =>{
           this.dataSourceappointment.data.push( {...response});
           this.dataSourceappointment.data = this.dataSourceappointment.data.map((o: any) => { return o; });
           console.log(response)
+          const dialogRef = this.dialog.open(ResultDialogAppointmentComponent)
+        },err=>{
+          alert("Cita ya guardada por otro paciente intente otro horario")
         }
       )
 
-      const dialogRef = this.dialog.open(ResultDialogAppointmentComponent)
   }
 
 

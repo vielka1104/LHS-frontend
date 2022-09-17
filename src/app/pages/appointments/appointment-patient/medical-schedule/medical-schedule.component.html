@@ -18,10 +18,10 @@
 </header>
 <mat-divider class="bg-cyan-400"></mat-divider>
 <body class="bg-white">
-  <table>
+  <table class="w-full">
     <tr>
       <th class="font-normal pl-80 pt-10">
-        <mat-card class="text-left w-auto">
+        <mat-card class="text-left w-4/5">
           <div class="inline-flex">
             <img src="../../assets/images/medical-profile.png">
             <div class="pr-10"></div>
@@ -29,11 +29,7 @@
           </div>
         </mat-card>
         <br>
-        <div class="inline-flex">
-          <h1 class="font-bold pt-3">23 de Mayo 2022
-            <h2 class="font-normal">Lunes</h2>
-          </h1>
-          <div class="pr-40"></div>
+        <div class="inline-flex pr-80">
           <h1 class="font-bold pt-3">Paciente:</h1>
           <div class="pr-10"></div>
           <h1 class="pt-3">{{patientobject.name}}</h1>
@@ -49,66 +45,14 @@
         </form>
         </div>
         <br>
-        <mat-card>
-          <table>
+        <mat-card class="w-2/4 ml-56 mr-auto">
+            <h1 class="text-center font-bold">
+                {{appointmentdateselected}}
+            </h1>
+          <br>
+          <table class="ml-auto mr-auto">
             <tr>
               <div class="pr-10"></div>
-              <th>
-                <h1>LUNES</h1>
-              </th>
-              <div class="pr-24"></div>
-              <th>
-                <h1>MARTES</h1>
-              </th>
-              <div class="pr-24"></div>
-              <th>
-                <h1>MIERCOLES</h1>
-              </th>
-              <div class="pr-24"></div>
-              <th>
-                <h1>JUEVES</h1>
-              </th>
-              <div class="pr-24"></div>
-              <th>
-                <h1>VIERNES</h1>
-              </th>
-              <div class="pr-24"></div>
-              <th>
-                <h1>SABADO</h1>
-              </th>
-              <div class="pr-24"></div>
-              <th>
-                <h1>DOMINGO</h1>
-              </th>
-              <div class="pr-10"></div>
-            </tr> 
-            <br>
-            <tr>
-              <div class="pr-10"></div>
-              <th>
-                <button mat-stroked-button color="basic" (click)="SelectedDate(doctorobject.shift.startShift,patientobject.id,doctorobject.id)">{{doctorobject.shift.startShift}}</button>
-              </th>
-              <div class="pr-24"></div>
-              <th>
-                <button mat-stroked-button color="basic" (click)="SelectedDate(doctorobject.shift.startShift,patientobject.id,doctorobject.id)">{{doctorobject.shift.startShift}}</button>
-              </th>
-              <div class="pr-24"></div>
-              <th>
-                <button mat-stroked-button color="basic" (click)="SelectedDate(doctorobject.shift.startShift,patientobject.id,doctorobject.id)">{{doctorobject.shift.startShift}}</button>
-              </th>
-              <div class="pr-24"></div>
-              <th>
-                <button mat-stroked-button color="basic" (click)="SelectedDate(doctorobject.shift.startShift,patientobject.id,doctorobject.id)">{{doctorobject.shift.startShift}}</button>
-              </th>
-              <div class="pr-24"></div>
-              <th>
-                <button mat-stroked-button color="basic" (click)="SelectedDate(doctorobject.shift.startShift,patientobject.id,doctorobject.id)">{{doctorobject.shift.startShift}}</button>
-              </th>
-              <div class="pr-24"></div>
-              <th>
-                <button mat-stroked-button color="basic" (click)="SelectedDate(doctorobject.shift.startShift,patientobject.id,doctorobject.id)">{{doctorobject.shift.startShift}}</button>
-              </th>
-              <div class="pr-24"></div>
               <th>
                 <button mat-stroked-button color="basic" (click)="SelectedDate(doctorobject.shift.startShift,patientobject.id,doctorobject.id)">{{doctorobject.shift.startShift}}</button>
               </th>
@@ -121,59 +65,11 @@
                 <button mat-stroked-button color="basic" (click)="SelectedDate(item,patientobject.id,doctorobject.id)">{{item}}</button>
                 <div class="pb-5"></div>
               </th>
-              <div class="pr-24"></div>
-              <th>
-                <button mat-stroked-button color="basic" (click)="SelectedDate(item,patientobject.id,doctorobject.id)">{{item}}</button>
-              </th>
-              <div class="pr-24"></div>
-              <th>
-                <button mat-stroked-button color="basic" (click)="SelectedDate(item,patientobject.id,doctorobject.id)">{{item}}</button>
-              </th>
-              <div class="pr-24"></div>
-              <th>
-                <button mat-stroked-button color="basic" (click)="SelectedDate(item,patientobject.id,doctorobject.id)">{{item}}</button>
-              </th>
-              <div class="pr-24"></div>
-              <th>
-                <button mat-stroked-button color="basic" (click)="SelectedDate(item,patientobject.id,doctorobject.id)">{{item}}</button>
-              </th>
-              <div class="pr-24"></div>
-              <th>
-                <button mat-stroked-button color="basic" (click)="SelectedDate(item,patientobject.id,doctorobject.id)">{{item}}</button>
-              </th>
-              <div class="pr-24"></div>
-              <th>
-                <button mat-stroked-button color="basic" (click)="SelectedDate(item,patientobject.id,doctorobject.id)">{{item}}</button>
-              </th>
               <div class="pr-10"></div>
             </tr>
-            <div class="pb-3"></div>
+            <div class="pb-1"></div>
             <tr>
               <div class="pr-10"></div>
-              <th>
-                <button mat-stroked-button color="basic" (click)="SelectedDate(doctorobject.shift.endShift,patientobject.id,doctorobject.id)">{{doctorobject.shift.endShift}}</button>
-              </th>
-              <div class="pr-24"></div>
-              <th>
-                <button mat-stroked-button color="basic" (click)="SelectedDate(doctorobject.shift.endShift,patientobject.id,doctorobject.id)">{{doctorobject.shift.endShift}}</button>
-              </th>
-              <div class="pr-24"></div>
-              <th>
-                <button mat-stroked-button color="basic" (click)="SelectedDate(doctorobject.shift.endShift,patientobject.id,doctorobject.id)">{{doctorobject.shift.endShift}}</button>
-              </th>
-              <div class="pr-24"></div>
-              <th>
-                <button mat-stroked-button color="basic" (click)="SelectedDate(doctorobject.shift.endShift,patientobject.id,doctorobject.id)">{{doctorobject.shift.endShift}}</button>
-              </th>
-              <div class="pr-24"></div>
-              <th>
-                <button mat-stroked-button color="basic" (click)="SelectedDate(doctorobject.shift.endShift,patientobject.id,doctorobject.id)">{{doctorobject.shift.endShift}}</button>
-              </th>
-              <div class="pr-24"></div>
-              <th>
-                <button mat-stroked-button color="basic" (click)="SelectedDate(doctorobject.shift.endShift,patientobject.id,doctorobject.id)">{{doctorobject.shift.endShift}}</button>
-              </th>
-              <div class="pr-24"></div>
               <th>
                 <button mat-stroked-button color="basic" (click)="SelectedDate(doctorobject.shift.endShift,patientobject.id,doctorobject.id)">{{doctorobject.shift.endShift}}</button>
               </th>
