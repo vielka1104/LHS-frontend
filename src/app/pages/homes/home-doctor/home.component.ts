@@ -41,5 +41,8 @@ export class HomeComponent implements OnInit {
                this.DoctorResource=response           
     })
 }
+  GoToAppointmentDoctor(){
+    this.Router.navigate([`appointment-doctor/doctor/${1}`]);
+  }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, FormGroup, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
   loginform!: FormGroup
   hide:boolean = true
   
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,private route:Router) { }
 
   ngOnInit() {
     this.loginform=this.formBuilder.group({
@@ -19,5 +20,7 @@ export class LoginComponent implements OnInit {
       password:['',Validators.required]
      })
   }
-
+  GoToHomeDoctor(id:number){
+    this.route.navigate([`doctor/${id}/home-doctor`])
+  }
 }
