@@ -1,12 +1,12 @@
 <header>
   <mat-toolbar class="bg-white">
-    <button routerLink="/appointment-doctor">
+    <button (click)="GoToAppointmentDoctor(doctorobject.id)">
       <img src="../../assets/images/back-arrow-2.png" class="w-10 h-10">
     </button>
     <span class="pr-5"></span>
     <h1 class="text-slate-800">Clinica de salud</h1>
     <span class="flex-auto"></span>
-    <h1 class="text-slate-800">Patient</h1>
+    <h1 class="text-slate-800">{{patientobject.name}}</h1>
     <span class="flex-auto"></span>
     <img src="../../assets/images/profile.png" class="w-10 h-10">
     <button>
@@ -38,20 +38,20 @@
           <h1 class="pt-5">Nombres:</h1>
           <span class="pr-16"></span>
           <span class="pr-0.5"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{patientobject.name}}</h1>
         </div>
         <br>
         <div class="inline-flex w-full">
           <h1 class="pt-5">Apellidos:</h1>
           <span class="pr-16"></span>
           <span class="pr-0.5"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{patientobject.lastname}}</h1>
         </div>
         <br>
         <div class="inline-flex w-full">
           <h1 class="pt-5">Tipo de Doc:</h1>
           <span class="pr-12"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{patientobject.documentType}}</h1>
         </div>
       </th>
       <div class="pr-40"></div>
@@ -61,14 +61,14 @@
               <h1 class="pt-5">Número de Documento:</h1>
             </div>
             <span class="pr-10"></span>
-            <h1 class="pt-8 font-normal">Dato</h1>
+            <h1 class="pt-8 font-normal">{{patientobject.documentNumber}}</h1>
           </div>
           <br>
           <div class="inline-flex w-full"> 
             <h1 class="pt-5">Sexo:</h1>
             <span class="pr-20"></span>
             <span class="pr-2"></span>
-            <h1 class="pt-5 font-normal">Dato</h1>
+            <h1 class="pt-5 font-normal">{{patientobject.gender}}</h1>
           </div>
       </th>
       <div class="pr-40"></div>
@@ -79,13 +79,13 @@
           <form [formGroup]="patientrecordform">
             <mat-form-field appearance="outline">
               <mat-label>Su altura</mat-label>
-              <input matInput type="number" formControlName="height" placeholder="Ingrese su altura" required>
+              <input matInput formControlName="height" placeholder="Ingrese su altura" required [(ngModel)]="patientheight">
               <mat-error>Es requerido este campo!</mat-error>
             </mat-form-field>
           </form>
         </div>
         <div>
-          <button mat-raised-button color="primary" class="w-40" (click)="RegisterMethod()" [disabled]="patientrecordform.invalid">Agregar</button>
+          <button mat-raised-button color="primary" class="w-40" (click)="UpdatePatient(patientobject.id)" [disabled]="patientrecordform.invalid">Agregar</button>
         </div>
       </th>
     </tr>
@@ -115,20 +115,20 @@
             <span class="pr-24"></span>
             <span class="pr-1"></span>
             <span class="pr-0.5"></span>
-            <h1 class="pt-5 font-normal">Dato</h1>
+            <h1 class="pt-5 font-normal">{{surveillancepatient.planCalories}}</h1>
           </div>
           <br>
           <div class="inline-flex w-full">
             <h1 class="pt-5">Consumo de calorías:</h1>
             <span class="pr-16"></span>
-            <h1 class="pt-5 font-normal">Dato</h1>
+            <h1 class="pt-5 font-normal">{{surveillancepatient.consumedCalories}}</h1>
           </div>
           <br>
           <div class="inline-flex w-full">
             <h1 class="pt-5">Apetito:</h1>
             <span class="pr-40"></span>
             <span class="pr-1"></span>
-            <h1 class="pt-5 font-normal">Dato</h1>
+            <h1 class="pt-5 font-normal">{{surveillancepatient.appetite}}</h1>
           </div>
           <br>
           <div class="inline-flex w-full">
@@ -136,7 +136,7 @@
             <span class="pr-40"></span>
             <span class="pr-6"></span>
             <span class="pr-0.5"></span>
-            <h1 class="pt-5 font-normal">Dato</h1>
+            <h1 class="pt-5 font-normal">{{surveillancepatient.imc}}</h1>
           </div>
           <br>
           <div class="inline-flex w-full">
@@ -144,7 +144,7 @@
             <span class="pr-40"></span>
             <span class="pr-4"></span>
             <span class="pr-0.5"></span>
-            <h1 class="pt-5 font-normal">Dato</h1>
+            <h1 class="pt-5 font-normal">{{surveillancepatient.weight}}</h1>
           </div>
         <div class="pb-32"></div>
         <h1>Otros</h1>
@@ -154,7 +154,7 @@
           <span class="pr-16"></span>
           <span class="pr-3"></span>
           <div class="max-w-fit">
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient.pain}}</h1>
           </div>  
         </div>
         <br>
@@ -162,7 +162,7 @@
           <h1 class="pt-5">Síntomas:</h1>
           <span class="pr-16"></span>
           <div class="max-w-fit">
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient.otherSymptoms}}</h1>
           </div>
         </div>
       </th>
@@ -174,47 +174,47 @@
           <h1 class="pt-5">Hemoglobina:</h1>
           <span class="pr-16"></span>
           <span class="pr-1"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient.hemoglobin}}</h1>
         </div>
         <br>
         <div class="inline-flex w-full">
           <h1 class="pt-5">Linfocitos:</h1>
           <span class="pr-20"></span>
           <span class="pr-3"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient.lymphocytes}}</h1>
         </div>
         <br>
         <div class="inline-flex w-full">
           <h1 class="pt-5">Segmentados:</h1>
           <span class="pr-16"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient.segmented}}</h1>
         </div>
         <br>
         <div class="inline-flex w-full">
           <h1 class="pt-5">Monocitos:</h1>
           <span class="pr-20"></span>
           <span class="pr-2"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient.monocytes}}</h1>
         </div>
         <br>
         <div class="inline-flex w-full">
           <h1 class="pt-5">VCM:</h1>
           <span class="pr-32"></span>
           <span class="pr-0.5"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient.mvc}}</h1>
         </div>
         <br>
         <div class="inline-flex w-full">
           <h1 class="pt-5">HCM:</h1>
           <span class="pr-32"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient.mch}}</h1>
         </div>
         <br>
         <div class="inline-flex w-full">
           <h1 class="pt-5">Leucocitos:</h1>
           <span class="pr-20"></span>
           <span class="pr-1"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient.leukocytes}}</h1>
         </div>
         <br>
         <div class="inline-flex w-full">
@@ -222,14 +222,14 @@
           <span class="pr-20"></span>
           <span class="pr-3"></span>
           <span class="pr-0.5"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient.erythrocytes}}</h1>
         </div>
         <br>
         <div class="inline-flex w-full">
           <h1 class="pt-5">Glucosa:</h1>
           <span class="pr-24"></span>
           <span class="pr-2"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient.glucose}}</h1>
         </div>
         <br>
         <div class="inline-flex w-full">
@@ -237,14 +237,14 @@
           <span class="pr-20"></span>
           <span class="pr-2"></span>
           <span class="pr-0.5"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient.cholesterol}}</h1>
         </div>
         <br>
         <div class="inline-flex w-full">
           <h1 class="pt-5">Triglicéridos:</h1>
           <span class="pr-16"></span>
           <span class="pr-2"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient}}</h1>
         </div>
       </th>
       <div class="pr-60"></div>
@@ -254,14 +254,14 @@
         <div class="inline-flex w-full">
           <h1 class="pt-5">Densidad de orina:</h1>
           <span class="pr-10"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient.density}}</h1>
         </div>
         <br>
         <div class="inline-flex w-full">
           <h1 class="pt-5">PH:</h1>
           <span class="pr-36"></span>
           <span class="pr-1"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient.ph}}</h1>
         </div>
         <br>
         <div class="inline-flex w-full">
@@ -269,33 +269,33 @@
           <span class="pr-24"></span>
           <span class="pr-1"></span>
           <span class="pr-0.5"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient.protein}}</h1>
         </div>
         <br>
         <div class="inline-flex w-full">
           <h1 class="pt-5">Cetonas:</h1>
           <span class="pr-28"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient.ketone}}</h1>
         </div>
         <br>
         <div class="inline-flex w-full">
           <h1 class="pt-5">Urobilinogeno:</h1>
           <span class="pr-16"></span>
           <span class="pr-2"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient.urobilinogen}}</h1>
         </div>
         <br>
         <div class="inline-flex w-full">
           <h1 class="pt-5">Bilirrubina:</h1>
           <span class="pr-24"></span>
           <span class="pr-0.5"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient.bilirubin}}</h1>
         </div>
         <br>
         <div class="inline-flex w-full">
           <h1 class="pt-5">Nitrito:</h1>
           <span class="pr-32"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient.nitrite}}</h1>
         </div>
         <br>
         <div class="inline-flex w-full">
@@ -303,27 +303,27 @@
           <span class="pr-24"></span>
           <span class="pr-3"></span>
           <span class="pr-0.5"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient.crystals}}</h1>
         </div>
         <br>
         <div class="inline-flex w-full">
           <h1 class="pt-5">Azucar:</h1>
           <span class="pr-28"></span>
           <span class="pr-3"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient.sugar}}</h1>
         </div>
         <br>
         <div class="inline-flex w-full">
           <h1 class="pt-5">Aspecto de la orina:</h1>
           <span class="pr-9"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient.urineAppearance}}</h1>
         </div>
         <br>
         <div class="inline-flex w-full">
           <h1 class="pt-5">Color de la orina:</h1>
           <span class="pr-14"></span>
           <span class="pr-0.5"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient.urineColor}}</h1>
         </div>
         <br>
         <div class="inline-flex w-full">
@@ -331,14 +331,14 @@
           <span class="pr-32"></span>
           <span class="pr-3"></span>
           <span class="pr-0.5"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient.urea}}</h1>
         </div>
         <br>
         <div class="inline-flex w-full">
           <h1 class="pt-5">Creatinina:</h1>
           <span class="pr-24"></span>
           <span class="pr-2"></span>
-          <h1 class="pt-5 font-normal">Dato</h1>
+          <h1 class="pt-5 font-normal">{{surveillancepatient.creatinine}}</h1>
         </div>
       </th>
     </tr>
@@ -361,7 +361,7 @@
             <form [formGroup]="backrecordform">
               <mat-form-field appearance="outline" class="w-96">
                 <mat-label>Ingrese enfermedad</mat-label>
-                <input matInput formControlName="disease" placeholder="Ingrese su enfermedad" required>
+                <input matInput formControlName="disease" placeholder="Ingrese su enfermedad" required [(ngModel)]="ancientpatient.illness">
                 <mat-error>Es requerido este campo!</mat-error>
               </mat-form-field>
             </form>
@@ -375,7 +375,7 @@
             <form [formGroup]="backrecordform">
               <mat-form-field appearance="outline" class="w-96">
                 <mat-label>Ingrese descripción</mat-label>
-                <textarea matInput formControlName="description" placeholder="Ingrese su descripción" required></textarea>
+                <textarea matInput formControlName="description" placeholder="Ingrese su descripción" required [(ngModel)]="ancientpatient.description"></textarea>
                 <mat-error>Es requerido este campo!</mat-error>
               </mat-form-field>
             </form>
@@ -389,7 +389,7 @@
             <form [formGroup]="backrecordform">
               <mat-form-field appearance="outline" class="w-96">
                 <mat-label>Ingrese fecha</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Ingrese su fecha" required>
+                <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Ingrese su fecha" required [(ngModel)]="ancientpatient.date">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
                 <mat-error>Es requerido este campo!</mat-error>
@@ -400,12 +400,12 @@
       </tr>  
     </table>
     <div class="pb-10"></div>
-      <table mat-table [dataSource]="dataSource" class="w-11/12 ml-auto mr-auto border-2">
+      <table mat-table [dataSource]="dataSourceancient" class="w-11/12 ml-auto mr-auto border-2">
 
-        <ng-container matColumnDef="code">
+        <ng-container matColumnDef="id">
           
           <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Código</h1> </th>
-          <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
         </ng-container>
       
         <ng-container matColumnDef="description">
@@ -415,7 +415,7 @@
       
         <ng-container matColumnDef="diseasetype">
           <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Tipo de Enfermedad</h1> </th>
-          <td mat-cell *matCellDef="let element"> {{element.diseasetype}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.illness}} </td>
         </ng-container>
       
         <ng-container matColumnDef="date">
@@ -423,13 +423,13 @@
           <td mat-cell *matCellDef="let element"> {{element.date}} </td>
         </ng-container>
       
-        <tr mat-header-row *matHeaderRowDef="displayedColumns" class="bg-blue-100"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns" class="text-center"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsancient" class="bg-blue-100"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsancient" class="text-center"></tr>
       
       </table>
     <br>
     <div class="text-right pr-20">
-      <button mat-raised-button color="primary" class="w-40" [disabled]="backrecordform.invalid" (click)="SaveAncient()">Guardar</button>
+      <button mat-raised-button color="primary" class="w-40" [disabled]="backrecordform.invalid" (click)="SaveAncient(patientobject.id)">Guardar</button>
     </div>
     <!--Diagnostico-->
     <div class="pt-10"></div>
@@ -448,7 +448,7 @@
           <form [formGroup]="diagnosticform">
             <mat-form-field appearance="outline" class="w-96">
               <mat-label>fecha de inicio</mat-label>
-              <input matInput [matDatepicker]="picker2" formControlName="initdate" placeholder="Ingrese su fecha de inicio" required>
+              <input matInput [matDatepicker]="picker2" formControlName="initdate" placeholder="Ingrese su fecha de inicio" required [(ngModel)]="patientdiagnostic.startDate">
               <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
               <mat-datepicker #picker2></mat-datepicker>
               <mat-error>Es requerido este campo!</mat-error>
@@ -463,7 +463,7 @@
           <form [formGroup]="diagnosticform">
             <mat-form-field appearance="outline" class="w-96">
               <mat-label>fecha de fin</mat-label>
-              <input matInput [matDatepicker]="picker3" formControlName="finishdate" placeholder="Ingrese su fecha de fin" required>
+              <input matInput [matDatepicker]="picker3" formControlName="finishdate" placeholder="Ingrese su fecha de fin" required [(ngModel)]="patientdiagnostic.endDate">
               <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
               <mat-datepicker #picker3></mat-datepicker>
               <mat-error>Es requerido este campo!</mat-error>
@@ -484,11 +484,12 @@
             <form [formGroup]="diagnosticform">
               <mat-form-field appearance="outline" class="w-96">
                 <mat-label>Su tipo</mat-label>
-                <mat-select formControlName="typediagnostic" required>
+                <input matInput formControlName="typediagnostic" required [(ngModel)]="diagnosis.name">
+                <!-- <mat-select formControlName="typediagnostic" required [(ngModel)]="diagnosis.name">
                   <div *ngFor="let diagnostictype of diagnostictypes">
-                    <mat-option value="uno">{{diagnostictype}}</mat-option>
+                    <mat-option value="v3">{{diagnostictype}}</mat-option>
                   </div>
-                </mat-select>
+                </mat-select>-->
                 <mat-error>Es requerido este campo!</mat-error>
               </mat-form-field>
             </form>
@@ -504,7 +505,7 @@
           <form [formGroup]="diagnosticform">
             <mat-form-field appearance="outline" class="w-full">
               <mat-label>Ingrese aqui su mensaje</mat-label>
-              <textarea matInput formControlName="indicationtext" required></textarea>
+              <textarea matInput formControlName="indicationtext" required [(ngModel)]="diagnosis.description"></textarea>
               <mat-error>Este campo es requerido!</mat-error>
             </mat-form-field>
           </form>
@@ -512,32 +513,32 @@
       </tr>
     </table>
     <div class="pb-10"></div>
-      <table mat-table [dataSource]="dataSourcediagnostic" class="w-11/12 ml-auto mr-auto border-2">
+      <table mat-table [dataSource]="dataSourcepatientdiagnostic" class="w-11/12 ml-auto mr-auto border-2">
 
         <ng-container matColumnDef="code">
           
           <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Código</h1> </th>
-          <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
         </ng-container>
       
         <ng-container matColumnDef="description">
           <th mat-header-cell *matHeaderCellDef><h1 class="text-center font-bold">Descripción</h1> </th>
-          <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.diagnosis.description}} </td>
         </ng-container>
       
         <ng-container matColumnDef="diagnostic">
           <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Tipo de Diagnóstico</h1> </th>
-          <td mat-cell *matCellDef="let element"> {{element.diagnostic}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.diagnosis.name}} </td>
         </ng-container>
       
         <ng-container matColumnDef="initdate">
           <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Fecha inicio</h1> </th>
-          <td mat-cell *matCellDef="let element"> {{element.initdate}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.startDate}} </td>
         </ng-container>
 
         <ng-container matColumnDef="finishdate">
           <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Fecha fin</h1> </th>
-          <td mat-cell *matCellDef="let element"> {{element.finishdate}}</td>
+          <td mat-cell *matCellDef="let element"> {{element.endDate}}</td>
         </ng-container>
       
         <tr mat-header-row *matHeaderRowDef="displayedColumnsdiagnostic" class="bg-blue-100"></tr>
@@ -546,7 +547,7 @@
       </table>
     <br>
       <div class="text-right pr-20">
-        <button mat-raised-button color="primary" class="w-40" [disabled]="diagnosticform.invalid" (click)="SaveClinicManagement()">Guardar</button>
+        <button mat-raised-button color="primary" class="w-40" [disabled]="diagnosticform.invalid" (click)="SaveDiagnostic(patientobject.id)">Guardar</button>
       </div>
     <!--Tratamiento-->
     <div class="pt-10"></div>
@@ -565,7 +566,7 @@
           <form [formGroup]="treatmentform">
             <mat-form-field appearance="outline" class="w-96">
               <mat-label>La fecha de inicio</mat-label>
-              <input matInput [matDatepicker]="picker5" formControlName="initdate" placeholder="Ingrese su fecha de inicio" required>
+              <input matInput [matDatepicker]="picker5" formControlName="initdate" placeholder="Ingrese su fecha de inicio" required [(ngModel)]="patienttreatment.startDate">
               <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
               <mat-datepicker #picker5></mat-datepicker>
               <mat-error>Es requerido este campo!</mat-error>
@@ -580,7 +581,7 @@
           <form [formGroup]="treatmentform">
             <mat-form-field appearance="outline" class="w-96">
               <mat-label>La fecha de fin</mat-label>
-              <input matInput [matDatepicker]="picker6" formControlName="finishdate" placeholder="Ingrese su fecha de fin" required>
+              <input matInput [matDatepicker]="picker6" formControlName="finishdate" placeholder="Ingrese su fecha de fin" required [(ngModel)]="patienttreatment.endDate">
               <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
               <mat-datepicker #picker6></mat-datepicker>
               <mat-error>Es requerido este campo!</mat-error>
@@ -594,7 +595,7 @@
           <form [formGroup]="treatmentform">
             <mat-form-field appearance="outline" class="w-96">
               <mat-label>Su cantidad de dosis</mat-label>
-              <input matInput type="number" formControlName="doses" placeholder="Ingrese su número de dosis" required>
+              <input matInput type="number" formControlName="doses" placeholder="Ingrese su número de dosis" required [(ngModel)]="patienttreatment.dose">
               <mat-error>Es requerido este campo!</mat-error>
             </mat-form-field>
           </form>
@@ -607,11 +608,12 @@
           <form [formGroup]="treatmentform">
             <mat-form-field appearance="outline" class="w-96">
               <mat-label>Su tipo</mat-label>
-              <mat-select formControlName="type" required>
+              <input matInput formControlName="type" required [(ngModel)]="treatment.name">
+              <!--<mat-select formControlName="type" required>
                 <div *ngFor="let treatmenttype of treatmenttypes">
                   <mat-option value="uno">{{treatmenttype}}</mat-option>
                 </div>
-              </mat-select>
+              </mat-select>-->
               <mat-error>Es requerido este campo!</mat-error>
             </mat-form-field>
           </form>
@@ -623,7 +625,7 @@
           <form [formGroup]="treatmentform">
             <mat-form-field appearance="outline" class="w-96">
               <mat-label>Su descripción</mat-label>
-              <textarea matInput formControlName="description" required></textarea>
+              <textarea matInput formControlName="description" required [(ngModel)]="treatment.description"></textarea>
               <mat-error>Es requerido este campo!</mat-error>
             </mat-form-field>
           </form>
@@ -635,7 +637,7 @@
           <form [formGroup]="treatmentform">
             <mat-form-field appearance="outline" class="w-96">
               <mat-label>Su medicamento</mat-label>
-              <input matInput formControlName="medicine" placeholder="Ingrese su medicamento" required>
+              <input matInput formControlName="medicine" placeholder="Ingrese su medicamento" required [(ngModel)]="patientmedicine.name">
               <mat-error>Es requerido este campo!</mat-error>
             </mat-form-field>
           </form>
@@ -644,42 +646,42 @@
     </tr>
     </table>
     <div class="pb-10"></div>
-      <table mat-table [dataSource]="dataSourcetreatment" class="w-11/12 ml-auto mr-auto border-2">
+      <table mat-table [dataSource]="dataSourcepatienttreatment" class="w-11/12 ml-auto mr-auto border-2">
 
         <ng-container matColumnDef="code">
           
           <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Código</h1> </th>
-          <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
         </ng-container>
       
         <ng-container matColumnDef="typetreatment">
           <th mat-header-cell *matHeaderCellDef><h1 class="text-center font-bold">Tipo de tratamiento</h1> </th>
-          <td mat-cell *matCellDef="let element"> {{element.typetreatment}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.treatment.name}} </td>
         </ng-container>
       
         <ng-container matColumnDef="medicine">
           <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Medicamento</h1> </th>
-          <td mat-cell *matCellDef="let element"> {{element.medicine}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.medicine.name}} </td>
         </ng-container>
       
         <ng-container matColumnDef="doses">
           <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold"># de dosis</h1> </th>
-          <td mat-cell *matCellDef="let element"> {{element.doses}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.dose}} </td>
         </ng-container>
 
         <ng-container matColumnDef="description">
           <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Descripción</h1></th>
-          <td mat-cell *matCellDef="let element"> {{element.description}}</td>
+          <td mat-cell *matCellDef="let element"> {{element.treatment.description}}</td>
         </ng-container>
         
         <ng-container matColumnDef="initdate">
           <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Fecha inicio</h1> </th>
-          <td mat-cell *matCellDef="let element"> {{element.initdate}}</td>
+          <td mat-cell *matCellDef="let element"> {{element.startDate}}</td>
         </ng-container>
         
         <ng-container matColumnDef="finishdate">
           <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Fecha fin</h1> </th>
-          <td mat-cell *matCellDef="let element"> {{element.finishdate}}</td>
+          <td mat-cell *matCellDef="let element"> {{element.endDate}}</td>
         </ng-container>
       
         <tr mat-header-row *matHeaderRowDef="displayedColumnstreatment" class="bg-blue-100"></tr>
@@ -688,7 +690,7 @@
       </table>
     <br>
       <div class="text-right pr-20">
-        <button mat-raised-button color="primary" class="w-40" [disabled]="treatmentform.invalid" (click)="SaveTreatment()">Guardar</button>
+        <button mat-raised-button color="primary" class="w-40" [disabled]="treatmentform.invalid" (click)="SaveTreatment(patientobject.id)">Guardar</button>
       </div>
     <br>
 </body>

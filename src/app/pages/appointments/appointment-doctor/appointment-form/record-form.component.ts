@@ -7,31 +7,25 @@ import { ResultDialogClinicComponent } from 'src/app/pages/dialogs/result-dialog
 import { ResultDialogTreatmentComponent } from 'src/app/pages/dialogs/result-dialog-treatment/result-dialog-treatment.component';
 import { DatePipe } from '@angular/common';
 import { MatTableDataSource } from '@angular/material/table';
-
-export interface Ancient{
-  code: number
-  description: string
-  diseasetype:string
-  date:string
-}
-
-export interface Diagnostic{
-  code: number
-  description: string
-  diagnostic:string
-  initdate:string
-  finishdate:string
-}
-
-export interface Treatment{
-  code: number
-  doses:number
-  medicine:string
-  description: string
-  typetreatment:string
-  initdate:string
-  finishdate:string
-}
+import { PatientService } from 'src/app/services/patient/patient.service';
+import { PatientResource } from 'src/app/models/patient/PatientResource';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SurveillanceService } from 'src/app/services/surveillance/surveillance.service';
+import { SurveillanceResource } from 'src/app/models/surveillance/SurveillanceResource';
+import { IllnessRecordService } from 'src/app/services/ehr/illness-record.service';
+import { IllnessRecordResource } from 'src/app/models/illness-record/IllnessRecordResource';
+import { PatientDiagnosticService } from 'src/app/services/ehr/patient-diagnostic.service';
+import { DiagnosisResource } from 'src/app/models/diagnostic/DiagnosisResource';
+import { DiagnosticService } from 'src/app/services/ehr/diagnostic.service';
+import { CreatePatientDiagnosisResource } from 'src/app/models/patient-diagnostic/CreatePatientDiagnosisResource';
+import { PatientTreatmentResource } from 'src/app/models/patient-treatment/PatientTreatmentResource';
+import { TreatmentResource } from 'src/app/models/treatment/TreatmentResource';
+import { MedicineResource } from 'src/app/models/medicine/MedicineResource';
+import { PatientTreatmentService } from 'src/app/services/ehr/patient-treatment.service';
+import { TreatmentService } from 'src/app/services/ehr/treatment.service';
+import { MedicineService } from 'src/app/services/ehr/medicine.service';
+import { DoctorService } from 'src/app/services/doctor/doctor.service';
+import { DoctorResource } from 'src/app/models/doctor/DoctorResource';
 
 @Component({
   selector: 'app-record-form',
@@ -39,6 +33,19 @@ export interface Treatment{
   styleUrls: ['./record-form.component.css']
 })
 export class RecordFormComponent implements OnInit {
+  patientheight!:any
+  patientobject!:PatientResource
+  doctorobject!:DoctorResource
+  idpatienturl!:number
+  iddoctorurl!:number
+  patientupdate!:PatientResource
+  surveillancepatient!:SurveillanceResource
+  ancientpatient!:IllnessRecordResource
+  patientdiagnostic!:CreatePatientDiagnosisResource
+  diagnosis!:DiagnosisResource
+  patienttreatment!:PatientTreatmentResource
+  treatment!:TreatmentResource
+  patientmedicine!:MedicineResource
   patientrecordform!:FormGroup
   displayvigilancy!:boolean
   backrecordform!:FormGroup
@@ -51,30 +58,37 @@ export class RecordFormComponent implements OnInit {
   pipedate:DatePipe = new DatePipe("en-US")
   todaydate:any
   dataSource = new MatTableDataSource<any>();
+  dataSourceSurveillance = new MatTableDataSource<any>();
+  dataSourcepatientdiagnostic = new MatTableDataSource<any>()
   dataSourcediagnostic = new MatTableDataSource<any>()
+  dataSourcepatienttreatment = new MatTableDataSource<any>()
   dataSourcetreatment = new MatTableDataSource<any>()
+  dataSourcemedicine = new MatTableDataSource<any>()
 
-  displayedColumns: string[] = ['code', 'description', 'diseasetype', 'date'];
+  dataSourceancient = new MatTableDataSource<any>()
+  displayedColumnsancient: string[] = ['id', 'description', 'diseasetype', 'date'];
   displayedColumnsdiagnostic: string[] = ['code', 'description', 'diagnostic', 'initdate','finishdate'];
   displayedColumnstreatment: string[] = ['code', 'typetreatment', 'medicine', 'doses','description','initdate','finishdate'];
   
 
-  ancienttest:Ancient = {code: 1, description:"Hipertensión arterial", diseasetype:"Accord", date:"12/02/2022"};
-  ancienttest2:Ancient = {code: 2, description:"Diabetes Mellitus", diseasetype:"Camry", date:"12/02/2021"};
-  ancienttest3:Ancient = {code: 3, description:"Obesidad mórbida", diseasetype:"Elantra", date:"15/02/2021"};
-  ancientlist:Ancient[] = []
-  
-  diagnostictest:Diagnostic = {code: 1, description:"diagnostic 1", diagnostic:"diagnostic 1", initdate:"12/02/2022", finishdate:"12/03/2022"};
-  diagnostictest2:Diagnostic = {code: 2, description:"diagnostic 2", diagnostic:"diagnostic 2", initdate:"12/02/2021", finishdate:"12/03/2021"};
-  diagnostictest3:Diagnostic = {code: 3, description:"diagnostic 3", diagnostic:"diagnostic 3", initdate:"15/02/2021", finishdate:"15/03/2021"};
-  diagnosticlist:Diagnostic[] = []
-  
-  treatmenttest:Treatment = {code: 1, typetreatment:"treatment 1", medicine:"medicine 1", doses: 1, description:"a description 1", initdate: "20/02/2022", finishdate: "20/03/2022"};
-  treatmenttest2:Treatment = {code: 2, typetreatment:"treatment 2", medicine:"medicine 2", doses: 2, description:"a description 2",initdate: "20/02/2022", finishdate: "20/03/2022"};
-  treatmenttest3:Treatment = {code: 3, typetreatment:"treatment 3", medicine:"medicine 3", doses: 3, description:"a description 3",initdate: "20/02/2022", finishdate: "20/03/2022"};
-  treatmentlist:Treatment[] = []
-
-  constructor(public dialog:MatDialog, private formBuilder:FormBuilder) { }
+  constructor(public dialog:MatDialog, private formBuilder:FormBuilder, 
+    private patientservice:PatientService,private activeroute:ActivatedRoute, private route:Router, 
+    private surveillanceservice:SurveillanceService,
+    private illnesservice:IllnessRecordService,
+    private patientdiagnosticservice:PatientDiagnosticService,
+    private diagnosisservice:DiagnosticService,
+    private patienttreatmentservice:PatientTreatmentService,
+    private treatmentservice:TreatmentService,
+    private medicineservice:MedicineService,
+    private doctorservice:DoctorService
+    ) { 
+      this.ancientpatient = {} as IllnessRecordResource,
+      this.patientdiagnostic = {} as CreatePatientDiagnosisResource,
+      this.diagnosis = {} as DiagnosisResource
+      this.patienttreatment = {} as PatientTreatmentResource
+      this.treatment = {} as TreatmentResource
+      this.patientmedicine = {} as MedicineResource
+    }
 
   ngOnInit() {
     this.patientrecordform=this.formBuilder.group({
@@ -103,37 +117,76 @@ export class RecordFormComponent implements OnInit {
      this.displayvigilancy = false;
      this.todaydate = this.pipedate.transform(this.fechaactual, 'dd/MM/yyyy');
 
-     this.ancientlist.push(this.ancienttest)
-     this.ancientlist.push(this.ancienttest2)
-     this.ancientlist.push(this.ancienttest3)
-
-     this.diagnosticlist.push(this.diagnostictest)
-     this.diagnosticlist.push(this.diagnostictest2)
-     this.diagnosticlist.push(this.diagnostictest3)
-     
-     this.treatmentlist.push(this.treatmenttest)
-     this.treatmentlist.push(this.treatmenttest2)
-     this.treatmentlist.push(this.treatmenttest3)
-
-     this.dataSource.data = this.ancientlist
-     this.dataSourcediagnostic.data = this.diagnosticlist
-     this.dataSourcetreatment.data = this.treatmentlist
-
+     let urlpatientvariable = parseInt(this.activeroute.snapshot.paramMap.get('patientid')!);
+     let urldoctorvariable = parseInt(this.activeroute.snapshot.paramMap.get('doctorid')!);
+     this.idpatienturl = urlpatientvariable
+     this.iddoctorurl = urldoctorvariable
+     console.log(this.idpatienturl)
+     console.log(this.iddoctorurl)
+     this.GetPatientbyId(this.idpatienturl);
+     this.GetDoctorbyId(this.iddoctorurl)
+     this.getSurveillanceByPatientId(this.idpatienturl);
+     this.getPatientAncients(this.idpatienturl)
+     this.getPatientDiagnostic(this.idpatienturl)
+     this.getPatientTreatments(this.idpatienturl)
   }
 
   RegisterMethod(){
     const dialogRef = this.dialog.open(ResultDialogRecordComponent)
   }
 
-  SaveAncient(){
+  SaveAncient(id:number){
+    this.illnesservice.createIllnessRecord(this.ancientpatient,id).subscribe( (response:any) =>{
+      this.dataSourceancient.data.push( {...response});
+      this.dataSourceancient.data = this.dataSourceancient.data.map((o: any) => { return o; });
+    });
+
     const dialogRef = this.dialog.open(ResultDialogAncientComponent)
   }
 
-  SaveClinicManagement(){
+  SaveDiagnostic(id:number){
+    console.log(this.diagnosis);
+    console.log(this.patientdiagnostic);
+
+    this.diagnosisservice.createDiagnosis(this.diagnosis).subscribe( (response:any) =>{
+        this.dataSourcediagnostic.data.push( {...response});
+        console.log(response)
+        this.dataSourcediagnostic.data = this.dataSourcediagnostic.data.map((o: any) => { return o;});
+
+        this.patientdiagnosticservice.createPatientDiagnosis(this.patientdiagnostic,id,response.id).subscribe( (response:any) =>{
+            this.dataSourcepatientdiagnostic.data.push( {...response});
+            this.dataSourcepatientdiagnostic.data = this.dataSourcepatientdiagnostic.data.map((o: any) => { return o; });
+          }
+        )
+      }
+    )
+    
     const dialogRef = this.dialog.open(ResultDialogClinicComponent)
   }
 
-  SaveTreatment(){
+  SaveTreatment(id:number){
+    console.log(this.patientmedicine);
+    console.log(this.treatment);
+    console.log(this.patienttreatment);
+
+    this.medicineservice.createMedicine(this.patientmedicine).subscribe( (responsemedicine:any) =>{
+      this.dataSourcemedicine.data.push( {...responsemedicine});
+      console.log(responsemedicine)
+      this.dataSourcemedicine.data = this.dataSourcemedicine.data.map((o: any) => { return o;});
+
+      this.treatmentservice.createTreatment(this.treatment).subscribe( (responsetreatment:any) =>{
+            this.dataSourcetreatment.data.push( {...responsetreatment});
+            console.log(responsetreatment)
+            this.dataSourcetreatment.data = this.dataSourcetreatment.data.map((o: any) => { return o; });
+
+            this.patienttreatmentservice.createPatientTreatment(id,responsetreatment.id,responsemedicine.id,this.patienttreatment).subscribe( (responsepatienttreatment:any) =>{
+                this.dataSourcepatienttreatment.data.push( {...responsepatienttreatment});
+                console.log(responsepatienttreatment)
+                this.dataSourcepatienttreatment.data = this.dataSourcepatienttreatment.data.map((o: any) => { return o; });
+            })
+          })
+      });
+
     const dialogRef = this.dialog.open(ResultDialogTreatmentComponent)
   }
 
@@ -145,4 +198,78 @@ export class RecordFormComponent implements OnInit {
     }
   }
 
+  GetPatientbyId(id:number){
+    this.patientservice.getPatientById(id).subscribe( (response:any) =>{
+        this.patientobject = response
+        console.log(this.patientobject)
+      }
+    )
+  }
+
+  GetDoctorbyId(id:number){
+    this.doctorservice.getDoctorById(id).subscribe( (response:any) =>{
+        this.doctorobject = response
+        console.log(this.doctorobject)
+      }
+    )
+  }
+
+  UpdatePatient(id:number){
+    console.log(this.patientheight)
+    
+    this.patientservice.getPatientById(id).subscribe((response:any) =>{
+        this.patientupdate = response
+        this.patientupdate.height = this.patientheight
+
+        this.patientservice.updatePatient(id,this.patientupdate).subscribe( (response:any) =>{
+            this.dataSource.data = this.dataSource.data.map((o: PatientResource) => {
+              if (o.id === response.id) {
+                o = response;
+              }
+              return o;
+            });
+        });
+
+        console.log(this.patientupdate)
+    });
+  }
+
+  getSurveillanceByPatientId(id:number){
+    this.surveillanceservice.getSurveillanceByPatientId(id).subscribe( (response:any) => {
+        this.dataSourceSurveillance.data = response
+        console.log(this.dataSourceSurveillance.data)
+        this.surveillancepatient = this.dataSourceSurveillance.data[0]
+        console.log(this.surveillancepatient)
+      }
+    );   
+  }
+
+  getPatientAncients(id:number){
+    this.illnesservice.getIllnessRecordsByPatientId(id).subscribe( (response:any) =>{
+        this.dataSourceancient.data = response
+        console.log(this.dataSourceancient.data)
+      }
+    );
+  }
+
+  getPatientDiagnostic(id:number){
+    this.patientdiagnosticservice.getPatientDiagnosisByPatientId(id).subscribe( (response:any) => {
+        this.dataSourcepatientdiagnostic.data = response
+        console.log(this.dataSourcepatientdiagnostic.data)
+      }
+
+    )
+  }
+
+  getPatientTreatments(id:number){
+    this.patienttreatmentservice.getPatientTreatmentByPatientId(id).subscribe( (response:any) =>{
+        this.dataSourcepatienttreatment.data = response
+        console.log(this.dataSourcepatienttreatment.data)
+      }
+    )
+  }
+
+  GoToAppointmentDoctor(id:number){
+      this.route.navigate([`appointment-doctor/doctor/${id}`]);
+  }
 }

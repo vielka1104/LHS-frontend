@@ -1,6 +1,10 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AppointmentResource } from 'src/app/models/appointment/AppointmentResource';
+import { AppointmentService } from 'src/app/services/appoinment/Appointment.service';
+import { PatientService } from 'src/app/services/patient/patient.service';
 
 export interface Appointment {
   dni: string;
@@ -15,28 +19,25 @@ export interface Appointment {
   styleUrls: ['./appointment-doctor.component.css']
 })
 export class AppointmentDoctorComponent implements OnInit {
-  listappointment:Appointment[] = [];
-  appointmenttest:Appointment = {dni: "123456789",patient:"paciente 1",date:"12/02/2022",status: "en curso"};
-  appointmenttest2:Appointment = {dni: "987456123",patient:"paciente 2",date:"12/02/2021",status: "cancelada"};  
   selecteddate !: Date;
   patient!:number;
   patients:string[] = ["Alayo Zavaleta, Alessandro Fabián","Almonacid Garrido, Viviana", "Benavides Castillo, Daniela"] 
-  
-  displayedColumns: string[] = ['dni', 'patient', 'date', 'status','button'];
+  urlid!:number
+  displayedColumns: string[] = ['id', 'patient', 'date', 'status','button'];
   dataSource = new MatTableDataSource<any>();
   
   @ViewChild(MatPaginator) paginator!:MatPaginator;
 
-  constructor() {}
+  constructor(private appointmentservice:AppointmentService, private route:Router,private activeroute:ActivatedRoute, private patientservice:PatientService) {}
   
   ngOnInit() {
-    console.log(this.appointmenttest)
-    console.log(this.listappointment)
-    this.listappointment.push(this.appointmenttest);
-    this.listappointment.push(this.appointmenttest2);  
     this.dataSource.paginator = this.paginator;
-    this.dataSource.data = this.listappointment;
-      
+
+    let urlvariable = parseInt(this.activeroute.snapshot.paramMap.get('id')!);
+    this.urlid = urlvariable
+    console.log(this.urlid)
+    this.getAllAppointments(this.urlid)
+
   }
 
   SearchAppointmentDoctor(event:Event){
@@ -47,6 +48,21 @@ export class AppointmentDoctorComponent implements OnInit {
       this.dataSource.paginator.firstPage()
     }
 
+  }
+
+  getAllAppointments(id:number){
+    this.appointmentservice.getAppointmentsByDoctorId(id).subscribe((response:any) =>{
+        this.dataSource.data = response;
+        console.log(this.dataSource.data)
+      }
+    )
+  }
+
+  AppointmentForm(doctorid:number,patientid:number){
+    console.log(doctorid)
+    console.log(patientid)
+
+    this.route.navigate([`/appointment-form/doctor/${doctorid}/patient/${patientid}`]);
   }
 
 }

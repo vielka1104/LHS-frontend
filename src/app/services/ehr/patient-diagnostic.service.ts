@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import {catchError, retry} from "rxjs/operators";
+import { CreatePatientDiagnosisResource } from 'src/app/models/patient-diagnostic/CreatePatientDiagnosisResource';
 @Injectable({
   providedIn: 'root'
 })
@@ -38,9 +39,18 @@ getAllPatientDiagnosis(): Observable<PatientDiagnosisResource>{
 
 }
 
-getPatientDiagnosisByPatientId(patientDiagnosisId:number): Observable<PatientDiagnosisResource>{
+getPatientDiagnosisById(patientDiagnosisId:number): Observable<PatientDiagnosisResource>{
 
   return this.http.get<PatientDiagnosisResource>(`${this.basePath}/patient-diagnosis/${patientDiagnosisId}`, this.httpOptions)
+  .pipe(
+    retry(2),
+    catchError(this.handleError));
+
+}
+
+getPatientDiagnosisByPatientId(patientId:number): Observable<PatientDiagnosisResource>{
+
+  return this.http.get<PatientDiagnosisResource>(`${this.basePath}/patient-diagnosis/patient/${patientId}`, this.httpOptions)
   .pipe(
     retry(2),
     catchError(this.handleError));
@@ -56,9 +66,9 @@ getPatientDiagnosisByDiagnosisId(diagnosisId:number): Observable<PatientDiagnosi
 
 }
 
-createPatientDiagnosis(item:CreatePatientResource,patientId:number,diagnosisId:number){
+createPatientDiagnosis(item:CreatePatientDiagnosisResource,patientId:number,diagnosisId:number){
 
-  return this.http.post<PatientDiagnosisResource>(`${this.basePath}/patients/${patientId}/diagnosis/${diagnosisId}/illnessRecords`, JSON.stringify(item), this.httpOptions)
+  return this.http.post<CreatePatientDiagnosisResource>(`${this.basePath}/patients/${patientId}/diagnosis/${diagnosisId}/patient-diagnosis`, JSON.stringify(item), this.httpOptions)
   .pipe(
     retry(2),
     catchError(this.handleError));
