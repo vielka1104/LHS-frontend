@@ -9,7 +9,7 @@ import {catchError, retry} from "rxjs/operators";
 })
 export class SpecialityService {
 
-  basePath =""
+  basePath ="http://localhost:8080/api/v1/specialties"
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ getSpecialtyById(specialtyId:number): Observable<SpecialtyResource>{
     retry(2),
     catchError(this.handleError));
 }
-getSpecialtyByUserName(name:string): Observable<SpecialtyResource>{
+getSpecialtyByName(name:string): Observable<SpecialtyResource>{
 
   return this.http.get<SpecialtyResource>(`${this.basePath}/name/${name}`, this.httpOptions)
   .pipe(

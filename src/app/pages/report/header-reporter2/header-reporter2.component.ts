@@ -8,11 +8,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class HeaderReporter2Component implements OnInit {
   @Input() title !: string;
   @Input() returnpage !: string;
-  constructor(private router:Router) { }
+  whois=""
+   id!:number
+  constructor(private router:Router,private ActivatedRoute:ActivatedRoute) { }
 
   ngOnInit() {
+    this.id=parseInt(this.ActivatedRoute.snapshot.paramMap.get('id')!)
+     this.whois=(this.ActivatedRoute.snapshot.url[0].path)
   }
   Gogenerar(){
-    this.router.navigate(['/',this.returnpage])
+    this.router.navigate(['/',this.whois,this.id,this.returnpage])
   }
 }

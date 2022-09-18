@@ -1,3 +1,9 @@
+import { SpecialtyResource } from './../../../models/specialty/SpecialtyResource';
+import { ShiftResource } from './../../../models/shift/ShiftResource';
+import { SpecialityService } from './../../../services/doctor/speciality.service';
+import { ShiftService } from './../../../services/doctor/shift.service';
+import { CreateDoctorResource } from './../../../models/doctor/CreateDoctorResource';
+import { DoctorService } from 'src/app/services/doctor/doctor.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ResultDialogComponent } from '../../dialogs/result-dialog/result-dialog.component';
@@ -12,10 +18,23 @@ export class RegisterMedicalComponent implements OnInit {
   
   medicalregisterform!:FormGroup;
   specialvariable!:string;
+  CreateDoctorResource!:CreateDoctorResource;
+  ShiftResource!:ShiftResource
+  SpecialtyResource!:SpecialtyResource
   specialistlist: string[] = ["nefrología","urólogo"]
   shift!:string;
   shiftlist:string[] = ["Turno Mañana","Turno Tarde","Turno Noche"]
-  constructor(public dialog:MatDialog, private formBuilder: FormBuilder) { }
+  genderm="M"
+  genderF="F"
+  shiftselected!:number;
+  specailityselected!:number
+  shifts:ShiftResource[]=[]
+  specialities:SpecialtyResource[]=[]
+  constructor(public dialog:MatDialog, private formBuilder: FormBuilder,private DoctorService:DoctorService,private ShiftService:ShiftService,private SpecialityService:SpecialityService) {
+    this.CreateDoctorResource={}as CreateDoctorResource;
+    this.SpecialtyResource={}as SpecialtyResource;
+    this.ShiftResource={}as ShiftResource;
+   }
 
   ngOnInit() {
     this.medicalregisterform=this.formBuilder.group({
@@ -31,9 +50,40 @@ export class RegisterMedicalComponent implements OnInit {
       speciality:['',Validators.required],
       shift:['',Validators.required],
      })
+     this.GetShift()
+     this.GetSpeciality()
   }
 
   RegisterMethod(){
-    const dialogRef = this.dialog.open(ResultDialogComponent)
+ 
+   this.DoctorService.createDoctor(this.CreateDoctorResource,this.specailityselected,this.shiftselected).subscribe((response:any)=>{
+        const dialogRef = this.dialog.open(ResultDialogComponent)
+   })
+
+    
   }
+  SetSpeciality(name:string){
+
+    this.SpecialityService.getSpecialtyByName(name).subscribe((response:any)=>{
+          this.SpecialtyResource=response
+          return this.SpecialtyResource.id;
+    })
+    
+  }
+
+  GetShift(){
+    this.ShiftService.getAllShifts().subscribe((response:any)=>{
+       this.shifts=response;
+       
+    })
+    
+  }
+  GetSpeciality(){
+    this.SpecialityService.getAllSpecialties().subscribe((response:any)=>{
+      this.specialities=response
+      
+      })
+  }
+
+
 }

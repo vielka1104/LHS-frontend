@@ -9,7 +9,7 @@ import {catchError, retry} from "rxjs/operators";
 })
 export class ShiftService {
 
-  basePath =""
+  basePath ="http://localhost:8080/api/v1/shifts"
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ getShiftById(shiftId:number): Observable<ShiftResource>{
     retry(2),
     catchError(this.handleError));
 }
-getShiftByUserName(name:string){
+getShiftByName(name:string){
 
   return this.http.get<ShiftResource>(`${this.basePath}/name/${name}`, this.httpOptions)
   .pipe(

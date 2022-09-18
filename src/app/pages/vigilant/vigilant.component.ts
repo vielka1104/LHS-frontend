@@ -111,7 +111,9 @@ export class VigilantComponent implements OnInit {
          })
   }
 
-
+  ReturnHome(){
+    this.router.navigate(['/doctor',this.DoctorResource.id,'home-doctor'])
+  }
   findbyDNI(){
          
         this.PATIENTSERVICE.getPatientByDocumentNumber(this.documentnumber.value).subscribe((response:any)=>{

@@ -16,8 +16,8 @@
       <mat-form-field appearance="outline" class="w-96">
         <mat-label>Sexo</mat-label> <!--Combo Box-->
         <mat-select formControlName="gender">
-          <mat-option value="uno">Masculino</mat-option>
-          <mat-option value="dos">Femenino</mat-option>
+          <mat-option value="M">M</mat-option>
+          <mat-option value="F">F</mat-option>
         </mat-select>
         <mat-error>Complete este campo es requerido!</mat-error>
       </mat-form-field>
@@ -59,28 +59,9 @@
       <mat-error>Complete este campo es requerido!</mat-error>
     </mat-form-field>
     <br>
-    <mat-form-field appearance="outline" class="w-96">
-      <mat-label>Especialidad</mat-label>
-      <mat-select formControlName="speciality">
-        <div *ngFor="let specialvariable of specialistlist">
-          <mat-option value="uno">{{specialvariable}}</mat-option>
-        </div>
-      </mat-select>
-      <mat-error>Complete este campo es requerido!</mat-error>
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="outline" class="w-96">
-      <mat-label>Turno</mat-label>
-      <mat-select formControlName="shift">
-        <div *ngFor="let shift of shiftlist">
-          <mat-option value="uno">{{shift}}</mat-option>
-        </div>
-      </mat-select>
-      <mat-error>Complete este campo es requerido!</mat-error>
-    </mat-form-field>
-
+    
     <div class="text-center">
-      <button matDialogClose color = "primary" mat-raised-button [disabled]="medicalupdateform.invalid">Actualizar</button>
+      <button [matDialogClose]="editdoctordata" color = "primary" mat-raised-button [disabled]="medicalupdateform.invalid" (click)="Update()">Actualizar</button>
     </div>  
   </form>
 </div>
