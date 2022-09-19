@@ -27,6 +27,7 @@ import { RegisterStaffComponent } from './pages/registers/register-staff/registe
 import { RegisterUserComponent } from './pages/registers/register-user/register-user.component';
 import { UsersPageComponent } from './pages/users-page/users-page.component';
 import { AppointmentStaffComponent } from './pages/appointments/appointment-staff/appointment-staff.component';
+import { StaffAppointmentFormComponent } from './pages/appointments/appointment-staff/appointment-staff-form/staff-appointment-form.component';
 
 const routes: Routes = [
   {path: "register-user",component: RegisterUserComponent},
@@ -34,13 +35,14 @@ const routes: Routes = [
   {path: "register-medical",component: RegisterMedicalComponent},
   {path: "register-staff",component: RegisterStaffComponent},
   {path: "doctor/:id/home-doctor",component: HomeComponent},
-  {path: "appointment-patient/patient/:id",component: AppointmentComponent},
-  {path: "appointment-doctor/doctor/:id",component: AppointmentDoctorComponent},
-  {path: "appointment-staff",component: AppointmentStaffComponent},
-  {path: "medical-schedule/patient/:patientid/doctor/:doctorid",component: MedicalScheduleComponent},
+  {path: "patient/:id/appointment-patient",component: AppointmentComponent},
+  {path: "doctor/:id/appointment-doctor",component: AppointmentDoctorComponent},
+  {path: "staff/:id/appointment-staff",component: AppointmentStaffComponent},
+  {path: "patient/:patientid/medical-schedule/doctor/:doctorid",component: MedicalScheduleComponent},
   {path: "medical-records",component: MedicalRecordsComponent},
   {path: "patient-record",component: PatientRecordComponent},
-  {path: "appointment-form/doctor/:doctorid/patient/:patientid",component: RecordFormComponent},
+  {path: "doctor/:doctorid/appointment-form/patient/:patientid",component: RecordFormComponent},
+  {path: "staff/:staffid/staff-appointment-form/patient/:patientid",component: StaffAppointmentFormComponent},
   {path: "update-record",component: UpdateRecordComponent},
   {path: "patient/:id/home-patient",component: HomePatientComponent},
   {path: "staff/:id/home-staff",component: HomeStaffComponent},

@@ -1,9 +1,13 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppointmentResource } from 'src/app/models/appointment/AppointmentResource';
+import { DoctorResource } from 'src/app/models/doctor/DoctorResource';
+import { PatientResource } from 'src/app/models/patient/PatientResource';
 import { AppointmentService } from 'src/app/services/appoinment/Appointment.service';
+import { DoctorService } from 'src/app/services/doctor/doctor.service';
 import { PatientService } from 'src/app/services/patient/patient.service';
 
 export interface Appointment {
@@ -21,14 +25,18 @@ export interface Appointment {
 export class AppointmentDoctorComponent implements OnInit {
   selecteddate !: Date;
   patient!:number;
+  dnisearch = new FormControl;
+  patientobject!:PatientResource
   patients:string[] = ["Alayo Zavaleta, Alessandro Fabián","Almonacid Garrido, Viviana", "Benavides Castillo, Daniela"] 
   urlid!:number
-  displayedColumns: string[] = ['id', 'patient', 'date', 'status','button'];
+  displayedColumns: string[] = ['id','dni','patient', 'date', 'status','button'];
   dataSource = new MatTableDataSource<any>();
-  
+  doctorobject!:DoctorResource
+
   @ViewChild(MatPaginator) paginator!:MatPaginator;
 
-  constructor(private appointmentservice:AppointmentService, private route:Router,private activeroute:ActivatedRoute, private patientservice:PatientService) {}
+  constructor(private appointmentservice:AppointmentService, private route:Router,private activeroute:ActivatedRoute, private patientservice:PatientService, 
+              private doctorservice:DoctorService) {}
   
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
@@ -37,7 +45,7 @@ export class AppointmentDoctorComponent implements OnInit {
     this.urlid = urlvariable
     console.log(this.urlid)
     this.getAllAppointments(this.urlid)
-
+    this.getDoctorById(this.urlid)
   }
 
   SearchAppointmentDoctor(event:Event){
@@ -48,6 +56,12 @@ export class AppointmentDoctorComponent implements OnInit {
       this.dataSource.paginator.firstPage()
     }
 
+  }
+
+  getDoctorById(id:number){
+      this.doctorservice.getDoctorById(id).subscribe((response:any)=>{
+        this.doctorobject = response           
+      })
   }
 
   getAllAppointments(id:number){
@@ -62,7 +76,27 @@ export class AppointmentDoctorComponent implements OnInit {
     console.log(doctorid)
     console.log(patientid)
 
-    this.route.navigate([`/appointment-form/doctor/${doctorid}/patient/${patientid}`]);
+    this.route.navigate([`doctor/${doctorid}/appointment-form/patient/${patientid}`]);
+  }
+
+  GotoDoctorHome(id:number){
+      this.route.navigate(['doctor',id,'home-doctor'])
+  }
+
+  GetPatientByDNI(){
+    console.log(this.dnisearch.value)
+    this.patientservice.getPatientByDocumentNumber(this.dnisearch.value).subscribe((response:any)=>{
+      this.patientobject=response;
+      console.log(this.patientobject)
+      
+      this.appointmentservice.getAppointmentsByPatientId(this.patientobject.id).subscribe((response:any)=>{
+          this.dataSource.data = response;
+          console.log(this.dataSource.data)
+        })
+    },err=>{
+      alert("DNI inexistente pruebe denuevo")
+    }
+    )
   }
 
 }

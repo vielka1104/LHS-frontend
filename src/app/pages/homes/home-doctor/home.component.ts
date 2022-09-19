@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
     })
 }
   GoToAppointmentDoctor(){
-    this.Router.navigate([`appointment-doctor/doctor/${1}`]);
+    this.Router.navigate(['doctor',this.DoctorResource.id,'appointment-doctor']);
   }
 
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <header>
   <mat-toolbar class="bg-white">
-    <button routerLink="/home-patient">
+    <button (click)="GoToHomePatient()">
       <img src="../../assets/images/back-arrow-2.png" class="w-10 h-10">
     </button>
     <span class="pr-5"></span>
@@ -19,16 +19,10 @@
 <mat-divider class="bg-cyan-400"></mat-divider>
 <body class="bg-white">
   <div class="pt-10"></div>
-  <table>
+  <table class="ml-auto mr-auto">
     <tr>
-        <th class="font-normal pb-80">
-          <mat-card class="demo-inline-calendar-card w-72 h-80 ml-10">
-            <mat-calendar class="w-60 h-20" [(selected)]="selecteddate"></mat-calendar>
-            </mat-card>
-        </th>
-        <div class="pr-20"></div>
         <th class="font-normal pr-10">
-          <mat-card class="w-full" *ngFor="let medical of dataSource.data">
+          <mat-card *ngFor="let medical of dataSource.data">
             <table>
               <div class="inline-flex">
                 <th>

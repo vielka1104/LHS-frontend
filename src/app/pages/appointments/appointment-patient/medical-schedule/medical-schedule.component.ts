@@ -121,8 +121,8 @@ export class MedicalScheduleComponent implements OnInit {
   }
 
 
-  GoToAppointmentPatient(id:number){
-    this.route.navigate([`appointment-patient/patient/${id}`]);
+  GoToAppointmentPatient(){
+    this.route.navigate([`patient/${this.patientobject.id}/appointment-patient`]);
   }
 
   SelectedDate(date:any,patientid:number,doctorid:number){

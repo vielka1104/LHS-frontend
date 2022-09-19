@@ -40,6 +40,8 @@ export class HomeStaffComponent implements OnInit {
     this.Router.navigate(['/staff',this.StaffResource.id,'vigilant'])
   }
 
-
+  GotoStaffAppointment(){
+    this.Router.navigate(['/staff',this.StaffResource.id,'appointment-staff'])
+  }
 
 }

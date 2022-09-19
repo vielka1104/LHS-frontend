@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PatientResource } from 'src/app/models/patient/PatientResource';
+import { PatientService } from 'src/app/services/patient/patient.service';
 
 @Component({
   selector: 'app-home-patient',
@@ -7,13 +9,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./home-patient.component.css']
 })
 export class HomePatientComponent implements OnInit {
+  idpatient!:number
+  PatientResource!:PatientResource
 
-  constructor(private route:Router) { }
+  constructor(private route:Router,private activeroute:ActivatedRoute,private patientservice:PatientService) { }
 
   ngOnInit() {
+
+    let id = parseInt(this.activeroute.snapshot.paramMap.get('id')!)
+    this.idpatient = id
+    this.getPatientById(this.idpatient)
+  }
+
+  getPatientById(id:number){
+      this.patientservice.getPatientById(id).subscribe((response:any)=>{
+        this.PatientResource=response           
+      })
   }
 
   GoToAppointmentPatient(){
-    this.route.navigate([`appointment-patient/patient/${1}`]);
+    this.route.navigate(['patient',this.PatientResource.id,'appointment-patient']);
   }
 }
