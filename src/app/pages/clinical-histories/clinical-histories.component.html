@@ -124,7 +124,7 @@ border border-solid border-gray-900
     <mat-card class="text-[26px] text-white italic bg-[#15558D]">
       Antecedentes
      </mat-card>
-    <mat-card *ngIf="avalible">
+    <mat-card *ngIf="avalible && avaliblerecords">
       <table mat-table [dataSource]="dataSource1" class="w-full">
 
         <ng-container matColumnDef="Antecedente">
@@ -147,7 +147,7 @@ border border-solid border-gray-900
     <mat-card class="text-[26px] text-white italic bg-[#15558D]">
       Tratamiento
      </mat-card>
-     <mat-card *ngIf="avalible">
+     <mat-card *ngIf="avalible && avalibletreatments">
       <table mat-table [dataSource]="dataSource2" class="w-full">
 
         <ng-container matColumnDef="Medicamento">
@@ -175,7 +175,7 @@ border border-solid border-gray-900
      </mat-card>
     
      
-      <mat-card *ngIf="avalible">
+      <mat-card *ngIf="avalible && avaliblediagnosis">
         <table mat-table [dataSource]="dataSource3" class="w-full">
   
           <ng-container matColumnDef="Diagnostico">
@@ -203,7 +203,7 @@ border border-solid border-gray-900
      <mat-card class="text-[26px] text-white italic bg-[#15558D]">
       Historial de citas
      </mat-card>
-     <mat-card *ngIf="avalible">
+     <mat-card *ngIf="avalible && avaliblehistory">
       <table mat-table [dataSource]="dataSource4" class="w-full">
 
         <ng-container matColumnDef="Fecha">
@@ -223,7 +223,7 @@ border border-solid border-gray-900
      <mat-card class="text-[26px] text-white italic bg-[#15558D]">
       Datos Clinicos
      </mat-card>
-     <mat-card *ngIf="avalible">
+     <mat-card *ngIf="avalible && avaliblevigilant">
 
       <div class="flex flex-col space-y-8">
         <div class="columns-1 md:columns-3">

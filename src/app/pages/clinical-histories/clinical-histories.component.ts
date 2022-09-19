@@ -101,6 +101,13 @@ export class ClinicalHistoriesComponent implements OnInit {
   dataSource5 !:MatTableDataSource<any>;
   dataSourcea=antecedente
   avalible!:boolean
+
+  avaliblerecords!:boolean
+  avalibletreatments!:boolean
+  avaliblediagnosis!:boolean
+  avaliblehistory!:boolean
+  avaliblevigilant!:boolean
+
   dataSourceb=tratamiento
   dataSourcec=DiagnosticoPaciente
   dataSourced=cita
@@ -177,19 +184,44 @@ ReturnHome(){
         console.log(this.Patient.id)
         console.log(response)
         this.dataSource1.data=response;
+        this.avaliblerecords=true
+        if(this.dataSource1.data.length==0){
+            this.avaliblerecords=false
+        }
       })
       this.PatientTreatmentService.getPatientTreatmentByPatientId(this.Patient.id).subscribe((response:any)=>{
         this.dataSource2.data=response;
+        this.avalibletreatments=true
+        if(this.dataSource2.data.length==0){
+          this.avalibletreatments=false
+      }
       })
       this.PatientDiagnosticService.getPatientDiagnosisByPatientId(this.Patient.id).subscribe((response:any)=>{
         this.dataSource3.data=response;
+        this.avaliblediagnosis=true
+        if(this.dataSource3.data.length==0){
+          this.avaliblediagnosis=false
+      }
       })
       this.AppointmentService.getAppointmentsByPatientId(this.Patient.id).subscribe((response:any)=>{
         this.dataSource4.data=response;
+        this.avaliblehistory=true
+        if(this.dataSource4.data.length==0){
+          this.avaliblehistory=false
+      }
       })
       this.SurveillanceService.getSurveillanceByPatientandDoctorId(this.Patient.id,this.DoctorResource.id).subscribe((response:any)=>{
         this.dataSource5.data=response;
-        this.SurveillanceResource1=this.dataSource5.data.pop() 
+        console.log(this.dataSource5.data)
+        this.avaliblevigilant=true
+        if(this.dataSource5.data.length==0){
+             this.avaliblevigilant=false
+             this.SurveillanceResource1.weight=0
+
+        }else{
+          this.SurveillanceResource1=this.dataSource5.data.pop() 
+        }
+        
       })
   })
   
