@@ -10,8 +10,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class DialogReportsComponent implements OnInit {
 
-  doctor=""
-  staff=""
+  word1!:string
   DoctorResource!:DoctorResource
   constructor(private Router:Router,private ActivatedRoute:ActivatedRoute,private DoctorService:DoctorService, @Inject(MAT_DIALOG_DATA) public data:any) { 
 
@@ -20,22 +19,30 @@ export class DialogReportsComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.data)
+    if(this.data.name=="doctor"){
+      this.word1="doctor"
+    }
+    if(this.data.name=="staff"){
+      this.word1="staff"
+    }
   }
+
+
   gopatientrisk(){
-    this.Router.navigate(['/doctor',this.data,'reporter-general-patient-risk'])
+    this.Router.navigate([this.word1,this.data.id,'reporter-general-patient-risk'])
   }
   gotreatment(){
-    this.Router.navigate(['/doctor',this.data,'reporter-general-treatment'])
+    this.Router.navigate([this.word1,this.data.id,'reporter-general-treatment'])
     
   }
   godiagnosis(){
-    this.Router.navigate(['/doctor',this.data,'reporter-general-diagnostic'])
+    this.Router.navigate([this.word1,this.data.id,'reporter-general-diagnostic'])
 
   }
   gohealthindicator(){
-    this.Router.navigate(['/doctor',this.data,'reporter-general-health-indicator'])
+    this.Router.navigate([this.word1,this.data.id,'reporter-general-health-indicator'])
   }
   gotoeffciency(){
-    this.Router.navigate(['/doctor',this.data,'reporter-efficiency'])
+    this.Router.navigate([this.word1,this.data.id,'reporter-efficiency'])
   }
 }

@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
 
   OpenReports(){
     const dialogRef = this.dialog.open(DialogReportsComponent,{
-      data: this.DoctorResource.id,
+      data: {id:this.DoctorResource.id,name:"doctor"},
       
       
     })

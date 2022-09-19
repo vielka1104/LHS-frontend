@@ -1,3 +1,4 @@
+import { StaffService } from './../../services/staff/staff.service';
 import { DoctorService } from 'src/app/services/doctor/doctor.service';
 import { DoctorResource } from './../../models/doctor/DoctorResource';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -15,7 +16,7 @@ export class HeaderReporterComponent implements OnInit {
    whois=""
    id!:number
    DoctorResource!:DoctorResource
-  constructor(private ActivatedRoute:ActivatedRoute,private Router:Router,private DoctorService:DoctorService) { 
+  constructor(private ActivatedRoute:ActivatedRoute,private Router:Router,private DoctorService:DoctorService,private StaffService:StaffService) { 
     this.DoctorResource={}as DoctorResource
   }
 
@@ -32,6 +33,9 @@ export class HeaderReporterComponent implements OnInit {
     if(this.whois=="doctor"){
       this.findDoctor(this.id)
     }
+    if(this.whois=="staff"){
+      this.findStaffr(this.id)
+    }
 
 
 
@@ -42,6 +46,12 @@ export class HeaderReporterComponent implements OnInit {
     this.DoctorService.getDoctorById(id).subscribe((response:any)=>{
                this.DoctorResource=response    
                this.Router.navigate(['/doctor',this.DoctorResource.id,'home-doctor'])       
+    })
+  }
+  findStaffr(id:number){
+    this.StaffService.getStaffById(id).subscribe((response:any)=>{
+               this.DoctorResource=response    
+               this.Router.navigate(['/staff',id,'home-staff'])       
     })
   }
 

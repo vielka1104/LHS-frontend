@@ -29,7 +29,9 @@ export class VigilantComponent implements OnInit {
   date!:Date;
   Patient!:PatientResource;
   DoctorResource!:DoctorResource;
-
+  whois=""
+  home!:string
+  id!:number
   documentnumber = new FormControl("", Validators.min(7))
   
   constructor(public dialog: MatDialog,private formBuilder:FormBuilder,private datePipe: DatePipe,private PATIENTSERVICE:PatientService,private surveillance:SurveillanceService,
@@ -43,6 +45,8 @@ export class VigilantComponent implements OnInit {
 
   ngOnInit() {
     let doctorid=parseInt(this.ActivatedRoute.snapshot.paramMap.get('id')!)
+    this.whois=(this.ActivatedRoute.snapshot.url[0].path)
+    this.id=doctorid
     this.Patient.name="nombre"
     this.Patient.lastname="apellido"
     this.Patient.documentType=DocumentType.DNI
@@ -84,7 +88,13 @@ export class VigilantComponent implements OnInit {
 
      })
     this.findDoctor(doctorid)
-    
+    if(this.whois=="doctor"){
+       this.home="home-doctor"
+    }
+    if(this.whois=="staff"){
+      this.home="home-staff"
+   }
+   
 
 
   }
@@ -112,7 +122,7 @@ export class VigilantComponent implements OnInit {
   }
 
   ReturnHome(){
-    this.router.navigate(['/doctor',this.DoctorResource.id,'home-doctor'])
+    this.router.navigate([this.whois,this.id,this.home])
   }
   findbyDNI(){
          

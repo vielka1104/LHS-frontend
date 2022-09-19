@@ -106,6 +106,9 @@ export class ClinicalHistoriesComponent implements OnInit {
   dataSourced=cita
   DoctorResource!:DoctorResource;
   Patient!:PatientResource;
+  whois=""
+  home!:string
+  id!:number
   SurveillanceResource1!:SurveillanceResource
   displayedColumns: string[] =  ['Antecedente', 'Descripcion', 'fecha'];
   displayedColumns2: string[] = ['Medicamento', 'Dosis Diarias', 'fecha inicio','fecha final'];
@@ -134,16 +137,27 @@ export class ClinicalHistoriesComponent implements OnInit {
  
       })
       this.findDoctor(doctorid)
+      this.whois=(this.ActivatedRoute.snapshot.url[0].path)
+    this.id=doctorid
+    if(this.whois=="doctor"){
+      this.home="home-doctor"
+   }
+   if(this.whois=="staff"){
+     this.home="home-staff"
+  }
   }
   
   findDoctor(id:number){
     this.DoctorService.getDoctorById(id).subscribe((response:any)=>{
                this.DoctorResource=response           
     })
+    
+
+
 }
 
 ReturnHome(){
-  this.Router.navigate(['/doctor',this.DoctorResource.id,'home-doctor'])
+  this.Router.navigate([this.whois,this.id,this.home])
 }
 
 
