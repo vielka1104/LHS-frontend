@@ -282,7 +282,8 @@ export class RecordFormComponent implements OnInit {
     this.surveillanceservice.getSurveillanceByPatientId(id).subscribe( (response:any) => {
         this.dataSourceSurveillance.data = response
         console.log(this.dataSourceSurveillance.data)
-        this.surveillancepatient = this.dataSourceSurveillance.data[0]
+        let finalposition = this.dataSourceSurveillance.data.length - 1
+        this.surveillancepatient = this.dataSourceSurveillance.data[finalposition]
         console.log(this.surveillancepatient)
       }
     );   
