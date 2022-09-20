@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<header>
+  <mat-toolbar class="bg-white">
+    <button (click)="GoToHomeStaff()">
+      <img src="../../assets/images/back-arrow-2.png" class="w-10 h-10">
+    </button>
+    <span class="pr-5"></span>
+    <h1 class="text-slate-800">Clinica de salud</h1>
+    <span class="flex-auto"></span>
+    <h1 class="text-slate-800">CITAS</h1>
+    <span class="flex-auto"></span>
+    <img src="../../assets/images/profile.png" class="w-10 h-10">
+    <button>
+      <img src="../../assets/images/options-arrow.png" class="w-20 h-12">
+    </button>
+    <div class="pr-5"></div>
+</mat-toolbar>
+</header>
+<mat-divider class="bg-cyan-400"></mat-divider>
+<body class="bg-white">
+  <div class="pt-10"></div>
+  <table class="ml-auto mr-auto">
+    <tr>
+        <th class="font-normal pr-10">
+          <mat-card *ngFor="let medical of dataSource.data">
+            <table>
+              <div class="inline-flex">
+                <th>
+                <img src="../../assets/images/medical-profile.png">
+                </th>
+                <div class="pr-10"></div>
+                <th class="font-normal w-80">
+                <h1 class="pt-2 max-w-fit text-left">{{medical.name}} {{medical.lastname}}
+                  <div class="pt-5"></div>
+                  <div class="text-left">
+                    <button mat-stroked-button>{{medical.specialty.name}}</button>
+                  </div>
+                </h1>
+                </th>
+                <div class="pr-96"></div>
+                <div class="pr-96"></div>
+                <th>
+                  <div class="pt-5">
+                    <button mat-raised-button color="primary" class="h-10 w-40" (click)="GoToMedicalScheduleStaff(medical.id)">Ver Horario</button>
+                  </div>
+                </th>
+                <div class="pr-5"></div>
+              </div>
+            </table>
+            <br>
+          </mat-card>
+        </th>
+    </tr>
+  </table>
+</body>

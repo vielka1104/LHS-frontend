@@ -51,6 +51,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { StaffAppointmentFormComponent } from './pages/appointments/appointment-staff/staff-appointment-form/staff-appointment-form.component';
 import { UpdateDiagnosticDialogComponent } from './pages/appointments/update-dialog/update-diagnostic-dialog/update-diagnostic-dialog.component';
 import { UpdateTreatmentDialogComponent } from './pages/appointments/update-dialog/update-treatment-dialog/update-treatment-dialog.component';
+import { AppointmentRegisterStaffComponent } from './pages/appointments/appointment-register-staff/appointment-register-staff.component';
+import { MedicalScheduleStaffComponent } from './pages/appointments/appointment-register-staff/medical-schedule-staff/medical-schedule-staff.component';
 
 @NgModule({
   declarations: [									
@@ -97,7 +99,9 @@ import { UpdateTreatmentDialogComponent } from './pages/appointments/update-dial
       AppointmentStaffComponent,
       DialogReportsComponent,
       UpdateDiagnosticDialogComponent,
-      UpdateTreatmentDialogComponent
+      UpdateTreatmentDialogComponent,
+      AppointmentRegisterStaffComponent,
+      MedicalScheduleStaffComponent,
 
    ],
   imports: [

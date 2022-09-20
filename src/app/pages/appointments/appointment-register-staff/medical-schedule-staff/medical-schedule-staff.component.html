@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <header>
   <mat-toolbar class="bg-white">
-    <button (click)="GoToAppointmentPatient()">
+    <button (click)="GoToAppointmentStaff()">
       <img src="../../assets/images/back-arrow-2.png" class="w-10 h-10">
     </button>
     <span class="pr-5"></span>
@@ -9,6 +9,21 @@
     <span class="flex-auto"></span>
     <h1 class="text-slate-800">HORARIOS</h1>
     <span class="flex-auto"></span>
+    <button (click)="getPatientbyDocumentNumber()">
+      <mat-icon class="text-lg md:text-[26px]">search</mat-icon>  
+    </button>
+      <div class="pr-5"></div> 
+      <input type="text" class="form-control 
+      block   w-20 md:w-40 md:px-3
+      py-1.5
+      text-base
+      font-normal
+      text-gray-700
+      bg-white bg-clip-padding
+      border border-solid border-gray-900
+      rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Ingrese su DNI" [formControl]="documentnumber"
+      maxlength="8"> 
+    <span class="pr-10"></span>
     <img src="../../assets/images/profile.png" class="w-10 h-10">
     <button>
       <img src="../../assets/images/options-arrow.png" class="w-20 h-12">
@@ -45,6 +60,7 @@
         </form>
         </div>
         <br>
+        <div *ngIf="patientavailable">
         <mat-card class="w-2/4 ml-56 mr-auto">
             <h1 class="text-center font-bold">
                 {{appointmentdateselected}}
@@ -77,6 +93,7 @@
             </tr>
           </table>
         </mat-card>
+      </div>
       </th>
     </tr>
   </table>

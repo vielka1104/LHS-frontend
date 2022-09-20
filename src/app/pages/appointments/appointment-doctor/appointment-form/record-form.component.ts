@@ -95,6 +95,7 @@ export class RecordFormComponent implements OnInit {
       this.treatment = {} as TreatmentResource
       this.patientmedicine = {} as MedicineResource
       this.patientobject = {} as PatientResource
+      this.surveillancepatient = {} as SurveillanceResource
     }
 
   ngOnInit() {
