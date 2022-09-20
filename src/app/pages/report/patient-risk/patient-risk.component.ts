@@ -1,3 +1,4 @@
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PatientRiskComponent implements OnInit {
   public titlecomopent="Monitoreo Paciente en riesgo"
-  constructor() { }
+  whois=""
+  id!:number
+ constructor(private Router:Router,private ActivatedRoute:ActivatedRoute) { }
 
-  ngOnInit() {
-  }
+ ngOnInit() {
+   this.id=parseInt(this.ActivatedRoute.snapshot.paramMap.get('id')!)
+   this.whois=(this.ActivatedRoute.snapshot.url[0].path)
+ }
+ enterSpecific(){
+   this.Router.navigate(['/',this.whois,this.id,"reporter-patient-risk"])
+ }
 
 }

@@ -41,10 +41,11 @@ border border-solid border-gray-900
   </div>
   </mat-drawer>
   <mat-drawer-content>
+
+    <div #pdfTable>
     <mat-card class="text-[26px] text-white italic bg-[#15558D]">
           Datos
     </mat-card>
-
     <div *ngIf="avalible">
     <mat-card>
       
@@ -101,7 +102,7 @@ border border-solid border-gray-900
 
      
         <b class="text-[20px]">Altura:</b>
-        <p class="text-[20px]">{{Patient.height}}</p>
+        <p class="text-[20px]">{{checkheight(Patient.height)}}</p>
     
 
      
@@ -118,9 +119,6 @@ border border-solid border-gray-900
 
     </mat-card>
     </div>
-
-
-
     <mat-card class="text-[26px] text-white italic bg-[#15558D]">
       Antecedentes
      </mat-card>
@@ -144,6 +142,9 @@ border border-solid border-gray-900
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
     </mat-card>
+    <mat-card class="text-[26px] text-white italic bg-[#15558D]" *ngIf="avalible && !avaliblerecords">
+      No se encuentran Antecedentes
+     </mat-card>
     <mat-card class="text-[26px] text-white italic bg-[#15558D]">
       Tratamiento
      </mat-card>
@@ -170,11 +171,12 @@ border border-solid border-gray-900
         <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
       </table>
     </mat-card>
+    <mat-card class="text-[26px] text-white italic bg-[#15558D]" *ngIf="avalible && !avalibletreatments">
+      No se encuentran tratamientos
+     </mat-card>
      <mat-card class="text-[26px] text-white italic bg-[#15558D]">
       Diagnostico
      </mat-card>
-    
-     
       <mat-card *ngIf="avalible && avaliblediagnosis">
         <table mat-table [dataSource]="dataSource3" class="w-full">
   
@@ -200,6 +202,9 @@ border border-solid border-gray-900
 
 
     </mat-card>
+    <mat-card class="text-[26px] text-white italic bg-[#15558D]" *ngIf="avalible && !avaliblediagnosis">
+      No se encuentran diagnosticos
+     </mat-card>
      <mat-card class="text-[26px] text-white italic bg-[#15558D]">
       Historial de citas
      </mat-card>
@@ -219,7 +224,9 @@ border border-solid border-gray-900
         <tr mat-row *matRowDef="let row; columns: displayedColumns4;"></tr>
       </table>
     </mat-card>
-
+    <mat-card class="text-[26px] text-white italic bg-[#15558D]" *ngIf="avalible && !avaliblehistory">
+      No se encuentran historias de citas
+     </mat-card>
      <mat-card class="text-[26px] text-white italic bg-[#15558D]">
       Datos Clinicos
      </mat-card>
@@ -295,6 +302,35 @@ border border-solid border-gray-900
 
 
         </div>
+        <div class="columns-1 md:columns-3">
+
+          <p class="text-[20px]">Color de Orina:{{SurveillanceResource1.urineColor}}</p>
+          
+          
+
+
+        </div>
+        <div class="columns-1 md:columns-3">
+
+          <p class="text-[20px]">Cantidad de calorias:{{SurveillanceResource1.planCalories}}</p>
+          <p class="text-[20px]">imc:{{SurveillanceResource1.imc}}</p>
+        
+
+        </div>
+        <div class="columns-1 md:columns-3">
+
+          <p class="text-[20px]">Calorias consumidas:{{SurveillanceResource1.consumedCalories}}</p>
+          <p class="text-[20px]">Dolor:{{SurveillanceResource1.pain}}</p>
+        
+
+        </div>
+        <div class="columns-1 md:columns-3">
+
+          <p class="text-[20px]">Apetito:{{SurveillanceResource1.appetite}}</p>
+          <p class="text-[20px]">Otros simtomas:{{SurveillanceResource1.otherSymptoms}}</p>
+        
+
+        </div>
       </div>
 
 
@@ -326,13 +362,24 @@ border border-solid border-gray-900
 
 
      </mat-card>
+     <mat-card class="text-[26px] text-white italic bg-[#15558D]" *ngIf="avalible && !avaliblevigilant">
+      No se encuentran vigilancias
+     </mat-card>
+    </div>
+
+
      <mat-card >
       <div class="flex  justify-center ">
-        <button mat-flat-button color="primary"  (click)="openDialog()">Exportar en PDF</button>
+        <button mat-flat-button color="primary" [disabled]="!avalible" (click)="openDialog()">Exportar en PDF</button>
       </div>
 
     
     </mat-card>
+    
+
+
+
+
   </mat-drawer-content>
 </mat-drawer-container>
 
