@@ -477,12 +477,9 @@
             <form [formGroup]="diagnosticform">
               <mat-form-field appearance="outline" class="w-96">
                 <mat-label>Su tipo</mat-label>
-                <input matInput formControlName="typediagnostic" required [(ngModel)]="diagnosis.name">
-                <!-- <mat-select formControlName="typediagnostic" required [(ngModel)]="diagnosis.name">
-                  <div *ngFor="let diagnostictype of diagnostictypes">
-                    <mat-option value="v3">{{diagnostictype}}</mat-option>
-                  </div>
-                </mat-select>-->
+                <mat-select formControlName="typediagnostic" required [(ngModel)]="diagnosis.name">
+                  <mat-option *ngFor="let diagnostictype of diagnostictypes" [value]="diagnostictype.name">{{diagnostictype.name}}</mat-option>
+                </mat-select>
                 <mat-error>Es requerido este campo!</mat-error>
               </mat-form-field>
             </form>
@@ -498,7 +495,9 @@
           <form [formGroup]="diagnosticform">
             <mat-form-field appearance="outline" class="w-full">
               <mat-label>Ingrese aqui su mensaje</mat-label>
-              <textarea matInput formControlName="indicationtext" required [(ngModel)]="diagnosis.description"></textarea>
+              <mat-select formControlName="indicationtext" required [(ngModel)]="diagnosis.description">
+                <mat-option *ngFor="let diagnostictype of diagnostictypes" [value]="diagnostictype.description">{{diagnostictype.description}}</mat-option>
+              </mat-select>
               <mat-error>Este campo es requerido!</mat-error>
             </mat-form-field>
           </form>
@@ -610,12 +609,9 @@
           <form [formGroup]="treatmentform">
             <mat-form-field appearance="outline" class="w-96">
               <mat-label>Su tipo</mat-label>
-              <input matInput formControlName="type" required [(ngModel)]="treatment.name">
-              <!--<mat-select formControlName="type" required>
-                <div *ngFor="let treatmenttype of treatmenttypes">
-                  <mat-option value="uno">{{treatmenttype}}</mat-option>
-                </div>
-              </mat-select>-->
+              <mat-select formControlName="type" required [(ngModel)]="treatment.name">
+                  <mat-option *ngFor="let treatmenttype of treatmenttypes" [value]="treatmenttype.name">{{treatmenttype.name}}</mat-option>
+              </mat-select>
               <mat-error>Es requerido este campo!</mat-error>
             </mat-form-field>
           </form>
@@ -627,7 +623,9 @@
           <form [formGroup]="treatmentform">
             <mat-form-field appearance="outline" class="w-96">
               <mat-label>Su descripción</mat-label>
-              <textarea matInput formControlName="description" required [(ngModel)]="treatment.description"></textarea>
+              <mat-select formControlName="description" required [(ngModel)]="treatment.description">
+                <mat-option *ngFor="let treatmenttype of treatmenttypes" [value]="treatmenttype.description">{{treatmenttype.description}}</mat-option>
+              </mat-select>
               <mat-error>Es requerido este campo!</mat-error>
             </mat-form-field>
           </form>
@@ -639,7 +637,9 @@
           <form [formGroup]="treatmentform">
             <mat-form-field appearance="outline" class="w-96">
               <mat-label>Su medicamento</mat-label>
-              <input matInput formControlName="medicine" placeholder="Ingrese su medicamento" required [(ngModel)]="patientmedicine.name">
+              <mat-select formControlName="medicine" required [(ngModel)]="patientmedicine.name">
+                <mat-option *ngFor="let medicinetype of medicinetypes" [value]="medicinetype.name">{{medicinetype.name}}</mat-option>
+              </mat-select>
               <mat-error>Es requerido este campo!</mat-error>
             </mat-form-field>
           </form>

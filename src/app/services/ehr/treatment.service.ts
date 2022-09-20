@@ -49,7 +49,7 @@ getTreatmentById(treatmentId:number): Observable<TreatmentResource>{
 
 }
 
-getTreatmentByUserName(name:string): Observable<TreatmentResource>{
+getTreatmentByName(name:string): Observable<TreatmentResource>{
   return this.http.get<TreatmentResource>(`${this.basePath}/name/${name}`, this.httpOptions)
   .pipe(
     retry(2),

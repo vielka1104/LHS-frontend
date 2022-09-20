@@ -56,8 +56,9 @@ export class RecordFormComponent implements OnInit {
   diagnosticform!:FormGroup
   treatmentform!:FormGroup
   treatmenttype!:String;
-  treatmenttypes:String[] = ["Treatment 1","Treatment 2","Treatment 3"]
-  diagnostictypes:String[] = ["Diabetes 1","Diabetes 2","Calculos renales"]
+  treatmenttypes:TreatmentResource[] = []
+  diagnostictypes:DiagnosisResource[] = []
+  medicinetypes:MedicineResource[] = []
   fechaactual:Date = new Date()
   pipedate:DatePipe = new DatePipe("en-US")
   todaydate:any
@@ -138,7 +139,9 @@ export class RecordFormComponent implements OnInit {
      this.getPatientAncients(this.idpatienturl)
      this.getPatientDiagnostic(this.idpatienturl)
      this.getPatientTreatments(this.idpatienturl)
-
+     this.getDiagnosis()
+     this.getTreatments()
+     this.getMedicines()
   }
 
   RegisterMethod(){
@@ -154,24 +157,50 @@ export class RecordFormComponent implements OnInit {
     const dialogRef = this.dialog.open(ResultDialogAncientComponent)
   }
 
+  getDiagnosis(){
+    this.diagnosisservice.getAllDiagnosis().subscribe( (response:any) =>{
+        this.diagnostictypes = response
+        console.log(this.diagnostictypes)
+      }
+    )
+  }
+
+  getTreatments(){
+    this.treatmentservice.getAllTreatments().subscribe( (response:any) =>{
+        this.treatmenttypes = response
+        console.log(this.treatmenttypes)
+      }
+    )
+  }
+
+  getMedicines(){
+    this.medicineservice.getAllMedicines().subscribe( (response:any) =>{
+        this.medicinetypes = response
+        console.log(this.medicinetypes)
+      }
+    )
+  }
+
   SaveDiagnostic(id:number){
     console.log(this.diagnosis);
     console.log(this.patientdiagnostic);
 
-    this.diagnosisservice.createDiagnosis(this.diagnosis).subscribe( (response:any) =>{
-        this.dataSourcediagnostic.data.push( {...response});
-        console.log(response)
-        this.dataSourcediagnostic.data = this.dataSourcediagnostic.data.map((o: any) => { return o;});
+    this.diagnosisservice.getDiagnosisByName(this.diagnosis.name).subscribe( (response:any) =>{
+        this.dataSourcediagnostic.data = response
+        console.log(this.dataSourcediagnostic.data)
+        this.diagnosis = this.dataSourcediagnostic.data[0]
 
-        this.patientdiagnosticservice.createPatientDiagnosis(this.patientdiagnostic,id,response.id).subscribe( (response:any) =>{
+        this.patientdiagnosticservice.createPatientDiagnosis(this.patientdiagnostic,id,this.diagnosis.id).subscribe( (response:any) =>{
             this.dataSourcepatientdiagnostic.data.push( {...response});
             this.dataSourcepatientdiagnostic.data = this.dataSourcepatientdiagnostic.data.map((o: any) => { return o; });
+            const dialogRef = this.dialog.open(ResultDialogClinicComponent)
+          },err=>{
+            alert("Diagnostico seleccionado igual")
           }
         )
       }
     )
     
-    const dialogRef = this.dialog.open(ResultDialogClinicComponent)
   }
 
   SaveTreatment(id:number){
@@ -179,25 +208,29 @@ export class RecordFormComponent implements OnInit {
     console.log(this.treatment);
     console.log(this.patienttreatment);
 
-    this.medicineservice.createMedicine(this.patientmedicine).subscribe( (responsemedicine:any) =>{
-      this.dataSourcemedicine.data.push( {...responsemedicine});
-      console.log(responsemedicine)
-      this.dataSourcemedicine.data = this.dataSourcemedicine.data.map((o: any) => { return o;});
+    this.medicineservice.getMedicineByName(this.patientmedicine.name).subscribe( (responsemedicine:any) =>{
+      this.dataSourcemedicine.data = responsemedicine
+      this.patientmedicine = this.dataSourcemedicine.data[0]
+      console.log(this.patientmedicine)
 
-      this.treatmentservice.createTreatment(this.treatment).subscribe( (responsetreatment:any) =>{
-            this.dataSourcetreatment.data.push( {...responsetreatment});
-            console.log(responsetreatment)
-            this.dataSourcetreatment.data = this.dataSourcetreatment.data.map((o: any) => { return o; });
+      this.treatmentservice.getTreatmentByName(this.treatment.name).subscribe( (responsetreatment:any) =>{
+            this.dataSourcetreatment.data = responsetreatment
+            this.treatment = this.dataSourcetreatment.data[0]
+            console.log(this.treatment)
 
-            this.patienttreatmentservice.createPatientTreatment(id,responsetreatment.id,responsemedicine.id,this.patienttreatment).subscribe( (responsepatienttreatment:any) =>{
+            this.patienttreatmentservice.createPatientTreatment(id,this.treatment.id,this.patientmedicine.id,this.patienttreatment).subscribe( (responsepatienttreatment:any) =>{
                 this.dataSourcepatienttreatment.data.push( {...responsepatienttreatment});
                 console.log(responsepatienttreatment)
                 this.dataSourcepatienttreatment.data = this.dataSourcepatienttreatment.data.map((o: any) => { return o; });
-            })
+                const dialogRef = this.dialog.open(ResultDialogTreatmentComponent)
+            },err=>{
+              alert("Tratamiento seleccionado igual")
+              }
+            )
           })
       });
 
-    const dialogRef = this.dialog.open(ResultDialogTreatmentComponent)
+    
   }
 
   DisplayVigilancy(){
