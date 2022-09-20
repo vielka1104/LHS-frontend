@@ -1,0 +1,28 @@
+<h1 mat-dialog-title class="text-center">Actualizar Tratamiento</h1>
+ <div mat-dialog-content> 
+  <div class="pb-5"></div>
+  <form [formGroup]="treatmenteditform">
+    <mat-form-field appearance="outline" class="w-96">
+      <mat-label>Fecha inicio</mat-label>
+      <input matInput placeholder="Ingrese su fecha de inicio" formControlName="initdate" required>
+      <mat-error>Complete este campo es requerido!</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline" class="w-96">
+      <mat-label>Fecha fin</mat-label>
+      <input matInput placeholder="Ingrese su fecha de fin" formControlName="enddate">
+      <mat-error>Complete este campo es requerido!</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline" class="w-96">
+      <mat-label># de dosis</mat-label>
+      <input type="number" matInput placeholder="Ingrese su numero de dosis" formControlName="dose">
+      <mat-error>Complete este campo es requerido!</mat-error>
+    </mat-form-field>
+    <br>
+
+    <div class="text-center">
+      <button [matDialogClose]="edittreatmentdata" color = "primary" mat-raised-button [disabled]="treatmenteditform.invalid"  (click)="Update()">Actualizar</button>
+    </div>  
+  </form>
+</div>

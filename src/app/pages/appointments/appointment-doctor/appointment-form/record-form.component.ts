@@ -27,6 +27,9 @@ import { MedicineService } from 'src/app/services/ehr/medicine.service';
 import { DoctorService } from 'src/app/services/doctor/doctor.service';
 import { DoctorResource } from 'src/app/models/doctor/DoctorResource';
 import { StaffService } from 'src/app/services/staff/staff.service';
+import { PatientDiagnosisResource } from 'src/app/models/patient-diagnostic/PatientDiagnosisResource';
+import { UpdateDiagnosticDialogComponent } from '../../update-dialog/update-diagnostic-dialog/update-diagnostic-dialog.component';
+import { UpdateTreatmentDialogComponent } from '../../update-dialog/update-treatment-dialog/update-treatment-dialog.component';
 
 @Component({
   selector: 'app-record-form',
@@ -34,7 +37,6 @@ import { StaffService } from 'src/app/services/staff/staff.service';
   styleUrls: ['./record-form.component.css']
 })
 export class RecordFormComponent implements OnInit {
-  patientheight!:any
   patientobject!:PatientResource
   doctorobject!:DoctorResource
   doctorurlobject!:DoctorResource
@@ -69,8 +71,8 @@ export class RecordFormComponent implements OnInit {
 
   dataSourceancient = new MatTableDataSource<any>()
   displayedColumnsancient: string[] = ['id', 'description', 'diseasetype', 'date'];
-  displayedColumnsdiagnostic: string[] = ['code', 'description', 'diagnostic', 'initdate','finishdate'];
-  displayedColumnstreatment: string[] = ['code', 'typetreatment', 'medicine', 'doses','description','initdate','finishdate'];
+  displayedColumnsdiagnostic: string[] = ['code', 'description', 'diagnostic', 'initdate','finishdate','update'];
+  displayedColumnstreatment: string[] = ['code', 'typetreatment', 'medicine', 'doses','description','initdate','finishdate','update'];
   
 
   constructor(public dialog:MatDialog, private formBuilder:FormBuilder, 
@@ -91,12 +93,16 @@ export class RecordFormComponent implements OnInit {
       this.patienttreatment = {} as PatientTreatmentResource
       this.treatment = {} as TreatmentResource
       this.patientmedicine = {} as MedicineResource
+      this.patientobject = {} as PatientResource
     }
 
   ngOnInit() {
     this.patientrecordform=this.formBuilder.group({
       height:['',Validators.required],
      })
+
+     this.patientrecordform.controls['height'].setValue(this.patientobject.height);
+
      this.backrecordform = this.formBuilder.group({
       disease:['',Validators.required],
       description:['',Validators.required],
@@ -132,6 +138,7 @@ export class RecordFormComponent implements OnInit {
      this.getPatientAncients(this.idpatienturl)
      this.getPatientDiagnostic(this.idpatienturl)
      this.getPatientTreatments(this.idpatienturl)
+
   }
 
   RegisterMethod(){
@@ -218,11 +225,11 @@ export class RecordFormComponent implements OnInit {
   }
 
   UpdatePatient(id:number){
-    console.log(this.patientheight)
+    console.log(this.patientobject.height)
     
     this.patientservice.getPatientById(id).subscribe((response:any) =>{
         this.patientupdate = response
-        this.patientupdate.height = this.patientheight
+        this.patientupdate.height = this.patientobject.height
 
         this.patientservice.updatePatient(id,this.patientupdate).subscribe( (response:any) =>{
             this.dataSource.data = this.dataSource.data.map((o: PatientResource) => {
@@ -274,5 +281,51 @@ export class RecordFormComponent implements OnInit {
 
   GoToAppointmentDoctor(){
       this.route.navigate(['doctor',this.doctorobject.id,'appointment-doctor']);
+  }
+
+  GotoUpdateDiagnostic(object:PatientDiagnosisResource){
+    const dialogRef=  this.dialog.open(UpdateDiagnosticDialogComponent,{
+      data:object 
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result)
+      
+      this.patientdiagnosticservice.updatePatientDiagnosis(result.id,result).subscribe( (response:any) =>{
+
+        this.dataSourcepatientdiagnostic.data = this.dataSourcepatientdiagnostic.data.map((o: PatientDiagnosisResource) => {
+          if (o.id === response.id) {
+            o = response;
+          }
+          return o;
+        });
+
+      });
+
+    });
+  }
+
+  GotoUpdateTreatment(object:PatientTreatmentResource){
+    const dialogRef=  this.dialog.open(UpdateTreatmentDialogComponent,{
+      data:object 
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result)
+
+      this.patienttreatmentservice.updatePatientTreatment(result.id,result).subscribe( (response:any) =>{
+
+        this.dataSourcepatienttreatment.data = this.dataSourcepatienttreatment.data.map((o: PatientTreatmentResource) => {
+          if (o.id === response.id) {
+            o = response;
+          }
+          return o;
+        });
+
+      });
+
+    });
   }
 }

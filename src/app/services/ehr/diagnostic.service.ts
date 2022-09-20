@@ -9,7 +9,7 @@ import {catchError, retry} from "rxjs/operators";
 })
 export class DiagnosticService {
 
-  basePath ="http://localhost:8080/api/v1"
+  basePath ="http://localhost:8080/api/v1/diagnosis"
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
