@@ -41,6 +41,7 @@ export class MedicalScheduleComponent implements OnInit {
   appmonth!:any
   appday!:any
   dataSourceappointment = new MatTableDataSource<any>()
+  days = ['Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo']
   
   constructor(public dialog:MatDialog, private formBuilder:FormBuilder,private route:Router,private activeroute:ActivatedRoute, 
               private patientservice:PatientService,

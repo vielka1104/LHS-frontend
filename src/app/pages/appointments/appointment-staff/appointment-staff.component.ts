@@ -28,7 +28,9 @@ export class AppointmentStaffComponent implements OnInit {
   selecteddate !: Date;
   dnisearch = new FormControl;
   patient!:number;
+  iddoctor = new FormControl
   patientobject!:PatientResource
+  doctorobject!:DoctorResource
   patients:string[] = ["Alayo Zavaleta, Alessandro Fabián","Almonacid Garrido, Viviana", "Benavides Castillo, Daniela"] 
   urlid!:number
   displayedColumns: string[] = ['id','dni' ,'patient', 'date', 'status','button'];
@@ -38,7 +40,7 @@ export class AppointmentStaffComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!:MatPaginator;
 
   constructor(private appointmentservice:AppointmentService, private route:Router,private activeroute:ActivatedRoute, private patientservice:PatientService, 
-              private staffservice:StaffService) {
+              private staffservice:StaffService, private doctorservice:DoctorService) {
               }
   
   ngOnInit() {
@@ -47,7 +49,6 @@ export class AppointmentStaffComponent implements OnInit {
     let urlvariable = parseInt(this.activeroute.snapshot.paramMap.get('id')!);
     this.urlid = urlvariable
     console.log(this.urlid)
-    this.getAllAppointments(this.urlid)
     this.getStaffById(this.urlid)
   }
 
@@ -66,13 +67,18 @@ export class AppointmentStaffComponent implements OnInit {
         this.staffobject = response           
       })
   }
+  
+  getDoctorandAllAppointments(){
+      this.doctorservice.getDoctorById(this.iddoctor.value).subscribe((response:any)=>{
+        this.doctorobject = response
+        
+        this.appointmentservice.getAppointmentsByDoctorId(this.doctorobject.id).subscribe((response:any) =>{
+          this.dataSource.data = response;
+          console.log(this.dataSource.data)
+        })
 
-  getAllAppointments(id:number){
-    this.appointmentservice.getAppointmentsByDoctorId(id).subscribe((response:any) =>{
-        this.dataSource.data = response;
-        console.log(this.dataSource.data)
-      }
-    )
+      })
+
   }
 
   AppointmentForm(patientid:number){

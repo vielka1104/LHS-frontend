@@ -35,7 +35,7 @@
 <body class="bg-white">
   <table class="w-full">
     <tr>
-      <th class="font-normal pl-80 pt-10">
+      <th class="font-normal pl-72 pt-10">
         <mat-card class="text-left w-4/5">
           <div class="inline-flex">
             <img src="../../assets/images/medical-profile.png">
@@ -61,37 +61,43 @@
         </div>
         <br>
         <div *ngIf="patientavailable">
-        <mat-card class="w-2/4 ml-56 mr-auto">
-            <h1 class="text-center font-bold">
-                {{appointmentdateselected}}
-            </h1>
-          <br>
-          <table class="ml-auto mr-auto">
-            <tr>
-              <div class="pr-10"></div>
-              <th>
-                <button mat-stroked-button color="basic" (click)="SelectedDate(doctorobject.shift.startShift,patientobject.id,doctorobject.id)" [disabled]="scheduleform.invalid">{{doctorobject.shift.startShift}}</button>
-              </th>
-              <div class="pr-10"></div>
-            </tr>
-            <div class="pb-5"></div>
-            <tr *ngFor="let item of Hours">
-              <div class="pr-10"></div>
-              <th>
-                <button mat-stroked-button color="basic" (click)="SelectedDate(item,patientobject.id,doctorobject.id)" [disabled]="scheduleform.invalid">{{item}}</button>
-                <div class="pb-5"></div>
-              </th>
-              <div class="pr-10"></div>
-            </tr>
-            <div class="pb-1"></div>
-            <tr>
-              <div class="pr-10"></div>
-              <th>
-                <button mat-stroked-button color="basic" (click)="SelectedDate(doctorobject.shift.endShift,patientobject.id,doctorobject.id)" [disabled]="scheduleform.invalid">{{doctorobject.shift.endShift}}</button>
-              </th>
-              <div class="pr-10"></div>
-            </tr>
-          </table>
+        <mat-card class="w-4/5">
+          <div class="pr-5"></div>
+          <table class="w-full">
+            <th *ngFor="let day of days">
+              <tr>
+                <div class="pl-14">
+                  <h1>{{day}}</h1>
+                </div>
+              </tr>
+              <br>
+              <tr>
+                <div class="pr-10"></div>
+                <th>
+                  <button mat-stroked-button color="basic" (click)="SelectedDate(doctorobject.shift.startShift,patientobject.id,doctorobject.id)" [disabled]="scheduleform.invalid">{{doctorobject.shift.startShift}}</button>
+                </th>
+                <div class="pr-10"></div>
+              </tr>
+              <div class="pb-5"></div>
+              <tr *ngFor="let item of Hours">
+                <div class="pr-10"></div>
+                <th>
+                  <button mat-stroked-button color="basic" (click)="SelectedDate(item,patientobject.id,doctorobject.id)" [disabled]="scheduleform.invalid">{{item}}</button>
+                  <div class="pb-5"></div>
+                </th>
+                <div class="pr-10"></div>
+              </tr>
+              <div class="pb-1"></div>
+              <tr>
+                <div class="pr-10"></div>
+                <th>
+                  <button mat-stroked-button color="basic" (click)="SelectedDate(doctorobject.shift.endShift,patientobject.id,doctorobject.id)" [disabled]="scheduleform.invalid">{{doctorobject.shift.endShift}}</button>
+                </th>
+                <div class="pr-10"></div>
+              </tr>
+          </th>
+        </table>
+        <div class="pr-5"></div>
         </mat-card>
       </div>
       </th>
