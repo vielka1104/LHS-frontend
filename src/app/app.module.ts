@@ -48,7 +48,7 @@ import { AppointmentDoctorComponent } from './pages/appointments/appointment-doc
 import { AppointmentStaffComponent } from './pages/appointments/appointment-staff/appointment-staff.component';
 import { DialogReportsComponent } from './pages/dialogs/dialog-reports/dialog-reports.component';
 import { HttpClientModule } from '@angular/common/http';
-import { StaffAppointmentFormComponent } from './pages/appointments/appointment-staff/appointment-staff-form/staff-appointment-form.component';
+import { StaffAppointmentFormComponent } from './pages/appointments/appointment-staff/staff-appointment-form/staff-appointment-form.component';
 import { UpdateDiagnosticDialogComponent } from './pages/appointments/update-dialog/update-diagnostic-dialog/update-diagnostic-dialog.component';
 import { UpdateTreatmentDialogComponent } from './pages/appointments/update-dialog/update-treatment-dialog/update-treatment-dialog.component';
 

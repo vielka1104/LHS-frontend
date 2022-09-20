@@ -27,7 +27,7 @@ import { RegisterStaffComponent } from './pages/registers/register-staff/registe
 import { RegisterUserComponent } from './pages/registers/register-user/register-user.component';
 import { UsersPageComponent } from './pages/users-page/users-page.component';
 import { AppointmentStaffComponent } from './pages/appointments/appointment-staff/appointment-staff.component';
-import { StaffAppointmentFormComponent } from './pages/appointments/appointment-staff/appointment-staff-form/staff-appointment-form.component';
+import { StaffAppointmentFormComponent } from './pages/appointments/appointment-staff/staff-appointment-form/staff-appointment-form.component';
 
 const routes: Routes = [
   {path: "register-user",component: RegisterUserComponent},

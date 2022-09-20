@@ -27,15 +27,17 @@ import { MedicineService } from 'src/app/services/ehr/medicine.service';
 import { DoctorService } from 'src/app/services/doctor/doctor.service';
 import { DoctorResource } from 'src/app/models/doctor/DoctorResource';
 import { StaffService } from 'src/app/services/staff/staff.service';
+import { PatientDiagnosisResource } from 'src/app/models/patient-diagnostic/PatientDiagnosisResource';
+import { UpdateDiagnosticDialogComponent } from '../../update-dialog/update-diagnostic-dialog/update-diagnostic-dialog.component';
+import { UpdateTreatmentDialogComponent } from '../../update-dialog/update-treatment-dialog/update-treatment-dialog.component';
 import { StaffResource } from 'src/app/models/staff/StaffResource';
 
 @Component({
-  selector: 'app-staff-appointment-form',
+  selector: 'staff-appointment-form',
   templateUrl: './staff-appointment-form.component.html',
   styleUrls: ['./staff-appointment-form.component.css']
 })
 export class StaffAppointmentFormComponent implements OnInit {
-  patientheight!:any
   patientobject!:PatientResource
   staffobject!:StaffResource
   doctorurlobject!:DoctorResource
@@ -55,8 +57,9 @@ export class StaffAppointmentFormComponent implements OnInit {
   diagnosticform!:FormGroup
   treatmentform!:FormGroup
   treatmenttype!:String;
-  treatmenttypes:String[] = ["Treatment 1","Treatment 2","Treatment 3"]
-  diagnostictypes:String[] = ["Diabetes 1","Diabetes 2","Calculos renales"]
+  treatmenttypes:TreatmentResource[] = []
+  diagnostictypes:DiagnosisResource[] = []
+  medicinetypes:MedicineResource[] = []
   fechaactual:Date = new Date()
   pipedate:DatePipe = new DatePipe("en-US")
   todaydate:any
@@ -70,8 +73,8 @@ export class StaffAppointmentFormComponent implements OnInit {
 
   dataSourceancient = new MatTableDataSource<any>()
   displayedColumnsancient: string[] = ['id', 'description', 'diseasetype', 'date'];
-  displayedColumnsdiagnostic: string[] = ['code', 'description', 'diagnostic', 'initdate','finishdate'];
-  displayedColumnstreatment: string[] = ['code', 'typetreatment', 'medicine', 'doses','description','initdate','finishdate'];
+  displayedColumnsdiagnostic: string[] = ['code', 'description', 'diagnostic', 'initdate','finishdate','update'];
+  displayedColumnstreatment: string[] = ['code', 'typetreatment', 'medicine', 'doses','description','initdate','finishdate','update'];
   
 
   constructor(public dialog:MatDialog, private formBuilder:FormBuilder, 
@@ -91,12 +94,16 @@ export class StaffAppointmentFormComponent implements OnInit {
       this.patienttreatment = {} as PatientTreatmentResource
       this.treatment = {} as TreatmentResource
       this.patientmedicine = {} as MedicineResource
+      this.patientobject = {} as PatientResource
     }
 
   ngOnInit() {
     this.patientrecordform=this.formBuilder.group({
       height:['',Validators.required],
      })
+
+     this.patientrecordform.controls['height'].setValue(this.patientobject.height);
+
      this.backrecordform = this.formBuilder.group({
       disease:['',Validators.required],
       description:['',Validators.required],
@@ -132,6 +139,9 @@ export class StaffAppointmentFormComponent implements OnInit {
      this.getPatientAncients(this.idpatienturl)
      this.getPatientDiagnostic(this.idpatienturl)
      this.getPatientTreatments(this.idpatienturl)
+     this.getDiagnosis()
+     this.getTreatments()
+     this.getMedicines()
   }
 
   RegisterMethod(){
@@ -147,24 +157,50 @@ export class StaffAppointmentFormComponent implements OnInit {
     const dialogRef = this.dialog.open(ResultDialogAncientComponent)
   }
 
+  getDiagnosis(){
+    this.diagnosisservice.getAllDiagnosis().subscribe( (response:any) =>{
+        this.diagnostictypes = response
+        console.log(this.diagnostictypes)
+      }
+    )
+  }
+
+  getTreatments(){
+    this.treatmentservice.getAllTreatments().subscribe( (response:any) =>{
+        this.treatmenttypes = response
+        console.log(this.treatmenttypes)
+      }
+    )
+  }
+
+  getMedicines(){
+    this.medicineservice.getAllMedicines().subscribe( (response:any) =>{
+        this.medicinetypes = response
+        console.log(this.medicinetypes)
+      }
+    )
+  }
+
   SaveDiagnostic(id:number){
     console.log(this.diagnosis);
     console.log(this.patientdiagnostic);
 
-    this.diagnosisservice.createDiagnosis(this.diagnosis).subscribe( (response:any) =>{
-        this.dataSourcediagnostic.data.push( {...response});
-        console.log(response)
-        this.dataSourcediagnostic.data = this.dataSourcediagnostic.data.map((o: any) => { return o;});
+    this.diagnosisservice.getDiagnosisByName(this.diagnosis.name).subscribe( (response:any) =>{
+        this.dataSourcediagnostic.data = response
+        console.log(this.dataSourcediagnostic.data)
+        this.diagnosis = this.dataSourcediagnostic.data[0]
 
-        this.patientdiagnosticservice.createPatientDiagnosis(this.patientdiagnostic,id,response.id).subscribe( (response:any) =>{
+        this.patientdiagnosticservice.createPatientDiagnosis(this.patientdiagnostic,id,this.diagnosis.id).subscribe( (response:any) =>{
             this.dataSourcepatientdiagnostic.data.push( {...response});
             this.dataSourcepatientdiagnostic.data = this.dataSourcepatientdiagnostic.data.map((o: any) => { return o; });
+            const dialogRef = this.dialog.open(ResultDialogClinicComponent)
+          },err=>{
+            alert("Diagnostico seleccionado igual")
           }
         )
       }
     )
     
-    const dialogRef = this.dialog.open(ResultDialogClinicComponent)
   }
 
   SaveTreatment(id:number){
@@ -172,25 +208,29 @@ export class StaffAppointmentFormComponent implements OnInit {
     console.log(this.treatment);
     console.log(this.patienttreatment);
 
-    this.medicineservice.createMedicine(this.patientmedicine).subscribe( (responsemedicine:any) =>{
-      this.dataSourcemedicine.data.push( {...responsemedicine});
-      console.log(responsemedicine)
-      this.dataSourcemedicine.data = this.dataSourcemedicine.data.map((o: any) => { return o;});
+    this.medicineservice.getMedicineByName(this.patientmedicine.name).subscribe( (responsemedicine:any) =>{
+      this.dataSourcemedicine.data = responsemedicine
+      this.patientmedicine = this.dataSourcemedicine.data[0]
+      console.log(this.patientmedicine)
 
-      this.treatmentservice.createTreatment(this.treatment).subscribe( (responsetreatment:any) =>{
-            this.dataSourcetreatment.data.push( {...responsetreatment});
-            console.log(responsetreatment)
-            this.dataSourcetreatment.data = this.dataSourcetreatment.data.map((o: any) => { return o; });
+      this.treatmentservice.getTreatmentByName(this.treatment.name).subscribe( (responsetreatment:any) =>{
+            this.dataSourcetreatment.data = responsetreatment
+            this.treatment = this.dataSourcetreatment.data[0]
+            console.log(this.treatment)
 
-            this.patienttreatmentservice.createPatientTreatment(id,responsetreatment.id,responsemedicine.id,this.patienttreatment).subscribe( (responsepatienttreatment:any) =>{
+            this.patienttreatmentservice.createPatientTreatment(id,this.treatment.id,this.patientmedicine.id,this.patienttreatment).subscribe( (responsepatienttreatment:any) =>{
                 this.dataSourcepatienttreatment.data.push( {...responsepatienttreatment});
                 console.log(responsepatienttreatment)
                 this.dataSourcepatienttreatment.data = this.dataSourcepatienttreatment.data.map((o: any) => { return o; });
-            })
+                const dialogRef = this.dialog.open(ResultDialogTreatmentComponent)
+            },err=>{
+              alert("Tratamiento seleccionado igual")
+              }
+            )
           })
       });
 
-    const dialogRef = this.dialog.open(ResultDialogTreatmentComponent)
+    
   }
 
   DisplayVigilancy(){
@@ -218,11 +258,11 @@ export class StaffAppointmentFormComponent implements OnInit {
   }
 
   UpdatePatient(id:number){
-    console.log(this.patientheight)
+    console.log(this.patientobject.height)
     
     this.patientservice.getPatientById(id).subscribe((response:any) =>{
         this.patientupdate = response
-        this.patientupdate.height = this.patientheight
+        this.patientupdate.height = this.patientobject.height
 
         this.patientservice.updatePatient(id,this.patientupdate).subscribe( (response:any) =>{
             this.dataSource.data = this.dataSource.data.map((o: PatientResource) => {
@@ -274,5 +314,51 @@ export class StaffAppointmentFormComponent implements OnInit {
 
   GoToAppointmentStaff(){
       this.route.navigate(['staff',this.staffobject.id,'appointment-staff']);
+  }
+
+  GotoUpdateDiagnostic(object:PatientDiagnosisResource){
+    const dialogRef=  this.dialog.open(UpdateDiagnosticDialogComponent,{
+      data:object 
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result)
+      
+      this.patientdiagnosticservice.updatePatientDiagnosis(result.id,result).subscribe( (response:any) =>{
+
+        this.dataSourcepatientdiagnostic.data = this.dataSourcepatientdiagnostic.data.map((o: PatientDiagnosisResource) => {
+          if (o.id === response.id) {
+            o = response;
+          }
+          return o;
+        });
+
+      });
+
+    });
+  }
+
+  GotoUpdateTreatment(object:PatientTreatmentResource){
+    const dialogRef=  this.dialog.open(UpdateTreatmentDialogComponent,{
+      data:object 
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result)
+
+      this.patienttreatmentservice.updatePatientTreatment(result.id,result).subscribe( (response:any) =>{
+
+        this.dataSourcepatienttreatment.data = this.dataSourcepatienttreatment.data.map((o: PatientTreatmentResource) => {
+          if (o.id === response.id) {
+            o = response;
+          }
+          return o;
+        });
+
+      });
+
+    });
   }
 }
