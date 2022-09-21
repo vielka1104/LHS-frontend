@@ -27,48 +27,58 @@ import { RegisterStaffComponent } from './pages/registers/register-staff/registe
 import { RegisterUserComponent } from './pages/registers/register-user/register-user.component';
 import { UsersPageComponent } from './pages/users-page/users-page.component';
 import { AppointmentStaffComponent } from './pages/appointments/appointment-staff/appointment-staff.component';
+import { MedicalScheduleStaffComponent } from './pages/appointments/appointment-register-staff/medical-schedule-staff/medical-schedule-staff.component';
+import { StaffAppointmentFormComponent } from './pages/appointments/appointment-staff/staff-appointment-form/staff-appointment-form.component';
+import { AppointmentRegisterStaffComponent } from './pages/appointments/appointment-register-staff/appointment-register-staff.component';
 
 const routes: Routes = [
   {path: "register-user",component: RegisterUserComponent},
   {path: "login",component: LoginComponent},
   {path: "register-medical",component: RegisterMedicalComponent},
-  {path: "register-staff",component: RegisterStaffComponent},
-  {path: "doctor/:id/home-doctor",component: HomeComponent},
-  {path: "appointment-patient/patient/:id",component: AppointmentComponent},
-  {path: "appointment-doctor/doctor/:id",component: AppointmentDoctorComponent},
-  {path: "appointment-staff",component: AppointmentStaffComponent},
-  {path: "medical-schedule/patient/:patientid/doctor/:doctorid",component: MedicalScheduleComponent},
+  {path: "register-staff",component: RegisterStaffComponent}, 
   {path: "medical-records",component: MedicalRecordsComponent},
   {path: "patient-record",component: PatientRecordComponent},
-  {path: "appointment-form/doctor/:doctorid/patient/:patientid",component: RecordFormComponent},
   {path: "update-record",component: UpdateRecordComponent},
+
+  //Paciente
+  {path: "patient/:id/appointment-patient",component: AppointmentComponent},
+  {path: "patient/:patientid/medical-schedule/doctor/:doctorid",component: MedicalScheduleComponent},
   {path: "patient/:id/home-patient",component: HomePatientComponent},
+
+  //Personal (Staff)
+  {path: "staff/:staffid/medical-schedule/doctor/:doctorid",component: MedicalScheduleStaffComponent},
+  {path: "staff/:staffid/staff-appointment-form/patient/:patientid",component: StaffAppointmentFormComponent},
+  {path: "staff/:id/appointment-staff",component: AppointmentStaffComponent},
+  {path: "staff/:id/appointment-staff-register",component: AppointmentRegisterStaffComponent},
   {path: "staff/:id/home-staff",component: HomeStaffComponent},
-  {path:"staff/:id/vigilant",component:VigilantComponent},
-  {path:"staff/:id/clinical-histories",component:ClinicalHistoriesComponent},
-  {path:"staff/:id/reporter-general-patient-risk",component:PatientRiskComponent},
-  {path:"staff/:id/reporter-patient-risk",component:MonitPatientRiskComponent},
-  {path:"staff/:id/reporter-general-treatment",component:TreatmentComponent},
-  {path:"staff/:id/reporter-treatment",component:MonitorTreatmentComponent},
-  {path:"staff/:id/reporter-general-health-indicator",component:GeneralHealthIndicatorComponent},
-  {path:"staff/:id/reporter-health-indicator",component:HealthIndicatorComponent},
-  {path:"staff/:id/reporter-general-diagnostic",component:GeneralDiagnosticComponent},
-  {path:"staff/:id/reporter-diagnostic",component:DiagnosticComponent},
-  {path:"staff/:id/reporter-efficiency",component:EfficiencyComponent},
+  {path: "staff/:id/vigilant",component:VigilantComponent},
+  {path: "staff/:id/clinical-histories",component:ClinicalHistoriesComponent},
+  {path: "staff/:id/reporter-general-patient-risk",component:PatientRiskComponent},
+  {path: "staff/:id/reporter-patient-risk",component:MonitPatientRiskComponent},
+  {path: "staff/:id/reporter-general-treatment",component:TreatmentComponent},
+  {path: "staff/:id/reporter-treatment",component:MonitorTreatmentComponent},
+  {path: "staff/:id/reporter-general-health-indicator",component:GeneralHealthIndicatorComponent},
+  {path: "staff/:id/reporter-health-indicator",component:HealthIndicatorComponent},
+  {path: "staff/:id/reporter-general-diagnostic",component:GeneralDiagnosticComponent},
+  {path: "staff/:id/reporter-diagnostic",component:DiagnosticComponent},
+  {path: "staff/:id/reporter-efficiency",component:EfficiencyComponent},
   {path: "staff/:id/staff-users",component: UsersPageComponent},
 
-
-  {path:"doctor/:id/vigilant",component:VigilantComponent},
-  {path:"doctor/:id/clinical-histories",component:ClinicalHistoriesComponent},
-  {path:"doctor/:id/reporter-general-patient-risk",component:PatientRiskComponent},
-  {path:"doctor/:id/reporter-patient-risk",component:MonitPatientRiskComponent},
-  {path:"doctor/:id/reporter-general-treatment",component:TreatmentComponent},
-  {path:"doctor/:id/reporter-treatment",component:MonitorTreatmentComponent},
-  {path:"doctor/:id/reporter-general-health-indicator",component:GeneralHealthIndicatorComponent},
-  {path:"doctor/:id/reporter-health-indicator",component:HealthIndicatorComponent},
-  {path:"doctor/:id/reporter-general-diagnostic",component:GeneralDiagnosticComponent},
-  {path:"doctor/:id/reporter-diagnostic",component:DiagnosticComponent},
-  {path:"doctor/:id/reporter-efficiency",component:EfficiencyComponent},
+  //Doctor
+  {path: "doctor/:doctorid/appointment-form/patient/:patientid",component: RecordFormComponent},
+  {path: "doctor/:id/appointment-doctor",component: AppointmentDoctorComponent},
+  {path: "doctor/:id/home-doctor",component: HomeComponent},
+  {path: "doctor/:id/vigilant",component:VigilantComponent},
+  {path: "doctor/:id/clinical-histories",component:ClinicalHistoriesComponent},
+  {path: "doctor/:id/reporter-general-patient-risk",component:PatientRiskComponent},
+  {path: "doctor/:id/reporter-patient-risk",component:MonitPatientRiskComponent},
+  {path: "doctor/:id/reporter-general-treatment",component:TreatmentComponent},
+  {path: "doctor/:id/reporter-treatment",component:MonitorTreatmentComponent},
+  {path: "doctor/:id/reporter-general-health-indicator",component:GeneralHealthIndicatorComponent},
+  {path: "doctor/:id/reporter-health-indicator",component:HealthIndicatorComponent},
+  {path: "doctor/:id/reporter-general-diagnostic",component:GeneralDiagnosticComponent},
+  {path: "doctor/:id/reporter-diagnostic",component:DiagnosticComponent},
+  {path: "doctor/:id/reporter-efficiency",component:EfficiencyComponent},
 ];
 
 @NgModule({
