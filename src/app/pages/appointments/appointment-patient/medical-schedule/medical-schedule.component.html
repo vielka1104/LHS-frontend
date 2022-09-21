@@ -41,7 +41,7 @@
         <form [formGroup]="scheduleform">
           <mat-form-field appearance="outline">
             <mat-label>Fecha</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName = "date" required [(ngModel)]="appointmentdateselected">
+            <input matInput [matDatepicker]="picker" [min]="datenow" formControlName = "date" required [(ngModel)]="appointmentdateselected">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
             <mat-error>Es requerido este campo!</mat-error>

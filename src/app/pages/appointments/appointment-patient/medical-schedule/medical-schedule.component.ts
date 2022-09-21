@@ -35,6 +35,7 @@ export class MedicalScheduleComponent implements OnInit {
   hourformatchange!:Date
   newdate!:Date
   testdate:Date =new Date()
+  datenow = new Date()
   appointmentdateselected!:Date
   appointmentdateformated!:any
   nombredia:any
