@@ -291,7 +291,6 @@ export class RecordFormComponent implements OnInit {
 
     this.patientservice.getPatientById(id).subscribe((response:PatientResource) =>{
         console.log(response.birthday)
-        console.log( this.patientupdate.birthday)
         this.patientupdate.birthday = response.birthday
         this.patientupdate.documentType = response.documentType
         this.patientupdate.email = response.email
@@ -300,13 +299,11 @@ export class RecordFormComponent implements OnInit {
         this.patientupdate.name= response.name
         this.patientupdate.phone= response.phone
         this.patientupdate.username= response.username
-        this.patientupdate.password= response.password
-        console.log(this.patientupdate)  
+        this.patientupdate.password= response.password 
         this.patientupdate.height = this.patientobject.height
         
         this.patientupdate.documentNumber = response.documentNumber
 
-        
         this.patientservice.updatePatient(id,this.patientupdate).subscribe( (response:any) =>{
             this.dataSource.data = this.dataSource.data.map((o: PatientResource) => {
               console.log(response)
