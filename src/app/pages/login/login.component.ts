@@ -1,3 +1,4 @@
+import { TreatmentService } from 'src/app/services/ehr/treatment.service';
 import { DoctorService } from 'src/app/services/doctor/doctor.service';
 import { StaffService } from './../../services/staff/staff.service';
 import { PatientService } from './../../services/patient/patient.service';
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   loginform!: FormGroup
   hide:boolean = true
   LoginResource!:LoginResource
-  constructor(private formBuilder: FormBuilder,private route:Router,private LoginService:LoginService,private PatientService:PatientService,private StaffService:StaffService,private DoctorService:DoctorService) { 
+  constructor(private formBuilder: FormBuilder,private route:Router,private LoginService:LoginService,private PatientService:PatientService,private StaffService:StaffService,private DoctorService:DoctorService
+    ,private TreatmentService:TreatmentService) { 
     this.LoginResource={}as LoginResource;
   }
 
@@ -27,6 +29,7 @@ export class LoginComponent implements OnInit {
       username:['',Validators.required],
       password:['',Validators.required]
      })
+     this.gettretamnet()
   }
 
   login(){
@@ -49,7 +52,11 @@ export class LoginComponent implements OnInit {
 
 
  
-
+  gettretamnet(){
+    this.TreatmentService.getAllTreatments().subscribe((response:any)=>{
+          console.log(response)
+    })
+  }
 
 
   GoToHomeDoctor(id:number){

@@ -103,6 +103,7 @@ export class RecordFormComponent implements OnInit {
       this.patientmedicine = {} as MedicineResource
       this.patientobject = {} as PatientResource
       this.surveillancepatient = {} as SurveillanceResource
+      this.patientupdate={}as UpdatePatientResource
     }
 
   ngOnInit() {
@@ -289,7 +290,8 @@ export class RecordFormComponent implements OnInit {
     console.log(this.patientobject.height)
 
     this.patientservice.getPatientById(id).subscribe((response:PatientResource) =>{
-        console.log(response)
+        console.log(response.birthday)
+        console.log( this.patientupdate.birthday)
         this.patientupdate.birthday = response.birthday
         this.patientupdate.documentType = response.documentType
         this.patientupdate.email = response.email
