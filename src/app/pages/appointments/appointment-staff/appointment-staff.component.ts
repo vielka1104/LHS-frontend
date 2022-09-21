@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
@@ -75,6 +76,25 @@ export class AppointmentStaffComponent implements OnInit {
         this.appointmentservice.getAppointmentsByDoctorId(this.doctorobject.id).subscribe((response:any) =>{
           this.dataSource.data = response;
           console.log(this.dataSource.data)
+          
+          for(var oneappointment of this.dataSource.data){
+            console.log(oneappointment)
+            let dateformatselected = formatDate(oneappointment.scheduledAt,'YYYY-MM-dd HH:mm:ss','en_US')
+            console.log(dateformatselected)
+
+            const [finaldate,finalhour] = dateformatselected.split(' ');
+
+            const [year, month, day] =  finaldate.split('-')
+            
+            const [hour, minute, seconds] =  finalhour.split(':')
+
+            const dateformat = new Date(+year,+month-1,+day,+hour, +minute, +seconds);
+
+            console.log(dateformat)
+            
+            oneappointment.scheduledAt = dateformat
+            console.log(oneappointment)
+          }
         })
 
       })
