@@ -28,7 +28,11 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import htmlToPdfmake from 'html-to-pdfmake';
 import { ViewChild,ElementRef  } from '@angular/core';
 
-
+export interface dataclinical {
+  Hematologicos: string;
+  Urologicos:string
+  Nutricion:string
+}
 const date=new Date()
 const paciente:Paciente[]=[
   { id:1,
@@ -107,8 +111,11 @@ export class ClinicalHistoriesComponent implements OnInit {
   dataSource3 !:MatTableDataSource<any>;
   dataSource4 !:MatTableDataSource<any>;
   dataSource5 !:MatTableDataSource<any>;
+  dataSource6 !:MatTableDataSource<any>;
   dataSourcea=antecedente
   avalible!:boolean
+
+  arrayclinical!:dataclinical[]
   PDFTitle="Clinical Stories"
   @ViewChild('pdfTable') pdfTable: ElementRef;
   avaliblerecords!:boolean
@@ -125,11 +132,13 @@ export class ClinicalHistoriesComponent implements OnInit {
   whois=""
   home!:string
   id!:number
+  pdf=false
   SurveillanceResource1!:SurveillanceResource
   displayedColumns: string[] =  ['Antecedente', 'Descripcion', 'fecha'];
   displayedColumns2: string[] = ['Medicamento', 'Dosis Diarias', 'fecha inicio','fecha final'];
   displayedColumns3: string[] = ['Diagnostico', 'Fecha', 'Comentario'];
   displayedColumns4: string[] = ['Fecha','Notas'];
+  displayedColumns5: string[] = ['Hematologicos','Urologicos',"Nutrición"];
   constructor(public dialog: MatDialog,private formBuilder:FormBuilder,private PATIENTSERVICE:PatientService,private IllnessRecordService:IllnessRecordService
     ,private PatientTreatmentService:PatientTreatmentService,private PatientDiagnosticService:PatientDiagnosticService,private AppointmentService:AppointmentService,private SurveillanceService:SurveillanceService
     ,private DoctorService:DoctorService,private ActivatedRoute:ActivatedRoute,private Router:Router) { 
@@ -138,6 +147,7 @@ export class ClinicalHistoriesComponent implements OnInit {
     this.dataSource3 = new MatTableDataSource<any>();
     this.dataSource4 = new MatTableDataSource<any>();
     this.dataSource5 = new MatTableDataSource<any>();
+    this.dataSource6 = new MatTableDataSource<any>();
     this.Patient={}as PatientResource
     this.SurveillanceResource1={}as SurveillanceResource
     
@@ -165,7 +175,8 @@ export class ClinicalHistoriesComponent implements OnInit {
   
   findDoctor(id:number){
     this.DoctorService.getDoctorById(id).subscribe((response:any)=>{
-               this.DoctorResource=response           
+               this.DoctorResource=response  
+                       
     })
     
 
@@ -178,16 +189,14 @@ ReturnHome(){
 
 
 downloadAsPDF(){
+  
   const doc = new jsPDF();
-   
   const pdfTable = this.pdfTable.nativeElement;
- 
   var html = htmlToPdfmake(pdfTable.innerHTML);
-   
   const documentDefinition = { content: html };
   pdfMake.createPdf(documentDefinition).open(); 
 
-
+ 
 
 
 }
@@ -300,13 +309,33 @@ downloadAsPDF(){
    }
 
 
+  arrayflow(){
+    this.arrayclinical=[
+      {Hematologicos:`Hemoglobina ${this.SurveillanceResource1.hemoglobin}`,Urologicos:`Urea:${this.SurveillanceResource1.urea}`,Nutricion:`Cantidad de calorias:${this.SurveillanceResource1.planCalories}`},
+      {Hematologicos:`Segmentados ${this.SurveillanceResource1.segmented}`,Urologicos:`Proteinas:${this.SurveillanceResource1.protein}`,Nutricion:`imc:${this.SurveillanceResource1.imc}`},
+      {Hematologicos:`VCM ${this.SurveillanceResource1.mvc}`,Urologicos:`Nitrito:${this.SurveillanceResource1.nitrite}`,Nutricion:`Calorias consumidas:${this.SurveillanceResource1.consumedCalories}`},
+      {Hematologicos:`Linfoncitos ${this.SurveillanceResource1.lymphocytes}`,Urologicos:`Creatinina:${this.SurveillanceResource1.creatinine}`,Nutricion:`Dolor:${this.SurveillanceResource1.pain}`},
+      {Hematologicos:`Monocitos ${this.SurveillanceResource1.monocytes}`,Urologicos:`Cetonas:${this.SurveillanceResource1.ketone}`,Nutricion:`Apetito:${this.SurveillanceResource1.appetite}`},
+      {Hematologicos:`Leucocitos ${this.SurveillanceResource1.leukocytes}`,Urologicos:`Cristales:${this.SurveillanceResource1.crystals}`,Nutricion:`Otros simtomas:${this.SurveillanceResource1.otherSymptoms}`},
+      {Hematologicos:`Glucosa ${this.SurveillanceResource1.glucose}`,Urologicos:`Densidad de Orina:${this.SurveillanceResource1.density}`,Nutricion:``},
+      {Hematologicos:`Colesterol ${this.SurveillanceResource1.cholesterol}`,Urologicos:`Urobilinogeno:${this.SurveillanceResource1.urobilinogen}`,Nutricion:``},
+      {Hematologicos:`Hematies ${this.SurveillanceResource1.hematies}`,Urologicos:`Azucar:${this.SurveillanceResource1.sugar}`,Nutricion:``},
+      {Hematologicos:`trigliceridos ${this.SurveillanceResource1.erythrocytes}`,Urologicos:`PH:${this.SurveillanceResource1.ph}`,Nutricion:``},
+      {Hematologicos:``,Urologicos:`Billirubina:${this.SurveillanceResource1.bilirubin}`,Nutricion:``},
+      {Hematologicos:``,Urologicos:`Aspecto de Orina:${this.SurveillanceResource1.urineAppearance}`,Nutricion:``},
+      {Hematologicos:``,Urologicos:`Color de Orina:${this.SurveillanceResource1.urineColor}`,Nutricion:``}
+      
 
+    ]
+    this.dataSource6.data=this.arrayclinical
+  }
 
 
   onSubmitDNI(){
     this.PATIENTSERVICE.getPatientByDocumentNumber(this.DNI).subscribe((response:any)=>{
       this.Patient=response;
       this.avalible=true
+      this.pdf=true 
       console.log(this.Patient) 
       this.IllnessRecordService.getIllnessRecordsByPatientId(this.Patient.id).subscribe((response:any)=>{
         console.log(this.Patient.id)
@@ -410,6 +439,7 @@ downloadAsPDF(){
 
           } 
           this.checkvigilant()
+          this.arrayflow()
         }
         
       })

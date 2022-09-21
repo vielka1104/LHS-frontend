@@ -43,6 +43,9 @@ border border-solid border-gray-900
   <mat-drawer-content>
 
     <div #pdfTable>
+
+      
+       <p class="text-2xl md:text-[40px] flex justify-center font-bold" *ngIf="pdf">Historias Clinicas # {{Patient.documentNumber}}</p>
     <mat-card class="text-[26px] text-white italic bg-[#15558D]">
           Datos
     </mat-card>
@@ -232,109 +235,64 @@ border border-solid border-gray-900
      </mat-card>
      <mat-card *ngIf="avalible && avaliblevigilant">
 
-      <div class="flex flex-col space-y-8">
-        <div class="columns-1 md:columns-3">
-
-          <p class="text-[20px]">Hemoglobina:{{SurveillanceResource1.hemoglobin}}</p>
-          <p class="text-[20px]">Segmentados:{{SurveillanceResource1.segmented}}</p>
-
-          <p class="text-[20px]">VCM:{{SurveillanceResource1.mvc}}</p>
+     
+      
 
 
-        </div>
-        <div class="columns-1 md:columns-3">
-
-          <p class="text-[20px]">Linfoncitos:{{SurveillanceResource1.lymphocytes}}</p>
-          <p class="text-[20px]">Monocitos:{{SurveillanceResource1.monocytes}}</p>
-          <p class="text-[20px]">HCM:{{SurveillanceResource1.mch}}</p>
-
-
-        </div>
-        <div class="columns-1 md:columns-3">
-          <p class="text-[20px]">Leucocitos:{{SurveillanceResource1.leukocytes}}</p>
-          <p class="text-[20px]">Glucosa:{{SurveillanceResource1.glucose}}</p>
-          <p class="text-[20px]">Colesterol:{{SurveillanceResource1.cholesterol}}</p>
-
-         
-
-
-        </div>
-        <div class="columns-1 md:columns-3">
-          <p class="text-[20px]">Hematies:{{SurveillanceResource1.hematies}}</p>
-          <p class="text-[20px]">trigliceridos:{{SurveillanceResource1.erythrocytes}}</p>
-          
-
-
-        </div>
-        <div class="columns-1 md:columns-3">
-
-          <p class="text-[20px]">Urea:{{SurveillanceResource1.urea}}</p>
-          <p class="text-[20px]">Proteinas:{{SurveillanceResource1.protein}}</p>
-
-          <p class="text-[20px]">Nitrito:{{SurveillanceResource1.nitrite}}</p>
-
-
-        </div>
-        <div class="columns-1 md:columns-3">
-
-          <p class="text-[20px]">Creatinina:{{SurveillanceResource1.creatinine}}</p>
-          <p class="text-[20px]">Cetonas:{{SurveillanceResource1.ketone}}</p>
-
-          <p class="text-[20px]">Cristales:{{SurveillanceResource1.crystals}}</p>
-
-
-        </div>
-        <div class="columns-1 md:columns-3">
-
-          <p class="text-[20px]">Densidad de Orina:{{SurveillanceResource1.density}}</p>
-          <p class="text-[20px]">Urobilinogeno:{{SurveillanceResource1.urobilinogen}}</p>
-          <p class="text-[20px]">Azucar:{{SurveillanceResource1.sugar}}</p>
-          
-
-
-        </div>
-        <div class="columns-1 md:columns-3">
-
-          <p class="text-[20px]">PH:{{SurveillanceResource1.ph}}</p>
-          <p class="text-[20px]">Billirubina:{{SurveillanceResource1.bilirubin}}</p>
-          <p class="text-[20px]">Aspecto de Orina:{{SurveillanceResource1.urineAppearance}}</p>
-          
-
-
-        </div>
-        <div class="columns-1 md:columns-3">
-
-          <p class="text-[20px]">Color de Orina:{{SurveillanceResource1.urineColor}}</p>
-          
-          
-
-
-        </div>
-        <div class="columns-1 md:columns-3">
-
-          <p class="text-[20px]">Cantidad de calorias:{{SurveillanceResource1.planCalories}}</p>
-          <p class="text-[20px]">imc:{{SurveillanceResource1.imc}}</p>
+     <table  [dataSource]="dataSource6" mat-table class="w-full">
+      <ng-container matColumnDef="Hematologicos">
+        <th mat-header-cell *matHeaderCellDef class="bg-slate-400">Hematologicos</th>
+        <td mat-cell *matCellDef="let element">{{element.Hematologicos}}</td>
         
+      </ng-container>
+      <ng-container matColumnDef="Urologicos" >
+        <th mat-header-cell *matHeaderCellDef class="bg-slate-400">Urologicos</th>
+        <td mat-cell *matCellDef="let element">{{element.Urologicos}}</td>
 
-        </div>
-        <div class="columns-1 md:columns-3">
-
-          <p class="text-[20px]">Calorias consumidas:{{SurveillanceResource1.consumedCalories}}</p>
-          <p class="text-[20px]">Dolor:{{SurveillanceResource1.pain}}</p>
-        
-
-        </div>
-        <div class="columns-1 md:columns-3">
-
-          <p class="text-[20px]">Apetito:{{SurveillanceResource1.appetite}}</p>
-          <p class="text-[20px]">Otros simtomas:{{SurveillanceResource1.otherSymptoms}}</p>
-        
-
-        </div>
-      </div>
+      </ng-container>
+      <ng-container matColumnDef="Nutrición">
+        <th mat-header-cell *matHeaderCellDef class="bg-slate-400">Nutrición</th>
+        <td mat-cell *matCellDef="let element">{{element.Nutricion}}</td>
+       
+      </ng-container>
 
 
+      <tr mat-header-row *matHeaderRowDef="displayedColumns5"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns5;"></tr>
+     </table>
+     
+       
+       
+       
+       
+   
+       
+       
+      
+       
 
+
+
+       
+       
+       
+       
+      
+      
+      
+       
+      
+      
+      
+       
+     
+
+      
+       
+       
+       
+      
+       
 
 
 
