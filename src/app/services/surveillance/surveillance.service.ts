@@ -10,9 +10,9 @@ import { updateSurveillanceResource } from 'src/app/models/surveillance/UpdateSu
 })
 export class SurveillanceService {
 
-  basePath = "http://localhost:8080/api/v1/surveillances";
-  basePath2 = "http://localhost:8080/api/v1/patients";
-  basePath3 = "http://localhost:8080/api/v1/doctors";
+  basePath = "http://lhs-api-363105.ue.r.appspot.com/api/v1/surveillances";
+  basePath2 = "http://lhs-api-363105.ue.r.appspot.com/api/v1/patients";
+  basePath3 = "http://lhs-api-363105.ue.r.appspot.com/api/v1/doctors";
 
   httpOptions = {
     headers: new HttpHeaders({
