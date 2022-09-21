@@ -15,6 +15,7 @@ export interface SurveillanceResource {
       erythrocytes:number;
       glucose:number;
       cholesterol:number;
+      triglycerides:number;
       urea:number;
       creatinine:number;
        hematies:number;

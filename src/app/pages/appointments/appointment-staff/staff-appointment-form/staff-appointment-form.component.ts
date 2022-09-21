@@ -30,18 +30,19 @@ import { StaffService } from 'src/app/services/staff/staff.service';
 import { PatientDiagnosisResource } from 'src/app/models/patient-diagnostic/PatientDiagnosisResource';
 import { UpdateDiagnosticDialogComponent } from '../../update-dialog/update-diagnostic-dialog/update-diagnostic-dialog.component';
 import { UpdateTreatmentDialogComponent } from '../../update-dialog/update-treatment-dialog/update-treatment-dialog.component';
+import { StaffResource } from 'src/app/models/staff/StaffResource';
 
 @Component({
-  selector: 'app-record-form',
-  templateUrl: './record-form.component.html',
-  styleUrls: ['./record-form.component.css']
+  selector: 'staff-appointment-form',
+  templateUrl: './staff-appointment-form.component.html',
+  styleUrls: ['./staff-appointment-form.component.css']
 })
-export class RecordFormComponent implements OnInit {
+export class StaffAppointmentFormComponent implements OnInit {
   patientobject!:PatientResource
-  doctorobject!:DoctorResource
+  staffobject!:StaffResource
   doctorurlobject!:DoctorResource
   idpatienturl!:number
-  iddoctorurl!:number
+  idstaffurl!:number
   patientupdate!:PatientResource
   surveillancepatient!:SurveillanceResource
   ancientpatient!:IllnessRecordResource
@@ -85,7 +86,6 @@ export class RecordFormComponent implements OnInit {
     private patienttreatmentservice:PatientTreatmentService,
     private treatmentservice:TreatmentService,
     private medicineservice:MedicineService,
-    private doctorservice:DoctorService,
     private staffservice:StaffService
     ) { 
       this.ancientpatient = {} as IllnessRecordResource,
@@ -129,13 +129,13 @@ export class RecordFormComponent implements OnInit {
      this.todaydate = this.pipedate.transform(this.fechaactual, 'dd/MM/yyyy');
 
      let urlpatientvariable = parseInt(this.activeroute.snapshot.paramMap.get('patientid')!);
-     let urldoctorvariable = parseInt(this.activeroute.snapshot.paramMap.get('doctorid')!);
+     let urlstaffvariable = parseInt(this.activeroute.snapshot.paramMap.get('staffid')!);
      this.idpatienturl = urlpatientvariable
-     this.iddoctorurl = urldoctorvariable
+     this.idstaffurl = urlstaffvariable
      console.log(this.idpatienturl)
-     console.log(this.iddoctorurl)
+     console.log(this.idstaffurl)
      this.GetPatientbyId(this.idpatienturl);
-     this.GetDoctorbyId(this.iddoctorurl)
+     this.GetStaffbyId(this.idstaffurl)
      this.getSurveillanceByPatientId(this.idpatienturl);
      this.getPatientAncients(this.idpatienturl)
      this.getPatientDiagnostic(this.idpatienturl)
@@ -250,10 +250,10 @@ export class RecordFormComponent implements OnInit {
     )
   }
 
-  GetDoctorbyId(id:number){
-    this.doctorservice.getDoctorById(id).subscribe( (response:any) =>{
-        this.doctorobject = response
-        console.log(this.doctorobject)
+  GetStaffbyId(id:number){
+    this.staffservice.getStaffById(id).subscribe( (response:any) =>{
+        this.staffobject = response
+        console.log(this.staffobject)
       }
     )
   }
@@ -314,8 +314,8 @@ export class RecordFormComponent implements OnInit {
     )
   }
 
-  GoToAppointmentDoctor(){
-      this.route.navigate(['doctor',this.doctorobject.id,'appointment-doctor']);
+  GoToAppointmentStaff(){
+      this.route.navigate(['staff',this.staffobject.id,'appointment-staff']);
   }
 
   GotoUpdateDiagnostic(object:PatientDiagnosisResource){

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <header>
   <mat-toolbar class="bg-white">
-    <button (click)="GoToHomePatient()">
+    <button (click)="GoToHomeStaff()">
       <img src="../../assets/images/back-arrow-2.png" class="w-10 h-10">
     </button>
     <span class="pr-5"></span>
@@ -41,7 +41,7 @@
                 <div class="pr-96"></div>
                 <th>
                   <div class="pt-5">
-                    <button mat-raised-button color="primary" class="h-10 w-40" (click)="GoToMedicalSchedule(patientobject.id,medical.id)">Ver Horario</button>
+                    <button mat-raised-button color="primary" class="h-10 w-40" (click)="GoToMedicalScheduleStaff(medical.id)">Ver Horario</button>
                   </div>
                 </th>
                 <div class="pr-5"></div>

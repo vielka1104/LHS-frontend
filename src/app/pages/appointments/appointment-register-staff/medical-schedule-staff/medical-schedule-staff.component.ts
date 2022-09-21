@@ -1,30 +1,35 @@
 import { DatePipe, formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, ReactiveFormsModule, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, ReactiveFormsModule, FormGroup, Validators, FormControl} from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppointmentResource } from 'src/app/models/appointment/AppointmentResource';
 import { DoctorResource } from 'src/app/models/doctor/DoctorResource';
 import { PatientResource } from 'src/app/models/patient/PatientResource';
+import { StaffResource } from 'src/app/models/staff/StaffResource';
 import { AppointmentService } from 'src/app/services/appoinment/Appointment.service';
 import { DoctorService } from 'src/app/services/doctor/doctor.service';
 import { PatientService } from 'src/app/services/patient/patient.service';
+import { StaffService } from 'src/app/services/staff/staff.service';
 import { ResultDialogAppointmentComponent } from '../../../dialogs/result-dialog-appointment/result-dialog-appointment.component';
 
 @Component({
-  selector: 'app-medical-schedule',
-  templateUrl: './medical-schedule.component.html',
-  styleUrls: ['./medical-schedule.component.css']
+  selector: 'app-medical-schedule-staff',
+  templateUrl: './medical-schedule-staff.component.html',
+  styleUrls: ['./medical-schedule-staff.component.css']
 })
-export class MedicalScheduleComponent implements OnInit {
+export class MedicalScheduleStaffComponent implements OnInit {
   patient!:string;
+  documentnumber = new FormControl
   patients:string[] = ["Paciente 1","Paciente 2","Paciente 3", "Paciente 4", "Paciente 5"];
   scheduleform!: FormGroup;
   patientobject!:PatientResource
   doctorobject!:DoctorResource
+  staffobject!:StaffResource
   urlpatientid!:number
   urldoctorid!:number
+  urlstaffid!:number
   starthour!:string
   finalhour!:string
   numberstarttime!:number
@@ -41,12 +46,15 @@ export class MedicalScheduleComponent implements OnInit {
   appyear!:any
   appmonth!:any
   appday!:any
+  patientavailable!:boolean
   dataSourceappointment = new MatTableDataSource<any>()
-  days = ['lunes','martes','miércoles','jueves','viernes','sábado','domingo']
   
+  days = ['lunes','martes','miércoles','jueves','viernes','sábado','domingo']
+
   constructor(public dialog:MatDialog, private formBuilder:FormBuilder,private route:Router,private activeroute:ActivatedRoute, 
               private patientservice:PatientService,
               private doctorservice:DoctorService,
+              private staffservice:StaffService,
               private appointmentservice:AppointmentService,
               ) { 
                 this.appointmentobject = {} as AppointmentResource
@@ -58,23 +66,24 @@ export class MedicalScheduleComponent implements OnInit {
     this.scheduleform=this.formBuilder.group({
       date:['',Validators.required]
      })
-    let urlpatientvariable = parseInt(this.activeroute.snapshot.paramMap.get('patientid')!);
     let urldoctorvariable = parseInt(this.activeroute.snapshot.paramMap.get('doctorid')!);
-    this.urlpatientid = urlpatientvariable
+    let urlstaffvariable = parseInt(this.activeroute.snapshot.paramMap.get('staffid')!);
     this.urldoctorid = urldoctorvariable
-    console.log(this.urlpatientid)
+    this.urlstaffid = urlstaffvariable
     console.log(this.urldoctorid)
+    console.log(this.urlstaffid)
 
-    this.getPatientbyId(this.urlpatientid)
     this.getDoctorbyId(this.urldoctorid)
+    this.getStaffbyId(this.urlstaffid)
     this.getTimeBlocks(this.urldoctorid)
 
   }
 
-  getPatientbyId(id:number){
-    this.patientservice.getPatientById(id).subscribe( (response:any) =>{
+  getPatientbyDocumentNumber(){
+    this.patientservice.getPatientByDocumentNumber(this.documentnumber.value).subscribe( (response:any) =>{
         this.patientobject = response
         console.log(this.patientobject)
+        this.patientavailable = true
       }
     )
   }
@@ -83,6 +92,14 @@ export class MedicalScheduleComponent implements OnInit {
     this.doctorservice.getDoctorById(id).subscribe( (response:any) =>{
         this.doctorobject = response
         console.log(this.doctorobject)
+      }
+    )
+  }
+
+  getStaffbyId(id:number){
+    this.staffservice.getStaffById(id).subscribe( (response:any) =>{
+        this.staffobject = response
+        console.log(this.staffobject)
       }
     )
   }
@@ -118,8 +135,8 @@ export class MedicalScheduleComponent implements OnInit {
   }
 
 
-  GoToAppointmentPatient(){
-    this.route.navigate([`patient/${this.patientobject.id}/appointment-patient`]);
+  GoToAppointmentStaff(){
+    this.route.navigate([`staff/${this.staffobject.id}/appointment-staff-register`]);
   }
 
   SelectedDate(date:any,patientid:number,doctorid:number){
@@ -171,7 +188,5 @@ export class MedicalScheduleComponent implements OnInit {
     this.nombredia = dias[numeroDia];
     console.log("Nombre de día de la semana: ", this.nombredia);
   }
-
-
 
 }

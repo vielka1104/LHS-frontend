@@ -419,6 +419,8 @@ downloadAsPDF(){
   
   }
   openDialog(): void {
+    window.print()
+
     const dialogRef = this.dialog.open(clinicalHisotory, {
       width: '250px',
       
