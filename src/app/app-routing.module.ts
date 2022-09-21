@@ -55,7 +55,7 @@ const routes: Routes = [
   {path:"staff/:id/reporter-general-diagnostic",component:GeneralDiagnosticComponent},
   {path:"staff/:id/reporter-diagnostic",component:DiagnosticComponent},
   {path:"staff/:id/reporter-efficiency",component:EfficiencyComponent},
-  {path: "staff-users",component: UsersPageComponent},
+  {path: "staff/:id/staff-users",component: UsersPageComponent},
 
 
   {path:"doctor/:id/vigilant",component:VigilantComponent},

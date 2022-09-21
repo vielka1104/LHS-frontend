@@ -39,7 +39,9 @@ export class HomeStaffComponent implements OnInit {
   gotovigilant(){
     this.Router.navigate(['/staff',this.StaffResource.id,'vigilant'])
   }
-
+  gotostaffusers(){
+    this.Router.navigate(['/staff',this.StaffResource.id,'staff-users'])
+  }
 
 
 }

@@ -1,3 +1,4 @@
+import { Router, ActivatedRoute } from '@angular/router';
 import { PatientResource } from 'src/app/models/patient/PatientResource';
 import { StaffResource } from 'src/app/models/staff/StaffResource';
 import { DoctorResource } from './../../models/doctor/DoctorResource';
@@ -22,7 +23,10 @@ export class UsersPageComponent implements OnInit {
    doctors!:DoctorResource[]
    staffs!:StaffResource[]
    patients!:PatientResource[]
-  constructor(public dialog:MatDialog,private PatientService:PatientService,private DoctorService:DoctorService,private StaffService:StaffService) { 
+   whois=""
+  home!:string
+  id!:number
+  constructor(public dialog:MatDialog,private PatientService:PatientService,private DoctorService:DoctorService,private StaffService:StaffService,private Router:Router,private ActivatedRoute:ActivatedRoute) { 
    
   }
 
@@ -30,6 +34,15 @@ export class UsersPageComponent implements OnInit {
     this.GetDoctors()
     this.GetPatiens()
     this.GetStaff()
+    let doctorid=parseInt(this.ActivatedRoute.snapshot.paramMap.get('id')!)
+    this.whois=(this.ActivatedRoute.snapshot.url[0].path)
+    this.id=doctorid
+    if(this.whois=="doctor"){
+      this.home="home-doctor"
+   }
+   if(this.whois=="staff"){
+     this.home="home-staff"
+  }
   }
   
 
@@ -55,7 +68,9 @@ export class UsersPageComponent implements OnInit {
 
   }
 
-
+  ReturnHome(){
+    this.Router.navigate([this.whois,this.id,this.home])
+  }
 
 
   DeleteDoctor(select:DoctorResource){
