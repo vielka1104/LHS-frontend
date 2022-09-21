@@ -81,18 +81,8 @@ export class AppointmentStaffComponent implements OnInit {
             console.log(oneappointment)
             let dateformatselected = formatDate(oneappointment.scheduledAt,'YYYY-MM-dd HH:mm:ss','en_US')
             console.log(dateformatselected)
-
-            const [finaldate,finalhour] = dateformatselected.split(' ');
-
-            const [year, month, day] =  finaldate.split('-')
             
-            const [hour, minute, seconds] =  finalhour.split(':')
-
-            const dateformat = new Date(+year,+month-1,+day,+hour, +minute, +seconds);
-
-            console.log(dateformat)
-            
-            oneappointment.scheduledAt = dateformat
+            oneappointment.scheduledAt = dateformatselected
             console.log(oneappointment)
           }
         })
@@ -124,18 +114,8 @@ export class AppointmentStaffComponent implements OnInit {
                 console.log(oneappointment)
                 let dateformatselected = formatDate(oneappointment.scheduledAt,'YYYY-MM-dd HH:mm:ss','en_US')
                 console.log(dateformatselected)
-      
-                const [finaldate,finalhour] = dateformatselected.split(' ');
-      
-                const [year, month, day] =  finaldate.split('-')
                 
-                const [hour, minute, seconds] =  finalhour.split(':')
-      
-                const dateformat = new Date(+year,+month-1,+day,+hour, +minute, +seconds);
-      
-                console.log(dateformat)
-                
-                oneappointment.scheduledAt = dateformat
+                oneappointment.scheduledAt = dateformatselected
                 console.log(oneappointment)
               }
               
