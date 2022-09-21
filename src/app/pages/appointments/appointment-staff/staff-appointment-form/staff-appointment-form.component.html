@@ -464,7 +464,7 @@
           <form [formGroup]="diagnosticform">
             <mat-form-field appearance="outline" class="w-96">
               <mat-label>fecha de fin</mat-label>
-              <input matInput [matDatepicker]="picker3" formControlName="finishdate" placeholder="Ingrese su fecha de fin" required [(ngModel)]="patientdiagnostic.endDate">
+              <input matInput [matDatepicker]="picker3" formControlName="finishdate" placeholder="Ingrese su fecha de fin" [(ngModel)]="patientdiagnostic.endDate">
               <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
               <mat-datepicker #picker3></mat-datepicker>
               <mat-error>Es requerido este campo!</mat-error>
@@ -485,7 +485,7 @@
             <form [formGroup]="diagnosticform">
               <mat-form-field appearance="outline" class="w-96">
                 <mat-label>Su tipo</mat-label>
-                <mat-select formControlName="typediagnostic" required [(ngModel)]="diagnosis.name">
+                <mat-select formControlName="typediagnostic" required [(ngModel)]="diagnosis.name" (selectionChange)="getDiagnosticbyName($event.value)">
                   <mat-option *ngFor="let diagnostictype of diagnostictypes" [value]="diagnostictype.name">{{diagnostictype.name}}</mat-option>
                 </mat-select>
                 <mat-error>Es requerido este campo!</mat-error>
@@ -498,17 +498,7 @@
     <table class="ml-auto mr-auto w-11/12">
       <tr>
         <th class="text-left w-full">
-          <h1>Descripción</h1>
-          <br>
-          <form [formGroup]="diagnosticform">
-            <mat-form-field appearance="outline" class="w-full">
-              <mat-label>Ingrese aqui su mensaje</mat-label>
-              <mat-select formControlName="indicationtext" required [(ngModel)]="diagnosis.description">
-                <mat-option *ngFor="let diagnostictype of diagnostictypes" [value]="diagnostictype.description">{{diagnostictype.description}}</mat-option>
-              </mat-select>
-              <mat-error>Este campo es requerido!</mat-error>
-            </mat-form-field>
-          </form>
+          <h1>Descripción: {{diagnosis.description}}</h1>
         </th>
       </tr>
     </table>
@@ -590,7 +580,7 @@
           <form [formGroup]="treatmentform">
             <mat-form-field appearance="outline" class="w-96">
               <mat-label>La fecha de fin</mat-label>
-              <input matInput [matDatepicker]="picker6" formControlName="finishdate" placeholder="Ingrese su fecha de fin" required [(ngModel)]="patienttreatment.endDate">
+              <input matInput [matDatepicker]="picker6" formControlName="finishdate" placeholder="Ingrese su fecha de fin" [(ngModel)]="patienttreatment.endDate">
               <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
               <mat-datepicker #picker6></mat-datepicker>
               <mat-error>Es requerido este campo!</mat-error>
@@ -617,7 +607,7 @@
           <form [formGroup]="treatmentform">
             <mat-form-field appearance="outline" class="w-96">
               <mat-label>Su tipo</mat-label>
-              <mat-select formControlName="type" required [(ngModel)]="treatment.name">
+              <mat-select formControlName="type" required [(ngModel)]="treatment.name" (selectionChange)="getTreatmentbyName($event.value)">
                   <mat-option *ngFor="let treatmenttype of treatmenttypes" [value]="treatmenttype.name">{{treatmenttype.name}}</mat-option>
               </mat-select>
               <mat-error>Es requerido este campo!</mat-error>
@@ -625,18 +615,10 @@
           </form>
         </div>
         <br>
-        <div class="inline-flex">
-          <h1 class="pt-5">Descripción:</h1>
-          <span class="pr-16"></span>
-          <form [formGroup]="treatmentform">
-            <mat-form-field appearance="outline" class="w-96">
-              <mat-label>Su descripción</mat-label>
-              <mat-select formControlName="description" required [(ngModel)]="treatment.description">
-                <mat-option *ngFor="let treatmenttype of treatmenttypes" [value]="treatmenttype.description">{{treatmenttype.description}}</mat-option>
-              </mat-select>
-              <mat-error>Es requerido este campo!</mat-error>
-            </mat-form-field>
-          </form>
+        <div class="inline-flex w-full">
+          <h1 class="pb-4 pl-48">Descripción:</h1>
+          <div class="pr-20"></div>
+            {{treatment.description}}
         </div>
         <div class="pb-1"></div>
         <div class="inline-flex">

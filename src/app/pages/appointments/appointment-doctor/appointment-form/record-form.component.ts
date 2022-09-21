@@ -5,7 +5,7 @@ import {FormBuilder, ReactiveFormsModule, FormGroup, Validators} from '@angular/
 import { ResultDialogAncientComponent } from 'src/app/pages/dialogs/result-dialog-ancient/result-dialog-ancient.component';
 import { ResultDialogClinicComponent } from 'src/app/pages/dialogs/result-dialog-clinic/result-dialog-clinic.component';
 import { ResultDialogTreatmentComponent } from 'src/app/pages/dialogs/result-dialog-treatment/result-dialog-treatment.component';
-import { DatePipe } from '@angular/common';
+import { DatePipe, formatDate } from '@angular/common';
 import { MatTableDataSource } from '@angular/material/table';
 import { PatientService } from 'src/app/services/patient/patient.service';
 import { PatientResource } from 'src/app/models/patient/PatientResource';
@@ -62,15 +62,21 @@ export class RecordFormComponent implements OnInit {
   fechaactual:Date = new Date()
   pipedate:DatePipe = new DatePipe("en-US")
   todaydate:any
+  enddatetreatmentformatselected:any
+  enddatediagnosticformatselected:any
   dataSource = new MatTableDataSource<any>();
   dataSourceSurveillance = new MatTableDataSource<any>();
   dataSourcepatientdiagnostic = new MatTableDataSource<any>()
+  dataSourcepatientdiagnostic2 = new MatTableDataSource<any>()
   dataSourcediagnostic = new MatTableDataSource<any>()
   dataSourcepatienttreatment = new MatTableDataSource<any>()
+  dataSourcepatienttreatment2 = new MatTableDataSource<any>()
   dataSourcetreatment = new MatTableDataSource<any>()
-  dataSourcemedicine = new MatTableDataSource<any>()
+  dataSourcemedicine = new MatTableDataSource<any>()  
+  listDiagnosis:PatientDiagnosisResource[] = [] 
 
   dataSourceancient = new MatTableDataSource<any>()
+  dataSourceancient2 = new MatTableDataSource<any>()
   displayedColumnsancient: string[] = ['id', 'description', 'diseasetype', 'date'];
   displayedColumnsdiagnostic: string[] = ['code', 'description', 'diagnostic', 'initdate','finishdate','update'];
   displayedColumnstreatment: string[] = ['code', 'typetreatment', 'medicine', 'doses','description','initdate','finishdate','update'];
@@ -112,16 +118,14 @@ export class RecordFormComponent implements OnInit {
      })
      this.diagnosticform = this.formBuilder.group({
       initdate:['',Validators.required],
-      finishdate:['',Validators.required],
+      finishdate:[''],
       typediagnostic:['',Validators.required],
-      indicationtext:['',Validators.required],
      })
      this.treatmentform = this.formBuilder.group({
       initdate:['',Validators.required],
-      finishdate:['',Validators.required],
+      finishdate:[''],
       doses:['',Validators.required],
       type:['',Validators.required],
-      description:['',Validators.required],
       medicine:['',Validators.required],
      })
      
@@ -138,8 +142,11 @@ export class RecordFormComponent implements OnInit {
      this.GetDoctorbyId(this.iddoctorurl)
      this.getSurveillanceByPatientId(this.idpatienturl);
      this.getPatientAncients(this.idpatienturl)
+     this.getPatientAncientssave(this.idpatienturl)
      this.getPatientDiagnostic(this.idpatienturl)
      this.getPatientTreatments(this.idpatienturl)
+     this.getPatientTreatmentssave(this.idpatienturl)
+     this.getPatientDiagnosticssave(this.idpatienturl)
      this.getDiagnosis()
      this.getTreatments()
      this.getMedicines()
@@ -151,11 +158,11 @@ export class RecordFormComponent implements OnInit {
 
   SaveAncient(id:number){
     this.illnesservice.createIllnessRecord(this.ancientpatient,id).subscribe( (response:any) =>{
-      this.dataSourceancient.data.push( {...response});
-      this.dataSourceancient.data = this.dataSourceancient.data.map((o: any) => { return o; });
+      this.dataSourceancient2.data.push( {...response});
+      this.dataSourceancient2.data = this.dataSourceancient2.data.map((o: any) => { return o; });
+      const dialogRef = this.dialog.open(ResultDialogAncientComponent)
+      this.getPatientAncients(id)
     });
-
-    const dialogRef = this.dialog.open(ResultDialogAncientComponent)
   }
 
   getDiagnosis(){
@@ -182,6 +189,23 @@ export class RecordFormComponent implements OnInit {
     )
   }
 
+  getDiagnosticbyName(diagnosticselected:any){
+    console.log(diagnosticselected)
+    this.diagnosisservice.getDiagnosisByName(diagnosticselected).subscribe( (response:any) =>{
+      this.dataSourcediagnostic.data = response
+      console.log(this.dataSourcediagnostic.data)
+      this.diagnosis = this.dataSourcediagnostic.data[0]
+    })
+  }
+  
+  getTreatmentbyName(treatmentselected:any){
+    console.log(treatmentselected)
+    this.treatmentservice.getTreatmentByName(treatmentselected).subscribe( (response:any) =>{
+      this.dataSourcetreatment.data = response
+      this.treatment = this.dataSourcetreatment.data[0]
+    })
+  }
+
   SaveDiagnostic(id:number){
     console.log(this.diagnosis);
     console.log(this.patientdiagnostic);
@@ -192,9 +216,10 @@ export class RecordFormComponent implements OnInit {
         this.diagnosis = this.dataSourcediagnostic.data[0]
 
         this.patientdiagnosticservice.createPatientDiagnosis(this.patientdiagnostic,id,this.diagnosis.id).subscribe( (response:any) =>{
-            this.dataSourcepatientdiagnostic.data.push( {...response});
-            this.dataSourcepatientdiagnostic.data = this.dataSourcepatientdiagnostic.data.map((o: any) => { return o; });
+            this.dataSourcepatientdiagnostic2.data.push( {...response});
+            this.dataSourcepatientdiagnostic2.data = this.dataSourcepatientdiagnostic2.data.map((o: any) => { return o; });
             const dialogRef = this.dialog.open(ResultDialogClinicComponent)
+            this.getPatientDiagnostic(id)
           },err=>{
             alert("Diagnostico seleccionado igual")
           }
@@ -220,10 +245,11 @@ export class RecordFormComponent implements OnInit {
             console.log(this.treatment)
 
             this.patienttreatmentservice.createPatientTreatment(id,this.treatment.id,this.patientmedicine.id,this.patienttreatment).subscribe( (responsepatienttreatment:any) =>{
-                this.dataSourcepatienttreatment.data.push( {...responsepatienttreatment});
+                this.dataSourcepatienttreatment2.data.push( {...responsepatienttreatment});
                 console.log(responsepatienttreatment)
-                this.dataSourcepatienttreatment.data = this.dataSourcepatienttreatment.data.map((o: any) => { return o; });
+                this.dataSourcepatienttreatment2.data = this.dataSourcepatienttreatment2.data.map((o: any) => { return o; });
                 const dialogRef = this.dialog.open(ResultDialogTreatmentComponent)
+                this.getPatientTreatments(id)
             },err=>{
               alert("Tratamiento seleccionado igual")
               }
@@ -293,6 +319,20 @@ export class RecordFormComponent implements OnInit {
     this.illnesservice.getIllnessRecordsByPatientId(id).subscribe( (response:any) =>{
         this.dataSourceancient.data = response
         console.log(this.dataSourceancient.data)
+
+        for(var oneancient of this.dataSourceancient.data){
+          let dateformatselected = formatDate(oneancient.date,'YYYY-MM-dd','en_US')
+          
+          oneancient.date = dateformatselected
+        }
+      }
+    );
+  }
+  
+  getPatientAncientssave(id:number){
+    this.illnesservice.getIllnessRecordsByPatientId(id).subscribe( (response:any) =>{
+        this.dataSourceancient2.data = response
+        console.log(this.dataSourceancient2.data)
       }
     );
   }
@@ -301,6 +341,21 @@ export class RecordFormComponent implements OnInit {
     this.patientdiagnosticservice.getPatientDiagnosisByPatientId(id).subscribe( (response:any) => {
         this.dataSourcepatientdiagnostic.data = response
         console.log(this.dataSourcepatientdiagnostic.data)
+        
+        for(var onediagnostic of this.dataSourcepatientdiagnostic.data){
+          console.log(onediagnostic)
+          let startdateformatselected = formatDate(onediagnostic.startDate,'YYYY-MM-dd','en_US')
+          
+          if(onediagnostic.endDate != null){
+            this.enddatediagnosticformatselected = formatDate(onediagnostic.endDate,'YYYY-MM-dd','en_US') 
+          }
+          else{
+            this.enddatediagnosticformatselected = null
+          }
+          
+          onediagnostic.startDate = startdateformatselected
+          onediagnostic.endDate = this.enddatediagnosticformatselected
+        }
       }
 
     )
@@ -310,8 +365,35 @@ export class RecordFormComponent implements OnInit {
     this.patienttreatmentservice.getPatientTreatmentByPatientId(id).subscribe( (response:any) =>{
         this.dataSourcepatienttreatment.data = response
         console.log(this.dataSourcepatienttreatment.data)
+
+        for(var onetreatment of this.dataSourcepatienttreatment.data){
+          let startdateformatselected = formatDate(onetreatment.startDate,'YYYY-MM-dd','en_US')
+          if(onetreatment.endDate != null){
+            this.enddatetreatmentformatselected = formatDate(onetreatment.endDate,'YYYY-MM-dd','en_US') 
+          }
+          else{
+            this.enddatetreatmentformatselected = null
+          }
+            
+          onetreatment.startDate = startdateformatselected
+          onetreatment.endDate = this.enddatetreatmentformatselected
+        }
       }
     )
+  }
+  getPatientTreatmentssave(id:number){
+    this.patienttreatmentservice.getPatientTreatmentByPatientId(id).subscribe( (response:any) =>{
+        this.dataSourcepatienttreatment2.data = response
+        console.log(this.dataSourcepatienttreatment2.data)
+      }
+    )
+  }
+
+  getPatientDiagnosticssave(id:number){
+    this.patientdiagnosticservice.getPatientDiagnosisByPatientId(id).subscribe( (response:any) => {
+      this.dataSourcepatientdiagnostic2.data = response
+      console.log(this.dataSourcepatientdiagnostic2.data)
+    })
   }
 
   GoToAppointmentDoctor(){
@@ -328,8 +410,7 @@ export class RecordFormComponent implements OnInit {
       console.log(result)
       
       this.patientdiagnosticservice.updatePatientDiagnosis(result.id,result).subscribe( (response:any) =>{
-
-        this.dataSourcepatientdiagnostic.data = this.dataSourcepatientdiagnostic.data.map((o: PatientDiagnosisResource) => {
+        this.dataSourcepatientdiagnostic2.data = this.dataSourcepatientdiagnostic2.data.map((o: PatientDiagnosisResource) => {
           if (o.id === response.id) {
             o = response;
           }
@@ -351,8 +432,7 @@ export class RecordFormComponent implements OnInit {
       console.log(result)
 
       this.patienttreatmentservice.updatePatientTreatment(result.id,result).subscribe( (response:any) =>{
-
-        this.dataSourcepatienttreatment.data = this.dataSourcepatienttreatment.data.map((o: PatientTreatmentResource) => {
+        this.dataSourcepatienttreatment2.data = this.dataSourcepatienttreatment2.data.map((o: PatientTreatmentResource) => {
           if (o.id === response.id) {
             o = response;
           }

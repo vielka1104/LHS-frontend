@@ -29,7 +29,7 @@ export class AppointmentStaffComponent implements OnInit {
   selecteddate !: Date;
   dnisearch = new FormControl;
   patient!:number;
-  iddoctor = new FormControl
+  doctorusername = new FormControl
   patientobject!:PatientResource
   doctorobject!:DoctorResource
   patients:string[] = ["Alayo Zavaleta, Alessandro Fabián","Almonacid Garrido, Viviana", "Benavides Castillo, Daniela"] 
@@ -70,7 +70,7 @@ export class AppointmentStaffComponent implements OnInit {
   }
   
   getDoctorandAllAppointments(){
-      this.doctorservice.getDoctorById(this.iddoctor.value).subscribe((response:any)=>{
+      this.doctorservice.getDoctorByUserName(this.doctorusername.value).subscribe((response:any)=>{
         this.doctorobject = response
         
         this.appointmentservice.getAppointmentsByDoctorId(this.doctorobject.id).subscribe((response:any) =>{
@@ -81,18 +81,8 @@ export class AppointmentStaffComponent implements OnInit {
             console.log(oneappointment)
             let dateformatselected = formatDate(oneappointment.scheduledAt,'YYYY-MM-dd HH:mm:ss','en_US')
             console.log(dateformatselected)
-
-            const [finaldate,finalhour] = dateformatselected.split(' ');
-
-            const [year, month, day] =  finaldate.split('-')
             
-            const [hour, minute, seconds] =  finalhour.split(':')
-
-            const dateformat = new Date(+year,+month-1,+day,+hour, +minute, +seconds);
-
-            console.log(dateformat)
-            
-            oneappointment.scheduledAt = dateformat
+            oneappointment.scheduledAt = dateformatselected
             console.log(oneappointment)
           }
         })
@@ -124,18 +114,8 @@ export class AppointmentStaffComponent implements OnInit {
                 console.log(oneappointment)
                 let dateformatselected = formatDate(oneappointment.scheduledAt,'YYYY-MM-dd HH:mm:ss','en_US')
                 console.log(dateformatselected)
-      
-                const [finaldate,finalhour] = dateformatselected.split(' ');
-      
-                const [year, month, day] =  finaldate.split('-')
                 
-                const [hour, minute, seconds] =  finalhour.split(':')
-      
-                const dateformat = new Date(+year,+month-1,+day,+hour, +minute, +seconds);
-      
-                console.log(dateformat)
-                
-                oneappointment.scheduledAt = dateformat
+                oneappointment.scheduledAt = dateformatselected
                 console.log(oneappointment)
               }
               

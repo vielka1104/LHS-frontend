@@ -42,6 +42,7 @@ export class MedicalScheduleStaffComponent implements OnInit {
   testdate:Date =new Date()
   appointmentdateselected!:Date
   appointmentdateformated!:any
+  datenow = new Date()
   nombredia:any
   appyear!:any
   appmonth!:any
