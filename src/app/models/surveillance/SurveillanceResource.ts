@@ -18,7 +18,6 @@ export interface SurveillanceResource {
       triglycerides:number;
       urea:number;
       creatinine:number;
-       hematies:number;
       density:number;
       ph:number;
       protein:number;

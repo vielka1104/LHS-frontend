@@ -241,8 +241,8 @@ downloadAsPDF(){
             if(this.SurveillanceResource1.cholesterol==null){
               this.SurveillanceResource1.cholesterol=0
             }
-            if(this.SurveillanceResource1.hematies==null){
-              this.SurveillanceResource1.hematies=0
+            if(this.SurveillanceResource1.triglycerides==null){
+              this.SurveillanceResource1.triglycerides=0
             }  
             if(this.SurveillanceResource1.erythrocytes==null){
               this.SurveillanceResource1.erythrocytes=0
@@ -319,8 +319,8 @@ downloadAsPDF(){
       {Hematologicos:`Leucocitos ${this.SurveillanceResource1.leukocytes}`,Urologicos:`Cristales:${this.SurveillanceResource1.crystals}`,Nutricion:`Otros simtomas:${this.SurveillanceResource1.otherSymptoms}`},
       {Hematologicos:`Glucosa ${this.SurveillanceResource1.glucose}`,Urologicos:`Densidad de Orina:${this.SurveillanceResource1.density}`,Nutricion:``},
       {Hematologicos:`Colesterol ${this.SurveillanceResource1.cholesterol}`,Urologicos:`Urobilinogeno:${this.SurveillanceResource1.urobilinogen}`,Nutricion:``},
-      {Hematologicos:`Hematies ${this.SurveillanceResource1.hematies}`,Urologicos:`Azucar:${this.SurveillanceResource1.sugar}`,Nutricion:``},
-      {Hematologicos:`trigliceridos ${this.SurveillanceResource1.erythrocytes}`,Urologicos:`PH:${this.SurveillanceResource1.ph}`,Nutricion:``},
+      {Hematologicos:`Hematies ${this.SurveillanceResource1.erythrocytes}`,Urologicos:`Azucar:${this.SurveillanceResource1.sugar}`,Nutricion:``},
+      {Hematologicos:`trigliceridos ${this.SurveillanceResource1.triglycerides}`,Urologicos:`PH:${this.SurveillanceResource1.ph}`,Nutricion:``},
       {Hematologicos:``,Urologicos:`Billirubina:${this.SurveillanceResource1.bilirubin}`,Nutricion:``},
       {Hematologicos:``,Urologicos:`Aspecto de Orina:${this.SurveillanceResource1.urineAppearance}`,Nutricion:``},
       {Hematologicos:``,Urologicos:`Color de Orina:${this.SurveillanceResource1.urineColor}`,Nutricion:``}
@@ -405,7 +405,7 @@ downloadAsPDF(){
                      this.SurveillanceResource1.leukocytes=this.vigilantarray[element].leukocytes
                      this.SurveillanceResource1.glucose=this.vigilantarray[element].glucose
                      this.SurveillanceResource1.cholesterol=this.vigilantarray[element].cholesterol
-                     this.SurveillanceResource1.hematies=this.vigilantarray[element].hematies
+                     this.SurveillanceResource1.triglycerides=this.vigilantarray[element].triglycerides
                      this.SurveillanceResource1.erythrocytes=this.vigilantarray[element].erythrocytes
                      break
               }
