@@ -30,6 +30,7 @@ import { StaffService } from 'src/app/services/staff/staff.service';
 import { PatientDiagnosisResource } from 'src/app/models/patient-diagnostic/PatientDiagnosisResource';
 import { UpdateDiagnosticDialogComponent } from '../../update-dialog/update-diagnostic-dialog/update-diagnostic-dialog.component';
 import { UpdateTreatmentDialogComponent } from '../../update-dialog/update-treatment-dialog/update-treatment-dialog.component';
+import { UpdatePatientResource } from 'src/app/models/patient/UpdatePatientResource';
 
 @Component({
   selector: 'app-record-form',
@@ -42,7 +43,7 @@ export class RecordFormComponent implements OnInit {
   doctorurlobject!:DoctorResource
   idpatienturl!:number
   iddoctorurl!:number
-  patientupdate!:PatientResource
+  patientupdate!:UpdatePatientResource
   surveillancepatient!:SurveillanceResource
   ancientpatient!:IllnessRecordResource
   patientdiagnostic!:CreatePatientDiagnosisResource
@@ -286,13 +287,26 @@ export class RecordFormComponent implements OnInit {
 
   UpdatePatient(id:number){
     console.log(this.patientobject.height)
-    
-    this.patientservice.getPatientById(id).subscribe((response:any) =>{
-        this.patientupdate = response
+
+    this.patientservice.getPatientById(id).subscribe((response:PatientResource) =>{
+        console.log(response)
+        this.patientupdate.birthday = response.birthday
+        this.patientupdate.documentType = response.documentType
+        this.patientupdate.email = response.email
+        this.patientupdate.gender= response.gender
+        this.patientupdate.lastname= response.lastname
+        this.patientupdate.name= response.name
+        this.patientupdate.phone= response.phone
+        this.patientupdate.username= response.username
+        this.patientupdate.password= response.password
+        console.log(this.patientupdate)  
         this.patientupdate.height = this.patientobject.height
+        
+        this.patientupdate.documentNumber = response.documentNumber
 
         this.patientservice.updatePatient(id,this.patientupdate).subscribe( (response:any) =>{
             this.dataSource.data = this.dataSource.data.map((o: PatientResource) => {
+              console.log(response)
               if (o.id === response.id) {
                 o = response;
               }
