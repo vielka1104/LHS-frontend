@@ -112,16 +112,14 @@ export class RecordFormComponent implements OnInit {
      })
      this.diagnosticform = this.formBuilder.group({
       initdate:['',Validators.required],
-      finishdate:['',Validators.required],
+      finishdate:[''],
       typediagnostic:['',Validators.required],
-      indicationtext:['',Validators.required],
      })
      this.treatmentform = this.formBuilder.group({
       initdate:['',Validators.required],
-      finishdate:['',Validators.required],
+      finishdate:[''],
       doses:['',Validators.required],
       type:['',Validators.required],
-      description:['',Validators.required],
       medicine:['',Validators.required],
      })
      
@@ -153,9 +151,9 @@ export class RecordFormComponent implements OnInit {
     this.illnesservice.createIllnessRecord(this.ancientpatient,id).subscribe( (response:any) =>{
       this.dataSourceancient.data.push( {...response});
       this.dataSourceancient.data = this.dataSourceancient.data.map((o: any) => { return o; });
+      const dialogRef = this.dialog.open(ResultDialogAncientComponent)
     });
 
-    const dialogRef = this.dialog.open(ResultDialogAncientComponent)
   }
 
   getDiagnosis(){
@@ -180,6 +178,23 @@ export class RecordFormComponent implements OnInit {
         console.log(this.medicinetypes)
       }
     )
+  }
+
+  getDiagnosticbyName(diagnosticselected:any){
+    console.log(diagnosticselected)
+    this.diagnosisservice.getDiagnosisByName(diagnosticselected).subscribe( (response:any) =>{
+      this.dataSourcediagnostic.data = response
+      console.log(this.dataSourcediagnostic.data)
+      this.diagnosis = this.dataSourcediagnostic.data[0]
+    })
+  }
+  
+  getTreatmentbyName(treatmentselected:any){
+    console.log(treatmentselected)
+    this.treatmentservice.getTreatmentByName(treatmentselected).subscribe( (response:any) =>{
+      this.dataSourcetreatment.data = response
+      this.treatment = this.dataSourcetreatment.data[0]
+    })
   }
 
   SaveDiagnostic(id:number){

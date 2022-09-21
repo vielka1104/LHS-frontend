@@ -29,7 +29,7 @@ export class AppointmentStaffComponent implements OnInit {
   selecteddate !: Date;
   dnisearch = new FormControl;
   patient!:number;
-  iddoctor = new FormControl
+  doctorusername = new FormControl
   patientobject!:PatientResource
   doctorobject!:DoctorResource
   patients:string[] = ["Alayo Zavaleta, Alessandro Fabián","Almonacid Garrido, Viviana", "Benavides Castillo, Daniela"] 
@@ -70,7 +70,7 @@ export class AppointmentStaffComponent implements OnInit {
   }
   
   getDoctorandAllAppointments(){
-      this.doctorservice.getDoctorById(this.iddoctor.value).subscribe((response:any)=>{
+      this.doctorservice.getDoctorByUserName(this.doctorusername.value).subscribe((response:any)=>{
         this.doctorobject = response
         
         this.appointmentservice.getAppointmentsByDoctorId(this.doctorobject.id).subscribe((response:any) =>{
