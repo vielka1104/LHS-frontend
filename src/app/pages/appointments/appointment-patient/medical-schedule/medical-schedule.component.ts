@@ -143,6 +143,7 @@ export class MedicalScheduleComponent implements OnInit {
       
       this.appointmentobject.scheduledAt = dateformat 
       this.appointmentobject.notes = "note test"
+      this.appointmentobject.status = 0 
       this.appointmentservice.createAppointment(this.appointmentobject,patientid,doctorid).subscribe( (response:any) =>{
           this.dataSourceappointment.data.push( {...response});
           this.dataSourceappointment.data = this.dataSourceappointment.data.map((o: any) => { return o; });
