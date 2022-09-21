@@ -49,6 +49,10 @@
           <div class="pr-10"></div>
           <h1 class="pt-3">{{patientobject.name}}</h1>
         <div class="pr-96"></div>
+        <div class="pt-4">
+          <button mat-raised-button color="primary" (click)="GetDay()" class="h-10" [disabled]="scheduleform.invalid">Buscar</button>
+        </div>
+        <div class="pr-5"></div>
         <form [formGroup]="scheduleform">
           <mat-form-field appearance="outline">
             <mat-label>Fecha</mat-label>
@@ -74,7 +78,7 @@
               <tr>
                 <div class="pr-10"></div>
                 <th>
-                  <button mat-stroked-button color="basic" (click)="SelectedDate(doctorobject.shift.startShift,patientobject.id,doctorobject.id)" [disabled]="scheduleform.invalid">{{doctorobject.shift.startShift}}</button>
+                  <button mat-stroked-button color="basic" (click)="SelectedDate(doctorobject.shift.startShift,patientobject.id,doctorobject.id)" [disabled]="nombredia != day">{{doctorobject.shift.startShift}}</button>
                 </th>
                 <div class="pr-10"></div>
               </tr>
@@ -82,7 +86,7 @@
               <tr *ngFor="let item of Hours">
                 <div class="pr-10"></div>
                 <th>
-                  <button mat-stroked-button color="basic" (click)="SelectedDate(item,patientobject.id,doctorobject.id)" [disabled]="scheduleform.invalid">{{item}}</button>
+                  <button mat-stroked-button color="basic" (click)="SelectedDate(item,patientobject.id,doctorobject.id)" [disabled]="nombredia != day">{{item}}</button>
                   <div class="pb-5"></div>
                 </th>
                 <div class="pr-10"></div>
@@ -91,7 +95,7 @@
               <tr>
                 <div class="pr-10"></div>
                 <th>
-                  <button mat-stroked-button color="basic" (click)="SelectedDate(doctorobject.shift.endShift,patientobject.id,doctorobject.id)" [disabled]="scheduleform.invalid">{{doctorobject.shift.endShift}}</button>
+                  <button mat-stroked-button color="basic" (click)="SelectedDate(doctorobject.shift.endShift,patientobject.id,doctorobject.id)" [disabled]="nombredia != day">{{doctorobject.shift.endShift}}</button>
                 </th>
                 <div class="pr-10"></div>
               </tr>

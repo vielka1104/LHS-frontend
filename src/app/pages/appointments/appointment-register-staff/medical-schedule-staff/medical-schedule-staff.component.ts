@@ -42,13 +42,14 @@ export class MedicalScheduleStaffComponent implements OnInit {
   testdate:Date =new Date()
   appointmentdateselected!:Date
   appointmentdateformated!:any
+  nombredia:any
   appyear!:any
   appmonth!:any
   appday!:any
   patientavailable!:boolean
   dataSourceappointment = new MatTableDataSource<any>()
   
-  days = ['Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo']
+  days = ['lunes','martes','miércoles','jueves','viernes','sábado','domingo']
 
   constructor(public dialog:MatDialog, private formBuilder:FormBuilder,private route:Router,private activeroute:ActivatedRoute, 
               private patientservice:PatientService,
@@ -75,15 +76,7 @@ export class MedicalScheduleStaffComponent implements OnInit {
     this.getDoctorbyId(this.urldoctorid)
     this.getStaffbyId(this.urlstaffid)
     this.getTimeBlocks(this.urldoctorid)
-    this.patientavailable = false
 
-    let showdateformat = formatDate(this.appointmentdateselected,'yyyy-MM-dd','en_US')
-    
-    const [year, month, day] = showdateformat.split('-')
-
-    this.appyear = year
-    this.appmonth = month
-    this.appday = day
   }
 
   getPatientbyDocumentNumber(){
@@ -178,6 +171,22 @@ export class MedicalScheduleStaffComponent implements OnInit {
 
   }
 
+  GetDay(){
+    console.log(this.appointmentdateselected)
 
+    const dias = [
+      'domingo',
+      'lunes',
+      'martes',
+      'miércoles',
+      'jueves',
+      'viernes',
+      'sábado',
+    ];
+    const numeroDia = this.appointmentdateselected.getDay();
+    console.log(numeroDia)
+    this.nombredia = dias[numeroDia];
+    console.log("Nombre de día de la semana: ", this.nombredia);
+  }
 
 }
