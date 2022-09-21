@@ -306,6 +306,7 @@ export class RecordFormComponent implements OnInit {
         
         this.patientupdate.documentNumber = response.documentNumber
 
+        
         this.patientservice.updatePatient(id,this.patientupdate).subscribe( (response:any) =>{
             this.dataSource.data = this.dataSource.data.map((o: PatientResource) => {
               console.log(response)

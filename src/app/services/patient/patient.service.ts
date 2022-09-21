@@ -58,7 +58,7 @@ export class PatientService {
       );
   }
 
-  updatePatient(id:number,item:any) : Observable<UpdatePatientResource>{
+  updatePatient(id:number,item:UpdatePatientResource) : Observable<UpdatePatientResource>{
     return this.http.put<UpdatePatientResource>(`${this.basePath}/${id}`,JSON.stringify(item),this.httpOptions)
       .pipe(
         retry(2),
