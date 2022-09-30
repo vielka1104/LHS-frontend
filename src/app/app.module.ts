@@ -56,6 +56,7 @@ import { UpdateTreatmentDialogComponent } from './pages/appointments/update-dial
 import { AppointmentRegisterStaffComponent } from './pages/appointments/appointment-register-staff/appointment-register-staff.component';
 import { MedicalScheduleStaffComponent } from './pages/appointments/appointment-register-staff/medical-schedule-staff/medical-schedule-staff.component';
 import { SetPasswordComponent } from './pages/password/SetPassword/SetPassword.component';
+import { AppointmentHistoryComponent } from './pages/appointments/appointment-patient/appointment-history/appointment-history.component';
 
 @NgModule({
   declarations: [									
@@ -107,7 +108,8 @@ import { SetPasswordComponent } from './pages/password/SetPassword/SetPassword.c
       MedicalScheduleStaffComponent,
       AppointedateUpdateComponent,
       SetEmailComponent,
-      SetPasswordComponent
+      SetPasswordComponent,
+      AppointmentHistoryComponent
 
    ],
   imports: [
