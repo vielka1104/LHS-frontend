@@ -333,6 +333,7 @@ export class RecordFormComponent implements OnInit {
         this.patientupdate.height = this.patientobject.height
         
         this.patientupdate.documentNumber = response.documentNumber
+        console.log(this.patientupdate)
 
         this.patientservice.updatePatient(id,this.patientupdate).subscribe( (response:any) =>{
             this.dataSource.data = this.dataSource.data.map((o: PatientResource) => {
@@ -344,7 +345,6 @@ export class RecordFormComponent implements OnInit {
             });
         });
 
-        console.log(this.patientupdate)
     });
   }
 
