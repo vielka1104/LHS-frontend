@@ -1,3 +1,5 @@
+import { SetPasswordComponent } from './pages/password/SetPassword/SetPassword.component';
+import { SetEmailComponent } from './pages/password/SetEmail/SetEmail.component';
 import { DiagnosticComponent } from './pages/report/diagnostic/diagnostic.component';
 import { HealthIndicatorComponent } from './pages/report/health-indicator/health-indicator.component';
 import { MonitorTreatmentComponent } from './pages/report/monitor-treatment/monitor-treatment.component';
@@ -79,6 +81,11 @@ const routes: Routes = [
   {path: "doctor/:id/reporter-general-diagnostic",component:GeneralDiagnosticComponent},
   {path: "doctor/:id/reporter-diagnostic",component:DiagnosticComponent},
   {path: "doctor/:id/reporter-efficiency",component:EfficiencyComponent},
+
+
+
+  {path:"recoverpassword",component:SetEmailComponent},
+  {path:"changepassword",component:SetPasswordComponent}
 ];
 
 @NgModule({
