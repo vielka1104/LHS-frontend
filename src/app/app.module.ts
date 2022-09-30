@@ -54,6 +54,7 @@ import { UpdateDiagnosticDialogComponent } from './pages/appointments/update-dia
 import { UpdateTreatmentDialogComponent } from './pages/appointments/update-dialog/update-treatment-dialog/update-treatment-dialog.component';
 import { AppointmentRegisterStaffComponent } from './pages/appointments/appointment-register-staff/appointment-register-staff.component';
 import { MedicalScheduleStaffComponent } from './pages/appointments/appointment-register-staff/medical-schedule-staff/medical-schedule-staff.component';
+import { AppointmentHistoryComponent } from './pages/appointments/appointment-patient/appointment-history/appointment-history.component';
 
 @NgModule({
   declarations: [									
@@ -103,7 +104,8 @@ import { MedicalScheduleStaffComponent } from './pages/appointments/appointment-
       UpdateTreatmentDialogComponent,
       AppointmentRegisterStaffComponent,
       MedicalScheduleStaffComponent,
-      AppointedateUpdateComponent
+      AppointedateUpdateComponent,
+      AppointmentHistoryComponent
 
    ],
   imports: [

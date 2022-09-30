@@ -30,6 +30,7 @@ import { AppointmentStaffComponent } from './pages/appointments/appointment-staf
 import { MedicalScheduleStaffComponent } from './pages/appointments/appointment-register-staff/medical-schedule-staff/medical-schedule-staff.component';
 import { StaffAppointmentFormComponent } from './pages/appointments/appointment-staff/staff-appointment-form/staff-appointment-form.component';
 import { AppointmentRegisterStaffComponent } from './pages/appointments/appointment-register-staff/appointment-register-staff.component';
+import { AppointmentHistoryComponent } from './pages/appointments/appointment-patient/appointment-history/appointment-history.component';
 
 const routes: Routes = [
   {path: "register-user",component: RegisterUserComponent},
@@ -44,6 +45,7 @@ const routes: Routes = [
   {path: "patient/:id/appointment-patient",component: AppointmentComponent},
   {path: "patient/:patientid/medical-schedule/doctor/:doctorid",component: MedicalScheduleComponent},
   {path: "patient/:id/home-patient",component: HomePatientComponent},
+  {path: "patient/:id/appointment-history",component: AppointmentHistoryComponent},
 
   //Personal (Staff)
   {path: "staff/:staffid/medical-schedule/doctor/:doctorid",component: MedicalScheduleStaffComponent},
