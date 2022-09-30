@@ -9,6 +9,11 @@
                 <mat-datepicker #picker></mat-datepicker>
                 <mat-error>Es requerido este campo!</mat-error>
   </mat-form-field>
+  <mat-form-field appearance="outline" class="w-96">
+    <mat-label>Ingresar Hora</mat-label>
+    <input matInput type="number" placeholder="Ex. 4" formControlName="hour" [min]="start1" [max]="end-1">
+    <mat-error *ngIf="userupdateform.controls['hour'].dirty && userupdateform.hasError('required','hour')">Campo requerido</mat-error>
+  </mat-form-field>
   <div class="text-center">
     <button [matDialogClose]="UpdateAppointmentResource" color = "primary" mat-raised-button [disabled]="userupdateform.invalid" (click)="Update()">Actualizar</button>
   </div>  

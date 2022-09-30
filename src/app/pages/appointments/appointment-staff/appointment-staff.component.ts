@@ -136,9 +136,9 @@ deleteappoint(id:number){
 
   }
 
-  AppointmentForm(patientid:number){
+  AppointmentForm(patientid:number,appoint:number){
 
-    this.route.navigate([`staff/${this.staffobject.id}/staff-appointment-form/patient/${patientid}`]);
+    this.route.navigate([`staff/${this.staffobject.id}/staff-appointment-form/patient/${patientid}/appoint/${appoint}`]);
   }
 
   GotoStaffHome(id:number){
