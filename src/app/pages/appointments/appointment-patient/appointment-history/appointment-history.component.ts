@@ -8,6 +8,7 @@ import { PatientResource } from 'src/app/models/patient/PatientResource';
 import { AppointmentService } from 'src/app/services/appoinment/Appointment.service';
 import { DoctorService } from 'src/app/services/doctor/doctor.service';
 import { PatientService } from 'src/app/services/patient/patient.service';
+import { AppointmentRatingComponent } from './appointment-rating/appointment-rating.component';
 
 @Component({
   selector: 'app-appointment-history',
@@ -77,13 +78,6 @@ export class AppointmentHistoryComponent implements OnInit {
   }
 
   onClick(i:number){
-    /*console.log(this.dataSource.data)
-    var index = this.dataSource.data.indexOf(selectedappointment)
-    console.log(index)
-    console.log(this.AllratingArrays)
-    var thisarray = this.AllratingArrays[index]
-    var star = thisarray[i]*/
-
     this.rating = i + 1;
   }
 
