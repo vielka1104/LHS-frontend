@@ -6,9 +6,10 @@
     <span class="pr-5"></span>
     <h1 class="text-slate-800">Clinica de salud</h1>
     <span class="flex-auto"></span>
-    <h1 class="text-slate-800">{{patientobject.name}}</h1>
+    <h1 class="text-slate-800">Estado de Cita del Paciente:</h1>
     <div class="filed">
      <form [formGroup]="setstatfrom">
+      <div class="flex space-x-4">
       <mat-form-field appearance="fill" >
         <mat-select formControlName="stat">
           <div *ngFor="let stat of status">
@@ -16,7 +17,8 @@
           </div>
         </mat-select>
       </mat-form-field>
-      <button mat-raised-button (click)="cambiarstat()" color="primary"> Cambiar Estado de cita</button>
+      <button mat-raised-button (click)="cambiarstat()" color="primary" class="butonnchange"> Cambiar Estado de cita</button>
+      </div>
     </form> 
     </div>
     

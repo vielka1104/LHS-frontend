@@ -285,6 +285,14 @@ export class VigilantComponent implements OnInit {
 
     });
   }
+  checkheight(height:string){
+     if(height!="altura"){
+      let complete=`${height} m`
+      return complete;
+     }
+     return height
+
+  }
 
 }
 @Component({

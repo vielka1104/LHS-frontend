@@ -50,9 +50,12 @@
    <p class="text-[26px]">Fecha: {{getfecha()}}</p>
 </div>
 
-    
-      <mat-card class="text-[26px] text-white italic bg-[#15558D]">Datos</mat-card>
-      <mat-card>
+      <div class="flex justify-center">
+        <mat-card class="text-[26px] text-white italic bg-[#15558D] w-11/12">Datos</mat-card>
+      
+      </div>
+      <div class="flex justify-center">
+      <mat-card class="w-11/12">
       
         
         <form [formGroup]="vigilantform">
@@ -81,7 +84,7 @@
                 text-gray-700
                 bg-white bg-clip-padding
                 border border-solid border-gray-900
-                rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su peso"
+                rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Kilos"
                 [(ngModel)]="CreateSurveillanceResource.weight"   formControlName="peso" min="0">
                 
               </div>
@@ -120,7 +123,7 @@
   
          
             <b class="text-[20px]">Altura:</b>
-            <p class="text-[20px]">{{Patient.height}}</p>
+            <p class="text-[20px]">{{checkheight(Patient.height)}}  </p>
         
   
          
@@ -136,9 +139,13 @@
 
 
       </mat-card>
-
-      <mat-card  class="text-[26px] text-white italic bg-[#15558D]">Datos Hematologicos</mat-card>
-      <mat-card>
+      </div>
+      <div class="flex justify-center">
+        <mat-card class="text-[26px] text-white italic bg-[#15558D] w-11/12">Datos Hematologicos</mat-card>
+      
+      </div>
+      <div class="flex justify-center">
+      <mat-card class="w-11/12">
         <form [formGroup]="hematologyform">
         <div class="flex flex-col space-y-8">
 
@@ -154,8 +161,8 @@
               text-gray-700
               bg-white bg-clip-padding
               border border-solid border-gray-900
-              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Hemoglobina"
-              [(ngModel)]="CreateSurveillanceResource.hemoglobin"   formControlName="hemoglobina" min="0" required>
+              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="g/dL"
+              [(ngModel)]="CreateSurveillanceResource.hemoglobin"   formControlName="hemoglobina" min="13.2" max="16.6" required>
               
               
               </div>
@@ -168,8 +175,8 @@
               text-gray-700
               bg-white bg-clip-padding
               border border-solid border-gray-900
-              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Segmentados"
-              [(ngModel)]="CreateSurveillanceResource.segmented"   formControlName="segmentados" min="0" required>
+              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="%"
+              [(ngModel)]="CreateSurveillanceResource.segmented"   formControlName="segmentados" min="20" max="40" required>
            
             
               <b class="text-[20px]">VCM:</b>
@@ -181,7 +188,7 @@
               text-gray-700
               bg-white bg-clip-padding
               border border-solid border-gray-900
-              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su VCM"
+              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="fl"
               [(ngModel)]="CreateSurveillanceResource.mvc"   formControlName="vcm" min="0" required>
          
           </div>
@@ -202,7 +209,7 @@
               text-gray-700
               bg-white bg-clip-padding
               border border-solid border-gray-900
-              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Sus Linfocitos"
+              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="%"
               [(ngModel)]="CreateSurveillanceResource.lymphocytes"   formControlName="linfocitos" min="0" required>
            
             
@@ -215,7 +222,7 @@
               text-gray-700
               bg-white bg-clip-padding
               border border-solid border-gray-900
-              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Sus Monocitos"
+              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="/L"
               [(ngModel)]="CreateSurveillanceResource.monocytes"   formControlName="monocitos" min="0" required>
          
            
@@ -228,7 +235,7 @@
               text-gray-700
               bg-white bg-clip-padding
               border border-solid border-gray-900
-              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su HCM"
+              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="pg"
               [(ngModel)]="CreateSurveillanceResource.mch"   formControlName="hcm" min="0" required>
         
 
@@ -248,7 +255,7 @@
             text-gray-700
             bg-white bg-clip-padding
             border border-solid border-gray-900
-            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Sus Leucocitos"
+            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="mg/dL"
             [(ngModel)]="CreateSurveillanceResource.leukocytes"   formControlName="leucocitos" min="0" required>
             <b class="text-[20px]">Glucosa:</b>
             <input type="number" class="form-control
@@ -259,7 +266,7 @@
             text-gray-700
             bg-white bg-clip-padding
             border border-solid border-gray-900
-            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Glucosa"
+            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="mg/dL"
             [(ngModel)]="CreateSurveillanceResource.glucose"   formControlName="glucosa" min="0" required>
             <b class="text-[20px]">Colesterol:</b>
             <input type="number" class="form-control
@@ -270,7 +277,7 @@
             text-gray-700
             bg-white bg-clip-padding
             border border-solid border-gray-900
-            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Colesterol"
+            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="mg/dL"
             [(ngModel)]="CreateSurveillanceResource.cholesterol"   formControlName="colesterol" min="0" required>
 
           </div>
@@ -289,7 +296,7 @@
             text-gray-700
             bg-white bg-clip-padding
             border border-solid border-gray-900
-            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Hematies"
+            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="celulas/mcL"
             [(ngModel)]="CreateSurveillanceResource.erythrocytes"   formControlName="hematies" min="0" required>
             <b class="text-[20px]">Trigliceridos:</b>
             <input type="number" class="form-control
@@ -300,7 +307,7 @@
             text-gray-700
             bg-white bg-clip-padding
             border border-solid border-gray-900
-            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Sus Trigliceridos"
+            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="celulas/mcL"
             [(ngModel)]="CreateSurveillanceResource.triglycerides"   formControlName="trigliceridos" min="0" required>
            
 
@@ -312,10 +319,14 @@
         </div>
         </form>
       </mat-card>
-
-      <mat-card  class="text-[26px] text-white italic bg-[#15558D]">Datos urologicos</mat-card>
-
-      <mat-card>
+      </div>
+      <div class="flex justify-center">
+        <mat-card class="text-[26px] text-white italic bg-[#15558D] w-11/12">Datos urologicos</mat-card>
+      
+      </div>
+      
+     <div class="flex justify-center">
+      <mat-card class="w-11/12">
         <form [formGroup]="urologyform">
         <div class="flex flex-col space-y-8">
           <div class="columns-3 md:columns-6">
@@ -329,7 +340,7 @@
               text-gray-700
               bg-white bg-clip-padding
               border border-solid border-gray-900
-              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Urea"
+              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="mg/ml"
               [(ngModel)]="CreateSurveillanceResource.urea"   formControlName="urea" min="0" required>
            
             
@@ -342,7 +353,7 @@
               text-gray-700
               bg-white bg-clip-padding
               border border-solid border-gray-900
-              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Sus Proteinas"
+              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="mg/dL"
               [(ngModel)]="CreateSurveillanceResource.protein"   formControlName="proteinas" min="0" required>
            
             
@@ -355,7 +366,7 @@
               text-gray-700
               bg-white bg-clip-padding
               border border-solid border-gray-900
-              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Nitrito"
+              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Nitrito"
               [(ngModel)]="CreateSurveillanceResource.nitrite"   formControlName="nitrito" min="0" required>
          
           </div>
@@ -375,7 +386,7 @@
               text-gray-700
               bg-white bg-clip-padding
               border border-solid border-gray-900
-              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Cretinina"
+              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="mg/dL"
               [(ngModel)]="CreateSurveillanceResource.creatinine"   formControlName="creatinina" min="0" required>
            
             
@@ -388,7 +399,7 @@
               text-gray-700
               bg-white bg-clip-padding
               border border-solid border-gray-900
-              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Cetonas"
+              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Cetonas"
               [(ngModel)]="CreateSurveillanceResource.ketone"   formControlName="cetonas" min="0" required>
          
            
@@ -401,7 +412,7 @@
               text-gray-700
               bg-white bg-clip-padding
               border border-solid border-gray-900
-              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Sus Cristales"
+              rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Cristales"
               [(ngModel)]="CreateSurveillanceResource.crystals"   formControlName="cristales" min="0" required>
         
 
@@ -421,7 +432,7 @@
             text-gray-700
             bg-white bg-clip-padding
             border border-solid border-gray-900
-            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Densidad"
+            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Densidad"
             [(ngModel)]="CreateSurveillanceResource.density"   formControlName="densidadOrina" min="0" required>
             <b class="text-[20px]">Urobilinogeno:</b>
             <input type="number" class="form-control
@@ -432,7 +443,7 @@
             text-gray-700
             bg-white bg-clip-padding
             border border-solid border-gray-900
-            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Urobilinogeno"
+            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="mg/dl"
             [(ngModel)]="CreateSurveillanceResource.urobilinogen"   formControlName="urobilinogeno" min="0" required>
             <b class="text-[20px]">Azucar:</b>
             <input type="number" class="form-control
@@ -443,7 +454,7 @@
             text-gray-700
             bg-white bg-clip-padding
             border border-solid border-gray-900
-            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su Azucar"
+            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="mmol/l"
             [(ngModel)]="CreateSurveillanceResource.sugar"   formControlName="azucar" min="0" required>
 
           </div>
@@ -463,7 +474,7 @@
             text-gray-700
             bg-white bg-clip-padding
             border border-solid border-gray-900
-            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su PH"
+            rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="PH"
             [(ngModel)]="CreateSurveillanceResource.ph"   formControlName="pH" min="0" required>
             <b class="text-[20px]">Billirubina:</b>
             <input type="number" class="form-control
@@ -516,10 +527,14 @@
         </div>
       </form>
       </mat-card>
-
-      <mat-card  class="text-[26px] text-white italic bg-[#15558D]">Nutrición</mat-card>
-
-      <mat-card>
+    </div>
+    <div class="flex justify-center">
+      <mat-card class="text-[26px] text-white italic bg-[#15558D] w-11/12">Nutrición</mat-card>
+    
+    </div>
+     
+    <div class="flex justify-center">
+      <mat-card  class="w-11/12">
         <form [formGroup]="nutricionalform">
             <div class="flex flex-col space-y-8">
         <div class="columns-2 md:columns-6">
@@ -546,7 +561,7 @@
           text-gray-700
           bg-white bg-clip-padding
           border border-solid border-gray-900
-          rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Su IMC"
+          rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="IMC"
           [(ngModel)]="CreateSurveillanceResource.imc"   formControlName="imc" min="0" required>
         </div>
         <div class="flex space-x-4">
@@ -617,17 +632,17 @@
         </form>
             
        </mat-card>
+    </div>
 
-
-
-    <mat-card >
+    <div class="flex justify-center">
+    <mat-card class="w-11/12">
       <div class="flex  justify-center ">
         <button mat-flat-button color="primary"  type="submit"  [disabled]="!CanSave()" (click)="onSubmit()">Guardar</button>
       </div>
 
     
     </mat-card>
-      
+    </div>
      
 
 
