@@ -10,6 +10,9 @@ export class ResultDialogComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
+  GoToUsersPage(){
 
+  }
 }

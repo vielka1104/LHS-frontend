@@ -208,7 +208,7 @@ downloadAsPDF(){
     if(height == "" || height===null){
         return "Ninguna"
     }else{
-      return height
+      return height + " m"
     }
   }
 
