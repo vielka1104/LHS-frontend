@@ -18,7 +18,7 @@
            </div>
          </mat-select>
        </mat-form-field>
-       <button mat-raised-button (click)="cambiarstat()" color="primary" class="butonnchange"> Cambiar Estado de cita</button>
+       <button mat-raised-button (click)="cambiarstat()" class="butonnchange bg-[#15558D] text-white"> Cambiar Estado de cita</button>
       </div>
     </form> 
     </div>
@@ -100,7 +100,7 @@
           </form>
         </div>
         <div>
-          <button mat-raised-button color="primary" class="w-40" (click)="UpdatePatient(patientobject.id)" [disabled]="patientrecordform.invalid">Guardar</button>
+          <button mat-raised-button class="w-40 bg-[#15558D] text-white" (click)="UpdatePatient(patientobject.id)" [disabled]="patientrecordform.invalid">Guardar</button>
         </div>
       </th>
     </tr>
@@ -600,7 +600,7 @@
       </table>
     <br>
     <div class="text-right pr-20">
-      <button mat-raised-button color="primary" class="w-40" [disabled]="backrecordform.invalid" (click)="SaveAncient(patientobject.id)">Guardar</button>
+      <button mat-raised-button class="w-40 bg-[#15558D] text-white" [disabled]="backrecordform.invalid" (click)="SaveAncient(patientobject.id)">Guardar</button>
     </div>
     <!--Diagnostico-->
     <div class="pt-10"></div>
@@ -716,7 +716,7 @@
       </table>
     <br>
       <div class="text-right pr-20">
-        <button mat-raised-button color="primary" class="w-40" [disabled]="diagnosticform.invalid" (click)="SaveDiagnostic(patientobject.id)">Guardar</button>
+        <button mat-raised-button class="w-40 bg-[#15558D] text-white" [disabled]="diagnosticform.invalid" (click)="SaveDiagnostic(patientobject.id)">Guardar</button>
       </div>
     <!--Tratamiento-->
     <div class="pt-10"></div>
@@ -861,7 +861,7 @@
       </table>
     <br>
       <div class="text-right pr-20">
-        <button mat-raised-button color="primary" class="w-40" [disabled]="treatmentform.invalid" (click)="SaveTreatment(patientobject.id)">Guardar</button>
+        <button mat-raised-button class="w-40 bg-[#15558D] text-white" [disabled]="treatmentform.invalid" (click)="SaveTreatment(patientobject.id)">Guardar</button>
       </div>
     <br>
 </body>

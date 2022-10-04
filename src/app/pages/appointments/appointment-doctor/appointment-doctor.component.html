@@ -29,7 +29,7 @@
               </mat-form-field>
             </form>
             <div class="text-left">
-              <button mat-raised-button color="primary" (click)="GetPatientByDNI()">Buscar</button>
+              <button mat-raised-button class="bg-[#15558D] text-white" (click)="GetPatientByDNI()">Buscar</button>
             </div>
           </div>
           <div>
@@ -65,7 +65,7 @@
                 <ng-container matColumnDef="button">
                   <th mat-header-cell *matHeaderCellDef></th>
                   <td mat-cell *matCellDef="let element"> 
-                    <button mat-raised-button color="primary" (click)="AppointmentForm(element.doctor.id,element.patient.id,element.id)">Ver</button> 
+                    <button mat-raised-button class="bg-[#15558D] text-white" (click)="AppointmentForm(element.doctor.id,element.patient.id,element.id)">Ver</button> 
                   </td>
                 </ng-container>
               
