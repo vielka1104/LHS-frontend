@@ -38,8 +38,14 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-   /* this.LoginService.login(this.LoginResource).subscribe((response:any)=>{
+   this.LoginService.login(this.LoginResource).subscribe((response:any)=>{
+
+
             console.log(response)
+            if(response===null){
+              console.log("error")
+              alert("Usuario o Contraseña incorectos")
+          }
           
            if(response.specialty!=undefined){
                 this.GoToHomeDoctor(response.id)
@@ -52,8 +58,9 @@ export class LoginComponent implements OnInit {
                 this.GoToHomePatient(response[0].id)
            }
            
-    })*/
-    this.AuthService.LogUser(this.Login).subscribe(
+           
+    })
+   /* this.AuthService.LogUser(this.Login).subscribe(
       data=>{
         console.log(data.access)
         this.TokenService.setToken(data.access)
@@ -83,7 +90,7 @@ export class LoginComponent implements OnInit {
        
         
       }
-    )
+    )*/
 
   }
 
