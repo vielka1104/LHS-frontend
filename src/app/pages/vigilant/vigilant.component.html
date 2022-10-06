@@ -947,7 +947,29 @@
 
     
     </mat-card>
+    
     </div>
+    <div class="flex  justify-center ">
+    <mat-card class="w-11/12">
+      <div class="flex  justify-center ">
+         <input #fileUpload [accept]="'.csv'" type="file" class="file-input" 
+          (change)="importDataFromCSVByType($event)" hidden="true">
+           <button mat-flat-button class="bg-[#15558D] text-white" (click)="fileUpload.click()"> Import from csv</button> 
+           <br><br>
+      </div>
+    </mat-card>
+    </div>
+    <div class="flex justify-center">
+      <mat-card class="w-11/12">
+        <div class="flex  justify-center ">
+          <button mat-flat-button class="bg-[#15558D] text-white"  type="submit" [disabled]="!validatecsv"  (click)="save()">Guardar CSV</button>
+        </div>
+  
+      
+      </mat-card>
+      
+      </div>
+  
      
 
 

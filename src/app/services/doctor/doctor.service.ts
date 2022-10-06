@@ -51,6 +51,16 @@ getDoctorByUserName(username:string): Observable<DoctorResource>{
     catchError(this.handleError));
 
 }
+
+getDoctorByDni(dni:string): Observable<DoctorResource>{
+
+  return this.http.get<DoctorResource>(`${this.basePath}/doctors/dni/${dni}`, this.httpOptions)
+  .pipe(
+    retry(2),
+    catchError(this.handleError));
+
+}
+
 getDoctorByEmail(email:string): Observable<DoctorResource>{
 
   return this.http.get<DoctorResource>(`${this.basePath}/doctors/email/${email}`, this.httpOptions)
