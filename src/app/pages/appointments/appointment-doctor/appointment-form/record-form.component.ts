@@ -52,7 +52,6 @@ export class RecordFormComponent implements OnInit {
   ancientpatient!:IllnessRecordResource
   patientdiagnostic!:CreatePatientDiagnosisResource
   diagnosis!:DiagnosisResource
-  renal!:RenalDiseaseResource
   patienttreatment!:PatientTreatmentResource
   treatment!:TreatmentResource
   patientmedicine!:MedicineResource
@@ -71,8 +70,10 @@ export class RecordFormComponent implements OnInit {
   todaydate:any
   enddatetreatmentformatselected:any
   enddatediagnosticformatselected:any
+  renaldiseasetype!:RenalDiseaseResource
   dataSource = new MatTableDataSource<any>();
   dataSourceSurveillance = new MatTableDataSource<any>();
+  dataSourceRenalDisease = new MatTableDataSource<any>();
   dataSourcepatientdiagnostic = new MatTableDataSource<any>()
   dataSourcepatientdiagnostic2 = new MatTableDataSource<any>()
   dataSourcediagnostic = new MatTableDataSource<any>()
@@ -116,6 +117,7 @@ export class RecordFormComponent implements OnInit {
       this.surveillancepatient = {} as SurveillanceResource
       this.patientupdate={}as UpdatePatientResource
       this.UpdateAppointmentResource={}as UpdateAppointmentResource
+      this.renaldiseasetype = {} as RenalDiseaseResource
     }
 
   ngOnInit() {
@@ -246,10 +248,9 @@ export class RecordFormComponent implements OnInit {
 
   getRenalbyName(renalselected:any){
     console.log(renalselected)
-    this.renaldiseaseservice.getRenalDiseaseById(renalselected).subscribe( (response:any) =>{
-      this.dataSourcediagnostic.data = response
-      console.log(this.dataSourcediagnostic.data)
-      this.diagnosis = this.dataSourcediagnostic.data[0]
+    this.renaldiseaseservice.getRenalDiseaseByName(renalselected).subscribe( (response:any) =>{
+      console.log(response)
+      this.renaldiseasetype = response 
     })
   }
   
