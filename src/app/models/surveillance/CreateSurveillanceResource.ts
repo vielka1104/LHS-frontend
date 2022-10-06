@@ -1,60 +1,69 @@
 export interface CreateSurveillanceResource {
-      weight:number;
+      
+      // Calculate ktv
+      initWeight:number;
+      finalWeight:number;
+      hdTime:number;
+      uf:number;
 
-      hemoglobin:number;
 
-      lymphocytes:number;
 
-      segmented:number;
+      // Clinic
+      ureaPre:number;
+     hematocrit:number;
+     serumElectrolytes:number;
+    chlorine:number;
+     phosphorus:number;
+     serumCalcium:number;
+    proteinElectrophoresis:number;
+    alkalinePhosphatase:number;
+     tgo:number;
+    tgp:number;
+     dayCreatinine:number;
+     parathormone:number;
+   serumIron:number;
+    serumFerritin:number;
+    transferrinSaturation:number;
+     transferrin:number;
+     elisa:number;
+     vdrlAndRpr:number;
+    hepatitisBAntigen:number;
+    hepatitisBAntibody:number;
+     hepatitisCAntibody:number;
+     ktv:number;
 
-      monocytes:number;
 
-      mvc:number;
 
-      mch:number;
+    // Shared
+    bloodUrea:number; // este es el postUrea
+    serumCreatinine:number; // este es creatinina
+    hemoglobin:number;
+    sodium:number;
+    potassium:number;
+     albumin:number;
 
-      leukocytes:number;
 
-      erythrocytes:number;
+     // Predcition
+ bloodPressure:number;
+     specificGravity:number;
+      sugar:number;
+      redBloodCells:number;
+      pusCells:number;
+      pusCellClumps:number;
+     bacteria:number;
+      bloodGlucoseRandom:number;
+     packedCellVolume:number;
+      whiteBloodCellCount:number;
+      redBloodCellCount:number;
+     appetite:number;
+      pedalEdema:number;
 
-      glucose:number;
-      cholesterol:number;
-      triglycerides:number;
-      urea:number;
+  // Legacy
+  planCalories:number;
+   consumedCalories:number;
+   pain:string;
+   otherSymptoms :string;
+ imc:number;
 
-      creatinine:number;
-
-      density:number;
-
-      ph:number;
-
-      protein:number;
-
-     ketone:number;
-
-     urobilinogen:number;
-
-     bilirubin:number;
-
-     nitrite:number;
-
-     crystals:number;
-
-     sugar:number;
-
-     urineAppearance:string;
-
-      urineColor:string;
-
-      planCalories:number;
-
-      consumedCalories:number;
-
-     appetite:string;
-
-     pain:string;
-
-     otherSymptoms:string;
-
-      imc:number;
+    
 }

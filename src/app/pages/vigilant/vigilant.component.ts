@@ -24,12 +24,11 @@ export interface DialogData {
   providers: [DatePipe]
 })
 export class VigilantComponent implements OnInit {
-  public vigilantform!:FormGroup;
-
-  public hematologyform!:FormGroup;
-  public urologyform!:FormGroup;
-  public nutricionalform!:FormGroup;
-
+  public vktform!:FormGroup;
+  public Clinicform!:FormGroup;
+  public Sharedform!:FormGroup;
+  public Predictionform!:FormGroup;
+  public Legacyform!:FormGroup;
 
 
   CreateSurveillanceResource!:CreateSurveillanceResource
@@ -42,9 +41,13 @@ export class VigilantComponent implements OnInit {
   finderror!:boolean
   documentnumber = new FormControl("", Validators.min(7))
   
-  checknutricional!:boolean
-  checkneurology!:boolean
-  checkhematology!:boolean
+  checkktv!:boolean
+  checkClinic!:boolean
+  checkShared!:boolean
+  checkPrediction!:boolean
+  checkLegacy!:boolean
+
+
   constructor(public dialog: MatDialog,private formBuilder:FormBuilder,private datePipe: DatePipe,private PATIENTSERVICE:PatientService,private surveillance:SurveillanceService,
     private DoctorService:DoctorService,private ActivatedRoute:ActivatedRoute,private router:Router) { 
     this.CreateSurveillanceResource={}as CreateSurveillanceResource
@@ -64,50 +67,91 @@ export class VigilantComponent implements OnInit {
     this.Patient.documentNumber="numero"
     this.Patient.gender="genero"
     this.Patient.height="altura"
-    this.vigilantform=this.formBuilder.group({
+    this.vktform=this.formBuilder.group({
      peso:['',Validators.required],
+     initWeight:['',Validators.required],
+    finalWeight:['',Validators.required],
+     hdTime:['',Validators.required],
+     uf:['',Validators.required]
      
 
      })
 
-     this.hematologyform=this.formBuilder.group({
+     this.Clinicform=this.formBuilder.group({
+      ureaPre:['',Validators.required],
+      hematocrit:['',Validators.required],
+      serumElectrolytes:['',Validators.required],
+      chlorine:['',Validators.required],
+      phosphorus:['',Validators.required],
+      serumCalcium:['',Validators.required],
+      proteinElectrophoresis:['',Validators.required],
+      alkalinePhosphatase:['',Validators.required],
+      tgo:['',Validators.required],
+      tgp:['',Validators.required],
+      dayCreatinine:['',Validators.required],
+      parathormone:['',Validators.required],
+      serumIron:['',Validators.required],
+      serumFerritin:['',Validators.required],
+      transferrinSaturation:['',Validators.required],
+      transferrin:['',Validators.required],
+      elisa:['',Validators.required],
+      vdrlAndRpr:['',Validators.required],
+      hepatitisBAntigen:['',Validators.required],
+      hepatitisBAntibody:['',Validators.required],
+      hepatitisCAntibody:['',Validators.required],
+      ktv:['',Validators.required],
 
-      hemoglobina:[0,[Validators.required,Validators.min(13.2),Validators.max(16.6)]],
-      linfocitos:[0,[Validators.required,Validators.min(20),Validators.max(40)]],
-      segmentados:[0,[Validators.required,Validators.min(38.3),Validators.max(48.6)]],
-      monocitos:[0,[Validators.required,Validators.min(4500),Validators.max(11000)]],
-      vcm:[0,[Validators.required,Validators.min(80),Validators.max(100)]],
-      hcm:[0,[Validators.required,Validators.min(27),Validators.max(31)]],
-      leucocitos:[0,[Validators.required,Validators.min(6),Validators.max(24)]],
-      hematies:[0,[Validators.required,Validators.min(4),Validators.max(5.9)]],
-      glucosa:[0,[Validators.required,Validators.min(70),Validators.max(140)]],
-      colesterol:[0,[Validators.required,Validators.min(0),Validators.max(170)]],
-      trigliceridos:[0,[Validators.required,Validators.min(4.7),Validators.max(6.1)]],
-
-     })
-     this.urologyform=this.formBuilder.group({
-
-     urea:[0,[Validators.required,Validators.min(0),Validators.max(40)]],
-     creatinina:[0,[Validators.required,Validators.min(0.59),Validators.max(1.04)]],
-     densidadOrina: [0,[Validators.required,Validators.min(1.005),Validators.max(1.03)]],
-     pH:[0,[Validators.required,Validators.min(4.6),Validators.max(8)]],
-     proteinas:[0,[Validators.required,Validators.min(0),Validators.max(14)]],
-     cetonas:[0,[Validators.required,Validators.min(0),Validators.max(1)]],
-     urobilinogeno:[0,[Validators.required,Validators.min(0),Validators.max(1)]],
-     bilirrubina :[0,[Validators.required,Validators.min(0),Validators.max(1.2)]],
-     nitrito :[0,[Validators.required,Validators.min(0),Validators.max(1)]],
-     cristales :[0,[Validators.required,Validators.min(0),Validators.max(1)]],
-     azucar :[0,[Validators.required,Validators.min(0),Validators.max(0.8)]],
-     aspectoOrina:[0,Validators.required],
-     colorOrina:[0,Validators.required],
+     
 
      })
-     this.nutricionalform=this.formBuilder.group({
-      caloriasPlan:['',Validators.required],
-      caloriasConsum:['',Validators.required],
-      apetito:['',Validators.required],
-      dolores:['',Validators.required],
-      otroSintoma:['',Validators.required],
+     this.Sharedform=this.formBuilder.group({
+
+      bloodUrea:['',Validators.required],
+      serumCreatinine:['',Validators.required],
+
+      hemoglobin:['',Validators.required],
+
+      kalbumintv:['',Validators.required],
+
+      sodium:['',Validators.required],
+
+      potassium:['',Validators.required],
+
+      albumin:['',Validators.required],
+
+
+     })
+     this.Predictionform=this.formBuilder.group({
+
+      bloodPressure:['',Validators.required],
+      specificGravity:['',Validators.required],
+
+      sugar:['',Validators.required],
+
+      redBloodCells:['',Validators.required],
+
+      pusCells:['',Validators.required],
+
+      pusCellClumps:['',Validators.required],
+      bacteria:['',Validators.required],
+      bloodGlucoseRandom:['',Validators.required],
+      packedCellVolume:['',Validators.required],
+      whiteBloodCellCount:['',Validators.required],
+      redBloodCellCount:['',Validators.required],
+
+      appetite:['',Validators.required],
+      pedalEdema:['',Validators.required],
+
+
+
+
+     })
+     this.Legacyform=this.formBuilder.group({
+    
+      planCalories:['',Validators.required],
+      consumedCalories:['',Validators.required],
+      pain:['',Validators.required],
+      otherSymptoms:['',Validators.required],
       imc:['',Validators.required],
  
       })
@@ -147,6 +191,8 @@ export class VigilantComponent implements OnInit {
          })
   }
 
+
+  /*
   hematologynull(){
    
     if(this.hematologyform.controls["hemoglobina"].value==undefined && 
@@ -225,19 +271,7 @@ export class VigilantComponent implements OnInit {
     }
     
     else{
-      /*console.log(this.urologyform.controls["urea"].value)
-      console.log(this.urologyform.controls["creatinina"].value)
-      console.log(this.urologyform.controls["densidadOrina"].value)
-      console.log(this.urologyform.controls["pH"].value)
-      console.log(this.urologyform.controls["proteinas"].value)
-      console.log(this.urologyform.controls["cetonas"].value)
-      console.log(this.urologyform.controls["urobilinogeno"].value)
-      console.log(this.urologyform.controls["bilirrubina"].value)
-      console.log(this.urologyform.controls["nitrito"].value)
-      console.log(this.urologyform.controls["cristales"].value)
-      console.log(this.urologyform.controls["azucar"].value)
-      console.log(this.urologyform.controls["aspectoOrina"].value)
-      console.log(this.urologyform.controls["colorOrina"].value)*/
+     
       this.checkneurology=false;
     }
 
@@ -273,42 +307,65 @@ export class VigilantComponent implements OnInit {
 
   }
 
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   CanSave(){
 
-      let validatevigilant=false
+    /*  let validatevigilant=false
       let validatenutricinal=false
       let validateurology=false
       let validatehematology=false
       this.nutricionnull()
       this.urologynull()
       this.hematologynull()
-     console.log(this.urologyform.valid)
-     console.log(this.checkneurology)
-      if(this.vigilantform.valid){
+   
+      if(this.vktform.valid||this.checkktv){
          
           validatevigilant=true
       }
             
-      if(this.checknutricional || this.nutricionalform.valid){
+      if(this.checkClinic || this.Clinicform.valid){
         
         validatenutricinal=true
       }
-      if(this.checkneurology || this.urologyform.valid){
+      if(this.checkShared || this.Sharedform.valid){
         console.log("validado urologia")
         validateurology=true
       }
-      if(this.checkhematology || this.hematologyform.valid){
+      if(this.checkPrediction || this.Predictionform.valid){
         
          validatehematology=true
       }
+      if(this.checkLegacy || this.Legacyform.valid){
+        
+        validatehematology=true
+     }
       if(validatevigilant && validatenutricinal && validateurology && validatehematology && this.Patient.id!=undefined){ 
         return true
 
       }else{
         return false
       }
+   */
+      if(this.vktform.controls["initWeight"].value!=null &&this.Patient.id!=undefined){ 
+        return true
 
-
+      }else{
+        return false
+      }
 
 
 
@@ -355,6 +412,9 @@ export class VigilantComponent implements OnInit {
   checkheight(height:string){
      if(height!="altura"){
       let complete=`${height} m`
+      if(height==null){
+        return "sin altura"
+      }
       return complete;
      }
      return height

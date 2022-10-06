@@ -158,38 +158,465 @@
     </div>
     <div class="pb-10"></div>
     <table class="ml-auto mr-auto">
-    <tr>
-      <th>
-        <h1>Nutrición</h1>
-        <div class="pb-2"></div>
+   
+      <tr>
+        
+       
+        <th>
+          <h1>Calculo ktv</h1>
+          <div class="pb-2"></div>
           <div class="inline-flex w-full">
-            <h1 class="pt-5">Plan de calorías:</h1>
-            <span class="pr-24"></span>
-            <span class="pr-1"></span>
-            <span class="pr-0.5"></span>
-            <div *ngIf="surveillancepatient.planCalories">
-              <h1 class="pt-5 font-normal">{{surveillancepatient.planCalories}}</h1>
+            <h1 class="pt-5">initWeight:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.initWeight">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.initWeight}}</h1>
             </div>
-            <div *ngIf="surveillancepatient.planCalories == null">
+            <div *ngIf="surveillancepatient.initWeight == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">finalWeight:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.finalWeight">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.finalWeight}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.finalWeight == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">hdTime:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.hdTime">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.hdTime}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.hdTime == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">uf:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.uf">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.uf}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.uf == null">
               <h1 class="pt-5 font-normal"></h1>
             </div>
           </div>
           <br>
+        </th>
+        <div class="pr-60"></div>
+        <th>
+          <h1>Clinic</h1>
+          <div class="pb-2"></div>
           <div class="inline-flex w-full">
-            <h1 class="pt-5">Consumo de calorías:</h1>
-            <span class="pr-16"></span>
-            <div *ngIf="surveillancepatient.consumedCalories">
-              <h1 class="pt-5 font-normal">{{surveillancepatient.consumedCalories}}</h1>
+            <h1 class="pt-5">ureaPre:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.ureaPre">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.ureaPre}}</h1>
             </div>
-            <div *ngIf="surveillancepatient.consumedCalories == null">
+            <div *ngIf="surveillancepatient.ureaPre == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">hematocrit:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.hematocrit">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.hematocrit}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.hematocrit == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">serumElectrolytes:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.serumElectrolytes">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.serumElectrolytes}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.serumElectrolytes == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">chlorine:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.chlorine">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.chlorine}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.chlorine == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">phosphorus:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.phosphorus">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.phosphorus}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.phosphorus == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">serumCalcium:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.serumCalcium">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.serumCalcium}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.serumCalcium == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">proteinElectrophoresis:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.proteinElectrophoresis">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.proteinElectrophoresis}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.proteinElectrophoresis == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">alkalinePhosphatase:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.alkalinePhosphatase">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.alkalinePhosphatase}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.alkalinePhosphatase == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">tgo:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.tgo">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.tgo}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.tgo == null">
+              <h1 class="pt-5 font-tgo"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">tgp:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.tgp">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.tgp}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.tgp == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">dayCreatinine:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.dayCreatinine">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.dayCreatinine}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.dayCreatinine == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">parathormone:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.parathormone">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.parathormone}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.parathormone == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">serumIron:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.serumIron">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.serumIron}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.serumIron == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">serumFerritin:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.serumFerritin">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.serumFerritin}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.serumFerritin == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">transferrinSaturation:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.transferrinSaturation">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.transferrinSaturation}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.transferrinSaturation == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">transferrin:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.transferrin">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.transferrin}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.transferrin == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">elisa:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.elisa">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.elisa}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.elisa == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">vdrlAndRpr:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.vdrlAndRpr">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.vdrlAndRpr}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.vdrlAndRpr == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">hepatitisBAntigen:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.hepatitisBAntigen">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.hepatitisBAntigen}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.hepatitisBAntigen == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">hepatitisBAntibody:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.hepatitisBAntibody">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.hepatitisBAntibody}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.hepatitisBAntibody == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">hepatitisCAntibody:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.hepatitisCAntibody">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.hepatitisCAntibody}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.hepatitisCAntibody == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">ktv:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.ktv">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.ktv}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.ktv == null">
               <h1 class="pt-5 font-normal"></h1>
             </div>
           </div>
           <br>
+        </th>
+        <div class="pr-60"></div>
+        <th>
+          <h1>Shared</h1>
+          <div class="pb-2"></div>
           <div class="inline-flex w-full">
-            <h1 class="pt-5">Apetito:</h1>
-            <span class="pr-40"></span>
-            <span class="pr-1"></span>
+            <h1 class="pt-5">bloodUrea:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.bloodUrea">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.bloodUrea}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.bloodUrea == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">serumCreatinine:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.serumCreatinine">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.serumCreatinine}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.serumCreatinine == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">hemoglobin:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.hemoglobin">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.hemoglobin}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.hemoglobin == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">sodium:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.sodium">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.sodium}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.sodium == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">potassium:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.potassium">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.potassium}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.potassium == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">albumin:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.albumin">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.albumin}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.albumin == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <br>
+        </th>
+        <div class="pr-60"></div>
+        <th>
+          <h1>Prediction</h1>
+          <div class="pb-2"></div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">bloodPressure:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.bloodPressure">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.bloodPressure}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.bloodPressure == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">specificGravity:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.specificGravity">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.specificGravity}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.specificGravity == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">sugar:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.sugar">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.sugar}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.sugar == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">redBloodCells:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.redBloodCells">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.redBloodCells}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.redBloodCells == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">pusCells:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.pusCells">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.pusCells}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.pusCells == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">pusCellClumps:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.pusCellClumps">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.pusCellClumps}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.pusCellClumps == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">bacteria:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.bacteria">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.bacteria}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.bacteria == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">bloodGlucoseRandom:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.bloodGlucoseRandom">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.bloodGlucoseRandom}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.bloodGlucoseRandom == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">packedCellVolume:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.packedCellVolume">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.packedCellVolume}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.packedCellVolume == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">whiteBloodCellCount:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.whiteBloodCellCount">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.whiteBloodCellCount}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.whiteBloodCellCount == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">redBloodCellCount:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.redBloodCellCount">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.redBloodCellCount}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.redBloodCellCount == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">appetite:</h1>
+            <span class="pr-10"></span>
             <div *ngIf="surveillancepatient.appetite">
               <h1 class="pt-5 font-normal">{{surveillancepatient.appetite}}</h1>
             </div>
@@ -197,12 +624,65 @@
               <h1 class="pt-5 font-normal"></h1>
             </div>
           </div>
-          <br>
           <div class="inline-flex w-full">
-            <h1 class="pt-5">IMC:</h1>
-            <span class="pr-40"></span>
-            <span class="pr-6"></span>
-            <span class="pr-0.5"></span>
+            <h1 class="pt-5">pedalEdema:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.pedalEdema">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.pedalEdema}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.pedalEdema == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <br>
+        </th>
+        <div class="pr-60"></div>
+        <th>
+          <h1>Legacy</h1>
+          <div class="pb-2"></div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">planCalories:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.planCalories">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.planCalories}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.planCalories == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">consumedCalories:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.consumedCalories">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.consumedCalories}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.consumedCalories == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">pain:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.pain">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.pain}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.pain == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">otherSymptoms:</h1>
+            <span class="pr-10"></span>
+            <div *ngIf="surveillancepatient.otherSymptoms">
+              <h1 class="pt-5 font-normal">{{surveillancepatient.otherSymptoms}}</h1>
+            </div>
+            <div *ngIf="surveillancepatient.otherSymptoms == null">
+              <h1 class="pt-5 font-normal"></h1>
+            </div>
+          </div>
+          <div class="inline-flex w-full">
+            <h1 class="pt-5">imc:</h1>
+            <span class="pr-10"></span>
             <div *ngIf="surveillancepatient.imc">
               <h1 class="pt-5 font-normal">{{surveillancepatient.imc}}</h1>
             </div>
@@ -211,345 +691,9 @@
             </div>
           </div>
           <br>
-          <div class="inline-flex w-full">
-            <h1 class="pt-5">Peso:</h1>
-            <span class="pr-40"></span>
-            <span class="pr-4"></span>
-            <span class="pr-0.5"></span>
-            <div *ngIf="surveillancepatient.weight">
-              <h1 class="pt-5 font-normal">{{surveillancepatient.weight}} kilos</h1>
-            </div>
-            <div *ngIf="surveillancepatient.weight == null">
-              <h1 class="pt-5 font-normal"></h1>
-            </div>
-          </div>
-        <div class="pb-32"></div>
-        <h1>Otros</h1>
-        <div class="pb-2"></div>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Dolores:</h1>
-          <span class="pr-16"></span>
-          <span class="pr-3"></span>
-          <div class="max-w-fit">
-          <div *ngIf="surveillancepatient.pain">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.pain}}</h1>
-          </div>
-          <div *ngIf="surveillancepatient.pain == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-          </div>  
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Síntomas:</h1>
-          <span class="pr-16"></span>
-          <div class="max-w-fit">
-          <div *ngIf="surveillancepatient.otherSymptoms">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.otherSymptoms}}</h1>
-          </div>
-          <div *ngIf="surveillancepatient.otherSymptoms == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        </div>
-      </th>
-      <div class="pr-60"></div>
-      <th>
-        <h1>Análisis de sangre</h1>
-        <div class="pb-2"></div>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Hemoglobina:</h1>
-          <span class="pr-16"></span>
-          <span class="pr-1"></span>
-          <div *ngIf="surveillancepatient.hemoglobin">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.hemoglobin}} g/dL</h1>
-          </div>
-          <div *ngIf="surveillancepatient.hemoglobin == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Linfocitos:</h1>
-          <span class="pr-20"></span>
-          <span class="pr-3"></span>
-          <div *ngIf="surveillancepatient.lymphocytes">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.lymphocytes}} %</h1>
-          </div>
-          <div *ngIf="surveillancepatient.lymphocytes == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Segmentados:</h1>
-          <span class="pr-16"></span>
-          <div *ngIf="surveillancepatient.segmented">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.segmented}} %</h1>
-          </div>
-          <div *ngIf="surveillancepatient.segmented == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Monocitos:</h1>
-          <span class="pr-20"></span>
-          <span class="pr-2"></span>
-          <div *ngIf="surveillancepatient.monocytes">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.monocytes}} /L</h1>
-          </div>
-          <div *ngIf="surveillancepatient.monocytes == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">VCM:</h1>
-          <span class="pr-32"></span>
-          <span class="pr-0.5"></span>
-          <div *ngIf="surveillancepatient.mvc">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.mvc}} fl</h1>
-          </div>
-          <div *ngIf="surveillancepatient.mvc == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">HCM:</h1>
-          <span class="pr-32"></span>
-          <div *ngIf="surveillancepatient.mch">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.mch}} pg</h1>
-          </div>
-          <div *ngIf="surveillancepatient.mch == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Leucocitos:</h1>
-          <span class="pr-20"></span>
-          <span class="pr-1"></span>
-          <div *ngIf="surveillancepatient.leukocytes">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.leukocytes}}</h1>
-          </div>
-          <div *ngIf="surveillancepatient.leukocytes == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Hematies:</h1>
-          <span class="pr-20"></span>
-          <span class="pr-3"></span>
-          <span class="pr-0.5"></span>
-          <div *ngIf="surveillancepatient.erythrocytes">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.erythrocytes}} células/mcL</h1>
-          </div>
-          <div *ngIf="surveillancepatient.erythrocytes == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Glucosa:</h1>
-          <span class="pr-24"></span>
-          <span class="pr-2"></span>
-          <div *ngIf="surveillancepatient.glucose">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.glucose}} mg/dl</h1>
-          </div>
-          <div *ngIf="surveillancepatient.glucose == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Colesterol:</h1>
-          <span class="pr-20"></span>
-          <span class="pr-2"></span>
-          <span class="pr-0.5"></span>
-          <div *ngIf="surveillancepatient.cholesterol">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.cholesterol}} mg/dL</h1>
-          </div>
-          <div *ngIf="surveillancepatient.cholesterol == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Triglicéridos:</h1>
-          <span class="pr-20"></span>
-          <span class="pr-2"></span>
-          <span class="pr-0.5"></span>
-          <div *ngIf="surveillancepatient.triglycerides">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.triglycerides}} células/mcL</h1>
-          </div>
-          <div *ngIf="surveillancepatient.triglycerides == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-      </th>
-      <div class="pr-60"></div>
-      <th>
-        <h1>Análisis de orina</h1>
-        <div class="pb-2"></div>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Densidad de orina:</h1>
-          <span class="pr-10"></span>
-          <div *ngIf="surveillancepatient.density">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.density}}</h1>
-          </div>
-          <div *ngIf="surveillancepatient.density == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">PH:</h1>
-          <span class="pr-36"></span>
-          <span class="pr-1"></span>
-          <div *ngIf="surveillancepatient.ph">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.ph}}</h1>
-          </div>
-          <div *ngIf="surveillancepatient.ph == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Proteínas:</h1>
-          <span class="pr-24"></span>
-          <span class="pr-1"></span>
-          <span class="pr-0.5"></span>
-          <div *ngIf="surveillancepatient.protein">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.protein}} mg/dL</h1>
-          </div>
-          <div *ngIf="surveillancepatient.protein == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Cetonas:</h1>
-          <span class="pr-28"></span>
-          <div *ngIf="surveillancepatient.ketone">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.ketone}}</h1>
-          </div>
-          <div *ngIf="surveillancepatient.ketone == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Urobilinogeno:</h1>
-          <span class="pr-16"></span>
-          <span class="pr-2"></span>
-          <div *ngIf="surveillancepatient.urobilinogen">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.urobilinogen}} mg/dl</h1>
-          </div>
-          <div *ngIf="surveillancepatient.urobilinogen == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Bilirrubina:</h1>
-          <span class="pr-24"></span>
-          <span class="pr-0.5"></span>
-          <div *ngIf="surveillancepatient.bilirubin">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.bilirubin}}</h1>
-          </div>
-          <div *ngIf="surveillancepatient.bilirubin == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Nitrito:</h1>
-          <span class="pr-32"></span>
-          <div *ngIf="surveillancepatient.nitrite">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.nitrite}}</h1>
-          </div>
-          <div *ngIf="surveillancepatient.nitrite == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Cristales:</h1>
-          <span class="pr-24"></span>
-          <span class="pr-3"></span>
-          <span class="pr-0.5"></span>
-          <div *ngIf="surveillancepatient.crystals">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.crystals}}</h1>
-          </div>
-          <div *ngIf="surveillancepatient.crystals == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Azucar:</h1>
-          <span class="pr-28"></span>
-          <span class="pr-3"></span>
-          <div *ngIf="surveillancepatient.sugar">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.sugar}} mmol/l</h1>
-          </div>
-          <div *ngIf="surveillancepatient.sugar == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Aspecto de la orina:</h1>
-          <span class="pr-9"></span>
-          <div *ngIf="surveillancepatient.urineAppearance">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.urineAppearance}}</h1>
-          </div>
-          <div *ngIf="surveillancepatient.urineAppearance == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Color de la orina:</h1>
-          <span class="pr-14"></span>
-          <span class="pr-0.5"></span>
-          <div *ngIf="surveillancepatient.urineColor">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.urineColor}}</h1>
-          </div>
-          <div *ngIf="surveillancepatient.urineColor == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Urea:</h1>
-          <span class="pr-32"></span>
-          <span class="pr-3"></span>
-          <span class="pr-0.5"></span>
-          <div *ngIf="surveillancepatient.urea">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.urea}} mg/dL</h1>
-          </div>
-          <div *ngIf="surveillancepatient.urea == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Creatinina:</h1>
-          <span class="pr-24"></span>
-          <span class="pr-2"></span>
-          <div *ngIf="surveillancepatient.creatinine">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.creatinine}} mg/dL</h1>
-          </div>
-          <div *ngIf="surveillancepatient.creatinine == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-      </th>
-    </tr>
+        </th>
+      </tr>
+
     </table>
     <br>
     <!--Antecedentes-->
