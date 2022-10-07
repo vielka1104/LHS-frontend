@@ -54,8 +54,8 @@ export class SurveillanceService {
       );
   }
 
-  createSurveillance(patientid:any,doctorid:any,item:any) : Observable<CreateSurveillanceResource>{
-    return this.http.post<CreateSurveillanceResource>(`${this.basePath2}/${patientid}/doctors/${doctorid}/surveillances`,JSON.stringify(item),this.httpOptions)
+  createSurveillance(patientid:any,item:any) : Observable<CreateSurveillanceResource>{
+    return this.http.post<CreateSurveillanceResource>(`${this.basePath2}/${patientid}/surveillances`,JSON.stringify(item),this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)

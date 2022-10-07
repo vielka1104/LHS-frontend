@@ -26,11 +26,11 @@ export class CreateSurveillanceCSV {
     this.serum_ferritin=0;
     this.transferrin_saturation=0;
     this.transferrin=0;
-    this. elisa=0;
-    this. vdrl_and_rpr=0;
-    this.hepatitisbantigen=0;
-    this.hepatitisbantibody=0;
-    this.hepatitiscantibody=0;
+    this. elisa=false;
+    this. vdrl_and_rpr=false;
+    this.hepatitisbantigen=false;
+    this.hepatitisbantibody=false;
+    this.hepatitiscantibody=false;
    
     this.ktv=0;
 
@@ -45,16 +45,16 @@ export class CreateSurveillanceCSV {
     this.blood_pressure=0;
     this. specific_gravity=0;
     this.sugar=0;
-    this.red_blood_cells=0;
-    this. pus_cells=0;
-    this.pus_cell_clumps=0;
-    this. bacteria=0;
+    this.red_blood_cells=false;
+    this. pus_cells=false;
+    this.pus_cell_clumps=false;
+    this. bacteria=false;
     this.blood_glucose_random=0;
     this.packed_cell_volume=0;
     this.white_blood_cell_count=0;
     this.red_blood_cell_count=0;
-    this.appetite=0;
-    this. pedal_edema=0;
+    this.appetite=false;
+    this. pedal_edema=false;
 
 
     this. plan_calories=0;
@@ -84,11 +84,11 @@ export class CreateSurveillanceCSV {
   serum_ferritin:number;
   transferrin_saturation:number;
     transferrin:number;
-    elisa:number;
-    vdrl_and_rpr:number;
-    hepatitisbantigen:number;
-    hepatitiscantibody:number;
-    hepatitisbantibody:number;
+    elisa:boolean;
+    vdrl_and_rpr:boolean;
+    hepatitisbantigen:boolean;
+    hepatitiscantibody:boolean;
+    hepatitisbantibody:boolean;
     ktv:number;
 
 
@@ -106,16 +106,16 @@ export class CreateSurveillanceCSV {
     blood_pressure:number;
     specific_gravity:number;
      sugar:number;
-     red_blood_cells:number;
-     pus_cells:number;
-     pus_cell_clumps:number;
-    bacteria:number;
+     red_blood_cells:boolean;
+     pus_cells:boolean;
+     pus_cell_clumps:boolean;
+    bacteria:boolean;
     blood_glucose_random:number;
     packed_cell_volume:number;
     white_blood_cell_count:number;
      red_blood_cell_count:number;
-    appetite:number;
-    pedal_edema:number;
+    appetite:boolean;
+    pedal_edema:boolean;
 
  // Legacy
  plan_calories:number;

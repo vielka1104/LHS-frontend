@@ -30,11 +30,11 @@ export interface SurveillanceResource {
     serumFerritin:number;
     transferrinSaturation:number;
      transferrin:number;
-     elisa:number;
-     vdrlAndRpr:number;
-    hepatitisBAntigen:number;
-    hepatitisBAntibody:number;
-     hepatitisCAntibody:number;
+     elisa:boolean;
+     vdrlAndRpr:boolean;
+    hepatitisBAntigen:boolean;
+    hepatitisBAntibody:boolean;
+     hepatitisCAntibody:boolean;
      ktv:number;
 
 
@@ -52,16 +52,16 @@ export interface SurveillanceResource {
  bloodPressure:number;
      specificGravity:number;
       sugar:number;
-      redBloodCells:number;
-      pusCells:number;
-      pusCellClumps:number;
-     bacteria:number;
+      redBloodCells:boolean;
+      pusCells:boolean;
+      pusCellClumps:boolean;
+     bacteria:boolean;
       bloodGlucoseRandom:number;
      packedCellVolume:number;
       whiteBloodCellCount:number;
       redBloodCellCount:number;
-     appetite:number;
-      pedalEdema:number;
+     appetite:boolean;
+      pedalEdema:boolean;
 
   // Legacy
   planCalories:number;

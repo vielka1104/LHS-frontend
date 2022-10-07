@@ -137,7 +137,7 @@ export class ClinicalHistoriesComponent implements OnInit {
   home!:string
   id!:number
   pdf=false
-  SurveillanceResource1!:ASurveillanceResource
+  SurveillanceResource1!:SurveillanceResource
   displayedColumns: string[] =  ['Antecedente', 'Descripcion', 'fecha'];
   displayedColumns2: string[] = ['Medicamento', 'Dosis Diarias', 'fecha inicio','fecha final'];
   displayedColumns3: string[] = ['Diagnostico', 'Fecha', 'Comentario'];
@@ -153,7 +153,7 @@ export class ClinicalHistoriesComponent implements OnInit {
     this.dataSource5 = new MatTableDataSource<any>();
     this.dataSource6 = new MatTableDataSource<any>();
     this.Patient={}as PatientResource
-    this.SurveillanceResource1={}as ASurveillanceResource
+    this.SurveillanceResource1={}as SurveillanceResource
     
     this.avalible=false
      
@@ -278,20 +278,20 @@ downloadAsPDF(){
               this.SurveillanceResource1.transferrin=0
             }
             if(this.SurveillanceResource1.elisa==null){
-              this.SurveillanceResource1.elisa=0
+              this.SurveillanceResource1.elisa=false
             }
             if(this.SurveillanceResource1.vdrlAndRpr==null){
-              this.SurveillanceResource1.vdrlAndRpr=0
+              this.SurveillanceResource1.vdrlAndRpr=false
             }
             if(this.SurveillanceResource1.hepatitisBAntigen==null){
-              this.SurveillanceResource1.hepatitisBAntigen=0
+              this.SurveillanceResource1.hepatitisBAntigen=false
             }
             if(this.SurveillanceResource1.hepatitisBAntibody==null){
-              this.SurveillanceResource1.hepatitisBAntibody=0
+              this.SurveillanceResource1.hepatitisBAntibody=false
             }
 
             if(this.SurveillanceResource1.hepatitisCAntibody==null){
-              this.SurveillanceResource1.hepatitisCAntibody=0
+              this.SurveillanceResource1.hepatitisCAntibody=false
             }
             if(this.SurveillanceResource1.ktv==null){
               this.SurveillanceResource1.ktv=0
@@ -326,16 +326,16 @@ downloadAsPDF(){
               this.SurveillanceResource1.sugar=0
             }
             if(this.SurveillanceResource1.redBloodCells==null){
-              this.SurveillanceResource1.redBloodCells=0
+              this.SurveillanceResource1.redBloodCells=false
             }
             if(this.SurveillanceResource1.pusCells==null){
-              this.SurveillanceResource1.pusCells=0
+              this.SurveillanceResource1.pusCells=false
             }
             if(this.SurveillanceResource1.pusCellClumps==null){
-              this.SurveillanceResource1.pusCellClumps=0
+              this.SurveillanceResource1.pusCellClumps=false
             }
             if(this.SurveillanceResource1.bacteria==null){
-              this.SurveillanceResource1.bacteria=0
+              this.SurveillanceResource1.bacteria=false
             }
             if(this.SurveillanceResource1.bloodGlucoseRandom==null){
               this.SurveillanceResource1.bloodGlucoseRandom=0
@@ -350,11 +350,11 @@ downloadAsPDF(){
               this.SurveillanceResource1.redBloodCellCount=0
             }
             if(this.SurveillanceResource1.appetite==null){
-              this.SurveillanceResource1.appetite=0
+              this.SurveillanceResource1.appetite=false
             }
 
             if(this.SurveillanceResource1.pedalEdema==null){
-              this.SurveillanceResource1.pedalEdema=0
+              this.SurveillanceResource1.pedalEdema=false
             }
             if(this.SurveillanceResource1.planCalories==null){
               this.SurveillanceResource1.planCalories=0
