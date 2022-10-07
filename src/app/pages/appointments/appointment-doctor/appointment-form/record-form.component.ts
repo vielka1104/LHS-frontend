@@ -309,6 +309,7 @@ export class RecordFormComponent implements OnInit {
             this.dataSourcepatientdiagnostic2.data = this.dataSourcepatientdiagnostic2.data.map((o: any) => { return o; });
             const dialogRef = this.dialog.open(ResultDialogClinicComponent)
             this.getPatientDiagnostic(id)
+            this.PredictionData(id)
           },err=>{
             alert("Diagnostico seleccionado igual")
           }
