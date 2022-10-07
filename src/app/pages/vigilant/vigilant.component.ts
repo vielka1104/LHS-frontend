@@ -1,3 +1,6 @@
+import { StaffResource } from 'src/app/models/staff/StaffResource';
+import { StaffService } from './../../services/staff/staff.service';
+
 import { DoctorResource } from 'src/app/models/doctor/DoctorResource';
 import { PatientResource } from './../../models/patient/PatientResource';
 import { PatientService } from 'src/app/services/patient/patient.service';
@@ -41,6 +44,7 @@ export class VigilantComponent implements OnInit {
   date!:Date;
   Patient!:PatientResource;
   DoctorResource!:DoctorResource;
+  StaffResource!:StaffResource;
   whois=""
   home!:string
   id!:number
@@ -57,11 +61,12 @@ export class VigilantComponent implements OnInit {
 
 
   constructor(public dialog: MatDialog,private formBuilder:FormBuilder,private datePipe: DatePipe,private PATIENTSERVICE:PatientService,private surveillance:SurveillanceService,
-    private ActivatedRoute:ActivatedRoute,private router:Router,private _csvService: CsvService, private PatientService:PatientService,private DoctorService:DoctorService,) { 
+    private ActivatedRoute:ActivatedRoute,private router:Router,private _csvService: CsvService, private PatientService:PatientService,private DoctorService:DoctorService,private StaffService:StaffService) { 
     this.CreateSurveillanceResource={}as CreateSurveillanceResource
     this.csvvigilant={}as CreateSurveillanceResource
     this.date=new Date()
     this.Patient={}as PatientResource
+    this.StaffResource={}as StaffResource
   }
   
 
@@ -166,6 +171,7 @@ export class VigilantComponent implements OnInit {
       })
 
     this.findDoctor(doctorid)
+    this.findstaff(doctorid)
     if(this.whois=="doctor"){
        this.home="home-doctor"
     }
@@ -199,6 +205,13 @@ export class VigilantComponent implements OnInit {
                     this.DoctorResource=response           
          })
   }
+  
+  findstaff(id:number){
+    this.StaffService.getStaffById(id).subscribe((response:any)=>{
+               this.StaffResource=response           
+    })
+  }
+
 
 
   /*
@@ -415,7 +428,13 @@ export class VigilantComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.router.navigate(['/doctor',this.DoctorResource.id,'home-doctor'])
+      if(this.whois=="doctor"){
+        this.router.navigate(['/doctor',this.DoctorResource.id,'home-doctor'])
+     }
+     if(this.whois=="staff"){
+      this.router.navigate(['/staff',this.StaffResource.id,'home-staff'])
+    }
+     
 
     });
   }
