@@ -57,7 +57,7 @@ export class VigilantComponent implements OnInit {
 
 
   constructor(public dialog: MatDialog,private formBuilder:FormBuilder,private datePipe: DatePipe,private PATIENTSERVICE:PatientService,private surveillance:SurveillanceService,
-    private DoctorService:DoctorService,private ActivatedRoute:ActivatedRoute,private router:Router,private _csvService: CsvService, private PatientService:PatientService) { 
+    private ActivatedRoute:ActivatedRoute,private router:Router,private _csvService: CsvService, private PatientService:PatientService,private DoctorService:DoctorService,) { 
     this.CreateSurveillanceResource={}as CreateSurveillanceResource
     this.csvvigilant={}as CreateSurveillanceResource
     this.date=new Date()
@@ -188,7 +188,7 @@ export class VigilantComponent implements OnInit {
   onSubmit(){
     console.log(this.CreateSurveillanceResource)
     this.openDialog()
-    this.surveillance.createSurveillance(this.Patient.id,this.DoctorResource.id,this.CreateSurveillanceResource).subscribe((response:any)=>{
+    this.surveillance.createSurveillance(this.Patient.id,this.CreateSurveillanceResource).subscribe((response:any)=>{
            
     })
     //this.CreateSurveillanceResource.=this.date
@@ -512,15 +512,10 @@ export class VigilantComponent implements OnInit {
              console.log("number")
               number=response.id
               console.log(number)
-              this.DoctorService.getDoctorByDni(this.importedData[element].doctor_dni).subscribe((response:DoctorResource)=>{
-                console.log("number")
-                number2=response.id
-                 console.log(number2)
-                 this.surveillance.createSurveillance(number,number2,this.csvvigilant).subscribe((response:any)=>{
+              this.surveillance.createSurveillance(number,this.csvvigilant).subscribe((response:any)=>{
                   console.log("enviado")
-                   })
-
-              })
+               })
+              
          })
         
         

@@ -63,7 +63,7 @@ export class CreateSurveillanceCSV {
     this.other_symptoms="";
     this. imc=0;
 
-    this.doctor_dni="";
+    
     this.patient_dni="";
      }
 
@@ -125,6 +125,6 @@ export class CreateSurveillanceCSV {
   imc:number;
 
 
-  doctor_dni:string
+
   patient_dni:string
 }

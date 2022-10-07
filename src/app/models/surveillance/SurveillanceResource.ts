@@ -3,7 +3,7 @@ import { DoctorResource } from './../doctor/DoctorResource';
 export interface SurveillanceResource {
       id:number;
       patient:PatientResource
-      doctor:DoctorResource
+      
 
       // Calculate ktv
       initWeight:number;
