@@ -28,6 +28,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import htmlToPdfmake from 'html-to-pdfmake';
 import { ViewChild,ElementRef  } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { ASurveillanceResource } from 'src/app/models/antiguo-surveillance/ASurveillanceResource';
 export interface dataclinical {
   Hematologicos: string;
   Urologicos:string
@@ -124,7 +125,7 @@ export class ClinicalHistoriesComponent implements OnInit {
   avaliblediagnosis!:boolean
   avaliblehistory!:boolean
   avaliblevigilant!:boolean
-  vigilantarray!: SurveillanceResource[]
+  vigilantarray!: ASurveillanceResource[]
   dataSourceb=tratamiento
   dataSourcec=DiagnosticoPaciente
   dataSourced=cita
@@ -134,7 +135,7 @@ export class ClinicalHistoriesComponent implements OnInit {
   home!:string
   id!:number
   pdf=false
-  SurveillanceResource1!:SurveillanceResource
+  SurveillanceResource1!:ASurveillanceResource
   displayedColumns: string[] =  ['Antecedente', 'Descripcion', 'fecha'];
   displayedColumns2: string[] = ['Medicamento', 'Dosis Diarias', 'fecha inicio','fecha final'];
   displayedColumns3: string[] = ['Diagnostico', 'Fecha', 'Comentario'];
@@ -150,7 +151,7 @@ export class ClinicalHistoriesComponent implements OnInit {
     this.dataSource5 = new MatTableDataSource<any>();
     this.dataSource6 = new MatTableDataSource<any>();
     this.Patient={}as PatientResource
-    this.SurveillanceResource1={}as SurveillanceResource
+    this.SurveillanceResource1={}as ASurveillanceResource
     
     this.avalible=false
      

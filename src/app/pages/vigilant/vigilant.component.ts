@@ -12,6 +12,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { FormGroup, FormBuilder, Validators,FormControl } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import {formatDate} from '@angular/common';
+import { CreateASurveillanceResource } from 'src/app/models/antiguo-surveillance/CreateASurveillanceResource';
 export interface DialogData {
   animal: string;
   name: string;
@@ -32,7 +33,7 @@ export class VigilantComponent implements OnInit {
 
 
 
-  CreateSurveillanceResource!:CreateSurveillanceResource
+  CreateSurveillanceResource!:CreateASurveillanceResource
   date!:Date;
   Patient!:PatientResource;
   DoctorResource!:DoctorResource;
@@ -47,7 +48,7 @@ export class VigilantComponent implements OnInit {
   checkhematology!:boolean
   constructor(public dialog: MatDialog,private formBuilder:FormBuilder,private datePipe: DatePipe,private PATIENTSERVICE:PatientService,private surveillance:SurveillanceService,
     private DoctorService:DoctorService,private ActivatedRoute:ActivatedRoute,private router:Router) { 
-    this.CreateSurveillanceResource={}as CreateSurveillanceResource
+    this.CreateSurveillanceResource={}as CreateASurveillanceResource
     this.date=new Date()
     this.Patient={}as PatientResource
   }
