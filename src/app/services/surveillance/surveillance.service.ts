@@ -10,9 +10,12 @@ import { updateSurveillanceResource } from 'src/app/models/surveillance/UpdateSu
 })
 export class SurveillanceService {
 
-  basePath = "http://localhost:8080/api/v1/surveillances";
-  basePath2 = "http://localhost:8080/api/v1/patients";
-  basePath3 = "http://localhost:8080/api/v1/doctors";
+  basePath = "http://flash-rope-364617.rj.r.appspot.com/api/v1/surveillances";
+  basePath2 = "http://flash-rope-364617.rj.r.appspot.com/api/v1/patients";
+  basePath3 = "http://flash-rope-364617.rj.r.appspot.com/api/v1/doctors";
+  //basePath = "http://localhost:8080/api/v1/surveillances";
+  //basePath2 = "http://localhost:8080/api/v1/patients";
+  //basePath3 = "http://localhost:8080/api/v1/doctors";
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -51,8 +54,8 @@ export class SurveillanceService {
       );
   }
 
-  createSurveillance(patientid:number,item:any) : Observable<CreateSurveillanceResource>{
-    return this.http.post<CreateSurveillanceResource>(`${this.basePath2}/${patientid}/surveillances`,JSON.stringify(item),this.httpOptions)
+  createSurveillance(patientid:any,doctorid:any,item:any) : Observable<CreateSurveillanceResource>{
+    return this.http.post<CreateSurveillanceResource>(`${this.basePath2}/${patientid}/doctors/${doctorid}/surveillances`,JSON.stringify(item),this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
