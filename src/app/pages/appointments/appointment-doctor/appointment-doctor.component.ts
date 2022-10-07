@@ -31,7 +31,7 @@ export class AppointmentDoctorComponent implements OnInit {
   patientobject!:PatientResource
   patients:string[] = ["Alayo Zavaleta, Alessandro Fabián","Almonacid Garrido, Viviana", "Benavides Castillo, Daniela"] 
   urlid!:number
-  displayedColumns: string[] = ['id','dni','patient', 'date', 'status','button'];
+  displayedColumns: string[] = ['id','dni','patient','button'];
   dataSource = new MatTableDataSource<any>();
   doctorobject!:DoctorResource
 
@@ -46,7 +46,7 @@ export class AppointmentDoctorComponent implements OnInit {
     let urlvariable = parseInt(this.activeroute.snapshot.paramMap.get('id')!);
     this.urlid = urlvariable
     console.log(this.urlid)
-    this.getAllAppointments(this.urlid)
+    this.getAllPatienss()
     this.getDoctorById(this.urlid)
   }
 
@@ -66,20 +66,13 @@ export class AppointmentDoctorComponent implements OnInit {
       })
   }
 
-  getAllAppointments(id:number){
-    this.appointmentservice.getAppointmentsByDoctorId(id).subscribe((response:any) =>{
+  getAllPatienss(){
+    this.patientservice.getAllPatients().subscribe((response:any) =>{
         this.dataSource.data = response;
         console.log(this.dataSource.data)
 
         
-        for(var oneappointment of this.dataSource.data){
-          console.log(oneappointment)
-          let dateformatselected = formatDate(oneappointment.scheduledAt,'YYYY-MM-dd HH:mm:ss','en_US')
-          console.log(dateformatselected)
-          
-          oneappointment.scheduledAt = dateformatselected
-          console.log(oneappointment)
-        }
+        
       }
     )
   }
