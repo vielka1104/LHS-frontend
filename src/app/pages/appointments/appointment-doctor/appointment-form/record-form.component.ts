@@ -554,18 +554,16 @@ export class RecordFormComponent implements OnInit {
     this.renaldiseaseservice.getRenalDiseaseByName(this.renaldiseasetype.name).subscribe( (response:any) =>{
       console.log(response)
       this.renaldiseasetype = response 
-      this.updaterenaldisease.name = this.renaldiseasetype.name
-      this.updaterenaldisease.description = this.renaldiseasetype.description
-      console.log(this.updaterenaldisease)
-      this.renaldiseaseservice.updateRenalDisease(this.renaldiseasetype.id,this.updaterenaldisease).subscribe( (response:any) =>{
-        console.log("Entra a update")
-        this.dataSourceRenalDisease.data = this.dataSourceRenalDisease.data.map((o: RenalDiseaseResource) => {
-          if (o.id === response.id) {
-            o = response;
+      this.patientservice.updatePatientbyRenalDisease(this.patientobject.id,this.renaldiseasetype.id,this.patientobject).subscribe( (updateresponse:any) =>{
+        this.dataSource.data = this.dataSource.data.map((o: PatientResource) => {
+          if (o.id === updateresponse.id) {
+            o = updateresponse;
           }
           return o;
         });
-      }) 
+
+      });
+       
     })
   }
 
