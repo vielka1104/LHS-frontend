@@ -85,7 +85,7 @@ export class PatientService {
   }
 
   getPatientByDocumentNumber(number:any){
-    return this.http.get<any>(`${this.basePath}/document-number/${number}`,this.httpOptions)
+    return this.http.get<PatientResource>(`${this.basePath}/document-number/${number}`,this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)

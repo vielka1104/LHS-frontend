@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
+import { SurveillanceResource } from 'src/app/models/surveillance/SurveillanceResource';
+import { PatientResource } from '../../models/patient/PatientResource';
+import { PatientService } from '../patient/patient.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CsvService {
 
-constructor() { }
+constructor(private patientService:PatientService) {}
 public importDataFromCSV(csvText: string): Array<any> {
   const propertyNames = csvText.slice(0, csvText.indexOf('\n')).split(',');
   const dataRows = csvText.slice(csvText.indexOf('\n') + 1).split('\n');
@@ -39,12 +43,12 @@ public importDataFromCSVByType(csvText: string, obj: any): Array<any> {
   console.log(dataRows.pop())
   console.log(propertyNames)
   console.log(dataRows)
-  let dataArray: any[] = [];
+  let dataArray: SurveillanceResource[] = [];
   dataRows.forEach((row) => {
    
     let values = row.split(';');
     console.log(values)
-    let dataObj: any = new Object();
+    let dataObj: SurveillanceResource;
     for (let index = 0; index < propertyNames.length; index++) {
       const propertyName: string = propertyNames[index];
 
@@ -54,12 +58,19 @@ public importDataFromCSVByType(csvText: string, obj: any): Array<any> {
       }
       console.log(value)
 
-
-      if (typeof obj[propertyName] === 'undefined') {
+      if(propertyName == 'patient_dni'){
+        let patient;
+        this.patientService.getPatientByDocumentNumber(value).subscribe((response:any)=>{
+          patient=response;
+        },err=>{
+          alert("Dni no identificado")
+        })
+        dataObj.patient = patient;
+      }
+      else if (typeof obj[propertyName] === 'undefined') {
         dataObj[propertyName] = undefined;
-      } 
+      }
       else if (typeof obj[propertyName] === 'boolean') {
-        
         dataObj[propertyName] = value.toLowerCase() === 'true';
       } 
       else if (typeof obj[propertyName] === 'number') {
@@ -70,6 +81,9 @@ public importDataFromCSVByType(csvText: string, obj: any): Array<any> {
       }
       else if (typeof obj[propertyName] === 'object') {
         console.error("do no have algorithm to convert object");
+      }
+      else {
+        console.error(".");
       }
     }
 
