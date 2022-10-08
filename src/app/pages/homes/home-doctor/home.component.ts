@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
     })
 }
   GoToAppointmentDoctor(){
-    this.Router.navigate(['doctor',this.DoctorResource.id,'appointment-doctor']);
+    this.Router.navigate(['doctor',this.DoctorResource.id,'profiles']);
   }
   GoOut(){
     this.TokenService.logOut();

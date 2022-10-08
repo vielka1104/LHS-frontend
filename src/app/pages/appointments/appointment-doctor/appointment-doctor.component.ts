@@ -67,28 +67,14 @@ export class AppointmentDoctorComponent implements OnInit {
   }
 
   getAllAppointments(id:number){
-    this.appointmentservice.getAppointmentsByDoctorId(id).subscribe((response:any) =>{
+    this.patientservice.getAllPatients().subscribe((response:any) =>{
         this.dataSource.data = response;
-        console.log(this.dataSource.data)
-
-        
-        for(var oneappointment of this.dataSource.data){
-          console.log(oneappointment)
-          let dateformatselected = formatDate(oneappointment.scheduledAt,'YYYY-MM-dd HH:mm:ss','en_US')
-          console.log(dateformatselected)
-          
-          oneappointment.scheduledAt = dateformatselected
-          console.log(oneappointment)
-        }
       }
     )
   }
 
-  AppointmentForm(doctorid:number,patientid:number,appointid:number){
-    console.log(doctorid)
-    console.log(patientid)
-
-    this.route.navigate([`doctor/${doctorid}/appointment-form/patient/${patientid}/appoint/${appointid}`]);
+  AppointmentForm(doctorid:number,patientid:number){
+    this.route.navigate([`doctor/${doctorid}/profiles/patient/${patientid}`]);
   }
 
   GotoDoctorHome(id:number){
@@ -105,9 +91,9 @@ export class AppointmentDoctorComponent implements OnInit {
           this.dataSource.data = response;
           console.log(this.dataSource.data)
 
-          for(var oneappointment of this.dataSource.data){
-            console.log(oneappointment)
-            let dateformatselected = formatDate(oneappointment.scheduledAt,'YYYY-MM-dd HH:mm:ss','en_US')
+          for(var patient of this.dataSource.data){
+            console.log(patient)
+            let dateformatselected = formatDate(patient.scheduledAt,'YYYY-MM-dd HH:mm:ss','en_US')
             console.log(dateformatselected)
   
             /*const [finaldate,finalhour] = dateformatselected.split(' ');
@@ -120,13 +106,13 @@ export class AppointmentDoctorComponent implements OnInit {
   
             console.log(dateformat)*/
             
-            oneappointment.scheduledAt = dateformatselected
-            console.log(oneappointment)
+            patient.scheduledAt = dateformatselected
+            console.log(patient)
           }
           
         })
     },err=>{
-      alert("DNI inexistente pruebe denuevo")
+      alert("DNI inexistente pruebe de nuevo")
     }
     )
   }

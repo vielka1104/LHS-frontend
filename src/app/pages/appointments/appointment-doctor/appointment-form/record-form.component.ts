@@ -1,5 +1,3 @@
-import { AppointmentService } from 'src/app/services/appoinment/Appointment.service';
-import { UpdateAppointmentResource } from './../../../../models/appointment/UpdateAppointmentResource';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ResultDialogRecordComponent } from '../../../dialogs/result-dialog-record/result-dialog-record.component';
@@ -94,7 +92,6 @@ export class RecordFormComponent implements OnInit {
   dataSourcetreatment = new MatTableDataSource<any>()
   dataSourcemedicine = new MatTableDataSource<any>()  
   listDiagnosis:PatientDiagnosisResource[] = [] 
-  UpdateAppointmentResource!:UpdateAppointmentResource
   dataSourceancient = new MatTableDataSource<any>()
   dataSourceancient2 = new MatTableDataSource<any>()
   updaterenaldisease!:UpdateRenalDiseaseResource
@@ -120,7 +117,6 @@ export class RecordFormComponent implements OnInit {
     private medicineservice:MedicineService,
     private doctorservice:DoctorService,
     private staffservice:StaffService,
-    private AppointmentService:AppointmentService,
     private renaldiseaseservice:RenalDiseaseService,
     private predictionservice:PredictionService,
 
@@ -134,7 +130,6 @@ export class RecordFormComponent implements OnInit {
       this.patientobject = {} as PatientResource
       this.surveillancepatient = {} as SurveillanceResource
       this.patientupdate={}as UpdatePatientResource
-      this.UpdateAppointmentResource={}as UpdateAppointmentResource
       this.renaldiseasetype = {} as RenalDiseaseResource
       this.surveillancepatientobject = {} as SurveillanceResource
       this.predictionobj = {} as PredictionResource
@@ -185,7 +180,6 @@ export class RecordFormComponent implements OnInit {
 
      let urlpatientvariable = parseInt(this.activeroute.snapshot.paramMap.get('patientid')!);
      let urldoctorvariable = parseInt(this.activeroute.snapshot.paramMap.get('doctorid')!);
-     let urlstaffstatus = parseInt(this.activeroute.snapshot.paramMap.get('appointid')!);
      this.idpatienturl = urlpatientvariable
      this.iddoctorurl = urldoctorvariable
      console.log(this.idpatienturl)
@@ -203,7 +197,6 @@ export class RecordFormComponent implements OnInit {
      this.getTreatments()
      this.getMedicines()
      this.getRenalDiseases()
-     this.getappoint(urlstaffstatus)
      this.PredictionData(this.idpatienturl)
   }
 
@@ -218,14 +211,6 @@ export class RecordFormComponent implements OnInit {
       const dialogRef = this.dialog.open(ResultDialogAncientComponent)
       this.getPatientAncients(id)
     });
-  }
-  getappoint(id:number){
-    this.AppointmentService.getAppointmentById(id).subscribe((response:any)=>{
-      this.setstatfrom.controls["stat"].setValue(response.status)
-      this.notes=response.notes
-      this.shecdule=response.scheduledAt
-
-    })
   }
   getDiagnosis(){
     this.diagnosisservice.getAllDiagnosis().subscribe( (response:any) =>{
@@ -243,17 +228,6 @@ export class RecordFormComponent implements OnInit {
     })
   }
 
-  cambiarstat(){
-
-    let urlstaffstatus = parseInt(this.activeroute.snapshot.paramMap.get('appointid')!);
-    this.UpdateAppointmentResource.status= this.setstatfrom.controls["stat"].value
-    this.UpdateAppointmentResource.notes=this.notes
-    this.UpdateAppointmentResource.scheduledAt=this.shecdule
-    this.AppointmentService.updateAppointment(urlstaffstatus,this.UpdateAppointmentResource).subscribe((response:any)=>{
-                
-    })
-
-  }
   getTreatments(){
     this.treatmentservice.getAllTreatments().subscribe( (response:any) =>{
         this.treatmenttypes = response
@@ -502,7 +476,7 @@ export class RecordFormComponent implements OnInit {
   }
 
   GoToAppointmentDoctor(){
-      this.route.navigate(['doctor',this.doctorobject.id,'appointment-doctor']);
+      this.route.navigate(['doctor',this.doctorobject.id,'profiles']);
   }
 
   GotoUpdateDiagnostic(object:PatientDiagnosisResource){

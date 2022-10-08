@@ -76,8 +76,8 @@ const routes: Routes = [
   {path: "staff/:id/patient/:patientid/medicines",component:MedicineComponent},
 
   //Doctor
-  {path: "doctor/:doctorid/appointment-form/patient/:patientid/appoint/:appointid",component: RecordFormComponent},
-  {path: "doctor/:id/appointment-doctor",component: AppointmentDoctorComponent},
+  {path: "doctor/:doctorid/profiles/patient/:patientid",component: RecordFormComponent},
+  {path: "doctor/:id/profiles",component: AppointmentDoctorComponent},
   {path: "doctor/:id/home-doctor",component: HomeComponent},
   {path: "doctor/:id/vigilant",component:VigilantComponent},
   {path: "doctor/:id/clinical-histories",component:ClinicalHistoriesComponent},
