@@ -487,7 +487,7 @@ export class VigilantComponent implements OnInit {
          this.csvvigilant.chlorine   = this.importedData[element].chlorine
          this.csvvigilant.consumedCalories  = this.importedData[element].consumed_calories
          this.csvvigilant.dayCreatinine    =  this.importedData[element].day_creatinine
-         this.csvvigilant.elisa  =  (this.importedData[element].elisa)
+         this.csvvigilant.elisa  =  this.importedData[element].elisa
          this. csvvigilant.finalWeight   =  this.importedData[element].final_weight
          this. csvvigilant.hdTime  =  this.importedData[element].hd_time
          this. csvvigilant.hematocrit    = this.importedData[element].hematocrit

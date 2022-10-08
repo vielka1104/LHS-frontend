@@ -84,33 +84,9 @@ export class AppointmentDoctorComponent implements OnInit {
   GetPatientByDNI(){
     console.log(this.dnisearch.value)
     this.patientservice.getPatientByDocumentNumber(this.dnisearch.value).subscribe((response:any)=>{
-      this.patientobject=response;
-      console.log(this.patientobject)
-      
-      this.appointmentservice.getAppointmentsByPatientId(this.patientobject.id).subscribe((response:any)=>{
-          this.dataSource.data = response;
-          console.log(this.dataSource.data)
-
-          for(var patient of this.dataSource.data){
-            console.log(patient)
-            let dateformatselected = formatDate(patient.scheduledAt,'YYYY-MM-dd HH:mm:ss','en_US')
-            console.log(dateformatselected)
-  
-            /*const [finaldate,finalhour] = dateformatselected.split(' ');
-  
-            const [year, month, day] =  finaldate.split('-')
-            
-            const [hour, minute, seconds] =  finalhour.split(':')
-  
-            const dateformat = new Date(+year,+month-1,+day,+hour, +minute, +seconds);
-  
-            console.log(dateformat)*/
-            
-            patient.scheduledAt = dateformatselected
-            console.log(patient)
-          }
-          
-        })
+      let patient: any[] = [];
+      patient.push(response)
+      this.dataSource.data = patient;
     },err=>{
       alert("DNI inexistente pruebe de nuevo")
     }
