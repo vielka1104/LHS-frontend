@@ -41,14 +41,9 @@ public importDataFromCSV(csvText: string): Array<any> {
 public importDataFromCSVByType(csvText: string, obj: CreateSurveillanceCSV): Array<any> {
   const propertyNames = csvText.slice(0, csvText.indexOf('\n')).split(';');
   const dataRows = csvText.slice(csvText.indexOf('\n') + 1).split('\n');
-  console.log(dataRows.pop())
-  console.log(propertyNames)
-  console.log(dataRows)
   let dataArray: CreateSurveillanceCSV[] = [];
-  dataRows.forEach((row) => {
-   
-    let values = row.split(';');
-    console.log(values)
+  for (let row = 0; row < dataRows.length; row++) {   
+    let values = dataRows[row].split(';');
     let dataObj: CreateSurveillanceCSV = new CreateSurveillanceCSV();
     for (let index = 0; index < propertyNames.length; index++) {
       const propertyName: string = propertyNames[index];
@@ -82,17 +77,13 @@ public importDataFromCSVByType(csvText: string, obj: CreateSurveillanceCSV): Arr
       else if (typeof obj[propertyName] === 'string') {
         dataObj[propertyName] = value;
       }
-      else if (typeof obj[propertyName] === 'object') {
-        console.error("do no have algorithm to convert object");
-      }
       else {
         console.error(".");
       }
     }
-    console.log(dataObj)
     dataArray.push(dataObj);
-  });
-
+  };
+  console.log("🚀 ~ file: csv.service.ts ~ line 88 ~ CsvService ~ importDataFromCSVByType ~ dataArray", dataArray)
   return dataArray;
 }
 }
