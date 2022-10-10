@@ -574,6 +574,7 @@ export class RecordFormComponent implements OnInit {
 
   PredictionData(id:number){
     this.surveillanceservice.getSurveillanceByPatientId(id).subscribe( (response:any) => {
+      let prediction: PredictionResource = new PredictionResource()
       this.dataSourceSurveillance.data = response
       console.log(this.dataSourceSurveillance.data)
       let finalposition = this.dataSourceSurveillance.data.length - 1
@@ -586,34 +587,30 @@ export class RecordFormComponent implements OnInit {
         /*let finalposition2 = this.dataSourcepatientdiagnostic3.data.length - 1
         this.patientdiagnosispredictive = this.dataSourcepatientdiagnostic3.data[finalposition2]
         console.log(this.patientdiagnosispredictive)*/
-        let prediction: PredictionResource = new PredictionResource()
         for(let i= 0; i< this.dataSourcepatientdiagnostic3.data.length;i++){
           this.diagnosisservice.getDiagnosisById(this.dataSourcepatientdiagnostic3.data[i].diagnosis.id).subscribe( (response:any) => {
             this.diagnosisobjectpredictive = response
-            console.log(this.diagnosisobjectpredictive)
-            if(this.diagnosisobjectpredictive.name == 'Hipertensión'){
+            console.log("here diagnosis")
+            console.log(this.dataSourcepatientdiagnostic3.data)
+            if(this.diagnosisobjectpredictive.id == 1){
               console.log("Entra a if de hipertension")
               prediction.hypertension = true
             }
 
-            if(this.diagnosisobjectpredictive.name == "diabetes mellitus"){
+            if(this.diagnosisobjectpredictive.id == 2){
               prediction.diabetes_mellitus = true
             }
 
-            if(this.diagnosisobjectpredictive.name == "enfermedad Coronaria"){
+            if(this.diagnosisobjectpredictive.id == 3){
               prediction.coronary_artery_disease = true
             }
 
-            if(this.diagnosisobjectpredictive.name == "anemia"){
+            if(this.diagnosisobjectpredictive.id == 4){
               prediction.anemia = true
             }
 
-            if(this.diagnosisobjectpredictive.name == "pedal Enema"){
+            if(this.diagnosisobjectpredictive.id == 5){
               prediction.pedal_edema = true
-            }
-
-            if(this.diagnosisobjectpredictive.name == "Apetito"){
-              prediction.appetite = true
             }
             console.log(prediction)
           })
@@ -641,6 +638,7 @@ export class RecordFormComponent implements OnInit {
         prediction.packed_cell_volume = this.surveillancepatientobject.packedCellVolume
         prediction.white_blood_cell_count = this.surveillancepatientobject.whiteBloodCellCount
         prediction.red_blood_cell_count = this.surveillancepatientobject.redBloodCellCount
+        prediction.appetite = this.surveillancepatientobject.appetite
         
         console.log(prediction)
         console.log("here")
