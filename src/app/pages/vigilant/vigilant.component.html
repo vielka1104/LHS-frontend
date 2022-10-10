@@ -41,9 +41,7 @@
 </div>
 
 <div class="flex justify-center">
-  <mat-card class="text-[26px] text-white italic bg-[#15558D] w-11/12"
-    >Datos</mat-card
-  >
+  <mat-card class="text-[26px] text-white italic bg-[#15558D] w-11/12">DATOS PACIENTE</mat-card>
 </div>
 <div class="flex justify-center">
   <mat-card class="w-11/12">
@@ -76,17 +74,349 @@
 </div>
 
 <div class="flex justify-center">
-  <mat-card class="text-[26px] text-white italic bg-[#15558D] w-11/12"
-    >KTV</mat-card
-  >
+  <mat-card class="text-[26px] text-white italic bg-[#15558D] w-11/12">DATOS CLINICOS</mat-card>
 </div>
 <div class="flex justify-center">
   <mat-card class="w-11/12">
-    <form [formGroup]="vktform">
+    <form [formGroup]="Clinicform">
       <div class="flex flex-col space-y-8">
         <div class="columns-4 md:columns-8">
-          <b class="text-[20px]">Peso inicial:</b>
-          <div>
+          <div class="rows-2">
+            <b class="text-[20px]">Urea pre:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.ureaPre"
+              formControlName="ureaPre"
+              required
+            />
+          </div>
+
+          <div class="rows-2">
+            <b class="text-[20px]">Urea post:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.bloodUrea"
+              formControlName="bloodUrea"
+              required
+            />
+          </div>
+
+          <div class="rows-2">
+            <b class="text-[20px]">Creatinina:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.serumCreatinine"
+              formControlName="serumCreatinine"
+              required
+            />
+          </div>
+
+          <div class="rows-2">
+            <b class="text-[20px]">Hemoglobina:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.hemoglobin"
+              formControlName="hemoglobin"
+              required
+            />
+          </div>
+
+          <div class="rows-2">
+            <b class="text-[20px]">Hematocritos:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.packedCellVolume"
+              formControlName="hematocrit"
+              required
+            />
+          </div>
+
+          <div class="rows-2">
+            <b class="text-[20px]">Sodio:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.sodium"
+              formControlName="sodium"
+              required
+            />
+          </div>
+
+          <div class="rows-2">
+            <b class="text-[20px]">Potasio:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.potassium"
+              formControlName="potassium"
+              required
+            />
+          </div>
+
+          <div class="rows-2">
+            <b class="text-[20px]">Cloro:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.chlorine"
+              formControlName="chlorine"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="columns-4 md:columns-8">
+          <div class="rows-2">
+            <b class="text-[20px]">Fosforo:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.phosphorus"
+              formControlName="phosphorus"
+              required
+            />
+          </div>
+
+          <div class="rows-2">
+            <b class="text-[20px]">Calcio serico:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.serumCalcium"
+              formControlName="serumCalcium"
+              required
+            />
+          </div>
+
+          <div class="rows-2">
+            <b class="text-[20px]">Albumina:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.albumin"
+              formControlName="albumin"
+              required
+            />
+          </div>
+
+          <div class="rows-2">
+            <b class="text-[20px]">TGO:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.tgo"
+              formControlName="tgo"
+              required
+            />
+          </div>
+
+          <div class="rows-2">
+            <b class="text-[20px]">TGP:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.tgp"
+              formControlName="tgp"
+              required
+            />
+          </div>
+
+          <div class="rows-2">
+            <b class="text-[20px]">Paratohormona:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.parathormone"
+              formControlName="parathormone"
+              required
+            />
+          </div>
+
+          <div class="rows-2">
+            <b class="text-[20px]">Hierro serico:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.serumIron"
+              formControlName="serumIron"
+              required
+            />
+          </div>
+
+          <div class="rows-2">
+            <b class="text-[20px]">Ferritina:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.serumFerritin"
+              formControlName="serumFerritin"
+              required
+            />
+          </div>
+        </div>
+        <div class="flex space-x-4">
+          <div class="rows-2">
+            <b class="text-[20px]">Fosfatasa alcalina:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.alkalinePhosphatase"
+              formControlName="alkalinePhosphatase"
+              required
+            />
+          </div>
+
+          <div class="rows-2">
+            <b class="text-[20px]">Creatinina de 24 horas:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.dayCreatinine"
+              formControlName="dayCreatinine"
+              required
+            />
+          </div>
+
+          <div class="rows-2">
+            <b class="text-[20px]">Saturacion de transferrina:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.transferrinSaturation"
+              formControlName="transferrinSaturation"
+              required
+            />
+          </div>
+
+          <div class="rows-2">
+            <b class="text-[20px]">Transferrina:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.transferrin"
+              formControlName="transferrin"
+              required
+            />
+          </div>
+
+          <div class="rows-2">
+            <b class="text-[20px]">Prueba aleatoria de glucosa:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.bloodGlucoseRandom"
+              formControlName="bloodGlucoseRandom"
+              min="0"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="flex space-x-4">
+          <div class="rows-2">
+            <b class="text-[20px]">Elisa:</b>
+            <mat-form-field appearance="fill">
+              <mat-label>Escoge</mat-label>
+              <mat-select
+                formControlName="elisa"
+                [(ngModel)]="CreateSurveillanceResource.elisa"
+              >
+                <mat-option [value]="false">negativo</mat-option>
+                <mat-option [value]="true">positivo</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="rows-2">
+            <b class="text-[20px]">VDRL, RPR:</b>
+            <mat-form-field appearance="fill">
+              <mat-label>Escoge</mat-label>
+              <mat-select
+                formControlName="vdrlAndRpr"
+                [(ngModel)]="CreateSurveillanceResource.vdrlAndRpr"
+              >
+                <mat-option [value]="false">negativo</mat-option>
+                <mat-option [value]="true">positivo</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="rows-2">
+            <b class="text-[20px]">Antigeno de superficie para Hepatitis B:</b>
+            <mat-form-field appearance="fill">
+              <mat-label>Escoge</mat-label>
+              <mat-select
+                formControlName="hepatitisBAntigen"
+                [(ngModel)]="CreateSurveillanceResource.hepatitisBAntigen"
+              >
+                <mat-option [value]="false">negativo</mat-option>
+                <mat-option [value]="true">positivo</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="flex space-x-4">
+          <div class="rows-2">
+            <b class="text-[20px]"
+              >Anticuerpos para antigeno de superficie de hepatitis B:</b
+            >
+            <mat-form-field appearance="fill">
+              <mat-label>Escoge</mat-label>
+              <mat-select
+                formControlName="hepatitisBAntibody"
+                [(ngModel)]="CreateSurveillanceResource.hepatitisBAntibody"
+              >
+                <mat-option [value]="false">negativo</mat-option>
+                <mat-option [value]="true">positivo</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="rows-2">
+            <b class="text-[20px]">Anticuerpos para Hepatitis C:</b>
+            <mat-form-field appearance="fill">
+              <mat-label>Escoge</mat-label>
+              <mat-select
+                formControlName="hepatitisCAntibody"
+                [(ngModel)]="CreateSurveillanceResource.hepatitisCAntibody"
+              >
+                <mat-option [value]="false">negativo</mat-option>
+                <mat-option [value]="true">positivo</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="columns-4 md:columns-8">
+          <div class="rows-2">
+            <b class="text-[20px]">Peso inicial:</b>
             <input
               type="number"
               class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -97,8 +427,8 @@
             />
           </div>
 
-          <b class="text-[20px]">Peso final:</b>
-          <div>
+          <div class="rows-2">
+            <b class="text-[20px]">Peso final:</b>
             <input
               type="number"
               class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -109,8 +439,8 @@
             />
           </div>
 
-          <b class="text-[20px]">Horas de HD:</b>
-          <div>
+          <div class="rows-2">
+            <b class="text-[20px]">Horas de HD:</b>
             <input
               type="number"
               class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -121,8 +451,8 @@
             />
           </div>
 
-          <b class="text-[20px]">UF:</b>
-          <div>
+          <div class="rows-2">
+            <b class="text-[20px]">UF:</b>
             <input
               type="number"
               class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -133,550 +463,203 @@
             />
           </div>
         </div>
-      </div>
-    </form>
-  </mat-card>
-</div>
 
-<div class="flex justify-center">
-  <mat-card class="text-[26px] text-white italic bg-[#15558D] w-11/12">Clinic</mat-card>
-</div>
-<div class="flex justify-center">
-  <mat-card class="w-11/12">
-    <form [formGroup]="Clinicform">
-      <div class="flex flex-col space-y-8">
-        <div class="columns-3 md:columns-6">
-          <b class="text-[20px]">Urea pre:</b>
-          <div>
+        <div class="flex space-x-4">
+          <div class="rows-2">
+            <b class="text-[20px]">Eritocitros</b>
+            <mat-form-field appearance="fill">
+              <mat-label>Escoge</mat-label>
+              <mat-select
+                formControlName="redBloodCells"
+                [(ngModel)]="CreateSurveillanceResource.redBloodCells"
+              >
+                <mat-option [value]="false">anormal</mat-option>
+                <mat-option [value]="true">normal</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="rows-2">
+            <b class="text-[20px]">Pus:</b>
+            <mat-form-field appearance="fill">
+              <mat-label>Escoge</mat-label>
+              <mat-select formControlName="pusCells" [(ngModel)]="CreateSurveillanceResource.pusCells">
+                <mat-option [value]="false">anormal</mat-option>
+                <mat-option [value]="true">normal</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="rows-2">
+            <b class="text-[20px]">Conjunto de pus:</b>
+            <mat-form-field appearance="fill">
+              <mat-label>Escoge</mat-label>
+              <mat-select formControlName="pusCellClumps" [(ngModel)]="CreateSurveillanceResource.pusCellClumps">
+                <mat-option [value]="false">no presente</mat-option>
+                <mat-option [value]="true">presente</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="rows-2">
+            <b class="text-[20px]">Bacteria:</b>
+            <mat-form-field appearance="fill">
+              <mat-label>Escoge</mat-label>
+              <mat-select formControlName="bacteria" [(ngModel)]="CreateSurveillanceResource.bacteria">
+                <mat-option [value]="false">no presente</mat-option>
+                <mat-option [value]="true">presente</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="flex space-x-8">
+          <div class="rows-2">
+            <b class="text-[20px]">Presión de sangre:</b>
             <input
               type="number"
               class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               placeholder=""
-              [(ngModel)]="CreateSurveillanceResource.ureaPre"
-              formControlName="ureaPre"
+              [(ngModel)]="CreateSurveillanceResource.bloodPressure"
+              formControlName="bloodPressure"
               required
             />
           </div>
-          <b class="text-[20px]">Hematocritos:</b>
 
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.packedCellVolume"
-            formControlName="hematocrit"
-            required
-          />
+          <div class="rows-2">
+            <b class="text-[20px]">Densidad orina:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.specificGravity"
+              formControlName="specificGravity"
+              required
+            />
+          </div>
 
-          <b class="text-[20px]">Electrolitos sericos:</b>
+          <div class="rows-2">
+            <b class="text-[20px]">Azucar:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.sugar"
+              formControlName="sugar"
+              required
+            />
+          </div>
 
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.serumElectrolytes"
-            formControlName="serumElectrolytes"
-            required
-          />
-        </div>
-        <div class="flex space-x-4"></div>
+          <div class="rows-2">
+            <b class="text-[20px]">Conteo de leucocitos</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.whiteBloodCellCount"
+              formControlName="whiteBloodCellCount"
+              min="0"
+              required
+            />
+          </div>
 
-        <div class="columns-3 md:columns-6">
-          <b class="text-[20px]">Cloro:</b>
-
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.chlorine"
-            formControlName="chlorine"
-            required
-          />
-
-          <b class="text-[20px]">Fosforo:</b>
-
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.phosphorus"
-            formControlName="phosphorus"
-            required
-          />
-
-          <b class="text-[20px]">Calcio serico:</b>
-
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.serumCalcium"
-            formControlName="serumCalcium"
-            required
-          />
-        </div>
-        <div class="flex space-x-4"></div>
-        <div class="columns-3 md:columns-6">
-          <b class="text-[20px]">Eltectroforesis<br />de proteinas:</b>
-
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.proteinElectrophoresis"
-            formControlName="proteinElectrophoresis"
-            required
-          />
-
-          <b class="text-[20px]">Fosfatasa<br />alcalina:</b>
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.alkalinePhosphatase"
-            formControlName="alkalinePhosphatase"
-            required
-          />
-
-          <b class="text-[20px]">TGO:</b>
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.tgo"
-            formControlName="tgo"
-            required
-          />
-        </div>
-        <div class="flex space-x-4"></div>
-        <div class="columns-3 md:columns-6">
-          <b class="text-[20px]">TGP:</b>
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.tgp"
-            formControlName="tgp"
-            required
-          />
-
-          <b class="text-[20px]">Creatinina de 24 horas:</b>
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.dayCreatinine"
-            formControlName="dayCreatinine"
-            required
-          />
-        </div>
-        <div class="flex space-x-4"></div>
-        <div class="columns-3 md:columns-6">
-          <b class="text-[20px]">Paratohormona:</b>
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.parathormone"
-            formControlName="parathormone"
-            required
-          />
-
-          <b class="text-[20px]">Hierro serico:</b>
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.serumIron"
-            formControlName="serumIron"
-            required
-          />
-
-          <b class="text-[20px]">Ferritina:</b>
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.serumFerritin"
-            formControlName="serumFerritin"
-            required
-          />
-        </div>
-        <div class="columns-3 md:columns-6">
-          <b class="text-[20px]">Saturacion de<br />transferrina:</b>
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.transferrinSaturation"
-            formControlName="transferrinSaturation"
-            required
-          />
-          <b class="text-[20px]">Transferrina:</b>
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.transferrin"
-            formControlName="transferrin"
-            required
-          />
-
-          <b class="text-[20px]">Elisa:</b>
-          <mat-form-field appearance="fill">
-            <mat-label>Escoge</mat-label>
-            <mat-select
-              formControlName="elisa"
-              [(ngModel)]="CreateSurveillanceResource.elisa"
-            >
-              <mat-option [value]="false">negativo</mat-option>
-              <mat-option [value]="true">positivo</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="columns-3 md:columns-6">
-          <b class="text-[20px]">VDRL, RPR:</b>
-          <mat-form-field appearance="fill">
-            <mat-label>Escoge</mat-label>
-            <mat-select
-              formControlName="vdrlAndRpr"
-              [(ngModel)]="CreateSurveillanceResource.vdrlAndRpr"
-            >
-              <mat-option [value]="false">negativo</mat-option>
-              <mat-option [value]="true">positivo</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <b class="text-[20px]">Antigeno de superficie para Hepatitis B:</b>
-          <mat-form-field appearance="fill">
-            <mat-label>Escoge</mat-label>
-            <mat-select
-              formControlName="hepatitisBAntigen"
-              [(ngModel)]="CreateSurveillanceResource.hepatitisBAntigen"
-            >
-              <mat-option [value]="false">negativo</mat-option>
-              <mat-option [value]="true">positivo</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <b class="text-[20px]"
-            >Anticuerpos para antigeno de superficie de hepatitis B:</b
-          >
-          <mat-form-field appearance="fill">
-            <mat-label>Escoge</mat-label>
-            <mat-select
-              formControlName="hepatitisBAntibody"
-              [(ngModel)]="CreateSurveillanceResource.hepatitisBAntibody"
-            >
-              <mat-option [value]="false">negativo</mat-option>
-              <mat-option [value]="true">positivo</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="columns-3 md:columns-6">
-          <b class="text-[20px]">Anticuerpos para Hepatitis C:</b>
-          <mat-form-field appearance="fill">
-            <mat-label>Escoge</mat-label>
-            <mat-select
-              formControlName="hepatitisCAntibody"
-              [(ngModel)]="CreateSurveillanceResource.hepatitisCAntibody"
-            >
-              <mat-option [value]="false">negativo</mat-option>
-              <mat-option [value]="true">positivo</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <b class="text-[20px]">ktv:</b>
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.ktv"
-            formControlName="ktv"
-            required
-          />
+          <div class="rows-2">
+            <b class="text-[20px]">Conteo de eritrocitos:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.redBloodCellCount"
+              formControlName="redBloodCellCount"
+              min="0"
+              required
+            />
+          </div>
         </div>
       </div>
     </form>
   </mat-card>
 </div>
+
 <div class="flex justify-center">
-  <mat-card class="text-[26px] text-white italic bg-[#15558D] w-11/12"
-    >Shared</mat-card
-  >
+  <mat-card class="text-[26px] text-white italic bg-[#15558D] w-11/12">NUTRICION</mat-card>
 </div>
 
 <div class="flex justify-center">
   <mat-card class="w-11/12">
-    <form [formGroup]="Sharedform">
+    <form [formGroup]="NutritionForm">
       <div class="flex flex-col space-y-8">
-        <div class="columns-3 md:columns-6">
-          <b class="text-[20px]">Urea post:</b>
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.bloodUrea"
-            formControlName="bloodUrea"
-            required
-          />
+        <div class="flex space-x-3">
+          <div class="rows-2">
+            <b class="text-[20px]">Apetito:</b>
+            <mat-form-field appearance="fill">
+              <mat-label>Escoge</mat-label>
+              <mat-select
+                formControlName="appetite"
+                [(ngModel)]="CreateSurveillanceResource.appetite"
+              >
+                <mat-option [value]="false">poco</mat-option>
+                <mat-option [value]="true">bueno</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
 
-          <b class="text-[20px]">Creatinina:</b>
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.serumCreatinine"
-            formControlName="serumCreatinine"
-            required
-          />
+          <div class="rows-2">
+            <b class="text-[20px]">Plan de calorías:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.planCalories"
+              formControlName="planCalories"
+              min="0"
+              required
+            />
+          </div>
 
-          <b class="text-[20px]">Hemoglobina:</b>
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.hemoglobin"
-            formControlName="hemoglobin"
-            required
-          />
-        </div>
-        <div class="flex space-x-4"></div>
-        <div class="columns-3 md:columns-6">
-          <b class="text-[20px]">Sodio:</b>
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.sodium"
-            formControlName="sodium"
-            required
-          />
-
-          <b class="text-[20px]">Potasio:</b>
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.potassium"
-            formControlName="potassium"
-            required
-          />
-
-          <b class="text-[20px]">Albumina:</b>
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.albumin"
-            formControlName="albumin"
-            required
-          />
-        </div>
-      </div>
-    </form>
-  </mat-card>
-</div>
-<div class="flex justify-center">
-  <mat-card class="text-[26px] text-white italic bg-[#15558D] w-11/12"
-    >Prediction</mat-card
-  >
-</div>
-
-<div class="flex justify-center">
-  <mat-card class="w-11/12">
-    <form [formGroup]="Predictionform">
-      <div class="flex flex-col space-y-8">
-        <div class="columns-3 md:columns-6">
-          <b class="text-[20px]">Presión de sangre:</b>
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.bloodPressure"
-            formControlName="bloodPressure"
-            required
-          />
-
-          <b class="text-[20px]">Densidad orina:</b>
-
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.specificGravity"
-            formControlName="specificGravity"
-            required
-          />
-
-          <b class="text-[20px]">Azucar:</b>
-
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.sugar"
-            formControlName="sugar"
-            required
-          />
+          <div class="rows-2">
+            <b class="text-[20px]">Calorias consumidas:</b>
+            <input
+              type="number"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.consumedCalories"
+              formControlName="consumedCalories"
+              min="0"
+              required
+            />
+          </div>
         </div>
 
-        <div class="flex space-x-4"></div>
-        <div class="columns-3 md:columns-6">
-          <b class="text-[20px]">Eritocitros</b>
+        <div class="columns-4">
+          <div class="rows-2">
+            <b class="text-[20px]">Dolor:</b>
+            <input
+              type="text"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.pain"
+              formControlName="pain"
+              required
+            />
+          </div>
 
-          <mat-form-field appearance="fill">
-            <mat-label>Escoge</mat-label>
-            <mat-select
-              formControlName="redBloodCells"
-              [(ngModel)]="CreateSurveillanceResource.redBloodCells"
-            >
-              <mat-option [value]="false">anormal</mat-option>
-              <mat-option [value]="true">normal</mat-option>
-            </mat-select>
-          </mat-form-field>
+          <div class="rows-2">
+            <b class="text-[20px]">Otros síntomas:</b>
+            <input
+              type="text"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder=""
+              [(ngModel)]="CreateSurveillanceResource.otherSymptoms"
+              formControlName="otherSymptoms"
+              required
+            />
+          </div>
 
-          <b class="text-[20px]">Pus:</b>
-
-          <mat-form-field appearance="fill">
-            <mat-label>Escoge</mat-label>
-            <mat-select
-              formControlName="pusCells"
-              [(ngModel)]="CreateSurveillanceResource.pusCells"
-            >
-              <mat-option [value]="false">anormal</mat-option>
-              <mat-option [value]="true">normal</mat-option>
-            </mat-select>
-          </mat-form-field>
-
-          <b class="text-[20px]">Conjunto de pus:</b>
-          <mat-form-field appearance="fill">
-            <mat-label>Escoge</mat-label>
-            <mat-select
-              formControlName="pusCellClumps"
-              [(ngModel)]="CreateSurveillanceResource.pusCellClumps"
-            >
-              <mat-option [value]="false">no presente</mat-option>
-              <mat-option [value]="true">presente</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="flex space-x-4"></div>
-        <div class="columns-3 md:columns-6">
-          <b class="text-[20px]">Bacteria:</b>
-          <mat-form-field appearance="fill">
-            <mat-label>Escoge</mat-label>
-            <mat-select
-              formControlName="bacteria"
-              [(ngModel)]="CreateSurveillanceResource.bacteria"
-            >
-              <mat-option [value]="false">no presente</mat-option>
-              <mat-option [value]="true">presente</mat-option>
-            </mat-select>
-          </mat-form-field>
-
-          <b class="text-[20px]"
-            >Prueba aleatoria<br />
-            de glucosa:</b
-          >
-
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.bloodGlucoseRandom"
-            formControlName="bloodGlucoseRandom"
-            min="0"
-            required
-          />
-        </div>
-        <div class="flex space-x-4"></div>
-        <div class="columns-3 md:columns-6">
-          <b class="text-[20px]">Conteo de<br />leucocitos</b>
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.whiteBloodCellCount"
-            formControlName="whiteBloodCellCount"
-            min="0"
-            required
-          />
-          <b class="text-[20px]">Conteo de<br />eritrocitos:</b>
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.redBloodCellCount"
-            formControlName="redBloodCellCount"
-            min="0"
-            required
-          />
-          <b class="text-[20px]">Apetito:</b>
-          <mat-form-field appearance="fill">
-            <mat-label>Escoge</mat-label>
-            <mat-select
-              formControlName="appetite"
-              [(ngModel)]="CreateSurveillanceResource.appetite"
-            >
-              <mat-option [value]="false">poco</mat-option>
-              <mat-option [value]="true">bueno</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div>
-    </form>
-  </mat-card>
-</div>
-<div class="flex justify-center">
-  <mat-card class="text-[26px] text-white italic bg-[#15558D] w-11/12"
-    >Legacy</mat-card
-  >
-</div>
-<div class="flex justify-center">
-  <mat-card class="w-11/12">
-    <form [formGroup]="Legacyform">
-      <div class="flex flex-col space-y-8">
-        <div class="columns-3 md:columns-6">
-          <b class="text-[20px]">Plan de calorías:</b>
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.planCalories"
-            formControlName="planCalories"
-            min="0"
-            required
-          />
-          <b class="text-[20px]">Calorias consumidas:</b>
-          <input
-            type="number"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.consumedCalories"
-            formControlName="consumedCalories"
-            min="0"
-            required
-          />
-          <b class="text-[20px]">IMC:</b>
-          <p>{{ calcularimc() }}</p>
-        </div>
-        <div class="columns-2 md:columns-6">
-          <b class="text-[20px]">Dolor:</b>
-          <input
-            type="text"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.pain"
-            formControlName="pain"
-            required
-          />
-          <b class="text-[20px]">Otros síntomas:</b>
-          <input
-            type="text"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-900 rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder=""
-            [(ngModel)]="CreateSurveillanceResource.otherSymptoms"
-            formControlName="otherSymptoms"
-            required
-          />
+          <div class="rows-2">
+            <b class="text-[20px]">IMC:</b>
+            <p>{{ calcularimc() }}</p>
+          </div>
         </div>
       </div>
     </form>

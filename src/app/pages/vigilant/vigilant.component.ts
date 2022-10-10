@@ -32,11 +32,8 @@ export interface DialogData {
   providers: [DatePipe]
 })
 export class VigilantComponent implements OnInit {
-  public vktform!:FormGroup;
   public Clinicform!:FormGroup;
-  public Sharedform!:FormGroup;
-  public Predictionform!:FormGroup;
-  public Legacyform!:FormGroup;
+  public NutritionForm!:FormGroup;
 
 
   CreateSurveillanceResource!:CreateSurveillanceResource
@@ -81,24 +78,13 @@ export class VigilantComponent implements OnInit {
     this.Patient.documentNumber="numero"
     this.Patient.gender="genero"
     this.Patient.height="altura"
-    this.vktform=this.formBuilder.group({
-     peso:['',Validators.required],
-     initWeight:['',Validators.required],
-    finalWeight:['',Validators.required],
-     hdTime:['',Validators.required],
-     uf:['',Validators.required]
-     
-
-     })
 
      this.Clinicform=this.formBuilder.group({
       ureaPre:['',Validators.required],
       hematocrit:['',Validators.required],
-      serumElectrolytes:['',Validators.required],
       chlorine:['',Validators.required],
       phosphorus:['',Validators.required],
       serumCalcium:['',Validators.required],
-      proteinElectrophoresis:['',Validators.required],
       alkalinePhosphatase:['',Validators.required],
       tgo:['',Validators.required],
       tgp:['',Validators.required],
@@ -113,13 +99,11 @@ export class VigilantComponent implements OnInit {
       hepatitisBAntigen:['',Validators.required],
       hepatitisBAntibody:['',Validators.required],
       hepatitisCAntibody:['',Validators.required],
-      ktv:['',Validators.required],
-
-     
-
-     })
-     this.Sharedform=this.formBuilder.group({
-
+      peso:['',Validators.required],
+      initWeight:['',Validators.required],
+     finalWeight:['',Validators.required],
+      hdTime:['',Validators.required],
+      uf:['',Validators.required],
       bloodUrea:['',Validators.required],
       serumCreatinine:['',Validators.required],
 
@@ -132,11 +116,6 @@ export class VigilantComponent implements OnInit {
       potassium:['',Validators.required],
 
       albumin:['',Validators.required],
-
-
-     })
-     this.Predictionform=this.formBuilder.group({
-
       bloodPressure:['',Validators.required],
       specificGravity:['',Validators.required],
 
@@ -152,16 +131,10 @@ export class VigilantComponent implements OnInit {
       packedCellVolume:['',Validators.required],
       whiteBloodCellCount:['',Validators.required],
       redBloodCellCount:['',Validators.required],
-
-      appetite:['',Validators.required],
-      pedalEdema:['',Validators.required],
-
-
-
-
      })
-     this.Legacyform=this.formBuilder.group({
-    
+
+     this.NutritionForm=this.formBuilder.group({
+      appetite:['',Validators.required],
       planCalories:['',Validators.required],
       consumedCalories:['',Validators.required],
       pain:['',Validators.required],
@@ -382,7 +355,7 @@ export class VigilantComponent implements OnInit {
         return false
       }
    */
-      if(this.vktform.controls["initWeight"].value!=null &&this.Patient.id!=undefined){ 
+      if(this.Clinicform.controls["initWeight"].value!=null &&this.Patient.id!=undefined){ 
         return true
 
       }else{
