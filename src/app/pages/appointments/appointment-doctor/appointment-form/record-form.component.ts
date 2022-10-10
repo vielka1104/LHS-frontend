@@ -586,60 +586,65 @@ export class RecordFormComponent implements OnInit {
         /*let finalposition2 = this.dataSourcepatientdiagnostic3.data.length - 1
         this.patientdiagnosispredictive = this.dataSourcepatientdiagnostic3.data[finalposition2]
         console.log(this.patientdiagnosispredictive)*/
+        let prediction: PredictionResource = new PredictionResource()
         for(let i= 0; i< this.dataSourcepatientdiagnostic3.data.length;i++){
-
           this.diagnosisservice.getDiagnosisById(this.dataSourcepatientdiagnostic3.data[i].diagnosis.id).subscribe( (response:any) => {
             this.diagnosisobjectpredictive = response
             console.log(this.diagnosisobjectpredictive)
             if(this.diagnosisobjectpredictive.name == 'Hipertensión'){
               console.log("Entra a if de hipertension")
-              this.predictionobj.hypertension = true
+              prediction.hypertension = true
             }
+
             if(this.diagnosisobjectpredictive.name == "diabetes mellitus"){
-              this.predictionobj.diabetes_mellitus = true
+              prediction.diabetes_mellitus = true
             }
+
             if(this.diagnosisobjectpredictive.name == "enfermedad Coronaria"){
-              this.predictionobj.coronary_artery_disease = true
+              prediction.coronary_artery_disease = true
             }
+
             if(this.diagnosisobjectpredictive.name == "anemia"){
-              this.predictionobj.anemia = true
+              prediction.anemia = true
             }
+
             if(this.diagnosisobjectpredictive.name == "pedal Enema"){
-              this.predictionobj.pedal_edema = true
+              prediction.pedal_edema = true
             }
+
             if(this.diagnosisobjectpredictive.name == "Apetito"){
-              this.predictionobj.appetite = true
+              prediction.appetite = true
             }
-            console.log(this.predictionobj)
+            console.log(prediction)
           })
         }
-        console.log(this.predictionobj)
         this.patientservice.getPatientById(id).subscribe( (response:PatientResource) => {
           const now = new Date().getFullYear()
           const patientYears = response.birthday
           let years = patientYears.toString().slice(0,4)
-          this.predictionobj.age = now - Number(years)
+          prediction.age = now - Number(years)
         })
-        this.predictionobj.blood_pressure = this.surveillancepatientobject.bloodPressure
-        this.predictionobj.specific_gravity = this.surveillancepatientobject.specificGravity
-        this.predictionobj.albumin = this.surveillancepatientobject.albumin
-        this.predictionobj.sugar = this.surveillancepatientobject.sugar
-        this.predictionobj.red_blood_cells = this.surveillancepatientobject.redBloodCells
-        this.predictionobj.pus_cell = this.surveillancepatientobject.pusCells
-        this.predictionobj.pus_cell_clumps = this.surveillancepatientobject.pusCellClumps
-        this.predictionobj.bacteria = this.surveillancepatientobject.bacteria
-        this.predictionobj.blood_glucose_random = this.surveillancepatientobject.bloodGlucoseRandom
-        this.predictionobj.blood_urea = this.surveillancepatientobject.bloodUrea
-        this.predictionobj.serum_creatinine = this.surveillancepatientobject.serumCreatinine
-        this.predictionobj.sodium = this.surveillancepatientobject.sodium
-        this.predictionobj.potassium = this.surveillancepatientobject.potassium
-        this.predictionobj.hemoglobin = this.surveillancepatientobject.hemoglobin
-        this.predictionobj.packed_cell_volume = this.surveillancepatientobject.packedCellVolume
-        this.predictionobj.white_blood_cell_count = this.surveillancepatientobject.whiteBloodCellCount
-        this.predictionobj.red_blood_cell_count = this.surveillancepatientobject.redBloodCellCount
+        prediction.blood_pressure = this.surveillancepatientobject.bloodPressure
+        prediction.specific_gravity = this.surveillancepatientobject.specificGravity
+        prediction.albumin = this.surveillancepatientobject.albumin
+        prediction.sugar = this.surveillancepatientobject.sugar
+        prediction.red_blood_cells = this.surveillancepatientobject.redBloodCells
+        prediction.pus_cell = this.surveillancepatientobject.pusCells
+        prediction.pus_cell_clumps = this.surveillancepatientobject.pusCellClumps
+        prediction.bacteria = this.surveillancepatientobject.bacteria
+        prediction.blood_glucose_random = this.surveillancepatientobject.bloodGlucoseRandom
+        prediction.blood_urea = this.surveillancepatientobject.bloodUrea
+        prediction.serum_creatinine = this.surveillancepatientobject.serumCreatinine
+        prediction.sodium = this.surveillancepatientobject.sodium
+        prediction.potassium = this.surveillancepatientobject.potassium
+        prediction.hemoglobin = this.surveillancepatientobject.hemoglobin
+        prediction.packed_cell_volume = this.surveillancepatientobject.packedCellVolume
+        prediction.white_blood_cell_count = this.surveillancepatientobject.whiteBloodCellCount
+        prediction.red_blood_cell_count = this.surveillancepatientobject.redBloodCellCount
         
-        console.log(this.predictionobj)
-        this.predictionservice.createPrediction(this.predictionobj).subscribe( (response:any) => {
+        console.log(prediction)
+        console.log("here")
+        this.predictionservice.createPrediction(prediction).subscribe( (response:any) => {
           this.responseprediction = response
           console.log(this.responseprediction)
           if(this.responseprediction.outcome == 1){
