@@ -11,12 +11,9 @@ export class CreateSurveillanceCSV {
       this.hd_time=0;
       this. uf=0;
       this.urea_pre=0;
-    this.hematocrit=0;
-    this.serum_electrolytes=0;
     this.chlorine=0;
     this.phosphorus=0;
     this.serum_calcium=0;
-    this.protein_electrophoresis=0;
     this.alkaline_phosphatase=0;
     this. tgo=0;
     this. tgp=0;
@@ -54,7 +51,6 @@ export class CreateSurveillanceCSV {
     this.white_blood_cell_count=0;
     this.red_blood_cell_count=0;
     this.appetite=false;
-    this. pedal_edema=false;
 
 
     this. plan_calories=0;
@@ -69,12 +65,9 @@ export class CreateSurveillanceCSV {
 
      // Clinic
      urea_pre:number;
-    hematocrit:number;
-    serum_electrolytes:number;
    chlorine:number;
     phosphorus:number;
     serum_calcium:number;
-    protein_electrophoresis:number;
    alkaline_phosphatase:number;
     tgo:number;
    tgp:number;
@@ -115,7 +108,6 @@ export class CreateSurveillanceCSV {
     white_blood_cell_count:number;
      red_blood_cell_count:number;
     appetite:boolean;
-    pedal_edema:boolean;
 
  // Legacy
  plan_calories:number;

@@ -5,12 +5,9 @@ export interface updateSurveillanceResource{
     hdTime:number;
     uf:number;
     ureaPre:number;
-    hematocrit:number;
-    serumElectrolytes:number;
     chlorine:number;
     phosphorus:number;
     serumCalcium:number;
-    proteinElectrophoresis:number;
     alkalinePhosphatase:number;
     tgo:number;
     tgp:number;
@@ -44,7 +41,6 @@ export interface updateSurveillanceResource{
     whiteBloodCellCount:number;
     redBloodCellCount:number;
     appetite:number;
-    pedalEdema:boolean;
     planCalories:number;
     consumedCalories:number;
     pain:string;

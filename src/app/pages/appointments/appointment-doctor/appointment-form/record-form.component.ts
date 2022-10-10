@@ -150,8 +150,6 @@ export class RecordFormComponent implements OnInit {
       date:['',Validators.required],
      })
      this.diagnosticform = this.formBuilder.group({
-      initdate:['',Validators.required],
-      finishdate:[''],
       typediagnostic:['',Validators.required],
      })
      this.treatmentform = this.formBuilder.group({
@@ -616,6 +614,12 @@ export class RecordFormComponent implements OnInit {
           })
         }
         console.log(this.predictionobj)
+        this.patientservice.getPatientById(id).subscribe( (response:PatientResource) => {
+          const now = new Date().getFullYear()
+          const patientYears = response.birthday
+          let years = patientYears.toString().slice(0,4)
+          this.predictionobj.age = now - Number(years)
+        })
         this.predictionobj.blood_pressure = this.surveillancepatientobject.bloodPressure
         this.predictionobj.specific_gravity = this.surveillancepatientobject.specificGravity
         this.predictionobj.albumin = this.surveillancepatientobject.albumin

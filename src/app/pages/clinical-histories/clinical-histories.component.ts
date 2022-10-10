@@ -235,20 +235,11 @@ downloadAsPDF(){
             if(this.SurveillanceResource1.ureaPre==null){
               this.SurveillanceResource1.ureaPre=0
             } 
-            if(this.SurveillanceResource1.hematocrit==null){
-              this.SurveillanceResource1.hematocrit=0
-            } 
-            if(this.SurveillanceResource1.serumElectrolytes==null){
-              this.SurveillanceResource1.serumElectrolytes=0
-            } 
             if(this.SurveillanceResource1.phosphorus==null){
               this.SurveillanceResource1.phosphorus=0
             } 
             if(this.SurveillanceResource1.serumCalcium==null){
               this.SurveillanceResource1.serumCalcium=0
-            } 
-            if(this.SurveillanceResource1.proteinElectrophoresis==null){
-              this.SurveillanceResource1.proteinElectrophoresis=0
             } 
             if(this.SurveillanceResource1.alkalinePhosphatase==null){
               this.SurveillanceResource1.alkalinePhosphatase=0
@@ -352,10 +343,6 @@ downloadAsPDF(){
             if(this.SurveillanceResource1.appetite==null){
               this.SurveillanceResource1.appetite=false
             }
-
-            if(this.SurveillanceResource1.pedalEdema==null){
-              this.SurveillanceResource1.pedalEdema=false
-            }
             if(this.SurveillanceResource1.planCalories==null){
               this.SurveillanceResource1.planCalories=0
             }
@@ -380,18 +367,18 @@ downloadAsPDF(){
   arrayflow(){
     this.arrayclinical=[
       {ktv:`initWeight: ${this.SurveillanceResource1.initWeight} `,Clinic:`ureaPre:${this.SurveillanceResource1.ureaPre} `,Shared:`bloodUrea:${this.SurveillanceResource1.bloodUrea}`,Prediction:`bloodPressure:${this.SurveillanceResource1.bloodPressure}`,Legacy:`planCalories: ${this.SurveillanceResource1.planCalories}`},
-      {ktv:`finalWeight: ${this.SurveillanceResource1.finalWeight} `,Clinic:`hematocrit:${this.SurveillanceResource1.hematocrit} `,Shared:`serumCreatinine:${this.SurveillanceResource1.serumCreatinine}`,Prediction:`specificGravity:${this.SurveillanceResource1.specificGravity}`,Legacy:`consumedCalories: ${this.SurveillanceResource1.consumedCalories}`},
-      {ktv:`hdTime: ${this.SurveillanceResource1.hdTime} `,Clinic:`serumElectrolytes:${this.SurveillanceResource1.serumElectrolytes} `,Shared:`hemoglobin:${this.SurveillanceResource1.hemoglobin}`,Prediction:`sugar:${this.SurveillanceResource1.sugar}`,Legacy:`pain: ${this.SurveillanceResource1.pain}`},
+      {ktv:`finalWeight: ${this.SurveillanceResource1.finalWeight} `,Clinic:``,Shared:`serumCreatinine:${this.SurveillanceResource1.serumCreatinine}`,Prediction:`specificGravity:${this.SurveillanceResource1.specificGravity}`,Legacy:`consumedCalories: ${this.SurveillanceResource1.consumedCalories}`},
+      {ktv:`hdTime: ${this.SurveillanceResource1.hdTime} `,Clinic:``,Shared:`hemoglobin:${this.SurveillanceResource1.hemoglobin}`,Prediction:`sugar:${this.SurveillanceResource1.sugar}`,Legacy:`pain: ${this.SurveillanceResource1.pain}`},
       {ktv:`uf: ${this.SurveillanceResource1.uf} `,Clinic:`chlorine:${this.SurveillanceResource1.chlorine} `,Shared:`sodium:${this.SurveillanceResource1.sodium}`,Prediction:`redBloodCells:${this.SurveillanceResource1.redBloodCells}`,Legacy:`otherSymptoms: ${this.SurveillanceResource1.otherSymptoms}`},
       {ktv:``,Clinic:`phosphorus:${this.SurveillanceResource1.phosphorus} `,Shared:`potassium:${this.SurveillanceResource1.potassium}`,Prediction:`pusCells:${this.SurveillanceResource1.pusCells}`,Legacy:`otherSymptoms: ${this.SurveillanceResource1.imc}`},
       {ktv:``,Clinic:`serumCalcium:${this.SurveillanceResource1.serumCalcium} `,Shared:`albumin:${this.SurveillanceResource1.albumin}`,Prediction:`pusCellClumps:${this.SurveillanceResource1.pusCellClumps}`,Legacy:``},
-      {ktv:``,Clinic:`proteinElectrophoresis:${this.SurveillanceResource1.proteinElectrophoresis} `,Shared:``,Prediction:`bacteria:${this.SurveillanceResource1.bacteria}`,Legacy:``},
+      {ktv:``,Clinic:``,Shared:``,Prediction:`bacteria:${this.SurveillanceResource1.bacteria}`,Legacy:``},
       {ktv:``,Clinic:`alkalinePhosphatase:${this.SurveillanceResource1.alkalinePhosphatase} `,Shared:``,Prediction:`bloodGlucoseRandom:${this.SurveillanceResource1.bloodGlucoseRandom}`,Legacy:``},
       {ktv:``,Clinic:`tgo:${this.SurveillanceResource1.tgo} `,Shared:``,Prediction:`packedCellVolume:${this.SurveillanceResource1.packedCellVolume}`,Legacy:``},
       {ktv:``,Clinic:`tgp:${this.SurveillanceResource1.tgp} `,Shared:``,Prediction:`whiteBloodCellCount:${this.SurveillanceResource1.whiteBloodCellCount}`,Legacy:``},
       {ktv:``,Clinic:`dayCreatinine:${this.SurveillanceResource1.dayCreatinine} `,Shared:``,Prediction:`redBloodCellCount:${this.SurveillanceResource1.redBloodCellCount}`,Legacy:``},
       {ktv:``,Clinic:`parathormone:${this.SurveillanceResource1.parathormone} `,Shared:``,Prediction:`appetite:${this.SurveillanceResource1.appetite}`,Legacy:``},
-      {ktv:``,Clinic:`serumIron:${this.SurveillanceResource1.serumIron} `,Shared:``,Prediction:`pedalEdema:${this.SurveillanceResource1.pedalEdema}`,Legacy:``},
+      {ktv:``,Clinic:`serumIron:${this.SurveillanceResource1.serumIron} `,Shared:``,Prediction:``,Legacy:``},
       {ktv:``,Clinic:`serumFerritin:${this.SurveillanceResource1.serumFerritin} `,Shared:``,Prediction:``,Legacy:``},
       {ktv:``,Clinic:`transferrinSaturation:${this.SurveillanceResource1.transferrinSaturation} `,Shared:``,Prediction:``,Legacy:``},
       {ktv:``,Clinic:`transferrin:${this.SurveillanceResource1.transferrin} `,Shared:``,Prediction:``,Legacy:``},

@@ -446,76 +446,73 @@ export class VigilantComponent implements OnInit {
     return  this.CreateSurveillanceResource.imc
   }
   save(){
-    console.log("here")
-    console.log(this.importedData)
-    for (let element in this.importedData){
-      let surveillance: CreateSurveillanceResource = new CreateSurveillanceResource();
-         surveillance.albumin      =    this.importedData[element].albumin
-         surveillance.alkalinePhosphatase    =   this.importedData[element].alkaline_phosphatase
-         surveillance.appetite     =   (this.importedData[element].appetite)
-         surveillance.bacteria    =   (this.importedData[element].bacteria)
-         surveillance.bloodGlucoseRandom    =  this.importedData[element].blood_glucose_random
-         surveillance.bloodPressure     = this.importedData[element].blood_pressure
-         surveillance.bloodUrea   = this.importedData[element].blood_urea
-         surveillance.chlorine   = this.importedData[element].chlorine
-         surveillance.consumedCalories  = this.importedData[element].consumed_calories
-         surveillance.dayCreatinine    =  this.importedData[element].day_creatinine
-         surveillance.elisa  =  this.importedData[element].elisa
-         surveillance.finalWeight   =  this.importedData[element].final_weight
-         surveillance.hdTime  =  this.importedData[element].hd_time
-         surveillance.hematocrit    = this.importedData[element].hematocrit
-         surveillance.hemoglobin    =   this.importedData[element].hemoglobin
-         surveillance.hepatitisBAntibody   = (this.importedData[element].hepatitisbantibody)
-         surveillance.hepatitisCAntibody  =  (this.importedData[element].hepatitiscantibody)
-         surveillance.hepatitisBAntigen   =  (this.importedData[element].hepatitisbantigen)
-         surveillance.imc   =  this.importedData[element].imc
-         surveillance.initWeight  = this.importedData[element].init_weight
-         surveillance.ktv   = this.importedData[element].ktv
-         if(this.importedData[element].other_symptoms=="NULL"){
-          this.importedData[element].other_symptoms=null
-         }
-         surveillance.otherSymptoms    = this.importedData[element].other_symptoms
-         surveillance.packedCellVolume   = this.importedData[element].packed_cell_volume
-         if(this.importedData[element].pain=="NULL"){
-          this.importedData[element].pain=null
-         }
-         surveillance.pain  = this.importedData[element].pain
-         surveillance.parathormone   =  this.importedData[element].parathormone
-         surveillance.pedalEdema  =  (this.importedData[element].pedal_edema)
-         surveillance.phosphorus   =  this.importedData[element].phosphorus
-         surveillance.planCalories   = this.importedData[element].plan_calories
-         surveillance.potassium  =  this.importedData[element].potassium
-         surveillance.proteinElectrophoresis   =  this.importedData[element].protein_electrophoresis
-         surveillance.pusCellClumps    =  (this.importedData[element].pus_cell_clumps)
-         surveillance.pusCells   =  (this.importedData[element].pus_cells)
-         surveillance.redBloodCellCount =  this.importedData[element].red_blood_cell_count
-         surveillance.redBloodCells  =  (this.importedData[element].red_blood_cells)
-         surveillance.serumCalcium  =  this.importedData[element].serum_calcium
-         surveillance.serumCreatinine  =  this.importedData[element].serum_creatinine
-         surveillance.serumElectrolytes  =  this.importedData[element].serum_electrolytes
-         surveillance.serumFerritin =  this.importedData[element].serum_ferritin
-         surveillance.serumIron =  this.importedData[element].serum_iron
-         surveillance.sodium  =   this.importedData[element].sodium
-         surveillance.specificGravity  =   this.importedData[element].specific_gravity
-         surveillance.sugar =  this.importedData[element].sugar
-         surveillance.tgo =  this.importedData[element].tgo
-         surveillance.tgp   =  this.importedData[element].tgp
-         surveillance.transferrin  =  this.importedData[element].transferrin
-         surveillance.transferrin  =  this.importedData[element].transferrin_saturation
-         surveillance.uf  =  this.importedData[element].uf
-         surveillance.ureaPre  =  this.importedData[element].urea_pre
-         surveillance.vdrlAndRpr = (this.importedData[element].vdrl_and_rpr)
-         surveillance.whiteBloodCellCount  =  this.importedData[element].white_blood_cell_count
-         console.log(this.importedData[element].patient_dni)
-         this.PATIENTSERVICE.getPatientByDocumentNumber(this.importedData[element].patient_dni).subscribe((response:PatientResource)=>{
-              this.surveillance.createSurveillance(response.id,surveillance).subscribe((response:any)=>{
-                console.log(response)
-                  console.log("enviado")
-               })
-              
-         })
-        
-        
+    try{
+      for (let element in this.importedData){
+        let surveillance: CreateSurveillanceResource = new CreateSurveillanceResource();
+           surveillance.albumin      =    this.importedData[element].albumin
+           surveillance.alkalinePhosphatase    =   this.importedData[element].alkaline_phosphatase
+           surveillance.appetite     =   (this.importedData[element].appetite)
+           surveillance.bacteria    =   (this.importedData[element].bacteria)
+           surveillance.bloodGlucoseRandom    =  this.importedData[element].blood_glucose_random
+           surveillance.bloodPressure     = this.importedData[element].blood_pressure
+           surveillance.bloodUrea   = this.importedData[element].blood_urea
+           surveillance.chlorine   = this.importedData[element].chlorine
+           surveillance.consumedCalories  = this.importedData[element].consumed_calories
+           surveillance.dayCreatinine    =  this.importedData[element].day_creatinine
+           surveillance.elisa  =  this.importedData[element].elisa
+           surveillance.finalWeight   =  this.importedData[element].final_weight
+           surveillance.hdTime  =  this.importedData[element].hd_time
+           surveillance.hemoglobin    =   this.importedData[element].hemoglobin
+           surveillance.hepatitisBAntibody   = (this.importedData[element].hepatitisbantibody)
+           surveillance.hepatitisCAntibody  =  (this.importedData[element].hepatitiscantibody)
+           surveillance.hepatitisBAntigen   =  (this.importedData[element].hepatitisbantigen)
+           surveillance.imc   =  this.importedData[element].imc
+           surveillance.initWeight  = this.importedData[element].init_weight
+           surveillance.ktv   = this.importedData[element].ktv
+           if(this.importedData[element].other_symptoms=="NULL"){
+            this.importedData[element].other_symptoms=null
+           }
+           surveillance.otherSymptoms    = this.importedData[element].other_symptoms
+           surveillance.packedCellVolume   = this.importedData[element].packed_cell_volume
+           if(this.importedData[element].pain=="NULL"){
+            this.importedData[element].pain=null
+           }
+           surveillance.pain  = this.importedData[element].pain
+           surveillance.parathormone   =  this.importedData[element].parathormone
+           surveillance.phosphorus   =  this.importedData[element].phosphorus
+           surveillance.planCalories   = this.importedData[element].plan_calories
+           surveillance.potassium  =  this.importedData[element].potassium
+           surveillance.pusCellClumps    =  (this.importedData[element].pus_cell_clumps)
+           surveillance.pusCells   =  (this.importedData[element].pus_cells)
+           surveillance.redBloodCellCount =  this.importedData[element].red_blood_cell_count
+           surveillance.redBloodCells  =  (this.importedData[element].red_blood_cells)
+           surveillance.serumCalcium  =  this.importedData[element].serum_calcium
+           surveillance.serumCreatinine  =  this.importedData[element].serum_creatinine
+           surveillance.serumFerritin =  this.importedData[element].serum_ferritin
+           surveillance.serumIron =  this.importedData[element].serum_iron
+           surveillance.sodium  =   this.importedData[element].sodium
+           surveillance.specificGravity  =   this.importedData[element].specific_gravity
+           surveillance.sugar =  this.importedData[element].sugar
+           surveillance.tgo =  this.importedData[element].tgo
+           surveillance.tgp   =  this.importedData[element].tgp
+           surveillance.transferrin  =  this.importedData[element].transferrin
+           surveillance.transferrinSaturation  =  this.importedData[element].transferrin_saturation
+           surveillance.uf  =  this.importedData[element].uf
+           surveillance.ureaPre  =  this.importedData[element].urea_pre
+           surveillance.vdrlAndRpr = (this.importedData[element].vdrl_and_rpr)
+           surveillance.whiteBloodCellCount  =  this.importedData[element].white_blood_cell_count
+           this.PATIENTSERVICE.getPatientByDocumentNumber(this.importedData[element].patient_dni).subscribe((response:PatientResource)=>{
+                this.surveillance.createSurveillance(response.id,surveillance).subscribe((response:any)=>{
+                  console.log(response)
+                    console.log("enviado")
+                 })
+                
+           }) 
+      }
+      alert("Datos importados correctamente")
+    }
+    catch(error){
+      console.log(error)
     }
   }
 

@@ -12,12 +12,9 @@ export class CreateSurveillanceResource {
        this.hdTime=0;
        this. uf=0;
        this.ureaPre=0;
-     this.hematocrit=0;
-     this.serumElectrolytes=0;
      this.chlorine=0;
      this.phosphorus=0;
      this.serumCalcium=0;
-     this.proteinElectrophoresis=0;
      this.alkalinePhosphatase=0;
      this. tgo=0;
      this. tgp=0;
@@ -54,7 +51,6 @@ export class CreateSurveillanceResource {
      this.whiteBloodCellCount=0;
      this.redBloodCellCount=0;
      this.appetite=false;
-     this. pedalEdema=false;
 
 
      this. planCalories=0;
@@ -66,12 +62,9 @@ export class CreateSurveillanceResource {
 
       // Clinic
       ureaPre:number;
-     hematocrit:number;
-     serumElectrolytes:number;
     chlorine:number;
      phosphorus:number;
      serumCalcium:number;
-    proteinElectrophoresis:number;
     alkalinePhosphatase:number;
      tgo:number;
     tgp:number;
@@ -112,7 +105,6 @@ export class CreateSurveillanceResource {
       whiteBloodCellCount:number;
       redBloodCellCount:number;
      appetite:boolean;
-      pedalEdema:boolean;
 
   // Legacy
   planCalories:number;

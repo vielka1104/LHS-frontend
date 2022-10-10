@@ -111,13 +111,13 @@
           <div class="inline-flex">
             <h1 class="pt-5">% Si:</h1>
             <span class="pr-10"></span>
-            <h1 class="pt-5 font-normal">{{responseprediction.yes}}</h1>
+            <h1 class="pt-5 font-normal">{{responseprediction.yes*100| number}}%</h1>
           </div>
           <br>
           <div class="inline-flex">
             <h1 class="pt-5">% No:</h1>
             <span class="pr-10"></span>
-            <h1 class="pt-5 font-normal">{{responseprediction.no}}</h1>
+            <h1 class="pt-5 font-normal">{{responseprediction.no*100| number}}%</h1>
           </div>
           <br>
           <br>
@@ -192,42 +192,6 @@
         </mat-toolbar>
       </div>
     <div class="pb-10"></div>
-    <table class="ml-auto mr-auto w-11/12">
-    <tr>
-      <th>
-        <div class="inline-flex">
-          <h1 class="pt-5">Fecha inicio:</h1>
-          <span class="pr-10"></span>
-          <form [formGroup]="diagnosticform">
-            <mat-form-field appearance="outline" class="w-96">
-              <mat-label>fecha de inicio</mat-label>
-              <input matInput [matDatepicker]="picker2" formControlName="initdate" placeholder="Ingrese su fecha de inicio" required [(ngModel)]="patientdiagnostic.startDate">
-              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-              <mat-datepicker #picker2></mat-datepicker>
-              <mat-error>Es requerido este campo!</mat-error>
-            </mat-form-field>
-          </form>
-        </div>
-      </th>
-      <th>
-        <div class="inline-flex">
-          <h1 class="pt-5">Fecha fin:</h1>
-          <span class="pr-10"></span>
-          <form [formGroup]="diagnosticform">
-            <mat-form-field appearance="outline" class="w-96">
-              <mat-label>fecha de fin</mat-label>
-              <input matInput [matDatepicker]="picker3" formControlName="finishdate" placeholder="Ingrese su fecha de fin" [(ngModel)]="patientdiagnostic.endDate">
-              <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-              <mat-datepicker #picker3></mat-datepicker>
-              <mat-error>Es requerido este campo!</mat-error>
-            </mat-form-field>
-          </form>
-        </div>
-      </th>
-    </tr>
-    </table>
-    <br>
-    <br>
     <table class="ml-auto mr-auto w-11/12">
       <tr>
         <th>
@@ -469,30 +433,6 @@
         </div>
         <br>
         <div class="inline-flex w-full">
-          <h1 class="pt-5">Hematocrito:</h1>
-          <span class="pr-15"></span>
-          <span class="pr-0.5"></span>
-          <div *ngIf="surveillancepatient.hematocrit">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.hematocrit}}</h1>
-          </div>
-          <div *ngIf="surveillancepatient.hematocrit == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Electrolitos sericos:</h1>
-          <span class="pr-16"></span>
-          <span class="pr-3"></span>
-          <div *ngIf="surveillancepatient.serumElectrolytes">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.serumElectrolytes}}</h1>
-          </div>
-          <div *ngIf="surveillancepatient.serumElectrolytes == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
           <h1 class="pt-5">Cloro:</h1>
           <span class="pr-40"></span>
           <span class="pr-4"></span>
@@ -525,17 +465,6 @@
             <h1 class="pt-5 font-normal">{{surveillancepatient.serumCalcium}}</h1>
           </div>
           <div *ngIf="surveillancepatient.serumCalcium == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Electroforesis de proteínas:</h1>
-          <span class="pr-5"></span>
-          <div *ngIf="surveillancepatient.proteinElectrophoresis">
-            <h1 class="pt-5 font-normal">{{surveillancepatient.proteinElectrophoresis}}</h1>
-          </div>
-          <div *ngIf="surveillancepatient.proteinElectrophoresis == null">
             <h1 class="pt-5 font-normal"></h1>
           </div>
         </div>
@@ -954,24 +883,6 @@
             <h1 class="pt-5 font-normal">{{surveillancepatient.whiteBloodCellCount}}</h1>
           </div>
           <div *ngIf="surveillancepatient.whiteBloodCellCount == null">
-            <h1 class="pt-5 font-normal"></h1>
-          </div>
-        </div>
-        <br>
-        <div class="inline-flex w-full">
-          <h1 class="pt-5">Edema:</h1>
-          <span class="pr-40"></span>
-          <span class="pr-2"></span>
-          <span class="pr-0.5"></span>
-          <div *ngIf="surveillancepatient.pedalEdema">
-            <div *ngIf="surveillancepatient.pedalEdema == true">
-              <h1 class="pt-5 font-normal">Si</h1>
-            </div>
-            <div *ngIf="surveillancepatient.pedalEdema != true">
-              <h1 class="pt-5 font-normal">No</h1>
-            </div>
-          </div>
-          <div *ngIf="surveillancepatient.pedalEdema == null">
             <h1 class="pt-5 font-normal"></h1>
           </div>
         </div>

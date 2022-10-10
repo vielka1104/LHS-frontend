@@ -12,12 +12,9 @@ export interface SurveillanceResource {
 
   // Clinic
   ureaPre: number;
-  hematocrit: number;
-  serumElectrolytes: number;
   chlorine: number;
   phosphorus: number;
   serumCalcium: number;
-  proteinElectrophoresis: number;
   alkalinePhosphatase: number;
   tgo: number;
   tgp: number;
@@ -55,7 +52,6 @@ export interface SurveillanceResource {
   whiteBloodCellCount: number;
   redBloodCellCount: number;
   appetite: boolean;
-  pedalEdema: boolean;
 
   // Legacy
   planCalories: number;

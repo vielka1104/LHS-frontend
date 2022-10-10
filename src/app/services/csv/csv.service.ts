@@ -53,12 +53,13 @@ public importDataFromCSVByType(csvText: string, obj: CreateSurveillanceCSV): Arr
         value = null;
       }
 
-
       if (typeof obj[propertyName] === 'undefined') {
         dataObj[propertyName] = undefined;
       }
+      else if(value == null){
+        dataObj[propertyName] = null;
+      }
       else if (typeof obj[propertyName] === 'boolean') {
-        if(value != null){
           switch(value){
             case '0':
               dataObj[propertyName] = false;
@@ -67,9 +68,6 @@ public importDataFromCSVByType(csvText: string, obj: CreateSurveillanceCSV): Arr
               dataObj[propertyName] = true;
               break;
           }
-        }else{
-          dataObj[propertyName] = null;
-        }
       } 
       else if (typeof obj[propertyName] === 'number') {
         dataObj[propertyName] = Number(value);
