@@ -240,16 +240,6 @@
           <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Tipo de Diagnóstico</h1> </th>
           <td mat-cell *matCellDef="let element"> {{element.diagnosis.name}} </td>
         </ng-container>
-      
-        <ng-container matColumnDef="initdate">
-          <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Fecha inicio</h1> </th>
-          <td mat-cell *matCellDef="let element"> {{element.startDate}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="finishdate">
-          <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold">Fecha fin</h1> </th>
-          <td mat-cell *matCellDef="let element"> {{element.endDate}}</td>
-        </ng-container>
         
         <ng-container matColumnDef="update">
           <th mat-header-cell *matHeaderCellDef> <h1 class="text-center font-bold"></h1> </th>

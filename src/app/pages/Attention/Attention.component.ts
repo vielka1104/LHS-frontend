@@ -44,7 +44,6 @@ export class AttentionComponent implements OnInit {
       time:['',Validators.required],
       hemoglobine:['',Validators.required],
       hematocrite:['',Validators.required],
-      ktv:['',Validators.required],
      })
 
     let id=parseInt(this.ActivatedRoute.snapshot.paramMap.get('id')!)

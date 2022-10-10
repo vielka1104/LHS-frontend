@@ -9,7 +9,6 @@ export interface UpdateMedicalCareResource {
     finalWeight:number;
     hdTime:number;
     uf:number;
-    ktv:number;
     hb:number;
     hto:number;
     dialysisMaterial:Dialysis;

@@ -11,7 +11,6 @@ export interface MedicalCareResource {
     finalWeight: number;
     hdTime: number;
     uf: number;
-    ktv: number;
     hb: number;
     hto: number;
     dialysisMaterial:Dialysis;

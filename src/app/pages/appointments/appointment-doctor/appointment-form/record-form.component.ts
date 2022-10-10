@@ -96,7 +96,7 @@ export class RecordFormComponent implements OnInit {
   dataSourceancient2 = new MatTableDataSource<any>()
   updaterenaldisease!:UpdateRenalDiseaseResource
   displayedColumnsancient: string[] = ['id', 'description', 'diseasetype', 'date'];
-  displayedColumnsdiagnostic: string[] = ['code', 'description', 'diagnostic', 'initdate','finishdate','update'];
+  displayedColumnsdiagnostic: string[] = ['code', 'description', 'diagnostic','update'];
   displayedColumnstreatment: string[] = ['code', 'typetreatment', 'medicine', 'doses','description','initdate','finishdate','update'];
   stat!:string;
   notes!:string
