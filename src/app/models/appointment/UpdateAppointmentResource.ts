@@ -6,6 +6,8 @@ export interface UpdateAppointmentResource {
     
       scheduledAt:Date;
 
+      rating: number;
+
     
       status:Status;
 }

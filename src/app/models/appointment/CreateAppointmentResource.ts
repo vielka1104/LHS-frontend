@@ -7,6 +7,8 @@ export interface CreateAppointmentResource {
     
       scheduledAt:Date;
 
+      rating: number;
+
     
       status:Status;
 }

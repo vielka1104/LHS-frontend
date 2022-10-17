@@ -6,6 +6,7 @@ export interface AppointmentResource {
       id:number;
       notes:string;
       scheduledAt:Date;
+      rating: number;
       status:Status;
       patient:PatientResource;
       doctor:DoctorResource;

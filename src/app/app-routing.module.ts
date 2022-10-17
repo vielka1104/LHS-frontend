@@ -53,8 +53,8 @@ const routes: Routes = [
 
   //Personal (Staff)
   {path: "staff/:staffid/medical-schedule/doctor/:doctorid",component: MedicalScheduleStaffComponent},
-  {path: "staff/:staffid/staff-appointment-form/patient/:patientid/appoint/:appointid",component: StaffAppointmentFormComponent},
-  {path: "staff/:id/appointment-staff",component: AppointmentStaffComponent},
+  {path: "staff/:staffid/profiles/patient/:patientid",component: StaffAppointmentFormComponent},
+  {path: "staff/:id/profiles",component: AppointmentStaffComponent},
   {path: "staff/:id/appointment-staff-register",component: AppointmentRegisterStaffComponent},
   {path: "staff/:id/home-staff",component: HomeStaffComponent},
   {path: "staff/:id/vigilant",component:VigilantComponent},

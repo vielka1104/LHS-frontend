@@ -77,7 +77,7 @@ export class AppointmentStaffComponent implements OnInit {
   
 
   getallappoiments(){
-    this.appointmentservice.getAll().subscribe((response:any)=>{
+    this.patientservice.getAllPatients().subscribe((response:any)=>{
       this.dataSource.data=response
       
 
@@ -138,9 +138,9 @@ deleteappoint(id:number){
 
   }
 
-  AppointmentForm(patientid:number,appoint:number){
+  AppointmentForm(patientid:number){
 
-    this.route.navigate([`staff/${this.staffobject.id}/staff-appointment-form/patient/${patientid}/appoint/${appoint}`]);
+    this.route.navigate([`staff/${this.staffobject.id}/profiles/patient/${patientid}`]);
   }
 
   GotoStaffHome(id:number){
@@ -149,17 +149,13 @@ deleteappoint(id:number){
 
   GetPatientByDNI(){
         console.log(this.dnisearch.value)
-        this.doctorservice.getDoctorByUserName(this.dnisearch.value).subscribe((response:any)=>{
-              let id=response.id;
-              this.appointmentservice.getAppointmentsByDoctorId(id).subscribe((response:any)=>{
-                this.dataSource.data = response;
-               
-              })
+        this.patientservice.getPatientByDocumentNumber(this.dnisearch.value).subscribe((response:any)=>{
+          let patient: any[] = [];
+          patient.push(response)
+          this.dataSource.data = patient;
         },err=>{
-          alert("docotr inexistente")
+          alert("DNI inexistente pruebe de nuevo")
         })
-
-       
   }
   getdocotorname(name:string,lastname:string){
     let complete=`${name}  ${lastname}`
