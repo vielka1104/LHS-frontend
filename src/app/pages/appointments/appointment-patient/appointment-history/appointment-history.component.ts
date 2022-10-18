@@ -53,6 +53,16 @@ export class AppointmentHistoryComponent implements OnInit {
     });
   }
 
+  rateAppointment(appointmentId: number, rating: any) {
+    
+  }
+
+  onRatingChanged(appointmentId: number, rating: number){
+    this.appointmentservice.updateRating(appointmentId, rating+1).subscribe((response: any) => {
+      alert("Se calificó la cita correctamente");
+    });
+  }
+
   getAllAppointments(id: number) {
     this.appointmentservice
       .getAppointmentsByPatientId(id)

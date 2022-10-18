@@ -1,20 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-appointment-rating',
   templateUrl: './appointment-rating.component.html',
-  styleUrls: ['./appointment-rating.component.css']
+  styleUrls: ['./appointment-rating.component.css'],
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class AppointmentRatingComponent implements OnInit {
-  rating = 0
-  startcount = 5
-  ratingArr: boolean[]
+  @Input('rating') public rating: number;
+  private starCount: number = 5;
+  @Output() public ratingUpdated = new EventEmitter();
 
-  constructor() { 
-    this.ratingArr = Array(this.startcount).fill(false)
+  public ratingArr = [];
+
+  constructor() {
   }
 
   ngOnInit() {
+    for (let index = 0; index < this.starCount; index++) {
+      this.ratingArr.push(index);
+    }
   }
 
   returnStar(i:number){
@@ -25,8 +30,9 @@ export class AppointmentRatingComponent implements OnInit {
     }
   }
 
-  onClick(i:number){
+  onClick(i:number) {
     this.rating = i + 1;
+    this.ratingUpdated.emit(i);
+    return false;
   }
-
 }

@@ -101,6 +101,14 @@ updateAppointment(appointmentId:number,item:any){
     catchError(this.handleError));
 
 }
+
+updateRating(appointmentId:number,rating:number){
+  return this.http.put<AppointmentResource>(`${this.basePath}/appointments/${appointmentId}/rating/${rating}`, this.httpOptions)
+  .pipe(
+    retry(2),
+    catchError(this.handleError));
+}
+
 deleteAppointment(appointmentId:number){
   return this.http.delete(`${this.basePath}/appointments/${appointmentId}`, this.httpOptions)
   .pipe(
