@@ -45,7 +45,7 @@ export class HomeStaffComponent implements OnInit {
   }
 
   GotoStaffAppointmentView(){
-    this.Router.navigate(['/staff',this.StaffResource.id,'appointment-staff'])
+    this.Router.navigate(['/staff',this.StaffResource.id,'profiles'])
   }
   
   GotoStaffAppointmentRegister(){
